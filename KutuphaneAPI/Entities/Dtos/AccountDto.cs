@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Entities.Dtos
+{
+    public class AccountDto
+    {
+        public String? Id { get; init; }
+        public String? AvatarUrl { get; init; }
+        public String? FirstName { get; init; }
+        public String? LastName { get; init; }
+        public String? PhoneNumber { get; init; }
+        public String? Email { get; init; }
+        public DateTime MembershipDate { get; init; }
+        public DateTime? BirthDate { get; init; }
+        public DateTime? LastLoginDate { get; init; }
+    }
+}
