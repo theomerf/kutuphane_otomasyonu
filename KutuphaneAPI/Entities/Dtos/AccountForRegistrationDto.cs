@@ -5,21 +5,26 @@ namespace Entities.Dtos
     public record AccountForRegistrationDto
     {
         [Required(ErrorMessage = "Ad gereklidir.")]
-        [MaxLength(30, ErrorMessage = "Ad en fazla 30 karakter olabilir.")]
+        [MinLength(2, ErrorMessage = "Ad minimum 2 karakter olmalıdır.")]
+        [MaxLength(20, ErrorMessage = "Ad en fazla 20 karakter olmalıdır.")]
         public String? FirstName { get; init; }
-        [MaxLength(30, ErrorMessage = "Soyad en fazla 30 karakter olabilir.")]
+        [MinLength(2, ErrorMessage = "Soyad minimum 2 karakter olmalıdır.")]
+        [MaxLength(20, ErrorMessage = "Soyad en fazla 20 karakter olmalıdır.")]
         [Required(ErrorMessage = "Soyad gereklidir.")]
         public String? LastName { get; init; }
-        [MaxLength(20, ErrorMessage = "Kullanıcı adı en fazla 20 karakter olabilir.")]
+        [MinLength(3, ErrorMessage = "Kullanıcı adı minimum 3 karakter olmalıdır.")]
+        [MaxLength(20, ErrorMessage = "Kullanıcı adı en fazla 20 karakter olmalıdır.")]
         [Required(ErrorMessage = "Kullanıcı adı gereklidir.")]
         public String? UserName { get; init; }
         [Required(ErrorMessage = "Şifre gereklidir.")]
-        [MaxLength(30, ErrorMessage = "Şifre en fazla 30 karakter olabilir.")]
+        [MaxLength(20, ErrorMessage = "Şifre en fazla 20 karakter olmalıdır.")]
         public String? Password { get; init; }
         [Required(ErrorMessage = "Email gereklidir.")]
         public String? Email { get; init; }
         [Required(ErrorMessage = "Telefon numarası gereklidir.")]
         public String? PhoneNumber { get; init; }
-        public ICollection<String>? Roles { get; init; }
+        [Required(ErrorMessage = "Doğum tarihi gereklidir.")]
+        public DateTime? BirthDate { get; init; }
+        public ICollection<String>? Roles { get; init; } = ["User"];
     }
 }

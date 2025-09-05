@@ -9,6 +9,7 @@ namespace Entities.Dtos
     public class AccountDto
     {
         public String? Id { get; init; }
+        public String? UserName { get; init; }
         public String? AvatarUrl { get; init; }
         public String? FirstName { get; init; }
         public String? LastName { get; init; }

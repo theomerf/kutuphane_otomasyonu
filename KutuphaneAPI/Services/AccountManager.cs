@@ -37,6 +37,7 @@ namespace Services
         public async Task<IdentityResult> RegisterUserAsync(AccountForRegistrationDto accountDto)
         {
             var user = _mapper.Map<Account>(accountDto);
+            accountDto.Roles?.Add("User");
 
             if(accountDto.Roles != null && accountDto.Password != null)
             {
@@ -85,7 +86,7 @@ namespace Services
             return userDto;
         }
 
-        public async Task<TokenDto> CreateTokenAsync(bool populateExp)
+        public async Task<TokenDto> CreateTokenAsync(bool populateExp, bool rememberMe)
         {
             var signinCredentials = GetSigningCredentials();
             var claims = await GetClaimsAsync();
@@ -99,7 +100,14 @@ namespace Services
 
                 if (populateExp)
                 {
-                    _account.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+                    if (rememberMe) 
+                    {
+                        _account.RefreshTokenExpiryTime = DateTime.Now.AddDays(15);
+                    }
+                    else
+                    {
+                        _account.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+                    }
                 }
 
                 await _userManager.UpdateAsync(_account);
@@ -109,6 +117,7 @@ namespace Services
             var accessToken = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return new TokenDto()
             {
+                UserName = _account?.UserName,
                 AccessToken = accessToken,
                 RefreshToken = refreshToken
             };
@@ -206,7 +215,7 @@ namespace Services
             }
 
             _account = account;
-            return await CreateTokenAsync(populateExp: false);
+            return await CreateTokenAsync(populateExp: false, rememberMe: false);
         }
     }
 }

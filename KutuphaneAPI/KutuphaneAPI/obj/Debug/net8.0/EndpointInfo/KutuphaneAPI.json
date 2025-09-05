@@ -146,18 +146,22 @@
         "type": "object",
         "properties": {
           "userName": {
-            "minLength": 1,
+            "minLength": 3,
             "type": "string"
           },
           "password": {
-            "minLength": 1,
+            "minLength": 6,
             "type": "string"
+          },
+          "rememberMe": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
       },
       "AccountForRegistrationDto": {
         "required": [
+          "birthDate",
           "email",
           "firstName",
           "lastName",
@@ -168,22 +172,22 @@
         "type": "object",
         "properties": {
           "firstName": {
-            "maxLength": 30,
-            "minLength": 1,
+            "maxLength": 20,
+            "minLength": 2,
             "type": "string"
           },
           "lastName": {
-            "maxLength": 30,
-            "minLength": 1,
+            "maxLength": 20,
+            "minLength": 2,
             "type": "string"
           },
           "userName": {
             "maxLength": 20,
-            "minLength": 1,
+            "minLength": 3,
             "type": "string"
           },
           "password": {
-            "maxLength": 30,
+            "maxLength": 20,
             "minLength": 1,
             "type": "string"
           },
@@ -194,6 +198,10 @@
           "phoneNumber": {
             "minLength": 1,
             "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
           },
           "roles": {
             "type": "array",
@@ -213,6 +221,10 @@
             "nullable": true
           },
           "refreshToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
             "type": "string",
             "nullable": true
           }

@@ -28,6 +28,7 @@ builder.Services.ConfigureServiceRegistration();
 builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureRouting();
 builder.Services.ConfigureActionFilters();
+builder.Services.ConfigureCors();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -55,7 +56,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 

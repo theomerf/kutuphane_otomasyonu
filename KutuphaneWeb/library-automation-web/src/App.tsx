@@ -1,38 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route, unstable_HistoryRouter as HistoryRouter } from 'react-router-dom'
 import './App.css'
+import { history } from './services/history.ts'
+import Home from './pages/Home.tsx'
+import Books from './pages/Books.tsx'
+import { Account, Login, Register} from './pages/Account/Account.tsx'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { logout, setUser } from './pages/Account/accountSlice.ts'
+import type { LoginResponse } from './types/loginResponse.ts'
+import Error from './pages/Error/Error.tsx'
+import NotFound from './pages/Error/NotFound.tsx'
+import { jwtDecode } from 'jwt-decode'
+import MainLayout from './components/layout/MainLayout.tsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+
+  function isTokenExpired(token: string) {
+    if (!token) return true;
+
+    try{
+      const decoded: any = jwtDecode(token);
+      if(!decoded.exp) return true;
+      return decoded.exp * 1000 < Date.now();
+    }
+    catch(err){
+      return true;
+    }
+
+  }
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    const user: LoginResponse | null = storedUser ? JSON.parse(storedUser) as LoginResponse : null;
+    dispatch(setUser(user));
+
+    const storedUserJson = JSON.parse(storedUser || "null")
+    if (storedUserJson){
+      if (isTokenExpired(storedUserJson.accessToken)) {
+        dispatch(logout());
+      }
+    }
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <h1 className="text-3xl font-bold underline text-blue-500">
-  Hello Tailwind
-</h1>
-
-    </>
+    <HistoryRouter history={history}>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/Books" element={<Books />}></Route>
+          <Route path="/Account" element={<Account />}>
+            <Route path="Login" element={<Login />}></Route>
+            <Route path="Register" element={<Register />}></Route>
+          </Route>
+          <Route path="/Error" element={<Error />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Route>
+      </Routes>
+    </HistoryRouter>
   )
 }
 

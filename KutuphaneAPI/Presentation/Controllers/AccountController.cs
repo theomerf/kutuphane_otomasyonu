@@ -31,7 +31,7 @@ namespace Presentation.Controllers
                 return Unauthorized();
             }
 
-            var tokenDto = await _manager.AccountService.CreateTokenAsync(true);
+            var tokenDto = await _manager.AccountService.CreateTokenAsync(populateExp: true, rememberMe: accountDto.RememberMe);
 
             return Ok(tokenDto);
         }
