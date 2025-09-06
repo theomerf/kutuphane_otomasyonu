@@ -14,7 +14,7 @@ export default function Navbar() {
   const { user } = useAppSelector((state) => state.account);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { current, up, between } = useBreakpoint();
+  const { up} = useBreakpoint();
 
   function handleLogout() {
     dispatch(logout());
