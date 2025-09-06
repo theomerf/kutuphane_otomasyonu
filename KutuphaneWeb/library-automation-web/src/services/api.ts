@@ -33,6 +33,7 @@ const errors = {
 const requests = {
     books,
     account,
+    errors
 }
 
 export default requests;

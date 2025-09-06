@@ -111,3 +111,10 @@
 2025-09-05 19:32:27.8567 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.3.4402. Product version: 6.0.3+e276e1969a52b8ecc5cc84c1670a516efea0cb19. GlobalAssemblyCache: False
 2025-09-05 19:32:27.8732 Info AutoReload Config File Monitor starting
 2025-09-05 19:32:27.8946 Info Configuration initialized.
+2025-09-06 19:39:29.1996 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-09-06 19:39:29.2193 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.3.4402. Product version: 6.0.3+e276e1969a52b8ecc5cc84c1670a516efea0cb19. GlobalAssemblyCache: False
+2025-09-06 19:39:29.2315 Info AutoReload Config File Monitor starting
+2025-09-06 19:39:29.2817 Info Configuration initialized.
+2025-09-06 19:41:09.3569 Info AppDomain Shutting down. LogFactory closing...
+2025-09-06 19:41:09.3569 Info AutoReload Config File Monitor stopping, since no active configuration
+2025-09-06 19:41:09.3724 Info LogFactory has been disposed.
