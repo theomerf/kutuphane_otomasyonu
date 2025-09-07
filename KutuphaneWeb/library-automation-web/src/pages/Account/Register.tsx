@@ -96,7 +96,7 @@ export default function Register() {
                     <input type="date" {...register("BirthDate", {
                         required: "Doğum tarihi gereklidir.",
                     })}
-                        id="birthDate" name="BirthDate" className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Doğum tarihinizi giriniz."></input>
+                        id="birthDate" name="BirthDate" className="border-2 flex-1 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Doğum tarihinizi giriniz."></input>
                     {errors.BirthDate && <span className="text-red-700 text-left mt-1">{errors.BirthDate?.message?.toString()}</span>}
                 </div>
                 <div className="my-5 flex flex-col">
