@@ -20,7 +20,7 @@ const links: LinkType[] = [
 ]
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [ open, setOpen ] = useState(false);
   const { user } = useSelector((state: RootState) => state.account);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -100,7 +100,7 @@ export default function Navbar() {
 
       {/* Mobil görünüm */}
       {open && down.lg &&
-        <div className={`${user ? "" : "mb-[-30%]"} mt-[65px] bg-violet-400 py-3`}>
+        <div className={`${user ? "mb-[-18%]" : "mb-[-18%]"} mt-[65px] bg-violet-400 py-3`}>
           {user &&
             <div className="flex justify-center gap-2 mb-3">
               <Link to="/Account/Notifications" title="Bildirimler" className="navButton">

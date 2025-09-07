@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  @apply bg-[#FFF0F0] font-segoe text-[#495057]
+}
+
 .navbar{
   @apply fixed top-0 left-0 right-0 z-[101] bg-hero-gradient border-b border-white/20 shadow-[0_8px_30px_rgba(139,92,246,0.5)] backdrop-blur-[25px] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
 }

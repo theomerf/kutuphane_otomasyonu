@@ -4,10 +4,10 @@ import Footer from './Footer.tsx'
 
 export default function MainLayout(){
     return (
-        <div className="flex flex-col min-h-screen bg-[#FFF0F0] font-segoe text-[#495057]">
+        <div className="flex flex-col min-h-screen">
             <Navbar />
 
-            <main className="flex-grow pt-16">
+            <main className="flex-grow pt-16 lg:pt-0">
                 <Outlet />
             </main>
 
