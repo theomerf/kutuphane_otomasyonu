@@ -6,7 +6,7 @@ export function Account() {
 
     return (
         <>
-            <div className="flex justify-center h-screen lg:h-auto content-center">
+            <div className={`${activePanel === "register" ? "mt-5 lg:mt-0": ""} flex justify-center h-screen lg:h-auto content-center`}>
                 <div className="content-center w-4/5 lg:w-[27%] p-0 border-none">
                     <div className="flex flex-col justify-center align-center text-center rounded-2xl bg-violet-100 backdrop-blur-[20px] overflow-hidden before:content-none before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:pointer-events-none before:z-[1] transition-all shadow-sm hover:translate-y-[-5px] hover:shadow-lg duration-500">
                         <div className="flex border-none rounded-[16px 16px 0 0] pt-0 pb-0 bg-hero-gradient relative overflow-hidden after:content-none after:absolute after:bottom-0 after:left-0 after:right:0 after:h-[1px] after:bg-shine-gradient">

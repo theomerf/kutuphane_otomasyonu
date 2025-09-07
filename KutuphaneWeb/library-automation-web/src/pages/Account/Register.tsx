@@ -127,7 +127,7 @@ export default function Register() {
                                 message: "Şifre en fazla 20 karakter olmalıdır.",
                             }
                         })}
-                            id="password" name="Password" className="flex-1 border-2 border-[#e5e7eb] border-r-0 rounded-[12px_0_0_12px] px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Şifrenizi giriniz."></input>
+                            id="password" name="Password" className="flex-1 border-2 min-w-0 border-[#e5e7eb] border-r-0 rounded-[12px_0_0_12px] px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Şifrenizi giriniz."></input>
                         <button type="button" onClick={passwordVisibleForRegister ? () => setPasswordVisibleForRegister(false) : () => setPasswordVisibleForRegister(true)} className="cursor-pointer border-2 border-[#e5e7eb] border-l-0 rounded-[0_12px_12px_0] text-white bg-hero-gradient px-4 py-3 transform transition-all duration-500 hover:bg-violet-400  hover:shadow-md hover:transition-all hover:scale-105">
                             <FontAwesomeIcon icon={passwordVisibleForRegister ? faEyeSlash : faEye} title={passwordVisibleForRegister ? "Gizle" : "Göster"} />
                         </button>
