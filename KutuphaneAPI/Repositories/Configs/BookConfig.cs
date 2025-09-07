@@ -1,11 +1,6 @@
 ﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repositories.Configs
 {
@@ -17,6 +12,14 @@ namespace Repositories.Configs
             builder.Property(b => b.Title)
                 .IsRequired()
                 .HasMaxLength(200);
+
+            builder.HasMany(b => b.Authors)
+                .WithMany(a => a.Books)
+                .UsingEntity(j => j.ToTable("BookAuthors"));
+
+            builder.HasMany(b => b.Categories)
+                .WithMany(c => c.Books)
+                .UsingEntity(j => j.ToTable("BookCategories"));
         }
     }
 }

@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entities.Dtos;
+using Entities.RequestFeatures;
+using System.Dynamic;
 
 namespace Services.Contracts
 {
     public interface IBookService
     {
+        Task<(IEnumerable<ExpandoObject> books, MetaData metaData)> GetAllBooksAsync(BookRequestParameters p, bool trackChanges);
+        Task<BookDto?> GetOneBookAsync(int id, bool trackChanges);
+        Task CreateBookAsync(BookDto bookDto);
+        Task UpdateBookAsync(BookDto bookDto);
+        Task DeleteBookAsync(int id);
     }
 }

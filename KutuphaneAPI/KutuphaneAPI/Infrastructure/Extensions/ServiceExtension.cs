@@ -107,9 +107,15 @@ namespace KutuphaneAPI.Infrastructure.Extensions
                         policy
                             .WithOrigins("http://localhost:5173")
                             .AllowAnyHeader()
-                            .AllowAnyMethod();
+                            .AllowAnyMethod()
+                            .WithExposedHeaders("X-Pagination");
                     });
             });
+        }
+
+        public static void ConfigureDataShaper(this IServiceCollection services)
+        {
+            services.AddScoped(typeof(IDataShaper<>), typeof(DataShaper<>));
         }
     }
 }

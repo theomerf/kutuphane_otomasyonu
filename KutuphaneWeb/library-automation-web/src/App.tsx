@@ -6,7 +6,7 @@ import Books from './pages/Books.tsx'
 import { Account } from './pages/Account/Account.tsx'
 import Login from './pages/Account/Login.tsx'
 import Register from './pages/Account/Register.tsx'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { logout, setUser } from './pages/Account/accountSlice.ts'
 import type { LoginResponse } from './types/loginResponse.ts'
@@ -14,19 +14,21 @@ import Error from './pages/Error/Error.tsx'
 import NotFound from './pages/Error/NotFound.tsx'
 import { jwtDecode } from 'jwt-decode'
 import MainLayout from './components/layout/MainLayout.tsx'
+import type { RootState } from './store/store.ts'
 
 function App() {
   const dispatch = useDispatch();
+  const { user } = useSelector((state: RootState) => state.account);
 
   function isTokenExpired(token: string) {
     if (!token) return true;
 
-    try{
+    try {
       const decoded: any = jwtDecode(token);
-      if(!decoded.exp) return true;
+      if (!decoded.exp) return true;
       return decoded.exp * 1000 < Date.now();
     }
-    catch(err){
+    catch (err) {
       return true;
     }
 
@@ -39,7 +41,7 @@ function App() {
     dispatch(setUser(user));
 
     const storedUserJson = JSON.parse(storedUser || "null")
-    if (storedUserJson){
+    if (storedUserJson) {
       if (isTokenExpired(storedUserJson.accessToken)) {
         dispatch(logout());
       }
@@ -53,8 +55,12 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/Books" element={<Books />}></Route>
           <Route path="/Account" element={<Account />}>
-            <Route path="Login" element={<Login />}></Route>
-            <Route path="Register" element={<Register />}></Route>
+            {!user &&
+              <>
+                <Route path="Login" element={<Login />}></Route>
+                <Route path="Register" element={<Register />}></Route>
+              </>
+            }
           </Route>
           <Route path="/Error" element={<Error />}></Route>
           <Route path="*" element={<NotFound />}></Route>

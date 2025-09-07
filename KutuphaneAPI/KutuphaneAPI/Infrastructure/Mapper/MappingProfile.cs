@@ -10,6 +10,7 @@ namespace KutuphaneAPI.Infrastructure.Mapper
         {
             CreateMap<AccountForRegistrationDto, Account>();
             CreateMap<Account, AccountDto>();
+            CreateMap<Book, BookDto>();
         }
     }
 }
