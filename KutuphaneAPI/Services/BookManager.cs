@@ -24,7 +24,7 @@ namespace Services
         {
             var books = await _manager.Book.GetAllBooksAsync(p, trackChanges);
 
-            var pagedBooks = PagedList<ExpandoObject>.ToPagedList(books, p.PageNumber, p.PageSize);
+            var pagedBooks = PagedList<ExpandoObject>.ToPagedList(books.data, p.PageNumber, p.PageSize, books.count);
 
             return (pagedBooks, pagedBooks.MetaData);
         }

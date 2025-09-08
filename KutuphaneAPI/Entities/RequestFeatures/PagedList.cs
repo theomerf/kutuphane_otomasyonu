@@ -14,12 +14,11 @@
             };
             AddRange(items);
         }
-        public static PagedList<T> ToPagedList(IEnumerable<T> source, int pageNumber, int pageSize)
+        public static PagedList<T> ToPagedList(IEnumerable<T> source, int pageNumber, int pageSize, int totalCount)
         {
-            var count = source.Count();
             var items = source.ToList();
 
-            return new PagedList<T>(items, count, pageNumber, pageSize);
+            return new PagedList<T>(items, totalCount, pageNumber, pageSize);
         } 
 
     }

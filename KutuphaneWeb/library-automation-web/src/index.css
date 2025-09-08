@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-  @apply bg-[#FFF0F0] font-segoe text-[#495057]
+  @apply bg-[#F7FAFC] font-segoe text-[#495057]
 }
 
 .navbar{

@@ -9,26 +9,25 @@ namespace Repositories
 {
     public class BookRepository : RepositoryBase<Book>, IBookRepository
     {
-        private readonly IDataShaper<Book> _dataShaper;
-        public BookRepository(RepositoryContext context, IDataShaper<Book> dataShaper) : base(context)
+        private readonly IBookDataShaper _bookShaper;
+        public BookRepository(RepositoryContext context, IBookDataShaper bookShaper) : base(context)
         {
-            _dataShaper = dataShaper;
+            _bookShaper = bookShaper;
         }
 
-        public async Task<IEnumerable<ExpandoObject>> GetAllBooksAsync(BookRequestParameters p, bool trackChanges, CancellationToken ct = default)
+        public async Task<(IEnumerable<ExpandoObject> data, int count)> GetAllBooksAsync(BookRequestParameters p, bool trackChanges, CancellationToken ct = default)
         {
-            var books = FindAll(trackChanges)
-                .FilteredBySearchTerm(p.SearchTerm ?? "", b => b.Title!)
-                .Include(b => b.Authors)
-                .Include(b => b.Categories)
-                .Include(b => b.Images)
-                .Include(b => b.Tags)
-                .SortExtensionForBooks(p.OrderBy ?? "")
+            var query = FindAll(trackChanges)
+                .FilteredBySearchTerm(p.SearchTerm ?? "", b => b.Title!);
+
+            var count = await query.CountAsync(ct);
+
+            query = query.SortExtensionForBooks(p.OrderBy ?? "")
                 .ToPaginate(p.PageSize, p.PageNumber);
 
-            var shaped = await _dataShaper.ShapeQueryAsync(books, p.Fields, ct);
+            var shaped = await _bookShaper.ShapeAsync(query, p.Fields, ct);
 
-            return shaped;
+            return (shaped, count);
         }
 
         public async Task<Book?> GetOneBookAsync(int id, bool trackChanges)

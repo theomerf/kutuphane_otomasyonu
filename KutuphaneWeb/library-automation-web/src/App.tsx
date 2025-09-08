@@ -2,7 +2,7 @@ import { Routes, Route, unstable_HistoryRouter as HistoryRouter } from 'react-ro
 import './App.css'
 import { history } from './services/history.ts'
 import Home from './pages/Home.tsx'
-import Books from './pages/Books.tsx'
+import Books from './pages/Books/Books.tsx'
 import { Account } from './pages/Account/Account.tsx'
 import Login from './pages/Account/Login.tsx'
 import Register from './pages/Account/Register.tsx'
@@ -15,8 +15,10 @@ import NotFound from './pages/Error/NotFound.tsx'
 import { jwtDecode } from 'jwt-decode'
 import MainLayout from './components/layout/MainLayout.tsx'
 import type { RootState } from './store/store.ts'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 function App() {
+  const queryClient = new QueryClient();
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.account);
 
@@ -49,6 +51,7 @@ function App() {
   }, []);
 
   return (
+    <QueryClientProvider client={queryClient}>
     <HistoryRouter history={history}>
       <Routes>
         <Route element={<MainLayout />}>
@@ -67,6 +70,7 @@ function App() {
         </Route>
       </Routes>
     </HistoryRouter>
+    </QueryClientProvider>
   )
 }
 

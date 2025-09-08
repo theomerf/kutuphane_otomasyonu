@@ -5,7 +5,7 @@ import { history } from './history';
 import { store } from '../store/store';
 import { logout, setUser } from '../pages/Account/accountSlice';
 
-axios.defaults.baseURL = "https://localhost:7214/";
+axios.defaults.baseURL = "https://localhost:7214/api/";
 
 axios.interceptors.request.use((request) => {
     const token = store.getState().account.user?.accessToken;
@@ -76,22 +76,22 @@ axios.interceptors.response.use(
 );
 
 const methods = {
-    get: (url: string) => axios.get(url).then((response) => response.data),
+    get: (url: string, params?: any) => axios.get(url, { params }).then((response) => response.data),
     post: (url: string, body: any | null) => axios.post(url, body).then((response) => response.data),
     put: (url: string, body: any) => axios.put(url, body).then((response) => response.data),
     delete: (url: string) => axios.delete(url).then((response) => response.data),
 }
 
 const books = {
-    list: () => methods.get("books"),
-    details: (id: number) => methods.get(`books/${id}`)
+    getAllBooks: (query: URLSearchParams) => methods.get("books", { params: query }),
+    getOneBook: (id: string) => methods.get(`books/${id}`)
 }
 
 const account = {
-    login: (formData: any) => methods.post("api/account/login", formData),
-    register: (formData: any) => methods.post("api/account/register", formData),
-    getUser: () => methods.post("api/account/", null),
-    refresh: (user: LoginResponse) => methods.post("api/account/refresh", user)
+    login: (formData: any) => methods.post("account/login", formData),
+    register: (formData: any) => methods.post("account/register", formData),
+    getUser: (userName: string) => methods.get(`account/${userName}`),
+    refresh: (user: LoginResponse) => methods.post("account/refresh", user)
 }
 
 const errors = {

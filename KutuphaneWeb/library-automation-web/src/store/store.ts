@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { accountSlice } from "../pages/Account/accountSlice";
 
 const rootReducer = combineReducers({
-    account: accountSlice.reducer
+    account: accountSlice.reducer,
 });
 
 export const store = configureStore({

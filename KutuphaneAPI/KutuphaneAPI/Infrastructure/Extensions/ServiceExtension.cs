@@ -116,6 +116,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
         public static void ConfigureDataShaper(this IServiceCollection services)
         {
             services.AddScoped(typeof(IDataShaper<>), typeof(DataShaper<>));
+            services.AddScoped<IBookDataShaper, BookDataShaper>();
         }
     }
 }
