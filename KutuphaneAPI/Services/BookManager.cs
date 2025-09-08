@@ -13,22 +13,20 @@ namespace Services
     {
         private readonly IRepositoryManager _manager;
         private readonly IMapper _mapper;
-        private readonly IDataShaper<BookDto> _dataShaper;
 
-        public BookManager(IRepositoryManager manager, IMapper mapper, IDataShaper<BookDto> dataShaper)
+        public BookManager(IRepositoryManager manager, IMapper mapper)
         {
             _manager = manager;
             _mapper = mapper;
-            _dataShaper = dataShaper;
         }
 
         public async Task<(IEnumerable<ExpandoObject> books, MetaData metaData)> GetAllBooksAsync(BookRequestParameters p, bool trackChanges)
         {
             var books = await _manager.Book.GetAllBooksAsync(p, trackChanges);
-            var booksDto = _mapper.Map<IEnumerable<BookDto>>(books);
 
-            var shapedData = _dataShaper.ShapeData(booksDto, p.Fields);
-            return (shapedData, books.MetaData);
+            var pagedBooks = PagedList<ExpandoObject>.ToPagedList(books, p.PageNumber, p.PageSize);
+
+            return (pagedBooks, pagedBooks.MetaData);
         }
 
         public async Task<BookDto?> GetOneBookAsync(int id, bool trackChanges)

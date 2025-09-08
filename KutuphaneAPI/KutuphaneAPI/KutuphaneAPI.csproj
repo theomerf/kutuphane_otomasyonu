@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="ContextFactory\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

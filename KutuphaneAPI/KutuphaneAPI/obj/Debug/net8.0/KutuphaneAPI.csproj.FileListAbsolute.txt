@@ -201,4 +201,5 @@ C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\
 C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\System.Formats.Asn1.dll
 C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\nlog.config
 C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\System.Linq.Dynamic.Core.dll
 C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

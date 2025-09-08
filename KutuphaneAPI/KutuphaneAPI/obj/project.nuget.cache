@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qGFFqdPFKnE=",
+  "dgSpecHash": "OE/CR0UU4js=",
   "success": true,
   "projectFilePath": "C:\\Users\\omerf\\OneDrive\\Masaüstü\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\KutuphaneAPI.csproj",
   "expectedPackageFiles": [
@@ -104,6 +104,7 @@
     "C:\\Users\\omerf\\.nuget\\packages\\system.formats.asn1\\9.0.8\\system.formats.asn1.9.0.8.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.14.0\\system.identitymodel.tokens.jwt.8.14.0.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\system.io.pipelines\\9.0.8\\system.io.pipelines.9.0.8.nupkg.sha512",
+    "C:\\Users\\omerf\\.nuget\\packages\\system.linq.dynamic.core\\1.6.7\\system.linq.dynamic.core.1.6.7.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\system.memory.data\\8.0.1\\system.memory.data.8.0.1.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",

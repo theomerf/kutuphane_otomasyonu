@@ -23,6 +23,14 @@ namespace Repositories.Extensions
             return query.Where(lambda);
         }
 
+        public static IQueryable<T> ToPaginate<T>(this IQueryable<T> query, int pageSize, int pageNumber)
+        {
+            if (pageSize <= 0 || pageNumber <= 0)
+                return query;
+
+            return query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+        }
+
         public static IQueryable<T> SortBy<T>(this IQueryable<T> source, string propertyName, bool ascending = true)
         {
             if (string.IsNullOrWhiteSpace(propertyName))

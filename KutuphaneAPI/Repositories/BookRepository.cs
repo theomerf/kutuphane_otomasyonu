@@ -3,23 +3,32 @@ using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
 using Repositories.Extensions;
+using System.Dynamic;
 
 namespace Repositories
 {
     public class BookRepository : RepositoryBase<Book>, IBookRepository
     {
-        public BookRepository(RepositoryContext context) : base(context)
+        private readonly IDataShaper<Book> _dataShaper;
+        public BookRepository(RepositoryContext context, IDataShaper<Book> dataShaper) : base(context)
         {
+            _dataShaper = dataShaper;
         }
 
-        public async Task<PagedList<Book>> GetAllBooksAsync(BookRequestParameters p, bool trackChanges)
+        public async Task<IEnumerable<ExpandoObject>> GetAllBooksAsync(BookRequestParameters p, bool trackChanges, CancellationToken ct = default)
         {
-            var books = await FindAll(trackChanges)
+            var books = FindAll(trackChanges)
                 .FilteredBySearchTerm(p.SearchTerm ?? "", b => b.Title!)
+                .Include(b => b.Authors)
+                .Include(b => b.Categories)
+                .Include(b => b.Images)
+                .Include(b => b.Tags)
                 .SortExtensionForBooks(p.OrderBy ?? "")
-                .ToListAsync();
+                .ToPaginate(p.PageSize, p.PageNumber);
 
-            return PagedList<Book>.ToPagedList(books, p.PageNumber, p.PageSize);
+            var shaped = await _dataShaper.ShapeQueryAsync(books, p.Fields, ct);
+
+            return shaped;
         }
 
         public async Task<Book?> GetOneBookAsync(int id, bool trackChanges)

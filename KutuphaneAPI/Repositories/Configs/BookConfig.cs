@@ -20,6 +20,15 @@ namespace Repositories.Configs
             builder.HasMany(b => b.Categories)
                 .WithMany(c => c.Books)
                 .UsingEntity(j => j.ToTable("BookCategories"));
+
+            builder.HasMany(b => b.Tags)
+                .WithMany(t => t.Books)
+                .UsingEntity(j => j.ToTable("BookTags"));
+
+            builder.HasMany(b => b.Images)
+                .WithOne(i => i.Book)
+                .HasForeignKey(i => i.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
