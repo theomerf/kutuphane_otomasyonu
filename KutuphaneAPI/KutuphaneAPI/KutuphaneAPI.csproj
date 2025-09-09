@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="ContextFactory\" />
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12,5 +12,6 @@ namespace Entities.Models
         public DateTime? LastLoginDate { get; set; }
         public String? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
+        public ICollection<Review>? Reviews { get; set; }
     }
 }

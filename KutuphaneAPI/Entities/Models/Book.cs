@@ -10,9 +10,11 @@
         public String? Location { get; set; }
         public DateTime PublishedDate { get; set; }
         public String? Summary { get; set; }
+        public double AverageRating { get; set; } = 0;
         public ICollection<BookImage>? Images { get; set; }
         public ICollection<Tag>? Tags { get; set; }
         public ICollection<Author>? Authors { get; set; }
         public ICollection<Category>? Categories { get; set; }
+        public ICollection<Review>? Reviews { get; set; }
     }
 }

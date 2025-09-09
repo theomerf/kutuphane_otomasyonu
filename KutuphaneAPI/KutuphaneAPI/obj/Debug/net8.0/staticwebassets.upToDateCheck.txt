@@ -1,0 +1,6 @@
+wwwroot\images\books\1.jpg
+wwwroot\images\books\2.jpg
+wwwroot\images\books\3.jpg
+wwwroot\images\books\4.jpg
+wwwroot\images\books\5.jpg
+wwwroot\images\books\6.jpg
