@@ -29,6 +29,8 @@ namespace KutuphaneAPI.Infrastructure.Extensions
         {
             services.AddScoped<IRepositoryManager, RepositoryManager>();
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
         }
 
         public static void ConfigureServiceRegistration(this IServiceCollection services)
@@ -36,6 +38,8 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<IServiceManager, ServiceManager>();
             services.AddScoped<IAccountService, AccountManager>();
             services.AddScoped<IBookService, BookManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<IAuthorService, AuthorManager>();
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)

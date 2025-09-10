@@ -76,15 +76,25 @@ axios.interceptors.response.use(
 );
 
 const methods = {
-    get: (url: string, params?: any) => axios.get(url, { params }).then((response) => response.data),
+    get: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, {...params, signal}).then((response) => ({data: response.data, headers: response.headers})),
     post: (url: string, body: any | null) => axios.post(url, body).then((response) => response.data),
     put: (url: string, body: any) => axios.put(url, body).then((response) => response.data),
     delete: (url: string) => axios.delete(url).then((response) => response.data),
 }
 
 const books = {
-    getAllBooks: (query: URLSearchParams) => methods.get("books", { params: query }),
-    getOneBook: (id: string) => methods.get(`books/${id}`)
+    getAllBooks: (query: URLSearchParams, signal?: AbortSignal) => methods.get("books", { params: query }, signal),
+    getOneBook: (id: string, signal?: AbortSignal) => methods.get(`books/${id}`, {}, signal)
+}
+
+const categories = {
+    getAllCategories: (signal?: AbortSignal) => methods.get("categories", {}, signal),
+    getPopularCategories: (signal?: AbortSignal) => methods.get("categories/popular", {}, signal),
+}
+
+const authors = {
+    getAllAuthors: (signal?: AbortSignal) => methods.get("authors", {}, signal),
+    getPopularAuthors: (signal?: AbortSignal) => methods.get("authors/popular", {}, signal),
 }
 
 const account = {
@@ -105,6 +115,8 @@ const errors = {
 const requests = {
     books,
     account,
+    categories,
+    authors,
     errors
 }
 

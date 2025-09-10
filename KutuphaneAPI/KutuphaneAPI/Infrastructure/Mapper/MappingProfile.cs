@@ -11,6 +11,12 @@ namespace KutuphaneAPI.Infrastructure.Mapper
             CreateMap<AccountForRegistrationDto, Account>();
             CreateMap<Account, AccountDto>();
             CreateMap<Book, BookDto>();
+            CreateMap<Category, CategoryDto>()
+                .ForMember(dest => dest.BookCount, opt => opt.MapFrom(src => src.Books != null ? src.Books.Count : 0))
+                .ReverseMap();
+            CreateMap<Author, AuthorDto>()
+                .ForMember(dest => dest.BookCount, opt => opt.MapFrom(src => src.Books != null ? src.Books.Count : 0))
+                .ReverseMap();
         }
     }
 }

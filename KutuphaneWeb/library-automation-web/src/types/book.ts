@@ -4,14 +4,15 @@ import type Category from "./category";
 import type Tag from "./tag";
 
 export default interface Book {
-    Id: number | null;
-    Isbn: string | null;
-    Title: string | null;
-    TotalCopies: number | null;
-    AvailableCopies: number | null;
-    Location: string | null;
-    PublishedDate: Date | null;
-    Summary: string | null;
+    id: number | null;
+    isbn: string | null;
+    title: string | null;
+    totalCopies: number | null;
+    averageRating: number | null;
+    availableCopies: number | null;
+    location: string | null;
+    publishedDate: Date | null;
+    summary: string | null;
     Images: BookImage[] | null;
     Tags: Tag[] | null;
     Authors: Author[] | null;

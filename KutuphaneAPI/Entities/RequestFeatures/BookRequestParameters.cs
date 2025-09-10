@@ -2,9 +2,9 @@
 {
     public class BookRequestParameters : RequestParameters
     {
-        public String? Author { get; set; }
-        public String? Title { get; set; }
-        public String? Tag { get; set; }
-        public String? Category { get; set; }
+        public int? AuthorId { get; set; }
+        public int? CategoryId { get; set; }
+        public bool? IsAvailable { get; set; }
+        public bool? IsPopular { get; set; }
     }
 }

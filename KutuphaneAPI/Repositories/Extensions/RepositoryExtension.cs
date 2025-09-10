@@ -1,26 +1,79 @@
 ﻿using Entities.Models;
 using System.Linq.Expressions;
 
+public enum FilterOperator
+{
+    Equal,
+    NotEqual,
+    GreaterThan,
+    LessThan,
+    Contains,
+    StartsWith,
+    EndsWith
+}
+
 namespace Repositories.Extensions
 {
     public static class RepositoryExtension
     {
-        public static IQueryable<T> FilteredBySearchTerm<T>(
+        public static IQueryable<T> FilterBy<T, TProperty>(
             this IQueryable<T> query,
-            string searchTerm,
-            Expression<Func<T, string>> propertySelector)
+            TProperty? value,
+            Expression<Func<T, TProperty>> propertySelector,
+            FilterOperator op = FilterOperator.Equal)
         {
-            if (string.IsNullOrWhiteSpace(searchTerm))
+            if (value == null || value.Equals(default(TProperty)))
                 return query;
 
-            var loweredTerm = searchTerm.ToLower();
             var parameter = propertySelector.Parameters[0];
+            var member = propertySelector.Body;
+            var constant = Expression.Constant(value, typeof(TProperty));
 
-            var toLowerCall = Expression.Call(propertySelector.Body, typeof(string).GetMethod("ToLower", Type.EmptyTypes)!);
-            var containsCall = Expression.Call(toLowerCall, typeof(string).GetMethod("Contains", new[] { typeof(string) })!, Expression.Constant(loweredTerm));
-            var lambda = Expression.Lambda<Func<T, bool>>(containsCall, parameter);
+            Expression body = op switch
+            {
+                FilterOperator.Equal => Expression.Equal(member, constant),
+                FilterOperator.NotEqual => Expression.NotEqual(member, constant),
+                FilterOperator.GreaterThan => Expression.GreaterThan(member, constant),
+                FilterOperator.LessThan => Expression.LessThan(member, constant),
+                FilterOperator.Contains => Expression.Call(
+                    member,
+                    typeof(string).GetMethod("Contains", new[] { typeof(string) })!,
+                    Expression.Constant(value.ToString()!, typeof(string))
+                ),
+                FilterOperator.StartsWith => Expression.Call(
+                    member,
+                    typeof(string).GetMethod("StartsWith", new[] { typeof(string) })!,
+                    Expression.Constant(value.ToString()!, typeof(string))
+                ),
+                FilterOperator.EndsWith => Expression.Call(
+                    member,
+                    typeof(string).GetMethod("EndsWith", new[] { typeof(string) })!,
+                    Expression.Constant(value.ToString()!, typeof(string))
+                ),
+                _ => throw new NotImplementedException()
+            };
+
+            var lambda = Expression.Lambda<Func<T, bool>>(body, parameter);
 
             return query.Where(lambda);
+        }
+
+        public static IQueryable<Book> FilterByCategory(this IQueryable<Book> query, int? categoryId)
+        {
+            if (categoryId.HasValue && categoryId.Value > 0)
+            {
+                return query.Where(b => b.Categories!.Any(c => c.Id == categoryId.Value));
+            }
+            return query;
+        }
+
+        public static IQueryable<Book> FilterByAuthor(this IQueryable<Book> query, int? authorId)
+        {
+            if (authorId.HasValue && authorId.Value > 0)
+            {
+                return query.Where(b => b.Authors!.Any(a => a.Id == authorId.Value));
+            }
+            return query;
         }
 
         public static IQueryable<T> ToPaginate<T>(this IQueryable<T> query, int pageSize, int pageNumber)

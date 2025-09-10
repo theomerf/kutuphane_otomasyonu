@@ -36,3 +36,4 @@
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
 ClientConnectionId:8ca2f3d9-5f32-496e-b4b1-8308c058e5f4
 Hata Numarası: -2,Durum: 0,Sınıf:11
+2025-09-09 23:56:05.6185 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-09T20:56:05.3989435Z"}

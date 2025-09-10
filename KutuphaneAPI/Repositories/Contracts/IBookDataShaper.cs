@@ -14,6 +14,7 @@ namespace Repositories.Contracts
         Task<IEnumerable<ExpandoObject>> ShapeAsync(
             IQueryable<Book> query,
             string? fields,
+            BookRequestParameters? parameters = null,
             CancellationToken ct = default);
     }
 }

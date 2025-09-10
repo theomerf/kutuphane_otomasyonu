@@ -1,8 +1,9 @@
 import type Book from "./book";
 
 export default interface Category {
-    Id: number | null;
-    Name: string | null;
-    ParentId: number | null;
+    id: number | null;
+    name: string | null;
+    parentId: number | null;
+    bookCount: number | null;
     Books: Book[] | null;
 }

@@ -1,7 +1,7 @@
 export default interface BookImage {
-    Id: number | null;
-    BookId: number | null;
-    ImageUrl: string | null;
-    IsPrimary: boolean | null;
-    Caption: string | null;
+    id: number | null;
+    bookId: number | null;
+    imageUrl: string | null;
+    isPrimary: boolean | null;
+    caption: string | null;
 }

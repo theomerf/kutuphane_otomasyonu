@@ -1,7 +1,8 @@
 import type Book from "./book";
 
 export default interface Author {
-    Id: number | null;
-    Name: string | null;
+    id: number | null;
+    name: string | null;
+    bookCount: number | null;
     Books: Book[] | null;
 }

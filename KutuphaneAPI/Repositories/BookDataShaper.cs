@@ -10,7 +10,7 @@ namespace Repositories
 {
     public class BookDataShaper : IBookDataShaper
     {
-        private const string DEFAULT_PROFILE = "Id,Title,AvailableCopies,Images.ImageUrl,Tags.Name,Authors.Name,Categories.Name";
+        private const string DEFAULT_PROFILE = "Id,Title,AvailableCopies,Images.Id,Images.ImageUrl,Tags.Id,Tags.Name,Authors.Id,Authors.Name,Categories.Id,Categories.Name";
 
         private static readonly HashSet<string> _scalarFields = new(StringComparer.InvariantCultureIgnoreCase)
         {
@@ -38,10 +38,20 @@ namespace Repositories
         public async Task<IEnumerable<ExpandoObject>> ShapeAsync(
             IQueryable<Book> query,
             string? fields,
+            BookRequestParameters? parameters = null,
             CancellationToken ct = default)
         {
             var parseResult = ParseFields(fields);
             var totalIncluded = 0;
+
+            if (parameters != null)
+            {
+                if (parameters.CategoryId.HasValue && parameters.CategoryId.Value > 0)
+                    parseResult.IncludeCategories = true;
+
+                if (parameters.AuthorId.HasValue && parameters.AuthorId.Value > 0)
+                    parseResult.IncludeAuthors = true;
+            }
 
             var projectedQuery = query.Select(b => new
             {
@@ -120,7 +130,8 @@ namespace Repositories
                         p.Name.Equals(scalarName, StringComparison.InvariantCultureIgnoreCase));
                     if (pi != null)
                     {
-                        dict[pi.Name] = pi.GetValue(row.Scalars);
+                        var camelCaseName = char.ToLowerInvariant(pi.Name[0]) + pi.Name.Substring(1);
+                        dict[camelCaseName] = pi.GetValue(row.Scalars);
                     }
                 }
 
@@ -171,7 +182,8 @@ namespace Repositories
                     var pi = type.GetProperty(field, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
                     if (pi != null)
                     {
-                        colDict[pi.Name] = pi.GetValue(item);
+                        var camelCaseName = char.ToLowerInvariant(pi.Name[0]) + pi.Name.Substring(1);
+                        colDict[camelCaseName] = pi.GetValue(item);
                     }
                 }
                 list.Add(colExp);

@@ -18,14 +18,18 @@ namespace Repositories
         public async Task<(IEnumerable<ExpandoObject> data, int count)> GetAllBooksAsync(BookRequestParameters p, bool trackChanges, CancellationToken ct = default)
         {
             var query = FindAll(trackChanges)
-                .FilteredBySearchTerm(p.SearchTerm ?? "", b => b.Title!);
+                .FilterBy(p.SearchTerm, b => b.Title!, FilterOperator.Contains)
+                .FilterBy(p.IsAvailable, b => b.AvailableCopies > 0 ? true : false)
+                .FilterBy(p.IsPopular, b => b.AvailableCopies < 5 ? true : false)
+                .FilterByCategory(p.CategoryId)
+                .FilterByAuthor(p.AuthorId);
 
             var count = await query.CountAsync(ct);
 
             query = query.SortExtensionForBooks(p.OrderBy ?? "")
                 .ToPaginate(p.PageSize, p.PageNumber);
 
-            var shaped = await _bookShaper.ShapeAsync(query, p.Fields, ct);
+            var shaped = await _bookShaper.ShapeAsync(query, p.Fields,p, ct);
 
             return (shaped, count);
         }
