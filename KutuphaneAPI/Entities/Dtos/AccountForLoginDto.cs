@@ -10,6 +10,6 @@ namespace Entities.Dtos
         [Required(ErrorMessage = "Şifre gereklidir.")]
         [MinLength(6, ErrorMessage = "Şifre minimum 6 karakter olmalıdır.")]
         public String? Password { get; init; }
-        public bool RememberMe { get; init; }
+        public bool RememberMe { get; init; } = false;
     }
 }

@@ -11,7 +11,7 @@ namespace Repositories.Configs
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Name)
                 .IsRequired()
-                .HasMaxLength(200);
+                .HasMaxLength(100);
 
             builder.HasMany(c => c.Books)
                 .WithMany(b => b.Categories)

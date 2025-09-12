@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { history } from './history';
 import { store } from '../store/store';
 import { logout, setUser } from '../pages/Account/accountSlice';
+import type { CartLine } from '../types/cartResponse';
 
 axios.defaults.baseURL = "https://localhost:7214/api/";
 
@@ -77,8 +78,10 @@ axios.interceptors.response.use(
 
 const methods = {
     get: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, {...params, signal}).then((response) => ({data: response.data, headers: response.headers})),
+    getWithoutHeaders: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, {...params, signal}).then((response) => response.data),
     post: (url: string, body: any | null) => axios.post(url, body).then((response) => response.data),
     put: (url: string, body: any) => axios.put(url, body).then((response) => response.data),
+    patch: (url: string, body: any) => axios.patch(url, body).then((response) => response.data),
     delete: (url: string) => axios.delete(url).then((response) => response.data),
 }
 
@@ -95,6 +98,15 @@ const categories = {
 const authors = {
     getAllAuthors: (signal?: AbortSignal) => methods.get("authors", {}, signal),
     getPopularAuthors: (signal?: AbortSignal) => methods.get("authors/popular", {}, signal),
+}
+
+const cart = {
+    getCart: () => methods.getWithoutHeaders("cart", {}),
+    addLineToCart: (cartLineDto: CartLine) => methods.post("cart/addline", cartLineDto),
+    removeLineFromCart: (cartLineId: number) => methods.delete(`cart/removeline/${cartLineId}`),
+    clearCart: () => methods.delete("cart/clear"),
+    increaseQuantity: (cartLineId: number, cartDto: { quantity: number }) => methods.patch(`cart/increase/${cartLineId}`, cartDto),
+    decreaseQuantity: (cartLineId: number, cartDto: { quantity: number }) => methods.patch(`cart/decrease/${cartLineId}`, cartDto),
 }
 
 const account = {
@@ -117,6 +129,7 @@ const requests = {
     account,
     categories,
     authors,
+    cart,
     errors
 }
 

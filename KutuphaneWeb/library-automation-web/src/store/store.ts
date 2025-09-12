@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { accountSlice } from "../pages/Account/accountSlice";
+import { cartSlice } from "../pages/Cart/cartSlice";
 
 const rootReducer = combineReducers({
     account: accountSlice.reducer,
+    cart: cartSlice.reducer,
 });
 
 export const store = configureStore({

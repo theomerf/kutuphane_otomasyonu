@@ -12,6 +12,12 @@ namespace Repositories.Configs
             builder.Property(b => b.Title)
                 .IsRequired()
                 .HasMaxLength(200);
+            builder.Property(b => b.ISBN)
+                .IsRequired()
+                .HasMaxLength(13);
+            builder.Property(b => b.Location)
+                .IsRequired()
+                .HasMaxLength(50);
 
             builder.HasMany(b => b.Authors)
                 .WithMany(a => a.Books)

@@ -132,6 +132,7 @@ namespace Services
         {
             var claims = new List<Claim>()
             {
+                new Claim(ClaimTypes.NameIdentifier, _account?.Id!),
                 new Claim(ClaimTypes.Name, _account?.UserName!)
             };
 

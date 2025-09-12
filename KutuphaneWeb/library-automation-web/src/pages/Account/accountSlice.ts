@@ -30,7 +30,7 @@ export const loginUser = createAsyncThunk(
             if (error.response?.status === 401) {
                 return thunkAPI.rejectWithValue("Kullanıcı adı veya şifre yanlış.");
             }
-            thunkAPI.rejectWithValue({ error });
+            return thunkAPI.rejectWithValue({ error });
         }
     }
 )

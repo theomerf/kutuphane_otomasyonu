@@ -16,7 +16,9 @@ namespace Repositories.Configs
             builder.HasKey(bi => bi.Id);
             builder.Property(bi => bi.ImageUrl)
                 .IsRequired()
-                .HasMaxLength(500);
+                .HasMaxLength(200);
+            builder.Property(bi => bi.Caption)
+                .HasMaxLength(200);
 
             builder.HasOne(bi => bi.Book)
                 .WithMany(b => b.Images)

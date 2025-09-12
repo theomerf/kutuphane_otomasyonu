@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Presentation.ActionFilters;
 using Repositories;
 using Repositories.Contracts;
@@ -31,6 +32,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
         }
 
         public static void ConfigureServiceRegistration(this IServiceCollection services)
@@ -40,6 +42,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<IBookService, BookManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IAuthorService, AuthorManager>();
+            services.AddScoped<ICartService, CartManager>();
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)
@@ -119,8 +122,37 @@ namespace KutuphaneAPI.Infrastructure.Extensions
 
         public static void ConfigureDataShaper(this IServiceCollection services)
         {
-            services.AddScoped(typeof(IDataShaper<>), typeof(DataShaper<>));
             services.AddScoped<IBookDataShaper, BookDataShaper>();
+        }
+
+        public static void ConfigureSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(s =>
+            {
+                s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please enter a valid token",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                s.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id= "Bearer"
+                            }
+                        },
+                        new List<string>()
+                    }
+                });
+            });
         }
     }
 }

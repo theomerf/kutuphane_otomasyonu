@@ -93,12 +93,14 @@ namespace KutuphaneAPI.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastLoginDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -166,8 +168,8 @@ namespace KutuphaneAPI.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -189,10 +191,14 @@ namespace KutuphaneAPI.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("ISBN")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
@@ -225,12 +231,13 @@ namespace KutuphaneAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Caption")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("IsPrimary")
                         .HasColumnType("bit");
@@ -240,6 +247,59 @@ namespace KutuphaneAPI.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("BookImage");
+                });
+
+            modelBuilder.Entity("Entities.Models.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Cart");
+                });
+
+            modelBuilder.Entity("Entities.Models.CartLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BookImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("BookName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.ToTable("CartLine");
                 });
 
             modelBuilder.Entity("Entities.Models.Category", b =>
@@ -252,8 +312,8 @@ namespace KutuphaneAPI.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
@@ -272,13 +332,15 @@ namespace KutuphaneAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AccountId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -525,12 +587,35 @@ namespace KutuphaneAPI.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("Entities.Models.Cart", b =>
+                {
+                    b.HasOne("Entities.Models.Account", "Account")
+                        .WithMany("Cart")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("Entities.Models.CartLine", b =>
+                {
+                    b.HasOne("Entities.Models.Cart", "Cart")
+                        .WithMany("CartLines")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+                });
+
             modelBuilder.Entity("Entities.Models.Review", b =>
                 {
                     b.HasOne("Entities.Models.Account", "Account")
                         .WithMany("Reviews")
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Entities.Models.Book", "Book")
                         .WithMany("Reviews")
@@ -596,6 +681,8 @@ namespace KutuphaneAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Account", b =>
                 {
+                    b.Navigation("Cart");
+
                     b.Navigation("Reviews");
                 });
 
@@ -604,6 +691,11 @@ namespace KutuphaneAPI.Migrations
                     b.Navigation("Images");
 
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("Entities.Models.Cart", b =>
+                {
+                    b.Navigation("CartLines");
                 });
 #pragma warning restore 612, 618
         }

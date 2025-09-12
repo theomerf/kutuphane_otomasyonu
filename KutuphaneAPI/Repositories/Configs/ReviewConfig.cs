@@ -16,6 +16,8 @@ namespace Repositories.Configs
             builder.HasKey(r => r.Id);
             builder.Property(r => r.Rating)
                 .IsRequired();
+            builder.Property(r => r.Comment)
+                .HasMaxLength(500);
 
             builder.HasOne(r => r.Book)
                 .WithMany(b => b.Reviews)

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace Repositories
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T>
-        where T : class, new()
+        where T : class
     {
         protected readonly RepositoryContext _context;
 
@@ -26,7 +26,7 @@ namespace Repositories
                 : _context.Set<T>().AsNoTracking();
         }
 
-        public IQueryable<T?> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
         {
             return trackChanges
                 ? _context.Set<T>().Where(expression)

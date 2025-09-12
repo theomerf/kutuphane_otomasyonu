@@ -16,6 +16,8 @@ import { jwtDecode } from 'jwt-decode'
 import MainLayout from './components/layout/MainLayout.tsx'
 import type { RootState } from './store/store.ts'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import type CartResponse from './types/cartResponse.ts'
+import { setCart } from './pages/Cart/cartSlice.ts'
 
 function App() {
   const queryClient = new QueryClient();
@@ -38,8 +40,12 @@ function App() {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
+    const storedCart = localStorage.getItem("cart");
 
+    const cart: CartResponse | null = storedCart ? JSON.parse(storedCart) as CartResponse : null;
     const user: LoginResponse | null = storedUser ? JSON.parse(storedUser) as LoginResponse : null;
+    
+    dispatch(setCart(cart));
     dispatch(setUser(user));
 
     const storedUserJson = JSON.parse(storedUser || "null")

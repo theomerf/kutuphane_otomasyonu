@@ -6,5 +6,6 @@
         IBookService BookService { get; }
         ICategoryService CategoryService { get; }
         IAuthorService AuthorService { get; }
+        ICartService CartService { get; }
     }
 }
