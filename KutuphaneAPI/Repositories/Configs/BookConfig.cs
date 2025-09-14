@@ -35,6 +35,11 @@ namespace Repositories.Configs
                 .WithOne(i => i.Book)
                 .HasForeignKey(i => i.BookId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(b => b.CartLines)
+                .WithOne(cl => cl.Book)
+                .HasForeignKey(cl => cl.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

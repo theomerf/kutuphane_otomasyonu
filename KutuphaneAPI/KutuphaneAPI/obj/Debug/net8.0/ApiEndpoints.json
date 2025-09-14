@@ -199,8 +199,18 @@
   },
   {
     "ContainingType": "Presentation.Controllers.CartController",
+    "Method": "ClearCart",
+    "RelativePath": "api/cart/clear",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.CartController",
     "Method": "DecreaseQuantity",
-    "RelativePath": "api/cart/cartlines/{cartLineId}/decrease",
+    "RelativePath": "api/cart/decrease/{cartLineId}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -211,7 +221,7 @@
         "IsRequired": true
       },
       {
-        "Name": "dto",
+        "Name": "cartDto",
         "Type": "Entities.Dtos.QuantityUpdateDto",
         "IsRequired": true
       }
@@ -221,7 +231,7 @@
   {
     "ContainingType": "Presentation.Controllers.CartController",
     "Method": "IncreaseQuantity",
-    "RelativePath": "api/cart/cartlines/{cartLineId}/increase",
+    "RelativePath": "api/cart/increase/{cartLineId}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -232,7 +242,7 @@
         "IsRequired": true
       },
       {
-        "Name": "dto",
+        "Name": "cartDto",
         "Type": "Entities.Dtos.QuantityUpdateDto",
         "IsRequired": true
       }
@@ -241,12 +251,18 @@
   },
   {
     "ContainingType": "Presentation.Controllers.CartController",
-    "Method": "ClearCart",
-    "RelativePath": "api/cart/clearcart",
-    "HttpMethod": "DELETE",
+    "Method": "MergeCarts",
+    "RelativePath": "api/cart/merge",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "cartDto",
+        "Type": "Entities.Dtos.CartDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

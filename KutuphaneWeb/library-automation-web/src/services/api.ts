@@ -5,6 +5,7 @@ import { history } from './history';
 import { store } from '../store/store';
 import { logout, setUser } from '../pages/Account/accountSlice';
 import type { CartLine } from '../types/cartResponse';
+import type CartResponse from '../types/cartResponse';
 
 axios.defaults.baseURL = "https://localhost:7214/api/";
 
@@ -55,7 +56,6 @@ axios.interceptors.response.use(
                     }
 
                 }
-                store.dispatch(logout());
                 return Promise.reject(error);
             case 400:
             case 403:
@@ -102,6 +102,7 @@ const authors = {
 
 const cart = {
     getCart: () => methods.getWithoutHeaders("cart", {}),
+    mergeCarts: (cartDto:CartResponse) => methods.post("cart/merge", cartDto),
     addLineToCart: (cartLineDto: CartLine) => methods.post("cart/addline", cartLineDto),
     removeLineFromCart: (cartLineId: number) => methods.delete(`cart/removeline/${cartLineId}`),
     clearCart: () => methods.delete("cart/clear"),

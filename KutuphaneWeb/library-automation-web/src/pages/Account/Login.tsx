@@ -7,16 +7,27 @@ import { loginUser } from './accountSlice';
 import { useForm } from 'react-hook-form';
 import { ClipLoader } from 'react-spinners';
 import type { RootState, AppDispatch } from '../../store/store.ts'
+import { getCart, mergeCarts } from '../Cart/cartSlice.ts';
 
 export default function Login() {
 
     const dispatch: AppDispatch = useDispatch();
     const { status, error } = useSelector((state: RootState) => state.account);
+    const { cart } = useSelector((state: RootState) => state.cart);
     const [ passwordVisibleForLogin, setPasswordVisibleForLogin ] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    function handleLogin(data: any) {
-        dispatch(loginUser(data));
+    async function handleLogin(data: any) {
+       const result = await dispatch(loginUser(data));
+
+        if (loginUser.fulfilled.match(result)){
+            if (cart && cart.cartLines && cart.cartLines.length > 0) {
+                dispatch(mergeCarts(cart));
+            }
+            else {
+                dispatch(getCart());
+            }
+        }
     }
 
     return (

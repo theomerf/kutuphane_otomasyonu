@@ -279,16 +279,6 @@ namespace KutuphaneAPI.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BookImageUrl")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("BookName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<int>("CartId")
                         .HasColumnType("int");
 
@@ -296,6 +286,8 @@ namespace KutuphaneAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookId");
 
                     b.HasIndex("CartId");
 
@@ -600,11 +592,19 @@ namespace KutuphaneAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.CartLine", b =>
                 {
+                    b.HasOne("Entities.Models.Book", "Book")
+                        .WithMany("CartLines")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Entities.Models.Cart", "Cart")
                         .WithMany("CartLines")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Book");
 
                     b.Navigation("Cart");
                 });
@@ -688,6 +688,8 @@ namespace KutuphaneAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Book", b =>
                 {
+                    b.Navigation("CartLines");
+
                     b.Navigation("Images");
 
                     b.Navigation("Reviews");

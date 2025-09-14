@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBell, faHeart, faRightFromBracket, faRightToBracket, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faBell, faCartShopping, faHeart, faRightFromBracket, faRightToBracket, faSearch } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../assets/icon.png"; // kendi logonu import et
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from '../../store/store'
+import type { AppDispatch, RootState } from '../../store/store'
 import { useNavigate } from "react-router-dom";
 import { logout } from '../../pages/Account/accountSlice'
 import { useBreakpoint } from "../../hooks/useBreakpoint";
@@ -20,9 +20,10 @@ const links: LinkType[] = [
 ]
 
 export default function Navbar() {
-  const [ open, setOpen ] = useState(false);
+  const [open, setOpen] = useState(false);
   const { user } = useSelector((state: RootState) => state.account);
-  const dispatch = useDispatch();
+  const { cart } = useSelector((state: RootState) => state.cart);
+  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const { down, up } = useBreakpoint();
 
@@ -70,6 +71,12 @@ export default function Navbar() {
                       <Link to="/Account" className="navButton">
                         <p>{user.userName}</p>
                       </Link>
+                      <Link to="/Cart" className="navButton relative">
+                        <FontAwesomeIcon icon={faCartShopping} />
+                        <span className="absolute flex right-0 bottom-0 rounded-full w-5 h-5 text-sm bg-red-500 text-white justify-center font-semibold">
+                          {cart?.cartLines?.length ?? 0}
+                        </span>
+                      </Link>
                     </>
                   }
 
@@ -84,6 +91,15 @@ export default function Navbar() {
                     <FontAwesomeIcon icon={faRightToBracket} className="lg:mr-2" />
                     {up.lg && "Giriş Yap"}
                   </Link>
+                  {up.lg &&
+                    <Link to="/Cart" className="navButton relative">
+                      <FontAwesomeIcon icon={faCartShopping} />
+                      <span className="absolute flex right-0 bottom-0 rounded-full w-5 h-5 text-sm bg-red-500 text-white justify-center font-semibold">
+                        {cart?.cartLines?.length ?? 0}
+                      </span>
+                    </Link>
+                  }
+
                 </>
               )
             }
@@ -93,6 +109,8 @@ export default function Navbar() {
               </button>
             }
 
+
+
           </div>
 
         </div>
@@ -101,7 +119,7 @@ export default function Navbar() {
       {/* Mobil görünüm */}
       {open && down.lg &&
         <div className={`${user ? "mb-[-18%]" : "mb-[-18%]"} mt-[65px] bg-violet-400 py-3`}>
-          {user &&
+          {user ? (
             <div className="flex justify-center gap-2 mb-3">
               <Link to="/Account/Notifications" title="Bildirimler" className="navButton">
                 <FontAwesomeIcon icon={faBell} className="h-4 w-4" />
@@ -112,7 +130,22 @@ export default function Navbar() {
               <Link to="/Account" className="navButton">
                 <p>{user?.userName}</p>
               </Link>
+              <Link to="/Cart" className="navButton relative">
+                <FontAwesomeIcon icon={faCartShopping} />
+                <span className="absolute flex right-0 bottom-0 rounded-full w-5 h-5 text-sm bg-red-500 text-white justify-center font-semibold">
+                  {cart?.cartLines?.length ?? 0}
+                </span>
+              </Link>
             </div>
+          ) :
+            (
+              <div className="flex justify-center gap-2 mb-3">
+                <Link to="/Cart" className="navButton">
+                  <FontAwesomeIcon icon={faCartShopping} />
+                </Link>
+              </div>
+            )
+
           }
           <ul className="flex flex-col gap-3 font-medium text-sm">
             {links.map((l) => (

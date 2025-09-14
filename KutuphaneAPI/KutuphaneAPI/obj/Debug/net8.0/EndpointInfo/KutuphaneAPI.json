@@ -298,6 +298,42 @@
         }
       }
     },
+    "/api/cart/merge": {
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/cart/addline": {
       "post": {
         "tags": [
@@ -357,7 +393,7 @@
         }
       }
     },
-    "/api/cart/clearcart": {
+    "/api/cart/clear": {
       "delete": {
         "tags": [
           "Cart"
@@ -369,7 +405,7 @@
         }
       }
     },
-    "/api/cart/cartlines/{cartLineId}/increase": {
+    "/api/cart/increase/{cartLineId}": {
       "patch": {
         "tags": [
           "Cart"
@@ -416,7 +452,7 @@
         }
       }
     },
-    "/api/cart/cartlines/{cartLineId}/decrease": {
+    "/api/cart/decrease/{cartLineId}": {
       "patch": {
         "tags": [
           "Cart"
@@ -614,9 +650,11 @@
       },
       "CartLineDto": {
         "required": [
+          "bookAuthor",
           "bookId",
           "bookImageUrl",
-          "bookName",
+          "bookISBN",
+          "bookTitle",
           "cartId"
         ],
         "type": "object",
@@ -629,7 +667,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "bookName": {
+          "bookTitle": {
             "type": "string",
             "nullable": true
           },
@@ -637,12 +675,17 @@
             "type": "string",
             "nullable": true
           },
+          "bookISBN": {
+            "type": "string",
+            "nullable": true
+          },
+          "bookAuthor": {
+            "type": "string",
+            "nullable": true
+          },
           "cartId": {
             "type": "integer",
             "format": "int32"
-          },
-          "cart": {
-            "$ref": "#/components/schemas/CartDto"
           },
           "quantity": {
             "type": "integer",

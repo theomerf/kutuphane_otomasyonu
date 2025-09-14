@@ -3,7 +3,7 @@ import type BookRequestParameters from "../../types/bookRequestParameters";
 import requests from "../../services/api";
 import type Book from "../../types/book";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faChevronDown, faChevronUp, faFilter, faFilterCircleXmark, faFire, faHeart, faLayerGroup, faList, faSearch, faSliders, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus, faChevronDown, faChevronUp, faFilter, faFilterCircleXmark, faFire, faHeart, faLayerGroup, faList, faSearch, faSliders, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ClipLoader } from "react-spinners";
 import { Switch } from "../../components/ui/Switch";
 import type PaginationHeader from "../../types/paginationHeader";
@@ -13,6 +13,10 @@ import { useBreakpoint } from "../../hooks/useBreakpoint";
 import { Rating } from "../../components/ui/Rating";
 import type Category from "../../types/category";
 import type Author from "../../types/author";
+import { useSelector } from "react-redux";
+import { useAppDispatch, type RootState } from "../../store/store";
+import { addLineToCart, removeLineFromCart } from "../Cart/cartSlice";
+import type { CartLine } from "../../types/cartResponse";
 
 interface FilterSection {
   id: string;
@@ -22,6 +26,8 @@ interface FilterSection {
 
 export default function Books() {
   const [openSections, setOpenSections] = useState<string[]>(["categories", "authors", "other"]);
+  const dispatch = useAppDispatch();
+  const { cart } = useSelector((state: RootState) => state.cart);
   const isOthersOpen: boolean = openSections.includes("other");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -152,6 +158,27 @@ export default function Books() {
     };
   }, [finalQuery]);
 
+  const handleAddToCart = (book: Book) => {
+    const newLine: CartLine = {
+      bookId: book.id!,
+      bookTitle: book.title!,
+      bookISBN: book.isbn!,
+      bookAuthor: book.Authors![0].name!,
+      bookImageUrl: book.Images?.[0]?.imageUrl || "",
+      cartId: cart ? cart.id! : 0,
+      quantity: 1,
+    }
+    
+    dispatch(addLineToCart(newLine));
+  }
+
+  const handleRemoveFromCart = (bookId: number) => {
+    if (!cart) return;
+    const line = cart.cartLines?.find(line => line.bookId === bookId);
+    if (!line) return;
+    dispatch(removeLineFromCart(line.id!));
+  }
+
   const handlePageChange = (newPage: number) => {
     setQuery(prev => ({
       ...prev,
@@ -190,7 +217,7 @@ export default function Books() {
 
   return (
     <div className="sm:px-1 px-5 lg:px-20 lg:grid lg:grid-cols-4">
-      <div className="flex flex-col fixed lg:static left-0 top-5 z-10 lg:col-span-1 overflow-y-auto w-5/6 h-fit  bg-white/95 lg:bg-white/90 mt-20 shadow-lg rounded-tr-xl rounded-br-xl lg:rounded-xl">
+      <div className="flex flex-col fixed lg:static left-0 top-5 z-10 lg:col-span-1 overflow-y-auto w-5/6 h-fit  bg-white/95 lg:bg-white/90 shadow-lg rounded-tr-xl rounded-br-xl lg:rounded-xl">
         {(up.lg || isFiltersOpen) ? (
           <>
             <div className="bg-violet-400 relative px-4 rounded-tr-xl lg:rounded-xl lg:rounded-b-none py-4">
@@ -378,7 +405,7 @@ export default function Books() {
         {data && !isLoading && (
           <>
             {data.length > 0 ? (
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-20 p-3 lg:gap-x-10 lg:gap-y-20 lg:p-20">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-20 px-3 lg:gap-x-10 lg:gap-y-20 lg:px-20">
                 {data.map(book => (
                   <div key={book.id} className="flex flex-col group bg-white/90 relative p-3 lg:p-6 border-2 border-white/20 shadow-lg rounded-2xl lg:hover:scale-110 duration-500">
                     <div className="absolute rotate-[-60deg] top-[-5%] right-[-20%] lg:top-[-5%] lg:left-[-15%] lg:right-[180%] lg:rotate-[30deg] text-center  z-[3] rounded-3xl bg-green-500 px-2 py-[5px] lg:py-[10px] w-fit text-xs lg:text-sm [text-transform:uppercase] mx-auto mt-3 font-semibold [letter-spacing:0.5px] text-white before:content-[''] before:absolute before:right-[-5px] before:top-2  lg:before:left-[-7px] lg:before:top-[25%] lg:before:bottom-0 before:w-3 before:h-3 lg:before:w-[14px] lg:before:h-[14px] before:bg-[radial-gradient(circle,rgba(217,_20,_20,_1)_0%,_rgba(201,_41,_20,_1)_100%)] before:[border-radius:50%]">
@@ -402,10 +429,18 @@ export default function Books() {
                       </div>
                     </div>
                     <div className="flex justify-center gap-3 lg:mt-3">
-                      <button className="w-full py-[14px] border-none rounded-3xl shadow-violet-400 shadow-lg bg-hero-gradient text-white font-bold text-xs lg:text-base items-center justify-center gap-3 duration-[0.4s] [text-transform:uppercase] cursor-pointer relative overflow-hidden hover:scale-110">
-                        <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepete Ekle</span>
-                        <FontAwesomeIcon icon={faCartPlus} className="mr-1" />
-                      </button>
+
+                        {(cart?.cartLines && cart?.cartLines?.findIndex(l => l.bookId === book.id) !== -1 ) ? (
+                          <button type="button" onClick={() => handleRemoveFromCart(book.id!)} className="w-full py-[11px] lg:py-[14px] border-none rounded-3xl shadow-red-200 shadow-lg bg-red-600 text-white font-bold text-[9px] lg:text-base items-center justify-center gap-3 duration-[0.4s] [text-transform:uppercase] cursor-pointer relative overflow-hidden hover:scale-110">
+                            <span  className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepetten Kaldır</span>
+                          <FontAwesomeIcon icon={faTrash} className="mr-1" />
+                          </button>
+                        ): (
+                          <button type="button" onClick={() => handleAddToCart(book)}className="w-full py-[11px] lg:py-[14px] border-none rounded-3xl shadow-violet-400 shadow-lg bg-hero-gradient text-white font-bold text-[9px] lg:text-base items-center justify-center gap-3 duration-[0.4s] [text-transform:uppercase] cursor-pointer relative overflow-hidden hover:scale-110">
+                            <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepete Ekle</span>
+                          <FontAwesomeIcon icon={faCartPlus} className="mr-1" />
+                          </button>
+                        )}
                     </div>
                   </div>
                 ))}

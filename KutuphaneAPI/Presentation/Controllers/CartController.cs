@@ -30,10 +30,21 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
+        [HttpPost("merge")]
+        public async Task<IActionResult> MergeCarts(CartDto cartDto)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var cart = await _manager.CartService.MergeCartsAsync(userId!, cartDto);
+
+            return Ok(cart);
+        }
+
+        [Authorize]
         [HttpPost("addline")]
         public async Task<IActionResult> AddLineToCart([FromBody] CartLineDto cartLineDto)
         {
-            var cart = await _manager.CartService.AddLineAsync(cartLineDto);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var cart = await _manager.CartService.AddLineAsync(cartLineDto, userId!);
             return CreatedAtAction(nameof(GetCart), null, cart);
         }
 
@@ -58,7 +69,7 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
-        [HttpPatch("cartlines/increase/{cartLineId}")]
+        [HttpPatch("increase/{cartLineId}")]
         public async Task<IActionResult> IncreaseQuantity([FromRoute] int cartLineId, [FromBody] QuantityUpdateDto cartDto)
         {
             var cartLine = await _manager.CartService.IncreaseQuantityAsync(cartLineId, cartDto.Quantity);
@@ -66,7 +77,7 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
-        [HttpPatch("cartlines/decrease/{cartLineId}")]
+        [HttpPatch("decrease/{cartLineId}")]
         public async Task<IActionResult> DecreaseQuantity([FromRoute] int cartLineId, [FromBody] QuantityUpdateDto cartDto)
         {
             var cartLine = await _manager.CartService.DecreaseQuantityAsync(cartLineId, cartDto.Quantity);

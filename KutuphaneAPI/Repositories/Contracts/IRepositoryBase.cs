@@ -12,5 +12,7 @@ namespace Repositories.Contracts
         void UpdateRange(IEnumerable<T> entities);
         void RemoveRange(IEnumerable<T> entities);
         Task<int> CountAsync(bool trackChanges);
+        void Attach(T entity);
+        void AttachRange(IEnumerable<T> entities);
     }
 }

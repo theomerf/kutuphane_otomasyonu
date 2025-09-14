@@ -3,6 +3,7 @@ import type { LoginResponse } from '../../types/loginResponse';
 import { toast } from 'react-toastify'
 import requests from '../../services/api';
 import { history } from '../../services/history';
+import { clearLocalCart } from '../Cart/cartSlice';
 
 type userState = {
     user: LoginResponse | null;
@@ -50,6 +51,16 @@ export const registerUser = createAsyncThunk(
     }
 )
 
+export const logout = createAsyncThunk(
+    "account/logout",
+    async (_, thunkAPI) => {
+        thunkAPI.dispatch(clearLocalCart());
+        localStorage.removeItem("user");
+        toast.success("Başarıyla çıkış yaptınız.");
+        history.push("/");
+    }
+);
+
 export const refresh = createAsyncThunk(
     "account/refresh",
     async (data: LoginResponse, thunkAPI) => {
@@ -79,11 +90,6 @@ export const accountSlice = createSlice({
         setUser: (state, action) => {
             state.user = action.payload;
         },
-        logout: (state) => {
-            state.user = null;
-            toast.success("Başarıyla çıkış yaptınız.");
-            localStorage.removeItem("user");
-        }
     },
     extraReducers: (builder) => {
         builder.addCase(loginUser.pending, (state) => {
@@ -109,6 +115,13 @@ export const accountSlice = createSlice({
             state.error = action.payload as string;
         });
 
+        builder.addCase(logout.fulfilled, (state) => {
+            state.user = null;
+        });
+        
+        builder.addCase(refresh.pending, (state) => {
+            state.status = "pending";
+        });
         builder.addCase(refresh.fulfilled, (state, action) => {
             state.user = action.payload;
         });
@@ -120,5 +133,5 @@ export const accountSlice = createSlice({
     }
 });
 
-export const { setUser, logout } = accountSlice.actions;
+export const { setUser } = accountSlice.actions;
 

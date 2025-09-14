@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import requests from "../../services/api";
 import type CartResponse from "../../types/cartResponse";
 import type { CartLine } from "../../types/cartResponse";
+import { store } from "../../store/store";
 
 type cartState = {
     cart: CartResponse | null;
@@ -29,13 +30,40 @@ export const getCart = createAsyncThunk<CartResponse>(
     }
 )
 
+export const mergeCarts = createAsyncThunk<CartResponse, CartResponse>(
+    "cart/merge",
+    async (data, thunkAPI) => {
+        try {
+            const result = await requests.cart.mergeCarts(data);
+            localStorage.setItem("cart", JSON.stringify(result));
+            return result;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue({ error });
+        }
+    }
+)
+
 export const addLineToCart = createAsyncThunk<CartResponse, CartLine>(
     "cart/addLine",
     async (data, thunkAPI) => {
         try {
-            const result = await requests.cart.addLineToCart(data);
-            localStorage.setItem("cart", JSON.stringify(result));
-            return result.data;
+            if (store.getState().account.user !== null) {
+                const result = await requests.cart.addLineToCart(data);
+                localStorage.setItem("cart", JSON.stringify(result));
+                return result;
+            }
+            else {
+                data.id = Math.floor(Math.random() * 1000000) + 1;
+                const localCart = store.getState().cart.cart;
+                const updatedCart: CartResponse = {
+                    id: localCart ? localCart.id : 0,
+                    accountId: localCart ? localCart.accountId : null,
+                    cartLines: localCart ? [...localCart.cartLines ?? [], data] : [data],
+                };
+                localStorage.setItem("cart", JSON.stringify(updatedCart));
+                return updatedCart;
+            }
         }
         catch (error) {
             return thunkAPI.rejectWithValue({ error });
@@ -47,9 +75,21 @@ export const removeLineFromCart = createAsyncThunk<CartResponse, number>(
     "cart/removeline",
     async (data, thunkAPI) => {
         try {
-            const result = await requests.cart.removeLineFromCart(data);
-            localStorage.setItem("cart", JSON.stringify(result));
-            return result.data;
+            if (store.getState().account.user !== null) {
+                const result = await requests.cart.removeLineFromCart(data);
+                localStorage.setItem("cart", JSON.stringify(result));
+                return result;
+            }
+            else {
+                const localCart = store.getState().cart.cart;
+                const updatedCart: CartResponse = {
+                    id: localCart ? localCart.id : 0,
+                    accountId: localCart ? localCart.accountId : null,
+                    cartLines: localCart ? localCart.cartLines?.filter(line => line.id !== data) : [],
+                };
+                localStorage.setItem("cart", JSON.stringify(updatedCart));
+                return updatedCart;
+            }
         }
         catch (error) {
             return thunkAPI.rejectWithValue({ error });
@@ -61,9 +101,19 @@ export const clearCart = createAsyncThunk<CartResponse>(
     "cart/clear",
     async (_, thunkAPI) => {
         try {
-            const result = await requests.cart.clearCart();
-            localStorage.setItem("cart", JSON.stringify(result));
-            return result.data;
+            if (store.getState().account.user !== null) {
+                const result = await requests.cart.clearCart();
+                localStorage.setItem("cart", JSON.stringify(result));
+                return result;
+            }
+            else {
+                thunkAPI.dispatch(clearLocalCart());
+                return {
+                    id: 0,
+                    accountId: null,
+                    cartLines: []
+                };
+            }
         }
         catch (error) {
             return thunkAPI.rejectWithValue({ error });
@@ -72,16 +122,24 @@ export const clearCart = createAsyncThunk<CartResponse>(
 )
 
 interface QuantityUpdatePayload {
-  cartLineId: number;
-  quantity: number;
+    cartLineId: number;
+    quantity: number;
 }
 
 export const increaseQuantity = createAsyncThunk<CartLine, QuantityUpdatePayload>(
-    "cart/increase",
+    "cartlines/increase",
     async (data, thunkAPI) => {
         try {
-            const result = await requests.cart.increaseQuantity(data.cartLineId, { quantity: data.quantity });
-            return result.data;
+            if (store.getState().account.user !== null) {
+                const result = await requests.cart.increaseQuantity(data.cartLineId, { quantity: data.quantity });
+                return result;
+            }
+            else {
+                const localCart = store.getState().cart.cart;
+                const line = localCart?.cartLines?.find(line => line.id === data.cartLineId);
+
+                return { ...line, quantity: line!.quantity + data.quantity }; 
+            }
         }
         catch (error) {
             return thunkAPI.rejectWithValue({ error });
@@ -90,11 +148,19 @@ export const increaseQuantity = createAsyncThunk<CartLine, QuantityUpdatePayload
 )
 
 export const decreaseQuantity = createAsyncThunk<CartLine, QuantityUpdatePayload>(
-    "cart/decrease",
+    "cartlines/decrease",
     async (data, thunkAPI) => {
         try {
-            const result = await requests.cart.decreaseQuantity(data.cartLineId, { quantity: data.quantity });
-            return result.data;
+            if (store.getState().account.user !== null) {
+                const result = await requests.cart.decreaseQuantity(data.cartLineId, { quantity: data.quantity });
+                return result;
+            }
+            else {
+                const localCart = store.getState().cart.cart;
+                const line = localCart?.cartLines?.find(line => line.id === data.cartLineId);
+
+                return { ...line, quantity: line!.quantity - data.quantity }; 
+            }
         }
         catch (error) {
             return thunkAPI.rejectWithValue({ error });
@@ -127,7 +193,19 @@ export const cartSlice = createSlice({
             state.error = action.payload as string;
             localStorage.removeItem("cart");
         });
-        
+
+        builder.addCase(mergeCarts.pending, (state) => {
+            state.status = "pending";
+        });
+        builder.addCase(mergeCarts.fulfilled, (state, action) => {
+            state.cart = action.payload;
+            state.status = "idle";
+        });
+        builder.addCase(mergeCarts.rejected, (state, action) => {
+            state.status = "idle";
+            state.error = action.payload as string;
+        });
+
         builder.addCase(addLineToCart.pending, (state) => {
             state.status = "pending";
         });
@@ -163,13 +241,15 @@ export const cartSlice = createSlice({
             state.status = "idle";
             state.error = action.payload as string;
         });
-        
+
         builder.addCase(increaseQuantity.pending, (state) => {
             state.status = "pending";
         });
         builder.addCase(increaseQuantity.fulfilled, (state, action) => {
-            const lineIndex = state.cart?.cartLines.findIndex(line => line.id === action.payload.id);
-            if (lineIndex !== undefined && lineIndex !== -1 && state.cart) {
+            if (!state.cart?.cartLines) return;
+            
+            const lineIndex = state.cart.cartLines.findIndex(line => line.id === action.payload.id);
+            if (lineIndex !== -1) {
                 state.cart.cartLines[lineIndex].quantity = action.payload.quantity;
             }
 
@@ -185,8 +265,10 @@ export const cartSlice = createSlice({
             state.status = "pending";
         });
         builder.addCase(decreaseQuantity.fulfilled, (state, action) => {
-            const lineIndex = state.cart?.cartLines.findIndex(line => line.id === action.payload.id);
-            if (lineIndex !== undefined && lineIndex !== -1 && state.cart) {
+            if (!state.cart?.cartLines) return;
+            
+            const lineIndex = state.cart.cartLines.findIndex(line => line.id === action.payload.id);
+            if (lineIndex !== -1) {
                 state.cart.cartLines[lineIndex].quantity = action.payload.quantity;
             }
 

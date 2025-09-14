@@ -16,18 +16,17 @@ namespace Repositories.Configs
             builder.HasKey(cl => cl.Id);
             builder.Property(cl => cl.BookId)
                 .IsRequired();
-            builder.Property(cl => cl.BookName)
-                .IsRequired()
-                .HasMaxLength(200);
-            builder.Property(cl => cl.BookImageUrl)
-                .IsRequired()
-                .HasMaxLength(200);
             builder.Property(cl => cl.CartId)
                 .IsRequired();
 
             builder.HasOne(cl => cl.Cart)
                 .WithMany(c => c.CartLines)
                 .HasForeignKey(cl => cl.CartId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(cl => cl.Book)
+                .WithMany(b => b.CartLines)
+                .HasForeignKey(cl => cl.BookId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

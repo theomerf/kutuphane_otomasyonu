@@ -58,5 +58,15 @@ namespace Repositories
                 ? _context.Set<T>().CountAsync()
                 : _context.Set<T>().AsNoTracking().CountAsync();
         }
+
+        public void Attach(T entity)
+        {
+            _context.Set<T>().Attach(entity);
+        }
+
+        public void AttachRange(IEnumerable<T> entities)
+        {
+            _context.Set<T>().AttachRange(entities);
+        }
     }
 }

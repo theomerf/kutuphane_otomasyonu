@@ -18,6 +18,7 @@ import type { RootState } from './store/store.ts'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type CartResponse from './types/cartResponse.ts'
 import { setCart } from './pages/Cart/cartSlice.ts'
+import Cart from './pages/Cart/Cart.tsx'
 
 function App() {
   const queryClient = new QueryClient();
@@ -63,6 +64,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />}></Route>
           <Route path="/Books" element={<Books />}></Route>
+          <Route path="/Cart" element={<Cart />}></Route>
           <Route path="/Account" element={<Account />}>
             {!user &&
               <>
