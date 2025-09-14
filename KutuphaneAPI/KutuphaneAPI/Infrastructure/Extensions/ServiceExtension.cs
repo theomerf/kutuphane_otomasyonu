@@ -15,12 +15,22 @@ namespace KutuphaneAPI.Infrastructure.Extensions
 {
     public static class ServiceExtension
     {
-        public static void ConfigureDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureDbContext(this IServiceCollection services, IConfiguration configuration, IHostEnvironment env)
         {
             services.AddDbContext<RepositoryContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("mssqlconnection"),
-                b => b.MigrationsAssembly("KutuphaneAPI"));
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+                if (env.IsDevelopment())
+                {
+                    options.UseSqlServer(connectionString,
+                        b => b.MigrationsAssembly("KutuphaneAPI"));
+                }
+                else
+                {
+                    options.UseNpgsql(connectionString,
+                        b => b.MigrationsAssembly("KutuphaneAPI"));
+                }
 
                 options.EnableSensitiveDataLogging(true);
             });

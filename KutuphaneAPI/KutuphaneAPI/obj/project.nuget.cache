@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OE/CR0UU4js=",
+  "dgSpecHash": "3WkWFHBt634=",
   "success": true,
   "projectFilePath": "C:\\Users\\omerf\\OneDrive\\Masaüstü\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\KutuphaneAPI.csproj",
   "expectedPackageFiles": [
@@ -84,6 +84,8 @@
     "C:\\Users\\omerf\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\nlog\\6.0.3\\nlog.6.0.3.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\nlog.extensions.logging\\6.0.3\\nlog.extensions.logging.6.0.3.nupkg.sha512",
+    "C:\\Users\\omerf\\.nuget\\packages\\npgsql\\9.0.3\\npgsql.9.0.3.nupkg.sha512",
+    "C:\\Users\\omerf\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\9.0.4\\npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\swashbuckle.aspnetcore\\9.0.4\\swashbuckle.aspnetcore.9.0.4.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\9.0.4\\swashbuckle.aspnetcore.swagger.9.0.4.nupkg.sha512",
     "C:\\Users\\omerf\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\9.0.4\\swashbuckle.aspnetcore.swaggergen.9.0.4.nupkg.sha512",

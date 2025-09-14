@@ -21,7 +21,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureSwagger();
-builder.Services.ConfigureDbContext(builder.Configuration);
+builder.Services.ConfigureDbContext(builder.Configuration, builder.Environment);
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureRepositoryRegistration();
 builder.Services.ConfigureServiceRegistration();
