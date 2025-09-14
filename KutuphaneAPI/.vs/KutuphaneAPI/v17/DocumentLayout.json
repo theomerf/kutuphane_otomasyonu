@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\infrastructure\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\infrastructure\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\infrastructure\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\infrastructure\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -46,17 +46,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ServiceExtension.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\Infrastructure\\Extensions\\ServiceExtension.cs",
               "RelativeDocumentMoniker": "KutuphaneAPI\\Infrastructure\\Extensions\\ServiceExtension.cs",
               "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\Infrastructure\\Extensions\\ServiceExtension.cs",
               "RelativeToolTip": "KutuphaneAPI\\Infrastructure\\Extensions\\ServiceExtension.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-14T21:40:01.594Z",
               "EditorCaption": ""
@@ -71,33 +87,20 @@
               "RelativeToolTip": "KutuphaneAPI\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAB7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-14T21:39:23.743Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T21:39:23.743Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "appsettings.Production.json",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\appsettings.Production.json",
               "RelativeDocumentMoniker": "KutuphaneAPI\\appsettings.Production.json",
               "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\appsettings.Production.json",
               "RelativeToolTip": "KutuphaneAPI\\appsettings.Production.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-09-14T21:39:09.701Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:2:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
             },
             {
               "$type": "Document",
@@ -109,8 +112,7 @@
               "RelativeToolTip": "KutuphaneAPI\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-14T21:36:06.784Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T21:36:06.784Z"
             },
             {
               "$type": "Document",
@@ -122,8 +124,7 @@
               "RelativeToolTip": "KutuphaneAPI\\Infrastructure\\Mapper\\MappingProfile.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAA1wB0AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T13:35:38.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T13:35:38.196Z"
             },
             {
               "$type": "Document",
@@ -135,8 +136,7 @@
               "RelativeToolTip": "Repositories\\CartRepository.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAAwD4AAABvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T14:56:38.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T14:56:38.419Z"
             },
             {
               "$type": "Document",
@@ -148,8 +148,7 @@
               "RelativeToolTip": "Services\\CartManager.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAjwB0AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T09:29:17.632Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-13T09:29:17.632Z"
             },
             {
               "$type": "Document",
@@ -161,8 +160,7 @@
               "RelativeToolTip": "Presentation\\Controllers\\CartController.cs",
               "ViewState": "AgIAAFUAAAAAAAAAAADwvywAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T14:12:35.756Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T14:12:35.756Z"
             },
             {
               "$type": "Document",
@@ -174,8 +172,7 @@
               "RelativeToolTip": "Repositories\\Extensions\\RepositoryExtension.cs",
               "ViewState": "AgIAAD0AAAAAAAAAAAAQwFMAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-10T15:05:52.423Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-10T15:05:52.423Z"
             }
           ]
         }
