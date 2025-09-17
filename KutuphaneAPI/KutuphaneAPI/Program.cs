@@ -38,7 +38,7 @@ builder.Services.ConfigureServiceRegistration();
 builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureRouting();
 builder.Services.ConfigureActionFilters();
-builder.Services.ConfigureCors();
+builder.Services.ConfigureCors(builder.Configuration, builder.Environment);
 builder.Services.ConfigureDataShaper();
 builder.Services.ConfigureSignalR();
 builder.Services.AddMemoryCache();

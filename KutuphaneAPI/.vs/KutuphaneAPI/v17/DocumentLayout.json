@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\infrastructure\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\infrastructure\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5F9E6D0D-3276-48D1-ABC0-0EFFB55EF3FF}|Repositories\\Repositories.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\repositories\\repositorycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "appsettings.Production.json",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\appsettings.Production.json",
               "RelativeDocumentMoniker": "KutuphaneAPI\\appsettings.Production.json",
@@ -54,12 +54,11 @@
               "RelativeToolTip": "KutuphaneAPI\\appsettings.Production.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-17T18:42:44.236Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-17T18:42:44.236Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\appsettings.Development.json",
               "RelativeDocumentMoniker": "KutuphaneAPI\\appsettings.Development.json",
@@ -78,7 +77,7 @@
               "RelativeDocumentMoniker": "KutuphaneAPI\\Program.cs",
               "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\Program.cs",
               "RelativeToolTip": "KutuphaneAPI\\Program.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAASwDUAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAASwCgAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-17T18:20:51.733Z",
               "EditorCaption": ""
@@ -97,13 +96,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ServiceExtension.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\Infrastructure\\Extensions\\ServiceExtension.cs",
               "RelativeDocumentMoniker": "KutuphaneAPI\\Infrastructure\\Extensions\\ServiceExtension.cs",
               "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\Infrastructure\\Extensions\\ServiceExtension.cs",
               "RelativeToolTip": "KutuphaneAPI\\Infrastructure\\Extensions\\ServiceExtension.cs",
-              "ViewState": "AgIAAH0AAAAAAAAAAAA4wJkAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAUwJkAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-17T17:12:32.687Z",
               "EditorCaption": ""
