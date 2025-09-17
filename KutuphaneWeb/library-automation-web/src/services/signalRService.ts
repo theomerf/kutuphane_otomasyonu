@@ -1,5 +1,9 @@
 import { HubConnectionBuilder, HubConnection, HubConnectionState, LogLevel } from "@microsoft/signalr";
 
+const apiBase =
+  (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/+$/, '') ||
+  'https://localhost:7214';
+
 class SignalRService {
     private connection: HubConnection | null = null;
     private connectionId: string | null = null;
@@ -23,7 +27,7 @@ class SignalRService {
 
         try {
             this.connection = new HubConnectionBuilder()
-                .withUrl("https://localhost:7214/reservationHub")
+                .withUrl(`${apiBase}/reservationHub`)
                 .configureLogging(LogLevel.Error)
                 .withAutomaticReconnect()
                 .build();

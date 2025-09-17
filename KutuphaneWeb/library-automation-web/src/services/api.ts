@@ -6,7 +6,11 @@ import { store } from '../store/store';
 import { logout, setUser } from '../pages/Account/accountSlice';
 import type ReservationResponse from '../types/reservation';
 
-axios.defaults.baseURL = "https://localhost:7214/api/";
+const apiBase =
+  (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/+$/, '') ||
+  'https://localhost:7214';
+
+axios.defaults.baseURL = `${apiBase}/api/`;
 
 axios.interceptors.request.use((request) => {
     const token = store.getState().account.user?.accessToken;
