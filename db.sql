@@ -1,7 +1,5 @@
 SET IDENTITY_INSERT dbo.Author ON;
 
-
-
 INSERT INTO dbo.Author (Id, Name) VALUES
 (1, 'George Orwell'), (2, 'J.R.R. Tolkien'), (3, 'J.K. Rowling'), (4, 'Fyodor Dostoevsky'), (5, 'Leo Tolstoy'),
 (6, 'Harper Lee'), (7, 'F. Scott Fitzgerald'), (8, 'Jane Austen'), (9, 'Gabriel Garcia Marquez'), (10, 'Franz Kafka'),
