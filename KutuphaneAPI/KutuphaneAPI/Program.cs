@@ -79,6 +79,7 @@ app.UseAuthorization();
 app.UseStaticFiles();
 app.MapControllers();
 
+
 app.ConfigureAndCheckMigration();
 app.ConfigureLocalization();
 await app.ConfigureDefaultAdminUser();
