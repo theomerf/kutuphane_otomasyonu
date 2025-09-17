@@ -3,7 +3,7 @@
     public class Reservation
     {
         public int Id { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
         public DateOnly ReservationDate { get; set; }
         public ReservationStatus Status { get; set; } = ReservationStatus.Active;

@@ -203,3 +203,4 @@ Hata Numarası: -2,Durum: 0,Sınıf:11
 2025-09-17 16:41:35.0470 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T16:41:34.8519032+03:00"}
 2025-09-17 17:28:01.8381 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T17:28:01.6556894+03:00"}
 2025-09-17 17:28:07.2529 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T17:28:07.2527108+03:00"}
+2025-09-17 21:14:23.0936 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-09-17T21:14:22.8349436+03:00"}

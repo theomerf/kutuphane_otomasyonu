@@ -11,7 +11,7 @@ namespace Entities.Models
         public int Id { get; set; }
         public double Rating { get; set; }
         public String? Comment { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; }
         public int BookId { get; set; }
         public String? AccountId { get; set; }
