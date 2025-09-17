@@ -123,20 +123,37 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             });
         }
 
-        public static void ConfigureCors(this IServiceCollection services)
+        public static void ConfigureCors(this IServiceCollection services, IConfiguration configuration, IHostEnvironment env)
         {
+            var origins = configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
+            if (env.IsDevelopment() && origins.Length == 0)
+            {
+                origins = new[] { "http://localhost:5173", "https://localhost:5173" };
+            }
+
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowFrontend",
-                    policy =>
+                options.AddPolicy("AllowFrontend", policy =>
+                {
+                    if (origins.Length > 0)
                     {
                         policy
-                            .WithOrigins("http://localhost:5173")
+                            .WithOrigins(origins)
                             .AllowAnyHeader()
                             .AllowAnyMethod()
-                            .AllowCredentials()
-                            .WithExposedHeaders("X-Pagination");
-                    });
+                            .WithExposedHeaders("X-Pagination")
+                            .AllowCredentials();
+                    }
+                    else
+                    {
+                        policy
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .WithExposedHeaders("X-Pagination")
+                            .AllowCredentials();
+                    }
+                });
             });
         }
 
