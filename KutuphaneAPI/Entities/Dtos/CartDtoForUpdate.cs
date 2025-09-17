@@ -9,7 +9,7 @@ namespace Entities.Dtos
     public record CartDtoForUpdate
     {
         public int Id { get; init; }
-        public required String AccountId { get; init; }
-        public List<CartLineDtoForUpdate>? CartLines { get; init; }
+        public String? AccountId { get; init; }
+        public List<CartLineDtoForInsertion>? CartLines { get; init; }
     }
 }

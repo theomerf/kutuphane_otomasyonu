@@ -3,11 +3,12 @@ import requests from "../../services/api";
 import type CartResponse from "../../types/cartResponse";
 import type { CartLine } from "../../types/cartResponse";
 import { store } from "../../store/store";
+import type { ApiErrorResponse, FormError } from "../../types/apiError";
 
 type cartState = {
     cart: CartResponse | null;
     status: string;
-    error?: string | null;
+    error?: FormError | null;
 }
 
 const initialState: cartState = {
@@ -24,8 +25,12 @@ export const getCart = createAsyncThunk<CartResponse>(
             localStorage.setItem("cart", JSON.stringify(result));
             return result;
         }
-        catch (error) {
-            return thunkAPI.rejectWithValue({ error });
+        catch (error: any) {
+            if (error.response?.data) {
+                const errorData = error.response.data as ApiErrorResponse;
+                return thunkAPI.rejectWithValue(errorData);
+            }
+            return thunkAPI.rejectWithValue("Backendden sepet çekilirken bir hata oluştu.");
         }
     }
 )
@@ -38,8 +43,12 @@ export const mergeCarts = createAsyncThunk<CartResponse, CartResponse>(
             localStorage.setItem("cart", JSON.stringify(result));
             return result;
         }
-        catch (error) {
-            return thunkAPI.rejectWithValue({ error });
+        catch (error: any) {
+            if (error.response?.data) {
+                const errorData = error.response.data as ApiErrorResponse;
+                return thunkAPI.rejectWithValue(errorData);
+            }
+            return thunkAPI.rejectWithValue("Sepetler birleştirilirken bir hata oluştu.");
         }
     }
 )
@@ -65,8 +74,12 @@ export const addLineToCart = createAsyncThunk<CartResponse, CartLine>(
                 return updatedCart;
             }
         }
-        catch (error) {
-            return thunkAPI.rejectWithValue({ error });
+        catch (error: any) {
+            if (error.response?.data) {
+                const errorData = error.response.data as ApiErrorResponse;
+                return thunkAPI.rejectWithValue(errorData);
+            }
+            return thunkAPI.rejectWithValue("Sepete yeni kitap eklenirken bir hata oluştu.");
         }
     }
 )
@@ -91,8 +104,12 @@ export const removeLineFromCart = createAsyncThunk<CartResponse, number>(
                 return updatedCart;
             }
         }
-        catch (error) {
-            return thunkAPI.rejectWithValue({ error });
+        catch (error: any) {
+            if (error.response?.data) {
+                const errorData = error.response.data as ApiErrorResponse;
+                return thunkAPI.rejectWithValue(errorData);
+            }
+            return thunkAPI.rejectWithValue("Sepetten kitap silinirken bir hata oluştu.");
         }
     }
 )
@@ -115,8 +132,12 @@ export const clearCart = createAsyncThunk<CartResponse>(
                 };
             }
         }
-        catch (error) {
-            return thunkAPI.rejectWithValue({ error });
+        catch (error: any) {
+            if (error.response?.data) {
+                const errorData = error.response.data as ApiErrorResponse;
+                return thunkAPI.rejectWithValue(errorData);
+            }
+            return thunkAPI.rejectWithValue("Sepet temizlenirken bir hata oluştu.");
         }
     }
 )
@@ -141,8 +162,12 @@ export const increaseQuantity = createAsyncThunk<CartLine, QuantityUpdatePayload
                 return { ...line, quantity: line!.quantity + data.quantity }; 
             }
         }
-        catch (error) {
-            return thunkAPI.rejectWithValue({ error });
+        catch (error: any) {
+            if (error.response?.data) {
+                const errorData = error.response.data as ApiErrorResponse;
+                return thunkAPI.rejectWithValue(errorData);
+            }
+            return thunkAPI.rejectWithValue("Sepetteki kitabın miktarı arttılırken bir hata oluştu.");
         }
     }
 )
@@ -162,8 +187,12 @@ export const decreaseQuantity = createAsyncThunk<CartLine, QuantityUpdatePayload
                 return { ...line, quantity: line!.quantity - data.quantity }; 
             }
         }
-        catch (error) {
-            return thunkAPI.rejectWithValue({ error });
+        catch (error: any) {
+            if (error.response?.data) {
+                const errorData = error.response.data as ApiErrorResponse;
+                return thunkAPI.rejectWithValue(errorData);
+            }
+            return thunkAPI.rejectWithValue("Sepetteki kitabın miktarı azaltılırken bir hata oluştu.");
         }
     }
 )
@@ -190,7 +219,7 @@ export const cartSlice = createSlice({
         });
         builder.addCase(getCart.rejected, (state, action) => {
             state.status = "idle";
-            state.error = action.payload as string;
+            state.error = action.payload as FormError;
             localStorage.removeItem("cart");
         });
 
@@ -203,7 +232,7 @@ export const cartSlice = createSlice({
         });
         builder.addCase(mergeCarts.rejected, (state, action) => {
             state.status = "idle";
-            state.error = action.payload as string;
+            state.error = action.payload as FormError;
         });
 
         builder.addCase(addLineToCart.pending, (state) => {
@@ -215,7 +244,7 @@ export const cartSlice = createSlice({
         });
         builder.addCase(addLineToCart.rejected, (state, action) => {
             state.status = "idle";
-            state.error = action.payload as string;
+            state.error = action.payload as FormError;
         });
 
         builder.addCase(removeLineFromCart.pending, (state) => {
@@ -227,7 +256,7 @@ export const cartSlice = createSlice({
         });
         builder.addCase(removeLineFromCart.rejected, (state, action) => {
             state.status = "idle";
-            state.error = action.payload as string;
+            state.error = action.payload as FormError;
         });
 
         builder.addCase(clearCart.pending, (state) => {
@@ -239,7 +268,7 @@ export const cartSlice = createSlice({
         });
         builder.addCase(clearCart.rejected, (state, action) => {
             state.status = "idle";
-            state.error = action.payload as string;
+            state.error = action.payload as FormError;
         });
 
         builder.addCase(increaseQuantity.pending, (state) => {
@@ -258,7 +287,7 @@ export const cartSlice = createSlice({
         });
         builder.addCase(increaseQuantity.rejected, (state, action) => {
             state.status = "idle";
-            state.error = action.payload as string;
+            state.error = action.payload as FormError;
         });
 
         builder.addCase(decreaseQuantity.pending, (state) => {
@@ -277,7 +306,7 @@ export const cartSlice = createSlice({
         });
         builder.addCase(decreaseQuantity.rejected, (state, action) => {
             state.status = "idle";
-            state.error = action.payload as string;
+            state.error = action.payload as FormError;
         });
     }
 });

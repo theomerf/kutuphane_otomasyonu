@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { ClipLoader } from 'react-spinners';
 import type { RootState, AppDispatch } from '../../store/store.ts'
 import { getCart, mergeCarts } from '../Cart/cartSlice.ts';
+import { ErrorDisplay } from '../../components/ui/ErrorDisplay.tsx';
 
 export default function Login() {
 
@@ -33,7 +34,7 @@ export default function Login() {
     return (
         <div className="py-3 px-8" id="loginTabPane" role="tabpanel">
             <form method="POST" onSubmit={handleSubmit(handleLogin)} noValidate>
-                {error && <p className="text-red-700 text-left mt-2">{error}</p>}
+                <ErrorDisplay error={error!} />
                 <div className="my-5 flex flex-col">
                     <label className="text-start font-bold color-[#374151] mb-2 text-sm" htmlFor="userName">
                         <FontAwesomeIcon className="mr-1" icon={faUser} />

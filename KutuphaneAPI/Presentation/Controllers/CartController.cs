@@ -1,13 +1,13 @@
 ﻿using Entities.Dtos;
-using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.ActionFilters;
 using Services.Contracts;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CartController : ControllerBase
@@ -19,7 +19,6 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetCart()
         {
@@ -29,9 +28,9 @@ namespace Presentation.Controllers
             return Ok(cart);
         }
 
-        [Authorize]
         [HttpPost("merge")]
-        public async Task<IActionResult> MergeCarts(CartDto cartDto)
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> MergeCarts([FromBody] CartDtoForUpdate cartDto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var cart = await _manager.CartService.MergeCartsAsync(userId!, cartDto);
@@ -39,16 +38,15 @@ namespace Presentation.Controllers
             return Ok(cart);
         }
 
-        [Authorize]
         [HttpPost("addline")]
-        public async Task<IActionResult> AddLineToCart([FromBody] CartLineDto cartLineDto)
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> AddLineToCart([FromBody] CartLineDtoForInsertion cartLineDto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var cart = await _manager.CartService.AddLineAsync(cartLineDto, userId!);
             return CreatedAtAction(nameof(GetCart), null, cart);
         }
 
-        [Authorize]
         [HttpDelete("removeline/{cartLineId}")]
         public async Task<IActionResult> RemoveLineFromCart([FromRoute] int cartLineId)
         {
@@ -58,7 +56,6 @@ namespace Presentation.Controllers
             return Ok(cart);
         }
 
-        [Authorize]
         [HttpDelete("clear")]
         public async Task<IActionResult> ClearCart()
         {
@@ -68,16 +65,16 @@ namespace Presentation.Controllers
             return Ok(cart);
         }
 
-        [Authorize]
         [HttpPatch("increase/{cartLineId}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> IncreaseQuantity([FromRoute] int cartLineId, [FromBody] QuantityUpdateDto cartDto)
         {
             var cartLine = await _manager.CartService.IncreaseQuantityAsync(cartLineId, cartDto.Quantity);
             return Ok(cartLine);
         }
 
-        [Authorize]
         [HttpPatch("decrease/{cartLineId}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> DecreaseQuantity([FromRoute] int cartLineId, [FromBody] QuantityUpdateDto cartDto)
         {
             var cartLine = await _manager.CartService.DecreaseQuantityAsync(cartLineId, cartDto.Quantity);

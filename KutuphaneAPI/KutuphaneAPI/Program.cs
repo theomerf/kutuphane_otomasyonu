@@ -2,16 +2,26 @@ using KutuphaneAPI.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation.ActionFilters;
+using Presentation.Hubs;
 using Services.Contracts;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers(config => {
+builder.Services.AddControllers(config =>
+{
     config.RespectBrowserAcceptHeader = true;
     config.ReturnHttpNotAcceptable = true;
 })
     .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
-    .AddNewtonsoftJson();
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    });
+
 
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
@@ -30,6 +40,9 @@ builder.Services.ConfigureRouting();
 builder.Services.ConfigureActionFilters();
 builder.Services.ConfigureCors();
 builder.Services.ConfigureDataShaper();
+builder.Services.ConfigureSignalR();
+builder.Services.AddMemoryCache();
+builder.Services.ConfigureLocalization();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -55,6 +68,8 @@ if (app.Environment.IsProduction())
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<ReservationHub>("/reservationHub");
 
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");

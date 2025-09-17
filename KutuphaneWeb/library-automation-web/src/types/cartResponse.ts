@@ -7,10 +7,10 @@ export default interface CartResponse {
 export interface CartLine {
     id?: number;
     bookId: number;
-    bookTitle: string;
-    bookImageUrl: string;
-    bookISBN: string;
-    bookAuthor: string;
+    bookTitle?: string;
+    bookImageUrl?: string;
+    bookISBN?: string;
+    bookAuthor?: string;
     cartId: number;
     quantity: number;
 }

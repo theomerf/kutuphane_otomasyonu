@@ -18,6 +18,8 @@ namespace Repositories.Configs
             builder.Property(b => b.Location)
                 .IsRequired()
                 .HasMaxLength(50);
+            builder.Property(b => b.AverageRating)
+                .HasDefaultValue(0);
 
             builder.HasMany(b => b.Authors)
                 .WithMany(a => a.Books)

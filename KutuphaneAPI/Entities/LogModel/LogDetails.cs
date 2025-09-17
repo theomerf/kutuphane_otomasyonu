@@ -12,7 +12,7 @@ namespace Entities.LogModel
 
         public LogDetails()
         {
-            CreatedAt = DateTime.UtcNow;
+            CreatedAt = DateTime.Now;
         }
 
         public override string ToString()

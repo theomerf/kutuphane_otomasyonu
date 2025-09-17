@@ -10,10 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@fortawesome/free-brands-svg-icons": "^7.0.1",
     "@fortawesome/free-regular-svg-icons": "^7.0.1",
     "@fortawesome/free-solid-svg-icons": "^7.0.1",
     "@fortawesome/react-fontawesome": "^3.0.2",
+    "@microsoft/signalr": "^9.0.6",
+    "@mui/icons-material": "^7.3.2",
+    "@mui/material": "^7.3.2",
     "@reduxjs/toolkit": "^2.9.0",
     "@tanstack/react-query": "^5.87.1",
     "axios": "^1.11.0",

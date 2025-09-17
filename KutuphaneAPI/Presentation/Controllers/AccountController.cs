@@ -39,14 +39,40 @@ namespace Presentation.Controllers
 
             if (!result.Succeeded)
             {
+                var errors = new Dictionary<string, string[]>();
+
                 foreach (var error in result.Errors)
                 {
-                    ModelState.TryAddModelError(error.Code, error.Description);
+                    var field = error.Code switch
+                    {
+                        "DuplicateUserName" => "UserName",
+                        "DuplicateEmail" => "Email",
+                        "PasswordTooShort" => "Password",
+                        "PasswordRequiresDigit" => "Password",
+                        "PasswordRequiresUpper" => "Password",
+                        "PasswordRequiresLower" => "Password",
+                        "InvalidUserName" => "UserName",
+                        "InvalidEmail" => "Email",
+                        _ => "General"
+                    };
+
+                    if (!errors.ContainsKey(field))
+                        errors[field] = new string[0];
+
+                    errors[field] = errors[field].Concat(new[] { error.Description }).ToArray();
                 }
-                return BadRequest(ModelState);
+
+                return UnprocessableEntity(new
+                {
+                    message = "Kayıt işlemi başarısız.",
+                    errors = errors
+                });
             }
 
-            return CreatedAtAction(nameof(GetAccount), new {userName = accountDto.UserName});
+            return CreatedAtAction(nameof(GetAccount), new { userName = accountDto.UserName }, new
+            {
+                message = "Kayıt başarılı."
+            });
         }
 
         [HttpPost("refresh")]

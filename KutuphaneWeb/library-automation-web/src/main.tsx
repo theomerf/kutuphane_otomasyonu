@@ -8,9 +8,11 @@ import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ToastContainer position="bottom-right" theme='colored' autoClose={3000}/>
+    <>
+    <ToastContainer position="bottom-right" theme='colored' autoClose={3000} />
     <Provider store={store}>
-      <App/>
+      <App />
     </Provider>
-  </StrictMode>,
+    </>
+  </StrictMode>
 )

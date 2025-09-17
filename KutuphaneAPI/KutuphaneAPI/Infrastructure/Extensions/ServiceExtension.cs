@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Exceptions;
+using Entities.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -43,6 +44,8 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
+            services.AddScoped<ISeatRepository, SeatRepository>();
         }
 
         public static void ConfigureServiceRegistration(this IServiceCollection services)
@@ -53,6 +56,9 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IAuthorService, AuthorManager>();
             services.AddScoped<ICartService, CartManager>();
+            services.AddScoped<IReservationService, ReservationManager>();
+            services.AddScoped<ISeatService, SeatManager>();
+            services.AddSingleton<ICacheService, CacheService>();
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)
@@ -61,12 +67,15 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.User.RequireUniqueEmail = true;
-                options.Password.RequireDigit = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = false;
+                options.Password.RequireDigit = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
                 options.Password.RequiredLength = 6;
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
             })
             .AddEntityFrameworkStores<RepositoryContext>()
+            .AddErrorDescriber<TurkishIdentityErrorDescriber>()
             .AddDefaultTokenProviders();
         }
 
@@ -125,6 +134,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
                             .WithOrigins("http://localhost:5173")
                             .AllowAnyHeader()
                             .AllowAnyMethod()
+                            .AllowCredentials()
                             .WithExposedHeaders("X-Pagination");
                     });
             });
@@ -162,6 +172,24 @@ namespace KutuphaneAPI.Infrastructure.Extensions
                         new List<string>()
                     }
                 });
+            });
+        }
+
+        public static void ConfigureSignalR(this IServiceCollection services)
+        {
+            services.AddSignalR();
+        }
+
+        public static void ConfigureLocalization(this IServiceCollection services)
+        {
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[] { "tr-TR", "en-US" };
+                options.SetDefaultCulture(supportedCultures[0])
+                    .AddSupportedCultures(supportedCultures)
+                    .AddSupportedUICultures(supportedCultures);
             });
         }
     }

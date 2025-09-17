@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from './accountSlice';
 import { useForm } from 'react-hook-form';
 import type { RootState, AppDispatch } from '../../store/store.ts'
+import { ErrorDisplay } from '../../components/ui/ErrorDisplay.tsx';
 
 export default function Register() {
     const dispatch: AppDispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function Register() {
     return (
         <div className="py-3 px-8" id="authTabPane" role="tabpanel">
             <form method="POST" onSubmit={handleSubmit(handleRegister)} noValidate>
-                {error && <p className="text-red-700 text-left mt-2">{error}</p>}
+                <ErrorDisplay error={error!} />
                 <div className="my-5 flex flex-col">
                     <label className="text-start font-bold color-[#374151] mb-2 text-sm" htmlFor="userName">
                         <FontAwesomeIcon className="mr-1" icon={faUser} />

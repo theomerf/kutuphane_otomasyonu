@@ -15,15 +15,28 @@ namespace Presentation.ActionFilters
 
             if (param is null)
             {
-                context.Result = new BadRequestObjectResult($"Nesne null. " + 
-                    $"Controller : {controller} " + 
-                    $"Action : {action} " );
+                context.Result = new BadRequestObjectResult(new
+                {
+                    message = "Geçersiz istek verisi",
+                    errors = new { general = new[] { $"Controller: {controller}, Action: {action} - Nesne null." } }
+                });
                 return;
             }
 
             if (!context.ModelState.IsValid)
             {
-                context.Result = new UnprocessableEntityObjectResult(context.ModelState);
+                var errors = context.ModelState
+                    .Where(x => x.Value?.Errors.Count > 0)
+                    .ToDictionary(
+                        kvp => kvp.Key,
+                        kvp => kvp.Value?.Errors.Select(e => e.ErrorMessage).ToArray() ?? new string[0]
+                    );
+
+                context.Result = new UnprocessableEntityObjectResult(new
+                {
+                    message = "Doğrulama hatası.",
+                    errors = errors
+                });
             }
         }
     }

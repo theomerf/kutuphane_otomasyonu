@@ -12,11 +12,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountForLoginDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AccountForLoginDto"
@@ -48,11 +43,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AccountForRegistrationDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AccountForRegistrationDto"
@@ -84,11 +74,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TokenDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/TokenDto"
@@ -305,24 +290,19 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CartDto"
-              }
-            },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CartDto"
+                "$ref": "#/components/schemas/CartDtoForUpdate"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CartDto"
+                "$ref": "#/components/schemas/CartDtoForUpdate"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CartDto"
+                "$ref": "#/components/schemas/CartDtoForUpdate"
               }
             }
           }
@@ -341,24 +321,19 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CartLineDto"
-              }
-            },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CartLineDto"
+                "$ref": "#/components/schemas/CartLineDtoForInsertion"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CartLineDto"
+                "$ref": "#/components/schemas/CartLineDtoForInsertion"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CartLineDto"
+                "$ref": "#/components/schemas/CartLineDtoForInsertion"
               }
             }
           }
@@ -423,11 +398,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/QuantityUpdateDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/QuantityUpdateDto"
@@ -470,11 +440,6 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/QuantityUpdateDto"
-              }
-            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/QuantityUpdateDto"
@@ -538,6 +503,269 @@
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/reservation": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/reservation/statuses": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "Date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "TimeSlotId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/reservation/{id}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/reservation/user/{accountId}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/reservation/reserve-seat": {
+      "post": {
+        "tags": [
+          "Reservation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDtoForCreation"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDtoForCreation"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservationDtoForCreation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/reservation/cancel-reservation/{reservationId}": {
+      "patch": {
+        "tags": [
+          "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "reservationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/seats": {
+      "get": {
+        "tags": [
+          "Seats"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/seats/statuses": {
+      "get": {
+        "tags": [
+          "Seats"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/seats/{id}": {
+      "get": {
+        "tags": [
+          "Seats"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/seats/create": {
+      "post": {
+        "tags": [
+          "Seats"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeatDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeatDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeatDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/seats/timeslot/create": {
+      "post": {
+        "tags": [
+          "Seats"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/seats/timeslots": {
+      "get": {
+        "tags": [
+          "Seats"
         ],
         "responses": {
           "200": {
@@ -624,10 +852,7 @@
         },
         "additionalProperties": false
       },
-      "CartDto": {
-        "required": [
-          "accountId"
-        ],
+      "CartDtoForUpdate": {
         "type": "object",
         "properties": {
           "id": {
@@ -641,22 +866,14 @@
           "cartLines": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CartLineDto"
+              "$ref": "#/components/schemas/CartLineDtoForInsertion"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "CartLineDto": {
-        "required": [
-          "bookAuthor",
-          "bookId",
-          "bookImageUrl",
-          "bookISBN",
-          "bookTitle",
-          "cartId"
-        ],
+      "CartLineDtoForInsertion": {
         "type": "object",
         "properties": {
           "id": {
@@ -666,22 +883,6 @@
           "bookId": {
             "type": "integer",
             "format": "int32"
-          },
-          "bookTitle": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookImageUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookISBN": {
-            "type": "string",
-            "nullable": true
-          },
-          "bookAuthor": {
-            "type": "string",
-            "nullable": true
           },
           "cartId": {
             "type": "integer",
@@ -700,6 +901,71 @@
           "quantity": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReservationDtoForCreation": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
+          "seatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "timeSlotId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reservationDate": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SeatDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "seatNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "floor": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isAvailable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeSlotDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "time"
           }
         },
         "additionalProperties": false

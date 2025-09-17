@@ -76,7 +76,6 @@ export const Pagination = ({
 
   return (
     <div className="flex items-center justify-center gap-1 p-4">
-      {/* İlk sayfa */}
       {showFirstLast && currentPage > 1 && (
         <button
           onClick={() => onPageChange(1)}
@@ -87,7 +86,6 @@ export const Pagination = ({
         </button>
       )}
 
-      {/* Önceki sayfa */}
       {showPrevNext && currentPage > 1 && (
         <button
           onClick={() => onPageChange(currentPage - 1)}
@@ -98,13 +96,11 @@ export const Pagination = ({
         </button>
       )}
 
-      {/* Sayfa numaraları */}
       {visiblePages.map((page, index) => {
         if (page === 'ellipsis') {
           return (
             <div key={`ellipsis-${index}`} className="pagination-ellipsis">
               <span>...</span>
-              {/* Sayfa atlama input'u */}
               <div className="ellipsis-dropdown">
                 <form onSubmit={handleInputSubmit} className="p-2">
                   <input
@@ -139,7 +135,6 @@ export const Pagination = ({
         )
       })}
 
-      {/* Sonraki sayfa */}
       {showPrevNext && currentPage < totalPages && (
         <button
           onClick={() => onPageChange(currentPage + 1)}
@@ -150,7 +145,6 @@ export const Pagination = ({
         </button>
       )}
 
-      {/* Son sayfa */}
       {showFirstLast && currentPage < totalPages && (
         <button
           onClick={() => onPageChange(totalPages)}
@@ -161,7 +155,6 @@ export const Pagination = ({
         </button>
       )}
 
-      {/* Sayfa bilgisi */}
       <div className="ml-4 text-sm text-gray-600 whitespace-nowrap">
         Sayfa {currentPage} / {totalPages}
       </div>

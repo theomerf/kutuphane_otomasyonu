@@ -161,10 +161,6 @@ export default function Books() {
   const handleAddToCart = (book: Book) => {
     const newLine: CartLine = {
       bookId: book.id!,
-      bookTitle: book.title!,
-      bookISBN: book.isbn!,
-      bookAuthor: book.Authors![0].name!,
-      bookImageUrl: book.Images?.[0]?.imageUrl || "",
       cartId: cart ? cart.id! : 0,
       quantity: 1,
     }
@@ -217,7 +213,7 @@ export default function Books() {
 
   return (
     <div className="sm:px-1 px-5 lg:px-20 lg:grid lg:grid-cols-4">
-      <div className="flex flex-col fixed lg:static left-0 top-5 z-10 lg:col-span-1 overflow-y-auto w-5/6 h-fit  bg-white/95 lg:bg-white/90 shadow-lg rounded-tr-xl rounded-br-xl lg:rounded-xl">
+      <div className="flex flex-col fixed lg:static left-0 top-20 z-10 lg:col-span-1 overflow-y-auto w-5/6 h-fit  bg-white/95 lg:bg-white/90 shadow-lg rounded-tr-xl rounded-br-xl lg:rounded-xl">
         {(up.lg || isFiltersOpen) ? (
           <>
             <div className="bg-violet-400 relative px-4 rounded-tr-xl lg:rounded-xl lg:rounded-b-none py-4">

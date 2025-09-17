@@ -2,13 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { LoginResponse } from '../../types/loginResponse';
 import { toast } from 'react-toastify'
 import requests from '../../services/api';
-import { history } from '../../services/history';
+import { history } from '../../utils/history';
+import type { FormError, ApiErrorResponse } from '../../types/apiError';
 import { clearLocalCart } from '../Cart/cartSlice';
 
 type userState = {
     user: LoginResponse | null;
     status: string;
-    error?: string | null;
+    error?: FormError | null;
 }
 
 const initialState: userState = {
@@ -31,7 +32,10 @@ export const loginUser = createAsyncThunk(
             if (error.response?.status === 401) {
                 return thunkAPI.rejectWithValue("Kullanıcı adı veya şifre yanlış.");
             }
-            return thunkAPI.rejectWithValue({ error });
+            if (error.response?.data) {
+                return thunkAPI.rejectWithValue(error.response.data as ApiErrorResponse);
+            }
+            return thunkAPI.rejectWithValue("Giriş işlemi sırasında bir hata oluştu.");
         }
     }
 )
@@ -40,13 +44,20 @@ export const registerUser = createAsyncThunk(
     "account/register",
     async (data, thunkAPI) => {
         try{
-            var result = await requests.account.login(data);
+            var result = await requests.account.register(data);
             toast.success("Başarıyla kayıt oldunuz, lütfen giriş yapın.");
             history.push("/account/login");
             return result;
         }
-        catch(error){
-            thunkAPI.rejectWithValue({ error });
+        catch(error: any){
+            if (error.response?.data) {
+                const errorData = error.response.data as ApiErrorResponse;
+                return thunkAPI.rejectWithValue(errorData);
+            }
+            return thunkAPI.rejectWithValue({
+                message: "Kayıt işlemi sırasında bir hata oluştu.",
+                errors: {}
+            } as ApiErrorResponse);
         }
     }
 )
@@ -77,8 +88,11 @@ export const refresh = createAsyncThunk(
 
             return result;
         }
-        catch(error){
-            thunkAPI.rejectWithValue({ error });
+        catch(error: any){
+            if (error.response?.data) {
+                const errorData = error.response.data as ApiErrorResponse;
+                return thunkAPI.rejectWithValue(errorData);
+            }
         }
     }
 )
@@ -93,6 +107,7 @@ export const accountSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(loginUser.pending, (state) => {
+            state.error = null;
             state.status = "pending";
         });
         builder.addCase(loginUser.fulfilled, (state, action) => {
@@ -101,10 +116,11 @@ export const accountSlice = createSlice({
         });
         builder.addCase(loginUser.rejected, (state, action) => {
             state.status = "idle";
-            state.error = action.payload as string;
+            state.error = action.payload as FormError;
         });
 
         builder.addCase(registerUser.pending, (state) => {
+            state.error = null;
             state.status = "pending";
         });
         builder.addCase(registerUser.fulfilled, (state) => {
@@ -112,7 +128,7 @@ export const accountSlice = createSlice({
         });
         builder.addCase(registerUser.rejected, (state, action) => {
             state.status = "idle";
-            state.error = action.payload as string;
+            state.error = action.payload as FormError;
         });
 
         builder.addCase(logout.fulfilled, (state) => {

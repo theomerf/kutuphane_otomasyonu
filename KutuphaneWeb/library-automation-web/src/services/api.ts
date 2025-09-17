@@ -1,11 +1,10 @@
 import axios from 'axios';
 import type { LoginResponse } from '../types/loginResponse';
 import { toast } from 'react-toastify';
-import { history } from './history';
+import { history } from '../utils/history';
 import { store } from '../store/store';
 import { logout, setUser } from '../pages/Account/accountSlice';
-import type { CartLine } from '../types/cartResponse';
-import type CartResponse from '../types/cartResponse';
+import type ReservationResponse from '../types/reservation';
 
 axios.defaults.baseURL = "https://localhost:7214/api/";
 
@@ -57,7 +56,9 @@ axios.interceptors.response.use(
 
                 }
                 return Promise.reject(error);
+            case 422:
             case 400:
+                break;
             case 403:
                 toast.error(data?.message ?? "Yetkisiz erişim");
                 break;
@@ -72,14 +73,14 @@ axios.interceptors.response.use(
                 toast.error("Bilinmeyen hata");
                 break;
         }
-        return Promise.reject(error.message);
+        return Promise.reject(error);
     }
 );
 
 const methods = {
     get: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, {...params, signal}).then((response) => ({data: response.data, headers: response.headers})),
     getWithoutHeaders: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, {...params, signal}).then((response) => response.data),
-    post: (url: string, body: any | null) => axios.post(url, body).then((response) => response.data),
+    post: (url: string, body: any | null, config?: any | null) => axios.post(url, body, config).then((response) => response.data),
     put: (url: string, body: any) => axios.put(url, body).then((response) => response.data),
     patch: (url: string, body: any) => axios.patch(url, body).then((response) => response.data),
     delete: (url: string) => axios.delete(url).then((response) => response.data),
@@ -102,12 +103,27 @@ const authors = {
 
 const cart = {
     getCart: () => methods.getWithoutHeaders("cart", {}),
-    mergeCarts: (cartDto:CartResponse) => methods.post("cart/merge", cartDto),
-    addLineToCart: (cartLineDto: CartLine) => methods.post("cart/addline", cartLineDto),
+    mergeCarts: (cartDto:any) => methods.post("cart/merge", cartDto),
+    addLineToCart: (cartLineDto: any) => methods.post("cart/addline", cartLineDto),
     removeLineFromCart: (cartLineId: number) => methods.delete(`cart/removeline/${cartLineId}`),
     clearCart: () => methods.delete("cart/clear"),
     increaseQuantity: (cartLineId: number, cartDto: { quantity: number }) => methods.patch(`cart/increase/${cartLineId}`, cartDto),
     decreaseQuantity: (cartLineId: number, cartDto: { quantity: number }) => methods.patch(`cart/decrease/${cartLineId}`, cartDto),
+}
+
+const seats = {
+    getAllSeats: (signal?: AbortSignal) => methods.get("seats", {}, signal),
+}
+
+const timeSlots = {
+    getAllTimeSlots: (signal?: AbortSignal) => methods.get("seats/timeslots", {}, signal),
+}
+
+const reservation = {
+    getAllReservationsStatuses: (query: URLSearchParams, signal?: AbortSignal) => methods.get("reservation/statuses", { params: query }, signal),
+    createReservation: (reservation: ReservationResponse, config?: any) => methods.post(`reservation/reserve-seat`, reservation, config),
+    getUserReservations: (signal?: AbortSignal) => methods.get("reservation/user", {}, signal),
+    cancelReservation: (reservationId: number) => methods.delete(`reservation/cancel-reservation/${reservationId}`),
 }
 
 const account = {
@@ -130,7 +146,10 @@ const requests = {
     account,
     categories,
     authors,
+    timeSlots,
     cart,
+    seats,
+    reservation,
     errors
 }
 

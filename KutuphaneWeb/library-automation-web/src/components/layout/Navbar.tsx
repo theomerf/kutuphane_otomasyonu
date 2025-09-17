@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBell, faCartShopping, faHeart, faRightFromBracket, faRightToBracket, faSearch } from "@fortawesome/free-solid-svg-icons";
-import Logo from "../../assets/icon.png"; // kendi logonu import et
+import Logo from "../../assets/icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from '../../store/store'
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ type LinkType = {
 
 const links: LinkType[] = [
   { name: "Kitaplar", to: "/Books" },
-  { name: "Rezervasyon", to: "/Reservations" }
+  { name: "Rezervasyon", to: "/Reservation" }
 ]
 
 export default function Navbar() {
@@ -132,7 +132,7 @@ export default function Navbar() {
               </Link>
               <Link to="/Cart" className="navButton relative">
                 <FontAwesomeIcon icon={faCartShopping} />
-                <span className="absolute flex right-0 bottom-0 rounded-full w-5 h-5 text-sm bg-red-500 text-white justify-center font-semibold">
+                <span className="absolute flex right-[-5px] bottom-[-5px] rounded-full w-5 h-5 text-sm bg-red-500 text-white justify-center font-semibold">
                   {cart?.cartLines?.length ?? 0}
                 </span>
               </Link>
@@ -140,8 +140,11 @@ export default function Navbar() {
           ) :
             (
               <div className="flex justify-center gap-2 mb-3">
-                <Link to="/Cart" className="navButton">
+                <Link to="/Cart" className="navButton relative">
                   <FontAwesomeIcon icon={faCartShopping} />
+                  <span className="absolute flex right-[-5px] bottom-[-5px] rounded-full w-5 h-5 text-sm bg-red-500 text-white justify-center font-semibold">
+                  {cart?.cartLines?.length ?? 0}
+                </span>
                 </Link>
               </div>
             )
@@ -150,9 +153,9 @@ export default function Navbar() {
           <ul className="flex flex-col gap-3 font-medium text-sm">
             {links.map((l) => (
               <li key={l.name} className="hover:scale-110 px-8 transition-all duration-500">
-                <Link to={l?.to} className="block text-center navButton">
+                <NavLink to={l?.to} className={({ isActive }) => `block text-center  ${isActive ? 'navButtonActive' : 'navButton'}`}>
                   {l.name}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -167,9 +170,9 @@ export default function Navbar() {
             <ul className="flex justify-center space-x-8 font-medium text-sm">
               {links.map((l) => (
                 <li key={l.name} className="hover:scale-110 transition-all duration-500">
-                  <Link to={l?.to} className="navButton">
+                  <NavLink to={l?.to} className={({ isActive }) => `${isActive ? 'navButtonActive' : 'navButton'}`}>
                     {l.name}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>

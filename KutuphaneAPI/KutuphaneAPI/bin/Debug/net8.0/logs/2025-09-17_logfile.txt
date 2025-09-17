@@ -1,0 +1,205 @@
+2025-09-17 00:31:26.7775 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-16T21:31:26.4424828Z"}
+2025-09-17 01:35:31.3367 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-16T22:35:31.3366623Z"}
+2025-09-17 11:35:41.9564 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T08:35:41.8523447Z"}
+2025-09-17 12:40:59.9049 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T12:40:59.4880621+03:00"}
+2025-09-17 12:41:14.9001 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T12:41:14.9000359+03:00"}
+2025-09-17 13:51:10.6694 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T13:51:10.4809358+03:00"}
+2025-09-17 14:07:13.6124 ERROR Bir şeyler yanlış gitti: System.NullReferenceException: Object reference not set to an instance of an object.
+   at Services.CartManager.<>c__DisplayClass8_0.<AddLineAsync>b__0(CartLineDtoForUpdate cl) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 124
+   at System.Linq.Enumerable.Any[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Services.CartManager.AddLineAsync(CartLineDto cartDto, String userId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 124
+   at Presentation.Controllers.CartController.AddLineToCart(CartLineDto cartLineDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\CartController.cs:line 47
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-17 14:08:22.5245 ERROR Bir şeyler yanlış gitti: System.NullReferenceException: Object reference not set to an instance of an object.
+   at Services.CartManager.AddLineAsync(CartLineDto cartDto, String userId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 134
+   at Presentation.Controllers.CartController.AddLineToCart(CartLineDto cartLineDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\CartController.cs:line 47
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-17 14:14:28.1834 ERROR Bir şeyler yanlış gitti: System.NullReferenceException: Object reference not set to an instance of an object.
+   at Services.CartManager.AddLineAsync(CartLineDto cartDto, String userId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 134
+   at Presentation.Controllers.CartController.AddLineToCart(CartLineDto cartLineDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\CartController.cs:line 47
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-17 14:31:50.2788 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T14:31:50.0919745+03:00"}
+2025-09-17 14:32:24.8835 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.CartLineNotFoundException: 648649'sine sahip CartLine bulunamadı.
+   at Services.CartManager.RemoveLineAsync(String userId, Int32 cartLineId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 147
+   at Presentation.Controllers.CartController.RemoveLineFromCart(Int32 cartLineId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\CartController.cs:line 59
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-17 14:34:26.0743 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T14:34:26.0742515+03:00"}
+2025-09-17 14:36:18.7230 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T14:36:18.5229981+03:00"}
+2025-09-17 14:37:31.4130 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T14:37:31.4128989+03:00"}
+2025-09-17 14:38:50.5409 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T14:38:50.5408726+03:00"}
+2025-09-17 14:50:27.5964 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T14:50:27.5964065+03:00"}
+2025-09-17 14:51:04.6461 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T14:51:04.6461137+03:00"}
+2025-09-17 14:51:26.6585 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T14:51:26.6584488+03:00"}
+2025-09-17 14:59:47.8880 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T14:59:47.67006+03:00"}
+2025-09-17 15:02:47.2172 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T15:02:46.9600985+03:00"}
+2025-09-17 15:07:06.1353 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T15:07:06.0456655+03:00"}
+2025-09-17 15:27:49.5818 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.CartLineNotFoundException: 90010'sine sahip CartLine bulunamadı.
+   at Services.CartManager.RemoveLineAsync(String userId, Int32 cartLineId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 147
+   at Presentation.Controllers.CartController.RemoveLineFromCart(Int32 cartLineId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\CartController.cs:line 58
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-17 15:28:31.7308 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T15:28:31.720125+03:00"}
+2025-09-17 15:28:55.1236 ERROR Bir şeyler yanlış gitti: System.ArgumentNullException: Value cannot be null. (Parameter 'key')
+   at System.Collections.Generic.Dictionary`2.FindValue(TKey key)
+   at System.Collections.Generic.Dictionary`2.TryGetValue(TKey key, TValue& value)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityReferenceMap.TryGet(Object entity, IEntityType entityType, InternalEntityEntry& entry, Boolean throwOnNonUniqueness)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.TryGetEntry(Object entity, IEntityType entityType, Boolean throwOnTypeMismatch)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity, IEntityType entityType)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.EntryWithoutDetectChanges(TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Attach(TEntity entity)
+   at Repositories.RepositoryBase`1.Attach(T entity) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Repositories\RepositoryBase.cs:line 64
+   at Services.CartManager.AddLineAsync(CartLineDtoForInsertion cartDto, String userId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 134
+   at Presentation.Controllers.CartController.AddLineToCart(CartLineDtoForInsertion cartLineDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\CartController.cs:line 49
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-17 15:31:21.0076 ERROR Bir şeyler yanlış gitti: System.ArgumentNullException: Value cannot be null. (Parameter 'key')
+   at System.Collections.Generic.Dictionary`2.FindValue(TKey key)
+   at System.Collections.Generic.Dictionary`2.TryGetValue(TKey key, TValue& value)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityReferenceMap.TryGet(Object entity, IEntityType entityType, InternalEntityEntry& entry, Boolean throwOnNonUniqueness)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.TryGetEntry(Object entity, IEntityType entityType, Boolean throwOnTypeMismatch)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.GetOrCreateEntry(Object entity, IEntityType entityType)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.EntryWithoutDetectChanges(TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Attach(TEntity entity)
+   at Repositories.RepositoryBase`1.Attach(T entity) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Repositories\RepositoryBase.cs:line 64
+   at Services.CartManager.AddLineAsync(CartLineDtoForInsertion cartDto, String userId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 134
+   at Presentation.Controllers.CartController.AddLineToCart(CartLineDtoForInsertion cartLineDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\CartController.cs:line 49
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-17 15:38:08.3872 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T15:38:08.2056194+03:00"}
+2025-09-17 15:41:40.2992 ERROR Bir şeyler yanlış gitti: Microsoft.Data.SqlClient.SqlException (0x80131904): Yürütme Zaman Aşımı Süresi Doldu.  İşlem tamamlanmadan zaman aşımı süresi doldu veya sunucu yanıt vermiyor.
+ ---> System.ComponentModel.Win32Exception (258): Bekleme işlem zamanı aşıldı.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__195_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Repositories.CartRepository.GetCartForUpdateAsync(String userId, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Repositories\CartRepository.cs:line 42
+   at Services.CartManager.GetCartByUserIdForUpdateAsync(String userId, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 91
+   at Services.CartManager.RemoveLineAsync(String userId, Int32 cartLineId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\CartManager.cs:line 144
+   at Presentation.Controllers.CartController.RemoveLineFromCart(Int32 cartLineId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\CartController.cs:line 57
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+ClientConnectionId:1f8f99f8-6f79-42b8-b754-517ecf086b8a
+Hata Numarası: -2,Durum: 0,Sınıf:11
+2025-09-17 15:53:06.4946 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T15:53:06.4131378+03:00"}
+2025-09-17 15:57:06.5028 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T15:57:06.5026972+03:00"}
+2025-09-17 16:41:35.0470 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T16:41:34.8519032+03:00"}
+2025-09-17 17:28:01.8381 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T17:28:01.6556894+03:00"}
+2025-09-17 17:28:07.2529 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-17T17:28:07.2527108+03:00"}

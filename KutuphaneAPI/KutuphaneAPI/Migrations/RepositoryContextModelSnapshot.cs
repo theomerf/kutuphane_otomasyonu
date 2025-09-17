@@ -17,7 +17,7 @@ namespace KutuphaneAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.8")
+                .HasAnnotation("ProductVersion", "9.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -80,6 +80,9 @@ namespace KutuphaneAPI.Migrations
 
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -188,7 +191,9 @@ namespace KutuphaneAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("AverageRating")
-                        .HasColumnType("float");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("float")
+                        .HasDefaultValue(0.0);
 
                     b.Property<string>("ISBN")
                         .IsRequired()
@@ -263,7 +268,8 @@ namespace KutuphaneAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("AccountId")
+                        .IsUnique();
 
                     b.ToTable("Cart");
                 });
@@ -315,6 +321,47 @@ namespace KutuphaneAPI.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("Entities.Models.Reservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateOnly>("ReservationDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("SeatId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeSlotId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("SeatId");
+
+                    b.HasIndex("TimeSlotId");
+
+                    b.ToTable("Reservation");
+                });
+
             modelBuilder.Entity("Entities.Models.Review", b =>
                 {
                     b.Property<int>("Id")
@@ -352,6 +399,30 @@ namespace KutuphaneAPI.Migrations
                     b.ToTable("Review");
                 });
 
+            modelBuilder.Entity("Entities.Models.Seat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Floor")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("SeatNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Seat");
+                });
+
             modelBuilder.Entity("Entities.Models.Tag", b =>
                 {
                     b.Property<int>("Id")
@@ -368,6 +439,25 @@ namespace KutuphaneAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tag");
+                });
+
+            modelBuilder.Entity("Entities.Models.TimeSlot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<TimeOnly>("EndTime")
+                        .HasColumnType("time");
+
+                    b.Property<TimeOnly>("StartTime")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TimeSlot");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -582,8 +672,8 @@ namespace KutuphaneAPI.Migrations
             modelBuilder.Entity("Entities.Models.Cart", b =>
                 {
                     b.HasOne("Entities.Models.Account", "Account")
-                        .WithMany("Cart")
-                        .HasForeignKey("AccountId")
+                        .WithOne("Cart")
+                        .HasForeignKey("Entities.Models.Cart", "AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -607,6 +697,33 @@ namespace KutuphaneAPI.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Cart");
+                });
+
+            modelBuilder.Entity("Entities.Models.Reservation", b =>
+                {
+                    b.HasOne("Entities.Models.Account", "Account")
+                        .WithMany("Reservations")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.Seat", "Seat")
+                        .WithMany("Reservations")
+                        .HasForeignKey("SeatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Models.TimeSlot", "TimeSlot")
+                        .WithMany("Reservations")
+                        .HasForeignKey("TimeSlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Seat");
+
+                    b.Navigation("TimeSlot");
                 });
 
             modelBuilder.Entity("Entities.Models.Review", b =>
@@ -683,6 +800,8 @@ namespace KutuphaneAPI.Migrations
                 {
                     b.Navigation("Cart");
 
+                    b.Navigation("Reservations");
+
                     b.Navigation("Reviews");
                 });
 
@@ -698,6 +817,16 @@ namespace KutuphaneAPI.Migrations
             modelBuilder.Entity("Entities.Models.Cart", b =>
                 {
                     b.Navigation("CartLines");
+                });
+
+            modelBuilder.Entity("Entities.Models.Seat", b =>
+                {
+                    b.Navigation("Reservations");
+                });
+
+            modelBuilder.Entity("Entities.Models.TimeSlot", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

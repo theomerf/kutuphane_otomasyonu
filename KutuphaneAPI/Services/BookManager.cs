@@ -71,12 +71,9 @@ namespace Services
         public async Task UpdateBookAsync(BookDto bookDto)
         {
             var book = await GetOneBookForServiceAsync(bookDto.Id, true);
-            if (book is null)
-            {
-                throw new BookNotFoundException(bookDto.Id);
-            }
+
             _mapper.Map(bookDto, book);
-            _manager.Book.UpdateBook(book);
+            _manager.Book.UpdateBook(book!);
             await _manager.SaveAsync();
         }
     }

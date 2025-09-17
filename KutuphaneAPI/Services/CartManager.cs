@@ -26,7 +26,7 @@ namespace Services
             return cartDto;
         }
 
-        public async Task<CartDto> MergeCartsAsync(string userId, CartDto cartDto)
+        public async Task<CartDto> MergeCartsAsync(string userId, CartDtoForUpdate cartDto)
         {
             var cartFromRepo = await GetCartByUserIdForUpdateAsync(userId, false);
 
@@ -35,7 +35,7 @@ namespace Services
                 var mergedCart = _mapper.Map<Cart>(cartFromRepo);
                 _manager.Cart.Attach(mergedCart);
 
-                foreach (var line in cartDto.CartLines ?? Enumerable.Empty<CartLineDto>())
+                foreach (var line in cartDto.CartLines!)
                 {
                     var existingLine = mergedCart.CartLines.FirstOrDefault(cl => cl.BookId == line.BookId);
                     if (existingLine != null)
@@ -118,7 +118,7 @@ namespace Services
             return cartLine;
         }
 
-        public async Task<CartDto> AddLineAsync(CartLineDto cartDto, string userId)
+        public async Task<CartDto> AddLineAsync(CartLineDtoForInsertion cartDto, string userId)
         {
             var cartFromRepo = await GetCartByUserIdForUpdateAsync(userId, false);
             if (cartFromRepo?.CartLines != null && cartFromRepo.CartLines.Any(cl => cl.BookId == cartDto.BookId))
@@ -159,7 +159,7 @@ namespace Services
         {
             var cart = await GetCartByUserIdForUpdateAsync(userId, true);
 
-            foreach (var line in cart?.CartLines ?? Enumerable.Empty<CartLineDtoForUpdate>())
+            foreach (var line in cart?.CartLines ?? Enumerable.Empty<CartLineDtoForInsertion>())
             {
                 var cartLineEntity = _mapper.Map<CartLine>(line);
                 _manager.Cart.DeleteCartLine(cartLineEntity);

@@ -203,4 +203,9 @@ C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\
 C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\System.Linq.Dynamic.Core.dll
 C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\KutuphaneAPI.staticwebassets.runtime.json
+C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\appsettings.Production.Development.json
+C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\appsettings.Production.json
+C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\Npgsql.dll
+C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
 C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

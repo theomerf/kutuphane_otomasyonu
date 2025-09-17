@@ -132,6 +132,10 @@
             "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
               "version": "[2.3.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.2.0, )"
             }
           },
           "imports": [
@@ -206,11 +210,11 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.8, )"
+              "version": "[9.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.8, )"
+              "version": "[9.0.9, )"
             },
             "System.Linq.Dynamic.Core": {
               "target": "Package",
@@ -297,7 +301,7 @@
             },
             "NLog.Extensions.Logging": {
               "target": "Package",
-              "version": "[6.0.3, )"
+              "version": "[6.0.4, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

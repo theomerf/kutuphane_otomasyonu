@@ -45,7 +45,7 @@ namespace Repositories
                 {
                     Id = b.Id,
                     AccountId = b.AccountId,
-                    CartLines = b.CartLines.Select(cl => new CartLineDtoForUpdate
+                    CartLines = b.CartLines.Select(cl => new CartLineDtoForInsertion
                     {
                         Id = cl.Id,
                         CartId = cl.CartId,

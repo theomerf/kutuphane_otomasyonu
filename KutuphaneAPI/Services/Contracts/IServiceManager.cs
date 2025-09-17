@@ -7,5 +7,7 @@
         ICategoryService CategoryService { get; }
         IAuthorService AuthorService { get; }
         ICartService CartService { get; }
+        IReservationService ReservationService { get; }
+        ISeatService SeatService { get; }
     }
 }

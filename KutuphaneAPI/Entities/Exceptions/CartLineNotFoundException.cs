@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Exceptions
 {
-    public class CartLineNotFoundException : Exception
+    public class CartLineNotFoundException : NotFoundException
     {
         public CartLineNotFoundException(int cartLineId)
             : base($"{cartLineId}'sine sahip CartLine bulunamadı.")

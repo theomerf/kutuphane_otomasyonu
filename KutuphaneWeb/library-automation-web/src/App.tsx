@@ -1,6 +1,7 @@
 import { Routes, Route, unstable_HistoryRouter as HistoryRouter } from 'react-router-dom'
+import ProtectedRoute from './utils/ProtectedRoute.tsx'
 import './App.css'
-import { history } from './services/history.ts'
+import { history } from './utils/history.ts'
 import Home from './pages/Home.tsx'
 import Books from './pages/Books/Books.tsx'
 import { Account } from './pages/Account/Account.tsx'
@@ -14,15 +15,16 @@ import Error from './pages/Error/Error.tsx'
 import NotFound from './pages/Error/NotFound.tsx'
 import { jwtDecode } from 'jwt-decode'
 import MainLayout from './components/layout/MainLayout.tsx'
-import type { RootState } from './store/store.ts'
+import type { AppDispatch, RootState } from './store/store.ts'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type CartResponse from './types/cartResponse.ts'
 import { setCart } from './pages/Cart/cartSlice.ts'
 import Cart from './pages/Cart/Cart.tsx'
+import Reservation from './pages/Reservation/Reservation.tsx'
 
 function App() {
   const queryClient = new QueryClient();
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.account);
 
   function isTokenExpired(token: string) {
@@ -65,6 +67,9 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/Books" element={<Books />}></Route>
           <Route path="/Cart" element={<Cart />}></Route>
+          <Route element = {<ProtectedRoute/>}>
+              <Route path="/Reservation" element={<Reservation />}></Route>
+          </Route>
           <Route path="/Account" element={<Account />}>
             {!user &&
               <>

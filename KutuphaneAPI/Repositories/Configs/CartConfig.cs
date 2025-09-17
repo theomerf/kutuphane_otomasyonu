@@ -18,8 +18,8 @@ namespace Repositories.Configs
                 .IsRequired();
 
             builder.HasOne(c => c.Account)
-                .WithMany(a => a.Cart)
-                .HasForeignKey(c => c.AccountId)
+                .WithOne(a => a.Cart)
+                .HasForeignKey<Cart>(c => c.AccountId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(c => c.CartLines)
