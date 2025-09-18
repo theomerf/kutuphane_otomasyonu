@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5F9E6D0D-3276-48D1-ABC0-0EFFB55EF3FF}|Repositories\\Repositories.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\repositories\\repositorycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5F9E6D0D-3276-48D1-ABC0-0EFFB55EF3FF}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositorycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\infrastructure\\extensions\\serviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,14 +13,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\kutuphaneapi\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{03868FEF-6D61-4525-9AE3-D34F7E9EF282}|KutuphaneAPI\\KutuphaneAPI.csproj|solutionrelative:kutuphaneapi\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,20 +37,12 @@
               "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.Production.json",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\appsettings.Production.json",
-              "RelativeDocumentMoniker": "KutuphaneAPI\\appsettings.Production.json",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\appsettings.Production.json",
-              "RelativeToolTip": "KutuphaneAPI\\appsettings.Production.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-17T18:42:44.236Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\appsettings.Development.json",
               "RelativeDocumentMoniker": "KutuphaneAPI\\appsettings.Development.json",
@@ -66,7 +50,8 @@
               "RelativeToolTip": "KutuphaneAPI\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-17T18:42:43.658Z"
+              "WhenOpened": "2025-09-17T18:42:43.658Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -82,19 +67,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RepositoryContext.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Repositories\\RepositoryContext.cs",
-              "RelativeDocumentMoniker": "Repositories\\RepositoryContext.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Repositories\\RepositoryContext.cs",
-              "RelativeToolTip": "Repositories\\RepositoryContext.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAYwCMAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T18:05:48.759Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "ServiceExtension.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\KutuphaneAPI\\Infrastructure\\Extensions\\ServiceExtension.cs",
@@ -104,10 +76,6 @@
               "ViewState": "AgIAAAQAAAAAAAAAAAAYwB4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-17T17:12:32.687Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }
