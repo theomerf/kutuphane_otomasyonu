@@ -23,7 +23,7 @@ export default function Register() {
             <form method="POST" onSubmit={handleSubmit(handleRegister)} noValidate>
                 <ErrorDisplay error={error!} />
                 <div className="my-5 flex flex-col">
-                    <label className="text-start font-bold color-[#374151] mb-2 text-sm" htmlFor="userName">
+                    <label className="label" htmlFor="userName">
                         <FontAwesomeIcon className="mr-1" icon={faUser} />
                         Kullanıcı Adı:
                     </label>
@@ -37,11 +37,11 @@ export default function Register() {
                             value: 20,
                             message: "Kullanıcı adı en fazla 20 karakter olmalıdır.",
                         }
-                    })} id="userName" name="UserName" className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Kullanıcı adınızı giriniz."></input>
+                    })} id="userName" name="UserName" className="input" placeholder="Kullanıcı adınızı giriniz."></input>
                     {errors.UserName && <span className="text-red-700 text-left mt-1">{errors.UserName?.message?.toString()}</span>}
                 </div>
                 <div className="my-5 flex flex-col">
-                    <label className="text-start font-bold color-[#374151] mb-2 text-sm" htmlFor="firstName">
+                    <label className="label" htmlFor="firstName">
                         <FontAwesomeIcon className="mr-1" icon={faInfo} />
                         Ad:
                     </label>
@@ -56,18 +56,18 @@ export default function Register() {
                             message: "Ad en fazla 20 karakter olmalıdır.",
                         }
                     })}
-                        id="firstName" name="FirstName" className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Adınızı giriniz."></input>
+                        id="firstName" name="FirstName" className="input" placeholder="Adınızı giriniz."></input>
                     {errors.FirstName && <span className="text-red-700 text-left mt-1">{errors.FirstName?.message?.toString()}</span>}
                 </div>
                 <div className="my-5 flex flex-col">
-                    <label className="text-start font-bold color-[#374151] mb-2 text-sm" htmlFor="lastName">
+                    <label className="label" htmlFor="lastName">
                         <FontAwesomeIcon className="mr-1" icon={faInfo} />
                         Soyad:
                     </label>
                     <input type="text" {...register("LastName", {
                         required: "Soyad gereklidir.",
                         minLength: {
-                            value: 6,
+                            value: 2,
                             message: "Soyad minimum 2 karakter olmalıdır."
                         },
                         maxLength: {
@@ -75,44 +75,44 @@ export default function Register() {
                             message: "Soyad en fazla 20 karakter olmalıdır.",
                         }
                     })}
-                        id="lastName" name="LastName" className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Soyadınızı giriniz."></input>
+                        id="lastName" name="LastName" className="input" placeholder="Soyadınızı giriniz."></input>
                     {errors.LastName && <span className="text-red-700 text-left mt-1">{errors.LastName?.message?.toString()}</span>}
                 </div>
                 <div className="my-5 flex flex-col">
-                    <label className="text-start font-bold color-[#374151] mb-2 text-sm" htmlFor="phoneNumber">
+                    <label className="label" htmlFor="phoneNumber">
                         <FontAwesomeIcon className="mr-1" icon={faPhone} />
                         Telefon Numarası
                     </label>
                     <input type="text" {...register("PhoneNumber", {
                         required: "Telefon numarası gereklidir.",
                     })}
-                        id="phoneNumber" name="PhoneNumber" className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Telefon numaranızı giriniz."></input>
+                        id="phoneNumber" name="PhoneNumber" className="input" placeholder="Telefon numaranızı giriniz."></input>
                     {errors.PhoneNumber && <span className="text-red-700 text-left mt-1">{errors.PhoneNumber?.message?.toString()}</span>}
                 </div>
                 <div className="my-5 flex flex-col">
-                    <label className="text-start font-bold color-[#374151] mb-2 text-sm" htmlFor="birthDate">
+                    <label className="label" htmlFor="birthDate">
                         <FontAwesomeIcon className="mr-1" icon={faCakeCandles} />
                         Doğum Tarihi
                     </label>
                     <input type="date" {...register("BirthDate", {
                         required: "Doğum tarihi gereklidir.",
                     })}
-                        id="birthDate" name="BirthDate" className="border-2 w-full border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Doğum tarihinizi giriniz."></input>
+                        id="birthDate" name="BirthDate" className="input" placeholder="Doğum tarihinizi giriniz."></input>
                     {errors.BirthDate && <span className="text-red-700 text-left mt-1">{errors.BirthDate?.message?.toString()}</span>}
                 </div>
                 <div className="my-5 flex flex-col">
-                    <label className="text-start font-bold color-[#374151] mb-2 text-sm" htmlFor="email">
+                    <label className="label" htmlFor="email">
                         <FontAwesomeIcon className="mr-1" icon={faEnvelope} />
                         E-Posta
                     </label>
                     <input type="email" {...register("Email", {
                         required: "Email gereklidir.",
                     })}
-                        id="email" name="Email" className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="E-postanızı giriniz."></input>
+                        id="email" name="Email" className="input" placeholder="E-postanızı giriniz."></input>
                     {errors.Email && <span className="text-red-700 text-left mt-1">{errors.Email?.message?.toString()}</span>}
                 </div>
                 <div className="my-5 flex flex-col relative">
-                    <label className="text-start font-bold color-[#374151] mb-2 text-sm" htmlFor="password">
+                    <label className="label" htmlFor="password">
                         <FontAwesomeIcon className="mr-1" icon={faLock} />
                         Şifre:
                     </label>
@@ -128,7 +128,7 @@ export default function Register() {
                                 message: "Şifre en fazla 20 karakter olmalıdır.",
                             }
                         })}
-                            id="password" name="Password" className="flex-1 border-2 min-w-0 border-[#e5e7eb] border-r-0 rounded-[12px_0_0_12px] px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Şifrenizi giriniz."></input>
+                            id="password" name="Password" className="passwordInput" placeholder="Şifrenizi giriniz."></input>
                         <button type="button" onClick={passwordVisibleForRegister ? () => setPasswordVisibleForRegister(false) : () => setPasswordVisibleForRegister(true)} className="cursor-pointer border-2 border-[#e5e7eb] border-l-0 rounded-[0_12px_12px_0] text-white bg-hero-gradient px-4 py-3 transform transition-all duration-500 hover:bg-violet-400  hover:shadow-md hover:transition-all hover:scale-105">
                             <FontAwesomeIcon icon={passwordVisibleForRegister ? faEyeSlash : faEye} title={passwordVisibleForRegister ? "Gizle" : "Göster"} />
                         </button>

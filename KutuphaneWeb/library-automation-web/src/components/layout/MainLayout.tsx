@@ -1,14 +1,26 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar.tsx'
 import Footer from './Footer.tsx'
+import { AnimatePresence, motion } from "framer-motion";
 
-export default function MainLayout(){
+export default function MainLayout() {
+    const location = useLocation();
+
     return (
         <div className="flex flex-col min-h-screen">
             <Navbar />
 
             <main className="flex-grow pt-16 pb-10 my-5">
-                <Outlet />
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={location.pathname}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, ease: "easeInOut" }}
+                    >
+                        <Outlet />
+                    </motion.div>
+                </AnimatePresence>
             </main>
 
             <Footer />

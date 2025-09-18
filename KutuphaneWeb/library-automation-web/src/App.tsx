@@ -16,14 +16,13 @@ import NotFound from './pages/Error/NotFound.tsx'
 import { jwtDecode } from 'jwt-decode'
 import MainLayout from './components/layout/MainLayout.tsx'
 import type { AppDispatch, RootState } from './store/store.ts'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type CartResponse from './types/cartResponse.ts'
 import { setCart } from './pages/Cart/cartSlice.ts'
 import Cart from './pages/Cart/Cart.tsx'
 import Reservation from './pages/Reservation/Reservation.tsx'
+import { BookDetail } from './pages/Books/BookDetail.tsx'
 
 function App() {
-  const queryClient = new QueryClient();
   const dispatch: AppDispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.account);
 
@@ -47,7 +46,7 @@ function App() {
 
     const cart: CartResponse | null = storedCart ? JSON.parse(storedCart) as CartResponse : null;
     const user: LoginResponse | null = storedUser ? JSON.parse(storedUser) as LoginResponse : null;
-    
+
     dispatch(setCart(cart));
     dispatch(setUser(user));
 
@@ -60,15 +59,15 @@ function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
     <HistoryRouter history={history}>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<Home />} ></Route>
           <Route path="/Books" element={<Books />}></Route>
+          <Route path="/Books/:id" element={<BookDetail />}></Route>
           <Route path="/Cart" element={<Cart />}></Route>
-          <Route element = {<ProtectedRoute/>}>
-              <Route path="/Reservation" element={<Reservation />}></Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/Reservation" element={<Reservation />}></Route>
           </Route>
           <Route path="/Account" element={<Account />}>
             {!user &&
@@ -83,7 +82,6 @@ function App() {
         </Route>
       </Routes>
     </HistoryRouter>
-    </QueryClientProvider>
   )
 }
 

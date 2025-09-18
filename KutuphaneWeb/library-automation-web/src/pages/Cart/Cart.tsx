@@ -3,10 +3,12 @@ import type { AppDispatch, RootState } from "../../store/store";
 import { clearCart, decreaseQuantity, increaseQuantity, removeLineFromCart } from "./cartSlice";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp, faLock, faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faChevronDown, faChevronUp, faLock, faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import { useBreakpoint } from "../../hooks/useBreakpoint";
 import { ErrorDisplay } from "../../components/ui/ErrorDisplay";
+import { ClipLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
     const dispatch: AppDispatch = useDispatch();
@@ -27,12 +29,16 @@ export default function Cart() {
                 <p className="font-semibold text-4xl ml-8 lg:ml-20 text-violet-500 h-fit border-none pb-2 mb-8 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Sepetim</p>
                 <div className="lg:grid lg:grid-cols-6 lg:gap-x-20 px-5 relative lg:px-20">
                     <div className="col-span-4 flex flex-col shadow-2xl rounded-xl h-fit border overflow-hidden border-gray-300">
-                        {status === "pending" && <p>Yükleniyor...</p>}
+                        {status === "pending" && (
+                            <div className="flex justify-center items-center h-64">
+                                <ClipLoader size={40} color="#8B5CF6" />
+                            </div>
+                        )}
                         <ErrorDisplay error={error!} />
                         {cart && <button type="button" onClick={() => dispatch(clearCart())} title="Sepeti Temizle" className="absolute left-0 text-white bg-violet-500 p-3 rounded-tr-lg rounded-br-lg z-50 hover:bg-violet-600 hover:scale-105 duration-300 shadow-md">
                             <FontAwesomeIcon icon={faTrash} />
                         </button>}
-                        {cart ? (
+                        {cart && cart.cartLines.length > 0 ? (
                             cart.cartLines?.map((line) => (
                                 <div key={line.id} className={`${up.lg ? "hover:bg-gray-100 hover:translate-x-2 hover:before:content-[''] hover:before:top-0 hover:before:absolute hover:before:left-0 hover:before:bottom-0 hover:before:w-1 hover:before:bg-hero-gradient hover:duration-500 duration-500 group" : ""}flex flex-col lg:flex lg:flex-row border-b border-gray-400 py-10 px-8 shadow-lg bg-white`}>
                                     <div className="flex flex-row w-full lg:w-1/2 gap-8">
@@ -85,7 +91,12 @@ export default function Cart() {
                                 </div>
                             ))
                         ) : (
-                            <p>Sepetiniz boş.</p>
+                            <div className="py-10 justify-center content-center flex flex-col text-center">
+                                <FontAwesomeIcon icon={faCartShopping} className="text-violet-500 font-bold flex self-center text-5xl animate-pulse"></FontAwesomeIcon>
+                                <p className="font-bold flex self-center text-gray-500 text-xl mt-4">Sepetiniz boş.</p>
+                                <p className="font-semibold flex self-center text-gray-400 text-base mt-1">Kitaplara göz atabilirsiniz.</p>
+                                <Link to="/Books" className="button w-fit self-center font-semibold mt-6 justify-center content-center lg:hover:scale-110 lg:duration-500 lg:transition-all">Kitaplara Git</Link>
+                            </div>
                         )}
                     </div>
                     {up.lg ? (

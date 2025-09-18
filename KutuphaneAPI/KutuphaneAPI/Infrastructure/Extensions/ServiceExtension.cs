@@ -24,7 +24,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
 
                 if (env.IsDevelopment())
                 {
-                    options.UseNpgsql(connectionString,
+                    options.UseSqlServer(connectionString,
                         b => b.MigrationsAssembly("KutuphaneAPI"));
                 }
                 else

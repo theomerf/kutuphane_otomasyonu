@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import LibrarySeatMap from "../../components/library/LibrarySeatMap";
+import { useCallback, useEffect, useRef, useState } from "react";
+import LibrarySeatMap from "../../components/reservation/LibrarySeatMap";
 import type Seat from "../../types/seat";
 import { groupSeatsByTable } from "../../utils/groupSeatsByTable"
 import requests from "../../services/api";
@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import type ReservationResponse from "../../types/reservation";
 import { signalRService } from "../../services/signalRService";
 import { useBreakpoint } from "../../hooks/useBreakpoint";
+import { ClipLoader } from "react-spinners";
 
 type SeatInfo = {
     seatId: number;
@@ -31,8 +32,13 @@ export default function Reservation() {
     const [reservationsStatuses, setReservationsStatuses] = useState<ReservationStatuses[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+    const [isSignalRConnected, setIsSignalRConnected] = useState(false);
     const { up } = useBreakpoint();
     const tables = groupSeatsByTable(seats);
+
+    const signalRInitialized = useRef(false);
+    const modalTimerRef = useRef<number | undefined>(undefined);
+
 
     const handleSeatSelected = useCallback((seatId: number, reservationDate: string, timeSlotId: number) => {
         setReservationsStatuses(prev => {
@@ -95,24 +101,48 @@ export default function Reservation() {
     }, []);
 
     useEffect(() => {
-        signalRService.startConnection();
+        if (signalRInitialized.current) return;
 
-        signalRService.onSeatSelected(handleSeatSelected);
-        signalRService.onSeatReleased(handleSeatReleased);
-        signalRService.onSeatReserved(handleSeatReserved);
-        signalRService.onSeatCancelled(handleSeatCancelled);
-        signalRService.onSeatAlreadySelected(handleSeatAlreadySelected);
+        signalRInitialized.current = true;
 
+        const initializeSignalR = async () => {
+            try {
+                await signalRService.startConnection();
+                setIsSignalRConnected(true);
+
+                signalRService.onSeatSelected(handleSeatSelected);
+                signalRService.onSeatReleased(handleSeatReleased);
+                signalRService.onSeatReserved(handleSeatReserved);
+                signalRService.onSeatCancelled(handleSeatCancelled);
+                signalRService.onSeatAlreadySelected(handleSeatAlreadySelected);
+
+            } catch (error) {
+                console.error("Failed to initialize SignalR:", error);
+                setIsSignalRConnected(false);
+                toast.error("Gerçek zamanlı bağlantı kurulamadı. Sayfa yenilenerek tekrar denenecek.");
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            }
+        };
+
+        initializeSignalR();
+
+        // Cleanup function
         return () => {
+            if (modalTimerRef.current) {
+                clearInterval(modalTimerRef.current);
+            }
             signalRService.stopConnection();
         };
     }, [handleSeatSelected, handleSeatReleased, handleSeatReserved, handleSeatCancelled, handleSeatAlreadySelected]);
 
     useEffect(() => {
-        if (selectedDate && selectedTimeSlot) {
+        if (isSignalRConnected && selectedDate && selectedTimeSlot) {
             signalRService.joinDateTimeSlotGroup(selectedDate, selectedTimeSlot.id!);
         }
-    }, [selectedDate, selectedTimeSlot]);
+    }, [selectedDate, selectedTimeSlot, isSignalRConnected]);
 
     async function fetchReservationsStatuses(queryParams: ReservationRequestParameters, signal?: AbortSignal) {
         const queryString = new URLSearchParams();
@@ -177,12 +207,10 @@ export default function Reservation() {
     }, []);
 
     useEffect(() => {
-        let timer: number;
-
         if (showModal && selectedSeat) {
             setModalTimer(60);
 
-            timer = setInterval(() => {
+            modalTimerRef.current = setInterval(() => {
                 setModalTimer(prev => {
                     if (prev <= 1) {
                         setShowModal(false);
@@ -196,11 +224,18 @@ export default function Reservation() {
         }
 
         return () => {
-            if (timer) clearInterval(timer);
+            if (modalTimerRef.current) {
+                clearInterval(modalTimerRef.current);
+                modalTimerRef.current = undefined;
+            }
         };
     }, [showModal, selectedSeat]);
 
     const handleSelectSeat = async (seatId: number, seatNumber: number, tableName: string) => {
+        if (!isSignalRConnected) {
+            toast.error("Gerçek zamanlı bağlantı mevcut değil. Lütfen sayfayı yenileyiniz.");
+            return;
+        }
         await signalRService.selectSeat(seatId, selectedDate!, selectedTimeSlot?.id!);
 
         setSelectedSeat({
@@ -212,6 +247,11 @@ export default function Reservation() {
     }
 
     const handleCreateReservation = async () => {
+        if (!selectedSeat || !isSignalRConnected) {
+            toast.error("Rezervasyon oluşturulamıyor. Lütfen tekrar deneyiniz.");
+            return;
+        }
+
         try {
             const config = {
                 headers: {
@@ -236,9 +276,6 @@ export default function Reservation() {
     };
 
     useEffect(() => {
-        if (selectedDate && selectedTimeSlot) {
-            signalRService.joinDateTimeSlotGroup(selectedDate, selectedTimeSlot.id!);
-        }
         fetchReservationsStatuses({ date: selectedDate?.toString(), timeSlotId: selectedTimeSlot?.id! });
 
     }, [selectedDate, selectedTimeSlot]);
@@ -300,10 +337,20 @@ export default function Reservation() {
                                 </div>
                             </div>
                         )
-                        : (
-                            <button className="absolute left-0 p-1 bg-violet-500 text-xl font-semibold text-white rounded-tr-lg rounded-br-lg" onClick={() => setIsMobileFiltersOpen(true)}>
-                                <FontAwesomeIcon icon={faCalendarAlt} />
-                            </button>
+                        : (<>
+                            {
+                                !isSignalRConnected ? (
+                                    <div className="flex justify-center items-center h-64">
+                                        <ClipLoader size={40} color="#8B5CF6" />
+                                    </div>
+                                ) : (
+                                    <button className="absolute left-0 p-1 bg-violet-500 text-xl font-semibold text-white rounded-tr-lg rounded-br-lg" onClick={() => setIsMobileFiltersOpen(true)}>
+                                        <FontAwesomeIcon icon={faCalendarAlt} />
+                                    </button>
+                                )
+
+                            }</>
+
                         )
                     }
 

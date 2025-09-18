@@ -31,7 +31,15 @@ body{
 }
 
 .input{
-  @apply border-2 border-black
+  @apply border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14,_165,_233,_0.1)] focus:scale-[102%] focus:bg-white/100
+}
+
+.passwordInput{
+  @apply input flex-1 border-r-0 !rounded-r-none min-w-0
+}
+
+.label{
+  @apply text-start font-bold text-[#374151] mb-2 text-sm
 }
 
 @layer components {

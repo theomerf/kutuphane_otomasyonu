@@ -15,13 +15,13 @@ export default function Login() {
     const dispatch: AppDispatch = useDispatch();
     const { status, error } = useSelector((state: RootState) => state.account);
     const { cart } = useSelector((state: RootState) => state.cart);
-    const [ passwordVisibleForLogin, setPasswordVisibleForLogin ] = useState(false);
+    const [passwordVisibleForLogin, setPasswordVisibleForLogin] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     async function handleLogin(data: any) {
-       const result = await dispatch(loginUser(data));
+        const result = await dispatch(loginUser(data));
 
-        if (loginUser.fulfilled.match(result)){
+        if (loginUser.fulfilled.match(result)) {
             if (cart && cart.cartLines && cart.cartLines.length > 0) {
                 dispatch(mergeCarts(cart));
             }
@@ -47,7 +47,7 @@ export default function Login() {
                             message: "Kullanıcı adı min. 3 karakter olmalıdır."
                         }
                     })}
-                        id="userName" name="UserName" className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Kullanıcı adınızı giriniz."></input>
+                        id="userName" name="UserName" className="input" placeholder="Kullanıcı adınızı giriniz."></input>
                     {errors.UserName && <span className="text-red-700 text-left mt-1">{errors.UserName?.message?.toString()}</span>}
                 </div>
                 <div className="my-5 flex flex-col relative">
@@ -63,7 +63,7 @@ export default function Login() {
                                 message: "Şifre min. 6 karakter olmalıdır."
                             }
                         })}
-                            id="password" name="Password" className="flex-1 border-2 border-[#e5e7eb] border-r-0 min-w-0 rounded-[12px_0_0_12px] px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)]  focus:scale-[102%] focus:bg-white/100" placeholder="Şifrenizi giriniz."></input>
+                            id="password" name="Password" className="passwordInput" placeholder="Şifrenizi giriniz."></input>
                         <button type="button" onClick={passwordVisibleForLogin ? () => setPasswordVisibleForLogin(false) : () => setPasswordVisibleForLogin(true)} className="cursor-pointer border-2 border-[#e5e7eb] border-l-0 rounded-[0_12px_12px_0] text-white bg-hero-gradient px-4 py-3 transform transition-all duration-500 hover:bg-violet-400  hover:shadow-md hover:transition-all hover:scale-105">
                             <FontAwesomeIcon icon={passwordVisibleForLogin ? faEyeSlash : faEye} title={passwordVisibleForLogin ? "Gizle" : "Göster"} />
                         </button>
