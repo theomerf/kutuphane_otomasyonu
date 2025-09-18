@@ -79,7 +79,7 @@ class SignalRService {
                 }
             });
 
-            this.connection.onclose((error) => {
+            this.connection.onclose(() => {
                 this.connectionId = null;
                 this.currentGroup = null;
             });
