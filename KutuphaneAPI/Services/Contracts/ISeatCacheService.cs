@@ -2,7 +2,7 @@
 
 namespace Services.Contracts
 {
-    public interface ICacheService
+    public interface ISeatCacheService
     {
         SeatSelectionResultDto TrySelectSeat(int seatId, string reservationDate, int timeSlotId, string userId);
         bool ReleaseSeat(int seatId, string reservationDate, int timeSlotId, string userId);

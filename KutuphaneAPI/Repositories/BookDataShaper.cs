@@ -137,25 +137,25 @@ namespace Repositories
 
                 if (parseResult.IncludeImages)
                 {
-                    dict["Images"] = ShapeCollection(row.Images, parseResult.AllRequested
+                    dict["images"] = ShapeCollection(row.Images, parseResult.AllRequested
                         ? _collectionFieldMap["Images"]
                         : parseResult.CollectionSelections.GetValueOrDefault("Images")!);
                 }
                 if (parseResult.IncludeTags)
                 {
-                    dict["Tags"] = ShapeCollection(row.Tags, parseResult.AllRequested
+                    dict["tags"] = ShapeCollection(row.Tags, parseResult.AllRequested
                         ? _collectionFieldMap["Tags"]
                         : parseResult.CollectionSelections.GetValueOrDefault("Tags")!);
                 }
                 if (parseResult.IncludeAuthors)
                 {
-                    dict["Authors"] = ShapeCollection(row.Authors, parseResult.AllRequested
+                    dict["authors"] = ShapeCollection(row.Authors, parseResult.AllRequested
                         ? _collectionFieldMap["Authors"]
                         : parseResult.CollectionSelections.GetValueOrDefault("Authors")!);
                 }
                 if (parseResult.IncludeCategories)
                 {
-                    dict["Categories"] = ShapeCollection(row.Categories, parseResult.AllRequested
+                    dict["categories"] = ShapeCollection(row.Categories, parseResult.AllRequested
                         ? _collectionFieldMap["Categories"]
                         : parseResult.CollectionSelections.GetValueOrDefault("Categories")!);
                 }

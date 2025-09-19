@@ -50,7 +50,7 @@ namespace Repositories
 
         public async Task<IEnumerable<Reservation>> GetReservationsOfOneUserAsync(int accountId, bool trackChanges)
         {
-            var reservations = await FindByCondition(r => r.AccountId.Equals(accountId), trackChanges)
+            var reservations = await FindByCondition(r => r.AccountId!.Equals(accountId), trackChanges)
                 .Include(r => r.Seat)
                 .OrderByDescending(r => r.CreatedAt)
                 .ToListAsync();

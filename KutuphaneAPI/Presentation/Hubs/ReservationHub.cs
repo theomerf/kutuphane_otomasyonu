@@ -5,9 +5,9 @@ namespace Presentation.Hubs
 {
     public class ReservationHub : Hub
     {
-        private readonly ICacheService _cacheService;
+        private readonly ISeatCacheService _cacheService;
 
-        public ReservationHub(ICacheService cacheService)
+        public ReservationHub(ISeatCacheService cacheService)
         {
             _cacheService = cacheService;
         }

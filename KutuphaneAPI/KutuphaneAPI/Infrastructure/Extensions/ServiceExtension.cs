@@ -58,7 +58,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<ICartService, CartManager>();
             services.AddScoped<IReservationService, ReservationManager>();
             services.AddScoped<ISeatService, SeatManager>();
-            services.AddSingleton<ICacheService, CacheService>();
+            services.AddSingleton<ISeatCacheService, SeatCacheService>();
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)

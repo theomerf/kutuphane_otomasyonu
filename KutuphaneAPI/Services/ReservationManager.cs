@@ -14,9 +14,9 @@ namespace Services
     {
         private readonly IRepositoryManager _manager;
         private readonly IMapper _mapper;
-        private readonly ICacheService _cacheService;
+        private readonly ISeatCacheService _cacheService;
 
-        public ReservationManager(IRepositoryManager manager, IMapper mapper, ICacheService cacheService)
+        public ReservationManager(IRepositoryManager manager, IMapper mapper, ISeatCacheService cacheService)
         {
             _manager = manager;
             _mapper = mapper;

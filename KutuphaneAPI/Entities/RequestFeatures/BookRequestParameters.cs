@@ -6,5 +6,7 @@
         public int? CategoryId { get; set; }
         public bool? IsAvailable { get; set; }
         public bool? IsPopular { get; set; }
+        public ICollection<int>? CategoryIds { get; set; }
+        public ICollection<int>? TagIds { get; set; }
     }
 }

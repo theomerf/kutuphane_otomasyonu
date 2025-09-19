@@ -35,6 +35,9 @@ namespace KutuphaneAPI.Infrastructure.Mapper
                 .ForMember(dest => dest.ReservationDate, opt => opt.MapFrom(src => DateOnly.Parse(src.ReservationDate)));
             CreateMap<Seat, SeatDto>().ReverseMap();
             CreateMap<TimeSlot, TimeSlotDto>().ReverseMap();
+            CreateMap<Review, ReviewDto>();
+            CreateMap<Tag, TagDto>();
+            CreateMap<BookImage, BookImageDto>();
         }
     }
 }

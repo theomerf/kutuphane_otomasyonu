@@ -26,6 +26,14 @@ namespace Presentation.Controllers
             return Ok(pagedResult.books);
         }
 
+        [HttpGet("related/{id}")]
+        public async Task<IActionResult> GetRelatedBooks([FromRoute] int id, [FromQuery] BookRequestParameters p)
+        {
+            var result = await _manager.BookService.GetRelatedBooksAsync(id, p, false);
+
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOneBook([FromRoute] int id)
         {

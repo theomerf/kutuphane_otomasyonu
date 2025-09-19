@@ -76,6 +76,15 @@ namespace Repositories.Extensions
             return query;
         }
 
+        public static IQueryable<Book> FilterByRelatedBooks(this IQueryable<Book> query, ICollection<int>? tagIds)
+        {
+            if (tagIds != null && tagIds.Any())
+            {
+                return query.Where(b => b.Tags!.Any(t => tagIds.Contains(t.Id)));
+            }
+            return query;
+        }
+
         public static IQueryable<T> ToPaginate<T>(this IQueryable<T> query, int pageSize, int pageNumber)
         {
             if (pageSize <= 0 || pageNumber <= 0)

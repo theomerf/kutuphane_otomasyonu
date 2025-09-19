@@ -1,4 +1,6 @@
-﻿namespace Entities.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Entities.Models
 {
     public class Tag
     {

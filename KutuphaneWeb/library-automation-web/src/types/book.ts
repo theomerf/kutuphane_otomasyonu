@@ -13,8 +13,8 @@ export default interface Book {
     location: string | null;
     publishedDate: Date | null;
     summary: string | null;
-    Images: BookImage[] | null;
-    Tags: Tag[] | null;
-    Authors: Author[] | null;
-    Categories: Category[] | null;
+    images: BookImage[] | null;
+    tags: Tag[] | null;
+    authors: Author[] | null;
+    categories: Category[] | null;
 }

@@ -1,6 +1,4 @@
-﻿using Entities.Models;
-
-namespace Entities.Dtos
+﻿namespace Entities.Dtos
 {
     public record BookDto
     {
@@ -10,10 +8,14 @@ namespace Entities.Dtos
         public int TotalCopies { get; init; }
         public int AvailableCopies { get; init; }
         public String? Location { get; init; }
-        public ICollection<String>? Tags { get; init; }
         public DateTime PublishedDate { get; init; }
         public String? Summary { get; init; }
-        public ICollection<Author>? Authors { get; init; }
-        public ICollection<Category>? Categories { get; init; }
+        public double AverageRating { get; init; }
+        public ICollection<BookImageDto>? Images { get; init; }
+        public ICollection<TagDto>? Tags { get; init; }
+        public ICollection<AuthorDto>? Authors { get; init; }
+        public ICollection<CategoryDto>? Categories { get; init; }
+        public ICollection<ReviewDto>? Reviews { get; init; }
+        public ICollection<CartLineDto>? CartLines { get; init; }
     }
 }

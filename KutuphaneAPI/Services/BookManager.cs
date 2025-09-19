@@ -29,6 +29,13 @@ namespace Services
             return (pagedBooks, pagedBooks.MetaData);
         }
 
+        public async Task<IEnumerable<ExpandoObject>> GetRelatedBooksAsync(int id, BookRequestParameters p, bool trackChanges)
+        {
+            var books = await _manager.Book.GetRelatedBooksAsync(id, p, trackChanges);
+
+            return books;
+        }
+
         public async Task<BookDto?> GetOneBookAsync(int id, bool trackChanges)
         {
             var book = await _manager.Book.GetOneBookAsync(id, trackChanges);

@@ -6,13 +6,13 @@ using System.Collections.Concurrent;
 
 namespace Services
 {
-    public class CacheService : ICacheService, IDisposable
+    public class SeatCacheService : ISeatCacheService, IDisposable
     {
         private readonly IMemoryCache _cache;
         private static readonly ConcurrentDictionary<string, SeatTimer> _seatTimers = new();
         private static readonly ConcurrentDictionary<string, string> _userToSeatMapping = new();
 
-        public CacheService(IMemoryCache cache)
+        public SeatCacheService(IMemoryCache cache)
         {
             _cache = cache;
         }

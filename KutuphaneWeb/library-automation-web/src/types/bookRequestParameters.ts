@@ -8,4 +8,6 @@ export default interface BookRequestParameters {
     categoryId?: number;
     isPopular?: boolean;
     isAvailable?: boolean;
+    tagIds?: number[];
+    categoryIds?: number[];
 }

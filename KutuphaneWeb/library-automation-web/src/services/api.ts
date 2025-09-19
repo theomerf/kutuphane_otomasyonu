@@ -92,6 +92,7 @@ const methods = {
 
 const books = {
     getAllBooks: (query: URLSearchParams, signal?: AbortSignal) => methods.get("books", { params: query }, signal),
+    getRelatedBooks: (bookId: number, query: URLSearchParams, signal?: AbortSignal) => methods.get(`books/related/${bookId}`, { params: query }, signal),
     getOneBook: (id: string, signal?: AbortSignal) => methods.get(`books/${id}`, {}, signal)
 }
 
