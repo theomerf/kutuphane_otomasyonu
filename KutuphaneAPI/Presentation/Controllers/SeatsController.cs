@@ -6,6 +6,7 @@ using Services.Contracts;
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class SeatsController : ControllerBase

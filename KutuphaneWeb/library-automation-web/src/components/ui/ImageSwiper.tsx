@@ -30,7 +30,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
           <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-violet-200/30 to-purple-200/30 rounded-full blur-xl"></div>
           <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-indigo-200/30 to-blue-200/30 rounded-full blur-lg"></div>
 
-          {/* Ana Slider */}
           <div className="relative mb-6">
             <Swiper
               style={{
@@ -55,7 +54,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
               } : false}
               onSlideChange={(swiper) => setActiveSlide(swiper.realIndex)}
               onSwiper={(swiper) => {
-                // İlk yükleme sırasında aktif slide'ı ayarla
                 setActiveSlide(swiper.realIndex);
               }}
               className="main-swiper rounded-2xl shadow-xl h-96 lg:h-[500px]"
@@ -73,7 +71,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
                       loading={index === 0 ? "eager" : "lazy"}
                     />
                     
-                    {/* Overlay with controls */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
                       <button
                         onClick={() => handleFullscreen(index)}
@@ -84,7 +81,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
                       </button>
                     </div>
 
-                    {/* Image counter */}
                     {images.length > 1 && (
                       <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
                         {index + 1} / {images.length}
@@ -95,7 +91,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
               ))}
             </Swiper>
 
-            {/* Custom Navigation Buttons */}
             {images.length > 1 && (
               <>
                 <button 
@@ -114,7 +109,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
             )}
           </div>
 
-          {/* Thumbnails Slider - Ana resmin altında soldan başlayarak */}
           {images.length > 1 && (
             <div className="relative px-2">
               <Swiper
@@ -150,7 +144,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
                       `}
                       onClick={() => {
                         setActiveSlide(index);
-                        // Ana swiper'a git
                         if (thumbsSwiper) {
                           thumbsSwiper.slideToLoop?.(index) || thumbsSwiper.slideTo(index);
                         }
@@ -166,12 +159,10 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
                         loading="lazy"
                       />
                       
-                      {/* Active indicator */}
                       {activeSlide === index && (
                         <div className="absolute inset-0 bg-violet-500/20 border-2 border-violet-500 rounded-xl"></div>
                       )}
                       
-                      {/* Hover overlay */}
                       <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-all duration-200 rounded-xl"></div>
                     </div>
                   </SwiperSlide>
@@ -180,7 +171,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
             </div>
           )}
 
-          {/* Progress indicator - Sadece birden fazla resim varsa göster */}
           {images.length > 1 && (
             <div className="flex justify-center mt-4 space-x-2">
               {images.map((_, index) => (
@@ -200,7 +190,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
         </div>
       </div>
 
-      {/* Fullscreen Modal */}
       {isFullscreen && (
         <div 
           className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center p-4" 
@@ -224,7 +213,6 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
               ×
             </button>
             
-            {/* Fullscreen'de navigation */}
             {images.length > 1 && (
               <>
                 <button

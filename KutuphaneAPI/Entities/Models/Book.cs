@@ -17,5 +17,6 @@
         public ICollection<Category>? Categories { get; set; }
         public ICollection<Review>? Reviews { get; set; }
         public ICollection<CartLine>? CartLines { get; set; }
+        public ICollection<LoanLine>? LoanLines { get; set; }
     }
 }

@@ -26,6 +26,14 @@ namespace Presentation.Controllers
             return Ok(pagedResult.books);
         }
 
+        [HttpGet("count")]
+        public async Task<IActionResult> GetAllBooksCount()
+        {
+            var count = await _manager.BookService.GetAllBooksCountAsync();
+
+            return Ok(count);
+        }
+
         [HttpGet("related/{id}")]
         public async Task<IActionResult> GetRelatedBooks([FromRoute] int id, [FromQuery] BookRequestParameters p)
         {

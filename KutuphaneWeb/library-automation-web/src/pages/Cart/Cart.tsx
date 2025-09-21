@@ -110,7 +110,7 @@ export default function Cart() {
                                     <p className="font-semibold text-gray-500"> 30 gün</p>
                                 </div>
                                 <div className="flex flex-row justify-between">
-                                    <p className="font-semibold text-gray-600">Kiralan toplam kitap:</p>
+                                    <p className="font-semibold text-gray-600">Kiralanan toplam kitap:</p>
                                     <p className="font-semibold text-gray-500">{computeTotalBooks().toString()}</p>
                                 </div>
                                 <div className="flex flex-row justify-between">
@@ -119,7 +119,15 @@ export default function Cart() {
                                 </div>
                                 <hr className="mt-5 h-1 bg-violet-600 border-0 rounded animate-pulse" />
                                 <div className="mt-5 flex flex-col gap-4">
-                                    <button type="button" className="button w-full h-14 font-semibold hover:scale-105">Kiralamayı Onayla</button>
+                                    {cart?.cartLines && cart?.cartLines.length > 0 ? (
+                                        <Link to="/Checkout" className="button w-full h-14 font-semibold text-lg text-center hover:scale-105">
+                                            Kiralamayı Onayla
+                                        </Link>
+                                    ) : (
+                                        <span className="button w-full h-14 font-semibold text-lg text-center opacity-50 cursor-not-allowed">
+                                            Kiralamayı Onayla
+                                        </span>
+                                    )}
                                 </div>
                                 <div className="text-green-600 flex flex-row gap-x-2 self-center py-4 border border-green-200 bg-green-50 rounded-lg w-full text-center justify-center">
                                     <FontAwesomeIcon icon={faLock} className="self-center flex" />
@@ -148,7 +156,7 @@ export default function Cart() {
                                         Kiralama Detayları
                                         <FontAwesomeIcon icon={isMobilLendDetailsOpen ? faChevronDown : faChevronUp} className="ml-1"></FontAwesomeIcon>
                                     </button>
-                                    <button type="button" className="py-3 text-white rounded-lg bg-violet-500 w-3/6 px-2">Kiralamayı Onayla</button>
+                                    <Link to="/Checkout" className="py-3 text-white rounded-lg bg-violet-500 w-3/6 text-center px-2">Kiralamayı Onayla</Link>
                                 </div>
 
                                 {isMobilLendDetailsOpen &&

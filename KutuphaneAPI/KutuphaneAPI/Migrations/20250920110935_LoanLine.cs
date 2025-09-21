@@ -5,7 +5,7 @@
 namespace KutuphaneAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Bug : Migration
+    public partial class LoanLine : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

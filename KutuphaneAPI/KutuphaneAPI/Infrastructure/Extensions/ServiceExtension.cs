@@ -43,9 +43,12 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<ISeatRepository, SeatRepository>();
+            services.AddScoped<ILoanRepository, LoanRepository>();
+            services.AddScoped<IPenaltyRepository, PenaltyRepository>();
         }
 
         public static void ConfigureServiceRegistration(this IServiceCollection services)
@@ -55,10 +58,13 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<IBookService, BookManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IAuthorService, AuthorManager>();
+            services.AddScoped<ITagService, TagManager>();
             services.AddScoped<ICartService, CartManager>();
             services.AddScoped<IReservationService, ReservationManager>();
             services.AddScoped<ISeatService, SeatManager>();
             services.AddSingleton<ISeatCacheService, SeatCacheService>();
+            services.AddScoped<ILoanService, LoanManager>();
+            services.AddScoped<IPenaltyService, PenaltyManager>();
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)

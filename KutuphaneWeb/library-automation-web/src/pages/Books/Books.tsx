@@ -13,8 +13,6 @@ import BookCard from "../../components/books/BookCard";
 
 export default function Books() {
   const [openSections, setOpenSections] = useState<string[]>(["categories", "authors", "other"]);
-
-
   const isOthersOpen: boolean = openSections.includes("other");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);

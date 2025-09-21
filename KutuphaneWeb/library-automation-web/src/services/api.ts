@@ -5,10 +5,11 @@ import { history } from '../utils/history';
 import { store } from '../store/store';
 import { logout, setUser } from '../pages/Account/accountSlice';
 import type ReservationResponse from '../types/reservation';
+import type Loan from '../types/loan';
 
 const apiBase =
-  (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/+$/, '') ||
-  'https://localhost:7214';
+    (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/+$/, '') ||
+    'https://localhost:7214';
 
 axios.defaults.baseURL = `${apiBase}/api/`;
 
@@ -32,12 +33,12 @@ axios.interceptors.response.use(
 
         switch (status) {
             case 401:
-                if(!error.config._retry) {
+                if (!error.config._retry) {
                     error.config._retry = true;
                 }
-                const user = store.getState().account.user; 
+                const user = store.getState().account.user;
                 if (user) {
-                    try{
+                    try {
                         const res = await requests.account.refresh({
                             accessToken: user.accessToken,
                             refreshToken: user.refreshToken,
@@ -53,7 +54,7 @@ axios.interceptors.response.use(
                         error.config.headers["Authorization"] = `Bearer ${updatedUser.accessToken}`;
                         return axios(error.config);
                     }
-                    catch (refreshError){
+                    catch (refreshError) {
                         store.dispatch(logout());
                         return Promise.reject(refreshError);
                     }
@@ -62,9 +63,7 @@ axios.interceptors.response.use(
                 return Promise.reject(error);
             case 422:
             case 400:
-                break;
             case 403:
-                toast.error(data?.message ?? "Yetkisiz erişim");
                 break;
             case 404:
             case 500:
@@ -82,10 +81,10 @@ axios.interceptors.response.use(
 );
 
 const methods = {
-    get: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, {...params, signal}).then((response) => ({data: response.data, headers: response.headers})),
-    getWithoutHeaders: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, {...params, signal}).then((response) => response.data),
+    get: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, { ...params, signal }).then((response) => ({ data: response.data, headers: response.headers })),
+    getWithoutHeaders: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, { ...params, signal }).then((response) => response.data),
     post: (url: string, body: any | null, config?: any | null) => axios.post(url, body, config).then((response) => response.data),
-    put: (url: string, body: any) => axios.put(url, body).then((response) => response.data),
+    put: (url: string, body: any, config?: any | null) => axios.put(url, body, config).then((response) => response.data),
     patch: (url: string, body: any) => axios.patch(url, body).then((response) => response.data),
     delete: (url: string) => axios.delete(url).then((response) => response.data),
 }
@@ -93,7 +92,17 @@ const methods = {
 const books = {
     getAllBooks: (query: URLSearchParams, signal?: AbortSignal) => methods.get("books", { params: query }, signal),
     getRelatedBooks: (bookId: number, query: URLSearchParams, signal?: AbortSignal) => methods.get(`books/related/${bookId}`, { params: query }, signal),
-    getOneBook: (id: string, signal?: AbortSignal) => methods.get(`books/${id}`, {}, signal)
+    getOneBook: (id: string, signal?: AbortSignal) => methods.get(`books/${id}`, {}, signal),
+    countBooks: (signal?: AbortSignal) => methods.get("books/count", {}, signal),
+    createBook: (formData: FormData) => methods.post("admin/books/create", formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    }),
+    updateBook: (formData: FormData) => methods.put("admin/books/update", formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+    }),
+    deleteBook: (id: number) => methods.delete(`admin/books/delete/${id}`),
 }
 
 const categories = {
@@ -101,14 +110,23 @@ const categories = {
     getPopularCategories: (signal?: AbortSignal) => methods.get("categories/popular", {}, signal),
 }
 
+const loan = {
+    createLoan: (loanDto: Loan) => methods.post("loan/create", loanDto),
+}
+
 const authors = {
     getAllAuthors: (signal?: AbortSignal) => methods.get("authors", {}, signal),
     getPopularAuthors: (signal?: AbortSignal) => methods.get("authors/popular", {}, signal),
 }
 
+const tags = {
+    getAllTags: (signal?: AbortSignal) => methods.get("tags", {}, signal),
+    getPopularTags: (signal?: AbortSignal) => methods.get("tags/popular", {}, signal),
+}
+
 const cart = {
     getCart: () => methods.getWithoutHeaders("cart", {}),
-    mergeCarts: (cartDto:any) => methods.post("cart/merge", cartDto),
+    mergeCarts: (cartDto: any) => methods.post("cart/merge", cartDto),
     addLineToCart: (cartLineDto: any) => methods.post("cart/addline", cartLineDto),
     removeLineFromCart: (cartLineId: number) => methods.delete(`cart/removeline/${cartLineId}`),
     clearCart: () => methods.delete("cart/clear"),
@@ -138,6 +156,10 @@ const account = {
     refresh: (user: LoginResponse) => methods.post("account/refresh", user)
 }
 
+const admin = {
+    getAdminDashboard: () => methods.get("admin/dashboard"),
+}
+
 const errors = {
     get400Error: () => methods.get("errors/bad-request"),
     get401Error: () => methods.get("errors/unauthorized"),
@@ -147,10 +169,13 @@ const errors = {
 }
 
 const requests = {
+    admin,
     books,
     account,
     categories,
     authors,
+    tags,
+    loan,
     timeSlots,
     cart,
     seats,

@@ -5,9 +5,12 @@
         IAccountService AccountService { get; }
         IBookService BookService { get; }
         ICategoryService CategoryService { get; }
+        ITagService TagService { get; }
         IAuthorService AuthorService { get; }
         ICartService CartService { get; }
         IReservationService ReservationService { get; }
         ISeatService SeatService { get; }
+        ILoanService LoanService { get; }
+        IPenaltyService PenaltyService { get; }
     }
 }

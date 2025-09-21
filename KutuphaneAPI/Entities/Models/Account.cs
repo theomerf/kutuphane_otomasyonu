@@ -16,5 +16,7 @@ namespace Entities.Models
         public Cart? Cart { get; set; }
         public int CartId { get; set; }
         public ICollection<Reservation>? Reservations { get; set; }
+        public ICollection<Loan>? Loans { get; set; }
+        public ICollection<Penalty>? Penalties { get; set; }
     }
 }

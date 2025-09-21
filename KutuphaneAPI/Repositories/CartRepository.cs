@@ -78,6 +78,11 @@ namespace Repositories
             Remove(cart);
         }
 
+        public void DeleteAllCartLines(IEnumerable<CartLine> cartLines)
+        {
+            _context.Set<CartLine>().RemoveRange(cartLines);
+        }
+
         public void DeleteCartLine(CartLine cartLine)
         {
             _context.Set<CartLine>().Remove(cartLine);

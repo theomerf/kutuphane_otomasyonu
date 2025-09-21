@@ -3,12 +3,12 @@ import Navbar from './Navbar.tsx'
 import Footer from './Footer.tsx'
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function MainLayout() {
+export default function MainLayout({ isAdmin = false }: { isAdmin?: boolean }) {
     const location = useLocation();
 
     return (
         <div className="flex flex-col min-h-screen">
-            <Navbar />
+            <Navbar isAdmin= { isAdmin }/>
 
             <main className="flex-grow pt-16 pb-10 my-5">
                 <AnimatePresence mode="wait">

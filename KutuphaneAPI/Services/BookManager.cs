@@ -3,6 +3,7 @@ using Entities.Dtos;
 using Entities.Exceptions;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
 using Services.Contracts;
 using System.Dynamic;
@@ -29,6 +30,8 @@ namespace Services
             return (pagedBooks, pagedBooks.MetaData);
         }
 
+        public async Task<int> GetAllBooksCountAsync() => await _manager.Book.GetAllBooksCountAsync();
+
         public async Task<IEnumerable<ExpandoObject>> GetRelatedBooksAsync(int id, BookRequestParameters p, bool trackChanges)
         {
             var books = await _manager.Book.GetRelatedBooksAsync(id, p, trackChanges);
@@ -40,11 +43,11 @@ namespace Services
         {
             var book = await _manager.Book.GetOneBookAsync(id, trackChanges);
 
-            if(book is null)
+            if (book is null)
             {
                 throw new BookNotFoundException(id);
             }
-            var bookDto = _mapper.Map<BookDto>(book); 
+            var bookDto = _mapper.Map<BookDto>(book);
 
             return bookDto;
         }
@@ -60,13 +63,78 @@ namespace Services
             return book;
         }
 
-
-        public async Task CreateBookAsync(BookDto bookDto)
+        public async Task CreateBookAsync(BookDtoForCreation bookDto, List<string> newFilePaths)
         {
-            var book = _mapper.Map<Book>(bookDto);
+            var book = new Book
+            {
+                Title = bookDto.Title,
+                ISBN = bookDto.ISBN,
+                AvailableCopies = bookDto.AvailableCopies,
+                TotalCopies = bookDto.TotalCopies,
+                Location = bookDto.Location,
+                PublishedDate = bookDto.PublishedDate,
+                Summary = bookDto.Summary,
+                Authors = new List<Author>(),
+                Categories = new List<Category>(),
+                Tags = new List<Tag>(),
+                Images = new List<BookImage>()
+            };
+
+            // İlişkileri ayarla - Var olan entityleri Attach et
+            if (bookDto.AuthorIds != null && bookDto.AuthorIds.Any())
+            {
+                foreach (var authorId in bookDto.AuthorIds)
+                {
+                    var author = new Author { Id = authorId };
+                    _manager.Author.Attach(author); // Var olan entity olarak işaretle
+                    book.Authors.Add(author);
+                }
+            }
+
+            if (bookDto.CategoryIds != null && bookDto.CategoryIds.Any())
+            {
+                foreach (var categoryId in bookDto.CategoryIds)
+                {
+                    var category = new Category { Id = categoryId };
+                    _manager.Category.Attach(category); // Var olan entity olarak işaretle
+                    book.Categories.Add(category);
+                }
+            }
+
+            if (bookDto.TagIds != null && bookDto.TagIds.Any())
+            {
+                foreach (var tagId in bookDto.TagIds)
+                {
+                    var tag = new Tag { Id = tagId };
+                    _manager.Tag.Attach(tag); // Var olan entity olarak işaretle
+                    book.Tags.Add(tag);
+                }
+            }
+
             _manager.Book.CreateBook(book);
             await _manager.SaveAsync();
+
+            // Resimleri ekle
+            if (newFilePaths.Any())
+            {
+                bool isFirst = true;
+                foreach (var filePath in newFilePaths)
+                {
+                    var bookImage = new BookImage
+                    {
+                        BookId = book.Id,
+                        ImageUrl = filePath,
+                        IsPrimary = isFirst,
+                        Caption = $"{book.Title} Fotoğrafı"
+                    };
+                    book.Images!.Add(bookImage);
+                    isFirst = false;
+                }
+                _manager.Book.UpdateBook(book);
+                await _manager.SaveAsync();
+            }
         }
+
 
         public async Task DeleteBookAsync(int id)
         {
@@ -75,13 +143,154 @@ namespace Services
             await _manager.SaveAsync();
         }
 
-        public async Task UpdateBookAsync(BookDto bookDto)
+        public async Task UpdateBookAsync(BookDtoForUpdate bookDto, List<string>? newFilePaths)
         {
-            var book = await GetOneBookForServiceAsync(bookDto.Id, true);
+            var book = await _manager.Book.GetOneBookAsync(bookDto.Id, true);
+            if (book is null)
+            {
+                throw new BookNotFoundException(bookDto.Id);
+            }
 
-            _mapper.Map(bookDto, book);
-            _manager.Book.UpdateBook(book!);
+            book.Title = bookDto.Title;
+            book.ISBN = bookDto.ISBN;
+            book.AvailableCopies = bookDto.AvailableCopies;
+            book.TotalCopies = bookDto.TotalCopies;
+            book.Location = bookDto.Location;
+            book.PublishedDate = bookDto.PublishedDate;
+            book.Summary = bookDto.Summary;
+
+            var tasks = new List<Task>();
+
+            if (bookDto.AuthorIds != null)
+            {
+                tasks.Add(UpdateBookAuthorsAsync(book, bookDto.AuthorIds));
+            }
+
+            if (bookDto.CategoryIds != null)
+            {
+                tasks.Add(UpdateBookCategoriesAsync(book, bookDto.CategoryIds));
+            }
+
+            if (bookDto.TagIds != null)
+            {
+                tasks.Add(UpdateBookTagsAsync(book, bookDto.TagIds));
+            }
+
+            tasks.Add(UpdateBookImagesAsync(book, bookDto, newFilePaths));
+
+            await Task.WhenAll(tasks);
+
+            _manager.Book.UpdateBook(book);
             await _manager.SaveAsync();
+        }
+
+        private async Task UpdateBookAuthorsAsync(Book book, ICollection<int> authorIds)
+        {
+            if (authorIds == null || !authorIds.Any())
+            {
+                book.Authors?.Clear();
+                return;
+            }
+
+            var existingAuthorIds = book.Authors?.Select(a => a.Id).ToList() ?? new List<int>();
+            var authorsToAddIds = authorIds.Except(existingAuthorIds).ToList();
+
+            var authorsToAdd = authorsToAddIds.Any()
+                ? await _manager.Author.FindByCondition(a => authorsToAddIds.Contains(a.Id), true).ToListAsync()
+                : new List<Author>();
+
+            book.Authors = book.Authors?
+                .Where(a => authorIds.Contains(a.Id))
+                .Concat(authorsToAdd)
+                .ToList();
+        }
+
+        private async Task UpdateBookTagsAsync(Book book, ICollection<int> tagIds)
+        {
+            if (tagIds == null || !tagIds.Any())
+            {
+                book.Tags?.Clear();
+                return;
+            }
+
+            var existingTagIds = book.Tags?.Select(t => t.Id).ToList() ?? new List<int>();
+            var tagsToAddIds = tagIds.Except(existingTagIds).ToList();
+
+            var tagsToAdd = tagsToAddIds.Any()
+                ? await _manager.Tag.FindByCondition(t => tagsToAddIds.Contains(t.Id), true).ToListAsync()
+                : new List<Tag>();
+
+            book.Tags = book.Tags?
+                .Where(t => tagIds.Contains(t.Id))
+                .Concat(tagsToAdd)
+                .ToList();
+        }
+
+        private async Task UpdateBookCategoriesAsync(Book book, ICollection<int> categoryIds)
+        {
+            if (categoryIds == null || !categoryIds.Any())
+            {
+                book.Categories?.Clear();
+                return;
+            }
+
+            var existingCategoryIds = book.Categories?.Select(c => c.Id).ToList() ?? new List<int>();
+            var categoriesToAddIds = categoryIds.Except(existingCategoryIds).ToList();
+
+            var categoriesToAdd = categoriesToAddIds.Any()
+                ? await _manager.Category.FindByCondition(c => categoriesToAddIds.Contains(c.Id), true).ToListAsync()
+                : new List<Category>();
+
+            book.Categories = book.Categories?
+                .Where(c => categoryIds.Contains(c.Id))
+                .Concat(categoriesToAdd)
+                .ToList();
+        }
+
+        private Task UpdateBookImagesAsync(Book book, BookDtoForUpdate bookDto, List<string>? newFilePaths)
+        {
+            if (bookDto.ExistingImageIds != null)
+            {
+                var imagesToKeep = book.Images?.Where(img => bookDto.ExistingImageIds.Contains(img.Id)).ToList();
+                book.Images = imagesToKeep;
+            }
+            else
+            {
+                book.Images?.Clear();
+            }
+
+            if (newFilePaths != null && newFilePaths.Any())
+            {
+                int i = 0;
+                foreach (var filePath in newFilePaths)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        var bookImage = new BookImage
+                        {
+                            BookId = book.Id,
+                            ImageUrl = filePath,
+                            IsPrimary = true,
+                            Caption = $"{book.Title} Fotoğrafı"
+                        };
+                        book.Images!.Add(bookImage);
+                    }
+                    else
+                    {
+                        var bookImage = new BookImage
+                        {
+                            BookId = book.Id,
+                            ImageUrl = filePath,
+                            IsPrimary = false,
+                            Caption = $"{book.Title} Fotoğrafı"
+                        };
+                        book.Images!.Add(bookImage);
+                    }
+                }
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

@@ -40,7 +40,7 @@ export default function BookCard({ book }: BookCardProps) {
 
 
     return (
-        <Link to={`/Books/${book.id}`} key={book.id} className="group lg:hover:scale-110 duration-500">
+        <Link to={`/books/${book.id}`} key={book.id} className="group lg:hover:scale-110 duration-500">
             <motion.div variants={{
                 hidden: { y: 30, opacity: 0 },
                 show: { y: 0, opacity: 1 }
@@ -59,7 +59,7 @@ export default function BookCard({ book }: BookCardProps) {
                 </div>
                 <div className="flex flex-col text-center content-center justify-center  h-32">
                     <div className="h-20 lg:h-20">
-                        <p className="font-bold text-sm lg:text-lg m-0 overflow-hidden line-clamp-2 text-[#1e293b] [text-shadow:_0_1px_2px_rgba(0,_0,_0,_0.05)]">{book.title}</p>
+                        <p className="font-bold text-sm lg:text-lg m-0  overflow-hidden line-clamp-2 text-[#1e293b] [text-shadow:_0_1px_2px_rgba(0,_0,_0,_0.05)]">{book.title}</p>
                         <p className="font-medium text-xs lg:text-base m-0 overflow-hidden text-gray-500 [text-shadow:_0_1px_2px_rgba(0,_0,_0,_0.05)]">({book.authors?.[0].name})</p>
                     </div>
                     <div className="lg:mt-2">

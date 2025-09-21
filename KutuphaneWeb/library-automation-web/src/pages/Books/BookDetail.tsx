@@ -159,7 +159,7 @@ export function BookDetail() {
 
             {bookDetail.error && (
                 <div className="flex justify-center items-center h-64 text-red-500">
-                    Kitaplar yüklenirken bir hata oluştu.
+                    {bookDetail.error}
                 </div>
             )}
             {bookDetail.book && !bookDetail.loading &&
@@ -230,7 +230,7 @@ export function BookDetail() {
                                         <FontAwesomeIcon icon={faCartPlus} className="mr-1" />
                                     </button>
                                 )}
-                                <Link to="/Books" className="button w-1/2 !bg-yellow-400 hover:scale-105 text-center text-2xl font-semibold">
+                                <Link to="/books" className="button w-1/2 !bg-yellow-400 hover:scale-105 text-center text-2xl font-semibold">
                                     <FontAwesomeIcon icon={faArrowRotateLeft} className="mr-2" />
                                     Kitaplara Dön
                                 </Link>

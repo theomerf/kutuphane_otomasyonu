@@ -1,4 +1,5 @@
 ﻿using Entities.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
 using Services.Contracts;
@@ -76,6 +77,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost("refresh")]
+        [Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Refresh([FromBody] TokenDto tokenDto)
         {
@@ -84,6 +86,7 @@ namespace Presentation.Controllers
             return Ok(tokenDtoToReturn);
         }
 
+        [Authorize]
         [HttpGet("{userName}")]
         public async Task<IActionResult> GetAccount([FromRoute] String userName)
         {

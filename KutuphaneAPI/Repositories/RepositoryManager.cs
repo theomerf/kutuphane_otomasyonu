@@ -8,11 +8,14 @@ namespace Repositories
         private readonly IBookRepository _bookRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IAuthorRepository _authorRepository;
+        private readonly ITagRepository _tagRepository;
         private readonly ICartRepository _cartRepository;
         private readonly IReservationRepository _reservationRepository;
         private readonly ISeatRepository _seatRepository;
+        private readonly ILoanRepository _loanRepository;
+        private readonly IPenaltyRepository _penaltyRepository;
 
-        public RepositoryManager(RepositoryContext context, IBookRepository bookRepository, ICategoryRepository categoryRepository, IAuthorRepository authorRepository, ICartRepository cartRepository, IReservationRepository reservationRepository, ISeatRepository seatRepository)
+        public RepositoryManager(RepositoryContext context, IBookRepository bookRepository, ICategoryRepository categoryRepository, IAuthorRepository authorRepository, ICartRepository cartRepository, IReservationRepository reservationRepository, ISeatRepository seatRepository, ILoanRepository loanRepository, IPenaltyRepository penaltyRepository, ITagRepository tagRepository)
         {
             _context = context;
             _bookRepository = bookRepository;
@@ -21,14 +24,20 @@ namespace Repositories
             _cartRepository = cartRepository;
             _reservationRepository = reservationRepository;
             _seatRepository = seatRepository;
+            _loanRepository = loanRepository;
+            _penaltyRepository = penaltyRepository;
+            _tagRepository = tagRepository;
         }
 
         public IBookRepository Book => _bookRepository;
         public ICategoryRepository Category => _categoryRepository;
         public IAuthorRepository Author => _authorRepository;
+        public ITagRepository Tag => _tagRepository;
         public ICartRepository Cart => _cartRepository;
         public IReservationRepository Reservation => _reservationRepository;
         public ISeatRepository Seat => _seatRepository;
+        public ILoanRepository Loan => _loanRepository;
+        public IPenaltyRepository Penalty => _penaltyRepository;
 
         public void Save()
         {

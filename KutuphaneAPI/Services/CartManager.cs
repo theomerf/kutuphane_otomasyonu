@@ -56,13 +56,19 @@ namespace Services
             }
             else
             {
-                var mergedCart = _mapper.Map<Cart>(cartDto);
-                mergedCart.AccountId = userId;
-                mergedCart.Id = cartFromRepo!.Id;
+                var mergedCart = _mapper.Map<Cart>(cartFromRepo);
+                var cart = _mapper.Map<Cart>(cartDto);
                 _manager.Cart.Attach(mergedCart);
+                foreach (var line in cart.CartLines)
+                {
+                    line.Id = 0;
+                    line.CartId = mergedCart.Id;
+                    mergedCart.CartLines.Add(line);
+                    _manager.Book.Attach(line.Book!);
+                }
                 await _manager.SaveAsync();
-                
-                return _mapper.Map<CartDto>(mergedCart);
+
+                return await GetCartByUserIdAsync(userId);
             }
         }
 
@@ -159,12 +165,7 @@ namespace Services
         {
             var cart = await GetCartByUserIdForUpdateAsync(userId, true);
 
-            foreach (var line in cart?.CartLines ?? Enumerable.Empty<CartLineDtoForInsertion>())
-            {
-                var cartLineEntity = _mapper.Map<CartLine>(line);
-                _manager.Cart.DeleteCartLine(cartLineEntity);
-            }
-            cart?.CartLines?.Clear();
+            _manager.Cart.DeleteAllCartLines(cart!.CartLines!.Select(cl => _mapper.Map<CartLine>(cl)));
             await _manager.SaveAsync();
 
             var cartDto = new CartDto
