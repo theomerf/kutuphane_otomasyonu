@@ -14,7 +14,6 @@ export function CreateBook() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    // Yeni state'ler
     const [allAuthors, setAllAuthors] = useState<Author[]>([]);
     const [allCategories, setAllCategories] = useState<Category[]>([]);
     const [allTags, setAllTags] = useState<Tag[]>([]);
@@ -27,7 +26,7 @@ export function CreateBook() {
     const [newImages, setNewImages] = useState<File[]>([]);
     const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             title: "",
             isbn: "",
@@ -39,7 +38,6 @@ export function CreateBook() {
         }
     });
 
-    // Backend'den listeleri çek
     const fetchSelectionLists = async () => {
         try {
             setIsLoading(true);
@@ -69,7 +67,6 @@ export function CreateBook() {
             setIsLoading(true);
             const form = new FormData();
 
-            // Temel form alanları
             form.append('Title', formData.title);
             form.append('ISBN', formData.isbn);
             form.append('AvailableCopies', formData.availableCopies.toString());
@@ -78,7 +75,6 @@ export function CreateBook() {
             form.append('PublishedDate', formData.publishedDate);
             form.append('Summary', formData.summary);
 
-            // Seçili ID'leri ekle
             selectedAuthors.forEach((author, index) => {
                 form.append(`AuthorIds[${index}]`, author.id!.toString());
             });
@@ -91,7 +87,6 @@ export function CreateBook() {
                 form.append(`TagIds[${index}]`, tag.id!.toString());
             });
 
-            // Yeni fotoğrafları ekle
             newImages.forEach((file) => {
                 form.append('NewImages', file);
             });
@@ -109,7 +104,6 @@ export function CreateBook() {
         }
     };
 
-    // Yazar ekleme
     const addAuthor = () => {
         if (selectedAuthorId && !selectedAuthors.find(a => a.id === selectedAuthorId)) {
             const author = allAuthors.find(a => a.id === selectedAuthorId);
@@ -120,7 +114,6 @@ export function CreateBook() {
         }
     };
 
-    // Kategori ekleme
     const addCategory = () => {
         if (selectedCategoryId && !selectedCategories.find(c => c.id === selectedCategoryId)) {
             const category = allCategories.find(c => c.id === selectedCategoryId);
@@ -131,7 +124,6 @@ export function CreateBook() {
         }
     };
 
-    // Etiket ekleme
     const addTag = () => {
         if (selectedTagId && !selectedTags.find(t => t.id === selectedTagId)) {
             const tag = allTags.find(t => t.id === selectedTagId);
@@ -142,7 +134,6 @@ export function CreateBook() {
         }
     };
 
-    // Öğe silme fonksiyonları
     const removeAuthor = (authorId: number | null) => {
         setSelectedAuthors(selectedAuthors.filter(a => a.id !== authorId));
     };
@@ -155,13 +146,11 @@ export function CreateBook() {
         setSelectedTags(selectedTags.filter(t => t.id !== tagId));
     };
 
-    // Fotoğraf işlemleri
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(event.target.files || []);
         if (files.length > 0) {
             setNewImages([...newImages, ...files]);
 
-            // Önizlemeler oluştur
             files.forEach(file => {
                 const reader = new FileReader();
                 reader.onload = (e) => {
@@ -196,7 +185,6 @@ export function CreateBook() {
                 </div>
                 <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">
 
-                    {/* Temel form alanları */}
                     <div className="flex flex-row gap-x-10">
                         <div className="flex flex-col w-1/2">
                             <label htmlFor="title" className="font-bold text-gray-500 text-base">Kitap Başlığı</label>
@@ -275,9 +263,6 @@ export function CreateBook() {
                         {errors.summary && <span className="text-red-700 text-left mt-1">{errors.summary?.message?.toString()}</span>}
                     </div>
 
-                    {/* Dinamik Seçim Alanları */}
-
-                    {/* Yazarlar */}
                     <div className="flex flex-col w-full">
                         <label className="font-bold text-gray-500 text-base mb-4">Yazarlar</label>
                         <div className="flex gap-x-4 mb-4">
@@ -300,7 +285,6 @@ export function CreateBook() {
                                 <FontAwesomeIcon icon={faPlus} />
                             </button>
                         </div>
-                        {/* Seçili Yazarlar */}
                         <div className="flex flex-wrap gap-2">
                             {selectedAuthors.map(author => (
                                 <div key={author.id} className="flex items-center bg-violet-100 text-violet-800 px-3 py-2 rounded-lg border border-violet-200">
@@ -317,7 +301,6 @@ export function CreateBook() {
                         </div>
                     </div>
 
-                    {/* Kategoriler */}
                     <div className="flex flex-col w-full">
                         <label className="font-bold text-gray-500 text-base mb-4">Kategoriler</label>
                         <div className="flex gap-x-4 mb-4">
@@ -340,7 +323,6 @@ export function CreateBook() {
                                 <FontAwesomeIcon icon={faPlus} />
                             </button>
                         </div>
-                        {/* Seçili Kategoriler */}
                         <div className="flex flex-wrap gap-2">
                             {selectedCategories.map(category => (
                                 <div key={category.id} className="flex items-center bg-blue-100 text-blue-800 px-3 py-2 rounded-lg border border-blue-200">
@@ -357,7 +339,6 @@ export function CreateBook() {
                         </div>
                     </div>
 
-                    {/* Etiketler */}
                     <div className="flex flex-col w-full">
                         <label className="font-bold text-gray-500 text-base mb-4">Etiketler</label>
                         <div className="flex gap-x-4 mb-4">
@@ -380,7 +361,6 @@ export function CreateBook() {
                                 <FontAwesomeIcon icon={faPlus} />
                             </button>
                         </div>
-                        {/* Seçili Etiketler */}
                         <div className="flex flex-wrap gap-2">
                             {selectedTags.map(tag => (
                                 <div key={tag.id} className="flex items-center bg-green-100 text-green-800 px-3 py-2 rounded-lg border border-green-200">
@@ -397,11 +377,9 @@ export function CreateBook() {
                         </div>
                     </div>
 
-                    {/* Fotoğraf Yönetimi */}
                     <div className="flex flex-col w-full">
                         <label className="font-bold text-gray-500 text-base mb-4">Fotoğraflar</label>
 
-                        {/* Yeni Fotoğraf Yükleme */}
                         <div className="mb-6">
                             <input
                                 type="file"
@@ -420,7 +398,6 @@ export function CreateBook() {
                             </label>
                         </div>
 
-                        {/* Yeni Eklenen Fotoğraflar */}
                         {newImages.length > 0 && (
                             <div>
                                 <h4 className="font-semibold text-gray-600 mb-3">Seçilen Fotoğraflar</h4>
