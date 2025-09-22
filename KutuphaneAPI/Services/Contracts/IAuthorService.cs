@@ -5,6 +5,7 @@ namespace Services.Contracts
     public interface IAuthorService
     {
         Task<IEnumerable<AuthorDto>> GetAllAuthorsAsync(bool trackChanges);
+        Task<int> GetAllAuthorsCountAsync();
         Task<IEnumerable<AuthorDto>> GetMostPopularAuthorsAsync(bool trackChanges);
         Task<AuthorDto> GetOneAuthorAsync(int id, bool trackChanges);
         Task CreateAuthorAsync(AuthorDto author);

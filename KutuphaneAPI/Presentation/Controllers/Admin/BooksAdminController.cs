@@ -71,7 +71,7 @@ namespace Presentation.Controllers.Admin
                 {
                     var uniqueFileName = $"{bookDto.Id}_{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
                     var filePath = Path.Combine(uploadPath, uniqueFileName);
-                    newFilePaths.Add(filePath);
+                    newFilePaths.Add($"books/{uniqueFileName}");
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {

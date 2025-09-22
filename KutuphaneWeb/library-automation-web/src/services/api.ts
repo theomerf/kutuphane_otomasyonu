@@ -106,8 +106,14 @@ const books = {
 }
 
 const categories = {
-    getAllCategories: (signal?: AbortSignal) => methods.get("categories", {}, signal),
+    getAllCategories: (query: URLSearchParams, signal?: AbortSignal) => methods.get("categories", { params: query }, signal),
+    getAllCategoriesWithoutPagination: (signal?: AbortSignal) => methods.get("categories/nopagination", {}, signal),
+    getOneCategory: (id: number, signal?: AbortSignal) => methods.get(`categories/${id}`, {}, signal),
     getPopularCategories: (signal?: AbortSignal) => methods.get("categories/popular", {}, signal),
+    countCategories: (signal?: AbortSignal) => methods.get("categories/count", {}, signal),
+    createCategory: (categoryDto: any) => methods.post("admin/categories/create", categoryDto),
+    updateCategory: (categoryDto: any) => methods.put("admin/categories/update", categoryDto),
+    deleteCategory: (id: number) => methods.delete(`admin/categories/delete/${id}`),
 }
 
 const loan = {
@@ -115,13 +121,25 @@ const loan = {
 }
 
 const authors = {
-    getAllAuthors: (signal?: AbortSignal) => methods.get("authors", {}, signal),
+    getAllAuthors: (query: URLSearchParams, signal?: AbortSignal) => methods.get("authors", { params: query }, signal),
+    getAllAuthorsWithoutPagination: (signal?: AbortSignal) => methods.get("authors/nopagination", {}, signal),
     getPopularAuthors: (signal?: AbortSignal) => methods.get("authors/popular", {}, signal),
+    getOneAuthor: (id: number, signal?: AbortSignal) => methods.get(`authors/${id}`, {}, signal),
+    countAuthors: (signal?: AbortSignal) => methods.get("authors/count", {}, signal),
+    createAuthor: (authorDto: any) => methods.post("admin/authors/create", authorDto),
+    updateAuthor: (authorDto: any) => methods.put("admin/authors/update", authorDto),
+    deleteAuthor: (id: number) => methods.delete(`admin/authors/delete/${id}`),
 }
 
 const tags = {
-    getAllTags: (signal?: AbortSignal) => methods.get("tags", {}, signal),
+    getAllTags: (query: URLSearchParams, signal?: AbortSignal) => methods.get("tags", { params: query }, signal),
+    getAllTagsWithoutPagination: (signal?: AbortSignal) => methods.get("authors/nopagination", {}, signal),
     getPopularTags: (signal?: AbortSignal) => methods.get("tags/popular", {}, signal),
+    getOneTag: (id: number, signal?: AbortSignal) => methods.get(`tags/${id}`, {}, signal),
+    countTags: (signal?: AbortSignal) => methods.get("tags/count", {}, signal),
+    createTag: (authorDto: any) => methods.post("admin/tags/create", authorDto),
+    updateTag: (authorDto: any) => methods.put("admin/tags/update", authorDto),
+    deleteTag: (id: number) => methods.delete(`admin/tags/delete/${id}`),
 }
 
 const cart = {

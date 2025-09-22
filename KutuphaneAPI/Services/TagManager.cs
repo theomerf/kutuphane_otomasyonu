@@ -31,6 +31,8 @@ namespace Services
             return tagsDto;
         }
 
+        public async Task<int> GetAllTagsCountAsync() => await _manager.Tag.GetAllTagsCountAsync();
+
         public async Task<IEnumerable<TagDto>> GetMostPopularTagsAsync(bool trackChanges)
         {
             var tags = await _manager.Tag.GetMostPopularTagsAsync(trackChanges);

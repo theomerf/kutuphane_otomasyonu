@@ -1,6 +1,8 @@
 ﻿using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
+using Repositories.Extensions;
 
 namespace Repositories
 {
@@ -10,14 +12,31 @@ namespace Repositories
         {
         }
 
-        public async Task<IEnumerable<Category>> GetAllCategoriesAsync(bool trackChanges)
+        public async Task<(IEnumerable<Category> categories, int count)> GetAllCategoriesAsync(CategoryRequestParameters p, bool trackChanges)
         {
             var categories = await FindAll(trackChanges)
                 .Include(c => c.Books)
+                .FilterBy(p.SearchTerm, c => c.Name, FilterOperator.Contains)
+                .OrderBy(c => c.Id)
+                .ToPaginate(p.PageSize, p.PageNumber)
+                .ToListAsync();
+
+            var count = await CountAsync(false);
+
+            return (categories, count);
+        }
+
+        public async Task<IEnumerable<Category>> GetAllCategoriesWithoutPaginationAsync(bool trackChanges)
+        {
+            var categories = await FindAll(trackChanges)
+                .Include(c => c.Books)
+                .OrderBy(c => c.Id)
                 .ToListAsync();
 
             return categories;
         }
+
+        public async Task<int> GetAllCategoriesCountAsync() => await CountAsync(false);
 
         public async Task<IEnumerable<Category>> GetMostPopularCategoriesAsync(bool trackChanges)
         {

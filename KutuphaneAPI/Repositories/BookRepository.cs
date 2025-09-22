@@ -34,7 +34,7 @@ namespace Repositories
             return (shaped, count);
         }
 
-        public async Task<int> GetAllBooksCountAsync() => await FindAll(false).CountAsync();
+        public async Task<int> GetAllBooksCountAsync() => await CountAsync(false);
 
         public async Task<IEnumerable<ExpandoObject>> GetRelatedBooksAsync(int id, BookRequestParameters p, bool trackChanges, CancellationToken ct = default)
         {

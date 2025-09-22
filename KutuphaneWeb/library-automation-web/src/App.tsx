@@ -24,9 +24,19 @@ import { BookDetail } from './pages/Books/BookDetail.tsx'
 import Checkout from './pages/Checkout/Checkout.tsx'
 import AdminLayout from './components/layout/AdminLayout.tsx'
 import Dashboard from './pages/Admin/Dashboard/Dashboard.tsx'
-import BooksAdmin from './pages/Admin/Books/Books.tsx'
-import { UpdateBook } from './pages/Admin/Books/Update.tsx'
-import { CreateBook } from './pages/Admin/Books/Create.tsx'
+import BooksAdmin from './pages/Admin/BooksManagement/Books/BooksAdmin.tsx'
+import { UpdateBook } from './pages/Admin/BooksManagement/Books/UpdateBook.tsx'
+import { CreateBook } from './pages/Admin/BooksManagement/Books/CreateBook.tsx'
+import BooksDashboard from './pages/Admin/BooksManagement/BooksDashboard.tsx'
+import CategoriesAdmin from './pages/Admin/BooksManagement/Categories/CategoriesAdmin.tsx'
+import { CreateCategory } from './pages/Admin/BooksManagement/Categories/CreateCategory.tsx'
+import { UpdateCategory } from './pages/Admin/BooksManagement/Categories/UpdateCategory.tsx'
+import AuthorsAdmin from './pages/Admin/BooksManagement/Authors/AuthorsAdmin.tsx'
+import { CreateAuthor } from './pages/Admin/BooksManagement/Authors/CreateAuthor.tsx'
+import { UpdateAuthor } from './pages/Admin/BooksManagement/Authors/UpdateAuthor.tsx'
+import TagsAdmin from './pages/Admin/BooksManagement/Tags/TagsAdmin.tsx'
+import { CreateTag } from './pages/Admin/BooksManagement/Tags/CreateTag.tsx'
+import { UpdateTag } from './pages/Admin/BooksManagement/Tags/UpdateTag.tsx'
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -101,9 +111,20 @@ function App() {
         <Route element={<AdminLayout />}>
           <Route element={<ProtectedRoute adminOnly={true} />}>
             <Route path="/admin" element={<Dashboard />}></Route>
+            <Route path="/admin/dashboard/books" element={<BooksDashboard />}></Route>
             <Route path="/admin/books" element={<BooksAdmin />}></Route>
             <Route path="/admin/books/create" element={<CreateBook />}></Route>
             <Route path="/admin/books/update/:id" element={<UpdateBook />}></Route>
+            <Route path="/admin/categories" element={<CategoriesAdmin />}></Route>
+            <Route path="/admin/categories/create" element={<CreateCategory />}></Route>
+            <Route path="/admin/categories/update/:id" element={<UpdateCategory />}></Route>
+            <Route path="/admin/authors" element={<AuthorsAdmin />}></Route>
+            <Route path="/admin/authors/create" element={<CreateAuthor />}></Route>
+            <Route path="/admin/authors/update/:id" element={<UpdateAuthor />}></Route>
+            <Route path="/admin/tags" element={<TagsAdmin />}></Route>
+            <Route path="/admin/tags/create" element={<CreateTag />}></Route>
+            <Route path="/admin/tags/update/:id" element={<UpdateTag />}></Route>
+            <Route path="/admin/*" element={<NotFound />}></Route>
           </Route>
         </Route>
         <Route element={<MainLayout isAdmin={isAdmin} />}>

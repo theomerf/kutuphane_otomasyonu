@@ -1,3 +1,0 @@
-C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\wwwroot\images\books\101_6acfbcdf-c8b8-4dd1-b18e-58c89450a454.jpg
-C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\wwwroot\images\books\101_6b0c553b-8951-4248-bc65-de22512cecac.jpg
-C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\KutuphaneAPI\wwwroot\images\books\101_7b39130c-b44d-498e-8601-88b5b70e0aef.jpg

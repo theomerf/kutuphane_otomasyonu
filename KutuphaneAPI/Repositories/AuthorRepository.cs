@@ -19,6 +19,8 @@ namespace Repositories
             return authors;
         }
 
+        public async Task<int> GetAllAuthorsCountAsync() => await CountAsync(false);
+
         public async Task<IEnumerable<Author>> GetMostPopularAuthorsAsync(bool trackChanges)
         {
             var authors = await FindAll(trackChanges)

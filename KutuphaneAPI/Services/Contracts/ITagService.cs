@@ -6,6 +6,7 @@ namespace Services.Contracts
     public interface ITagService
     {
         Task<IEnumerable<TagDto>> GetAllTagsAsync(bool trackChanges);
+        Task<int> GetAllTagsCountAsync();
         Task<IEnumerable<TagDto>> GetMostPopularTagsAsync(bool trackChanges);
         Task<TagDto> GetOneTagAsync(int id, bool trackChanges);
         Task CreateTagAsync(TagDto tagDto);

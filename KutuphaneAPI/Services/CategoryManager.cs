@@ -2,8 +2,11 @@
 using Entities.Dtos;
 using Entities.Exceptions;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Repositories.Contracts;
 using Services.Contracts;
+using System.Dynamic;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Services
 {
@@ -17,13 +20,25 @@ namespace Services
             _manager = manager;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync(bool trackChanges)
+        public async Task<(IEnumerable<CategoryDto> categories, MetaData metaData)> GetAllCategoriesAsync(CategoryRequestParameters p, bool trackChanges)
         {
-            var categories = await _manager.Category.GetAllCategoriesAsync(trackChanges);
+            var categories = await _manager.Category.GetAllCategoriesAsync(p, trackChanges);
+            var categoriesDto = _mapper.Map<IEnumerable<CategoryDto>>(categories.categories);
+
+            var pagedCategories = PagedList<CategoryDto>.ToPagedList(categoriesDto, p.PageNumber, p.PageSize, categories.count);
+
+            return (pagedCategories, pagedCategories.MetaData);
+        }
+
+        public async Task<IEnumerable<CategoryDto>> GetAllCategoriesWithoutPaginationAsync(bool trackChanges)
+        {
+            var categories = await _manager.Category.GetAllCategoriesWithoutPaginationAsync(trackChanges);
             var categoriesDto = _mapper.Map<IEnumerable<CategoryDto>>(categories);
 
             return categoriesDto;
         }
+
+        public async Task<int> GetAllCategoriesCountAsync() => await _manager.Category.CountAsync(false);
 
         public async Task<IEnumerable<CategoryDto>> GetMostPopularCategoriesAsync(bool trackChanges)
         {
@@ -52,7 +67,7 @@ namespace Services
             return category;
         }
 
-        public async Task CreateCategoryAsync(CategoryDto categoryDto)
+        public async Task CreateCategoryAsync(CategoryDtoForCreation categoryDto)
         {
             var category = _mapper.Map<Category>(categoryDto);
             
@@ -68,7 +83,7 @@ namespace Services
             await _manager.SaveAsync();
         }
 
-        public async Task UpdateCategoryAsync(CategoryDto categoryDto)
+        public async Task UpdateCategoryAsync(CategoryDtoForUpdate categoryDto)
         {
             var category = await GetOneCategoryForServiceAsync(categoryDto.Id, true);
 

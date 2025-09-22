@@ -26,6 +26,14 @@ namespace Presentation.Controllers
             return Ok(authors);
         }
 
+        [HttpGet("count")]
+        public async Task<IActionResult> GetAllAuthorsCount()
+        {
+            var count = await _manager.AuthorService.GetAllAuthorsCountAsync();
+
+            return Ok(count);
+        }
+
         [HttpGet("popular")]
         public async Task<IActionResult> GetMostPopularAuthors()
         {

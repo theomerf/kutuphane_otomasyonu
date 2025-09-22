@@ -19,6 +19,8 @@ namespace Repositories
             return Tags;
         }
 
+        public async Task<int> GetAllTagsCountAsync() => await CountAsync(false);
+
         public async Task<IEnumerable<Tag>> GetMostPopularTagsAsync(bool trackChanges)
         {
             var Tags = await FindAll(trackChanges)

@@ -1,8 +1,4 @@
-export default interface BookRequestParameters {
-    searchTerm?: string;
-    orderBy?: string;
-    pageNumber?: number;
-    pageSize?: number;
+export default interface BookRequestParameters extends RequestParameters {
     fields?: string;
     authorId?: number;
     categoryId?: number;
@@ -10,4 +6,11 @@ export default interface BookRequestParameters {
     isAvailable?: boolean;
     tagIds?: number[];
     categoryIds?: number[];
+}
+
+export interface RequestParameters {
+    searchTerm?: string;
+    orderBy?: string;
+    pageNumber?: number;
+    pageSize?: number;
 }

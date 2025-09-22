@@ -22,6 +22,14 @@ namespace Presentation.Controllers
             return Ok(tags);
         }
 
+        [HttpGet("count")]
+        public async Task<IActionResult> GetAllTagsCount()
+        {
+            var count = await _manager.TagService.GetAllTagsCountAsync();
+
+            return Ok(count);
+        }
+
         [HttpGet("popular")]
         public async Task<IActionResult> GetMostPopularTags()
         {

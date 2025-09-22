@@ -1,4 +1,4 @@
-import { faBook, faLayerGroup, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faUser } from "@fortawesome/free-solid-svg-icons";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -34,7 +34,7 @@ export default function Dashboard() {
                         <p className="ml-2 text-gray-500 font-bold text-xl">Kitap</p>
                     </div>
                     <div className="flex flex-row mt-5 justify-center">
-                        <Link to="/admin/books" className="button !bg-green-400 hover:scale-105 text-lg font-semibold duration-500">Kitapları Yönet</Link>
+                        <Link to="/admin/dashboard/books" className="button !bg-green-400 hover:scale-105 text-lg font-semibold duration-500">Kitapları Yönet</Link>
                     </div>
                 </div>
                 <div className="flex flex-col gap-y-4 rounded-lg shadow-xl bg-white py-8 border-2 border-gray-200 hover:scale-105 duration-500">
@@ -47,18 +47,6 @@ export default function Dashboard() {
                     </div>
                     <div className="flex flex-row mt-5 justify-center">
                         <Link to="/admin/books" className="button !bg-red-400 hover:scale-105 text-lg font-semibold duration-500">Kullanıcıları Yönet</Link>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-y-4 rounded-lg shadow-xl bg-white py-8 border-2 border-gray-200 hover:scale-105 duration-500">
-                    <p className="text-gray-500 font-bold text-center text-2xl">
-                        <FontAwesomeIcon icon={faLayerGroup} className="text-blue-400 text-5xl" />
-                    </p>
-                    <div className="flex flex-col text-center gap-y-2">
-                        <p className="ml-2 text-gray-500 font-bold text-3xl">15</p>
-                        <p className="ml-2 text-gray-500 font-bold text-xl">Kategori</p>
-                    </div>
-                    <div className="flex flex-row mt-5 justify-center">
-                        <Link to="/admin/books" className="button !bg-blue-400 hover:scale-105 text-lg font-semibold duration-500">Kategorileri Yönet</Link>
                     </div>
                 </div>
                 <div className="flex flex-col gap-y-4 rounded-lg shadow-xl bg-white py-8 border-2 border-gray-200 hover:scale-105 duration-500">

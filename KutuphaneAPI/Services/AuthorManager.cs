@@ -25,6 +25,8 @@ namespace Services
             return authorsDto;
         }
 
+        public async Task<int> GetAllAuthorsCountAsync() => await _manager.Author.GetAllAuthorsCountAsync();
+
         public async Task<IEnumerable<AuthorDto>> GetMostPopularAuthorsAsync(bool trackChanges)
         {
             var authors = await _manager.Author.GetMostPopularAuthorsAsync(trackChanges);

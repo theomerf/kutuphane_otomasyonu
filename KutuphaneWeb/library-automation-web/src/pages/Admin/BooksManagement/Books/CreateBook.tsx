@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import requests from "../../../services/api";
+import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCheck, faPlus, faTimes, faTrash, faUpload, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import type Author from "../../../types/author";
-import type Category from "../../../types/category";
-import type Tag from "../../../types/tag";
+import type Author from "../../../../types/author";
+import type Category from "../../../../types/category";
+import type Tag from "../../../../types/tag";
 import { toast } from "react-toastify";
 
 export function CreateBook() {
@@ -43,7 +43,7 @@ export function CreateBook() {
             setIsLoading(true);
             const [authorsRes, categoriesRes, tagsRes] = await Promise.all([
                 requests.authors.getAllAuthors(),
-                requests.categories.getAllCategories(),
+                requests.categories.getAllCategoriesWithoutPagination(),
                 requests.tags.getAllTags(),
             ]);
 

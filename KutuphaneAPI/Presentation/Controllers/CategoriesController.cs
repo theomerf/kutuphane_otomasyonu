@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Presentation.Controllers
@@ -20,10 +23,27 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCategories()
+        public async Task<IActionResult> GetAllCategories([FromQuery] CategoryRequestParameters p)
         {
-            var categories = await _manager.CategoryService.GetAllCategoriesAsync(false);
+            var pagedResult = await _manager.CategoryService.GetAllCategoriesAsync(p, false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+
+            return Ok(pagedResult.categories);
+        }
+
+        [HttpGet("nopagination")]
+        public async Task<IActionResult> GetAllCategoriesWithoutPagination()
+        {
+            var categories = await _manager.CategoryService.GetAllCategoriesWithoutPaginationAsync(false);
             return Ok(categories);
+        }
+
+        [HttpGet("count")]
+        public async Task<IActionResult> GetAllCategoriesCount()
+        {
+            var count = await _manager.CategoryService.GetAllCategoriesCountAsync();
+
+            return Ok(count);
         }
 
         [HttpGet("popular")]

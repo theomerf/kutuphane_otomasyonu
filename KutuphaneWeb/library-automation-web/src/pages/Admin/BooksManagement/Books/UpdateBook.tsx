@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import type Book from "../../../types/book";
-import requests from "../../../services/api";
+import type Book from "../../../../types/book";
+import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCheck, faEdit, faPlus, faTimes, faTrash, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import type Author from "../../../types/author";
-import type Category from "../../../types/category";
-import type Tag from "../../../types/tag";
+import type Author from "../../../../types/author";
+import type Category from "../../../../types/category";
+import type Tag from "../../../../types/tag";
 import { toast } from "react-toastify";
 
 type BookDetail = {
@@ -57,7 +57,7 @@ export function UpdateBook() {
         try {
             const [authorsRes, categoriesRes, tagsRes] = await Promise.all([
                 requests.authors.getAllAuthors(),
-                requests.categories.getAllCategories(),
+                requests.categories.getAllCategoriesWithoutPagination(),
                 requests.tags.getAllTags(),
             ]);
 
