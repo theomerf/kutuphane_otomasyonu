@@ -70,13 +70,13 @@ export default function BookCard({ book }: BookCardProps) {
 
                     {(cart?.cartLines && cart?.cartLines?.findIndex(l => l.bookId === book.id) !== -1) ? (
                         <button type="button" onClick={(e) => handleRemoveFromCart(e, book.id!)} className="w-full py-[11px] lg:py-[14px] border-none rounded-3xl shadow-red-200 shadow-lg bg-red-600 text-white font-bold text-[9px] lg:text-base items-center justify-center gap-3 duration-[0.4s] [text-transform:uppercase] cursor-pointer relative overflow-hidden hover:scale-110">
+                            <FontAwesomeIcon icon={faTrash} className="mr-2" />
                             <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepetten Kaldır</span>
-                            <FontAwesomeIcon icon={faTrash} className="mr-1" />
                         </button>
                     ) : (
                         <button type="button" onClick={(e) => handleAddToCart(e, book)} className="w-full py-[11px] lg:py-[14px] border-none rounded-3xl shadow-violet-400 shadow-lg bg-hero-gradient text-white font-bold text-[9px] lg:text-base items-center justify-center gap-3 duration-[0.4s] [text-transform:uppercase] cursor-pointer relative overflow-hidden hover:scale-110">
+                            <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
                             <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepete Ekle</span>
-                            <FontAwesomeIcon icon={faCartPlus} className="mr-1" />
                         </button>
                     )}
                 </div>

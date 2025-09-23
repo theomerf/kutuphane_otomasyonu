@@ -2,6 +2,7 @@
 using Entities.Dtos;
 using Entities.Exceptions;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Repositories.Contracts;
 using Services.Contracts;
 using System;
@@ -23,9 +24,19 @@ namespace Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TagDto>> GetAllTagsAsync(bool trackChanges)
+        public async Task<(IEnumerable<TagDto> tags, MetaData metaData)> GetAllTagsAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var tags = await _manager.Tag.GetAllTagsAsync(trackChanges);
+            var tags = await _manager.Tag.GetAllTagsAsync(p, trackChanges);
+            var tagsDto = _mapper.Map<IEnumerable<TagDto>>(tags.tags);
+
+            var pagedTags = PagedList<TagDto>.ToPagedList(tagsDto, p.PageNumber, p.PageSize, tags.count);
+
+            return (pagedTags, pagedTags.MetaData);
+        }
+
+        public async Task<IEnumerable<TagDto>> GetAllTagsWithoutPaginationAsync(bool trackChanges)
+        {
+            var tags = await _manager.Tag.GetAllTagsWithoutPaginationAsync(trackChanges);
             var tagsDto = _mapper.Map<IEnumerable<TagDto>>(tags);
 
             return tagsDto;
@@ -60,7 +71,7 @@ namespace Services
             return tag;
         }
 
-        public async Task CreateTagAsync(TagDto tagDto)
+        public async Task CreateTagAsync(TagDtoForCreation tagDto)
         {
             var tag = _mapper.Map<Tag>(tagDto);
 
@@ -76,7 +87,7 @@ namespace Services
             await _manager.SaveAsync();
         }
 
-        public async Task UpdateTagAsync(TagDto tagDto)
+        public async Task UpdateTagAsync(TagDtoForUpdate tagDto)
         {
             var tag = await GetOneTagForServiceAsync(tagDto.Id, true);
 

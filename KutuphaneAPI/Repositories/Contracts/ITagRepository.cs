@@ -1,10 +1,12 @@
 ﻿using Entities.Models;
+using Entities.RequestFeatures;
 
 namespace Repositories.Contracts
 {
     public interface ITagRepository : IRepositoryBase<Tag>
     {
-        Task<IEnumerable<Tag>> GetAllTagsAsync(bool trackChanges);
+        Task<(IEnumerable<Tag> tags, int count)> GetAllTagsAsync(AdminRequestParameters p, bool trackChanges);
+        Task<IEnumerable<Tag>> GetAllTagsWithoutPaginationAsync(bool trackChanges);
         Task<int> GetAllTagsCountAsync();
         Task<IEnumerable<Tag>> GetMostPopularTagsAsync(bool trackChanges);
         Task<Tag?> GetOneTagAsync(int id, bool trackChanges);

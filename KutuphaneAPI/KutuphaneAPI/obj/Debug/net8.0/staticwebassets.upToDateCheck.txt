@@ -1,6 +1,4 @@
 wwwroot\images\books\1.jpg
-wwwroot\images\books\1_3e79d313-c650-44a2-a70b-81d320643649.jpg
-wwwroot\images\books\1_5f51eb3f-365e-4909-9793-61898979f509.jpg
 wwwroot\images\books\2.jpg
 wwwroot\images\books\3.jpg
 wwwroot\images\books\4.jpg

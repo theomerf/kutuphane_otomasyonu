@@ -10,6 +10,7 @@ namespace Repositories.Contracts
         Task<int> GetAllBooksCountAsync();
         Task<IEnumerable<ExpandoObject>> GetRelatedBooksAsync(int id, BookRequestParameters p, bool trackChanges, CancellationToken ct = default);
         Task<Book?> GetOneBookAsync(int id, bool trackChanges);
+        Task DeleteBookImageAsync(int id);
         void CreateBook(Book book);
         void UpdateBook(Book book);
         void DeleteBook(Book book);

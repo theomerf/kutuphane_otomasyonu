@@ -5,7 +5,7 @@ import { Rating } from "../../components/ui/Rating";
 import ImageSwiper from "../../components/ui/ImageSwiper";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRotateLeft, faBarcode, faCartPlus, faCircleDot, faLayerGroup, faLocationDot, faPen, faTag, faTags, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faBarcode, faCartPlus, faCircleDot, faLayerGroup, faLocationDot, faPen, faTag, faTags, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAppDispatch, type RootState } from "../../store/store";
 import { useSelector } from "react-redux";
@@ -124,7 +124,7 @@ export function BookDetail() {
     useEffect(() => {
         if (relatedBookParams?.tagIds && relatedBookParams.tagIds.length > 0) {
             fetchRelatedBooks();
-        }     
+        }
     }, [relatedBookParams]);
 
     const handleAddToCart = (e: React.MouseEvent, book: Book) => {
@@ -221,17 +221,17 @@ export function BookDetail() {
                             <div className="flex flex-col gap-y-4 mt-16">
                                 {(cart?.cartLines && cart?.cartLines?.findIndex(l => l.bookId === bookDetail.book?.id) !== -1) ? (
                                     <button type="button" onClick={(e) => handleRemoveFromCart(e, bookDetail.book?.id!)} className="button w-1/2 hover:scale-105 text-2xl font-semibold !bg-red-600">
+                                        <FontAwesomeIcon icon={faTrash} className="mr-2" />
                                         <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepetten Kaldır</span>
-                                        <FontAwesomeIcon icon={faTrash} className="mr-1" />
                                     </button>
                                 ) : (
                                     <button type="button" onClick={(e) => handleAddToCart(e, bookDetail.book!)} className="button w-1/2 hover:scale-105 text-2xl font-semibold">
+                                        <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
                                         <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepete Ekle</span>
-                                        <FontAwesomeIcon icon={faCartPlus} className="mr-1" />
                                     </button>
                                 )}
                                 <Link to="/books" className="button w-1/2 !bg-yellow-400 hover:scale-105 text-center text-2xl font-semibold">
-                                    <FontAwesomeIcon icon={faArrowRotateLeft} className="mr-2" />
+                                    <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                                     Kitaplara Dön
                                 </Link>
                             </div>
@@ -262,7 +262,7 @@ export function BookDetail() {
                         </div>
                     </div>
                     <div>
-                       <p className="font-bold text-4xl text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Benzer Kitaplar</p>
+                        <p className="font-bold text-4xl text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Benzer Kitaplar</p>
                         {(relatedBooks.loading) && (
                             <div className="flex justify-center items-center h-64">
                                 <ClipLoader size={40} color="#8B5CF6" />

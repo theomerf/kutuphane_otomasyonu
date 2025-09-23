@@ -10,7 +10,7 @@ import Filters, { type FilterSection } from "../../../../components/books/Filter
 import BookPagination from "../../../../components/books/BookPagination";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faEdit, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 
 export default function BooksAdmin() {
@@ -22,7 +22,7 @@ export default function BooksAdmin() {
     const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
     const [filters, setFilters] = useState<FilterSection[]>([]);
     const { up } = useBreakpoint();
-    const [ isDeleted, setIsDeleted ] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
     const [pagination, setPagination] = useState<PaginationHeader>({
         CurrentPage: 1,
         TotalPage: 0,
@@ -118,12 +118,18 @@ export default function BooksAdmin() {
 
     return (
         <div className="flex flex-col">
-            <div className="flex flex- row">
-                <p className="font-semibold text-4xl ml-8 lg:ml-20 text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Kitap Yönetimi</p>
-                <Link to="/admin/books/create" className="button !bg-green-400 hover:scale-105 text-lg font-bold duration-500 self-center ml-auto mr-20">
-                <FontAwesomeIcon icon={faPlus} className="mr-2" />
-                Yeni Kitap Ekle
-                </Link>
+            <div className="flex flex-row mx-8 lg:mx-20">
+                <p className="font-semibold text-4xl text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Kitap Yönetimi</p>
+                <div className="flex flex-row gap-x-4 ml-auto">
+                    <Link to="/admin/dashboard/books" className="button font-bold text-lg self-center hover:scale-105 duration-500">
+                        <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+                        Geri
+                    </Link>
+                    <Link to="/admin/books/create" className="button !bg-green-400 hover:scale-105 text-lg font-bold duration-500 self-center">
+                        <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                        Yeni Kitap Ekle
+                    </Link>
+                </div>
             </div>
             <div className="sm:px-1 px-5 lg:px-20 lg:grid lg:grid-cols-4">
                 <Filters isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} filters={filters} setFilters={setFilters} openSections={openSections} setOpenSections={setOpenSections} isOthersOpen={isOthersOpen} searchInput={searchInput} query={query} setQuery={setQuery} setSearchInput={setSearchInput} debouncedSearch={debouncedSearch} up={up} />

@@ -20,7 +20,7 @@ namespace Services
             _manager = manager;
             _mapper = mapper;
         }
-        public async Task<(IEnumerable<CategoryDto> categories, MetaData metaData)> GetAllCategoriesAsync(CategoryRequestParameters p, bool trackChanges)
+        public async Task<(IEnumerable<CategoryDto> categories, MetaData metaData)> GetAllCategoriesAsync(AdminRequestParameters p, bool trackChanges)
         {
             var categories = await _manager.Category.GetAllCategoriesAsync(p, trackChanges);
             var categoriesDto = _mapper.Map<IEnumerable<CategoryDto>>(categories.categories);

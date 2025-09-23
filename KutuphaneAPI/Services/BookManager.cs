@@ -80,13 +80,12 @@ namespace Services
                 Images = new List<BookImage>()
             };
 
-            // İlişkileri ayarla - Var olan entityleri Attach et
             if (bookDto.AuthorIds != null && bookDto.AuthorIds.Any())
             {
                 foreach (var authorId in bookDto.AuthorIds)
                 {
                     var author = new Author { Id = authorId };
-                    _manager.Author.Attach(author); // Var olan entity olarak işaretle
+                    _manager.Author.Attach(author);
                     book.Authors.Add(author);
                 }
             }
@@ -96,7 +95,7 @@ namespace Services
                 foreach (var categoryId in bookDto.CategoryIds)
                 {
                     var category = new Category { Id = categoryId };
-                    _manager.Category.Attach(category); // Var olan entity olarak işaretle
+                    _manager.Category.Attach(category);
                     book.Categories.Add(category);
                 }
             }
@@ -106,7 +105,7 @@ namespace Services
                 foreach (var tagId in bookDto.TagIds)
                 {
                     var tag = new Tag { Id = tagId };
-                    _manager.Tag.Attach(tag); // Var olan entity olarak işaretle
+                    _manager.Tag.Attach(tag);
                     book.Tags.Add(tag);
                 }
             }
@@ -114,7 +113,6 @@ namespace Services
             _manager.Book.CreateBook(book);
             await _manager.SaveAsync();
 
-            // Resimleri ekle
             if (newFilePaths.Any())
             {
                 bool isFirst = true;
@@ -247,11 +245,24 @@ namespace Services
                 .ToList();
         }
 
-        private Task UpdateBookImagesAsync(Book book, BookDtoForUpdate bookDto, List<string>? newFilePaths)
+        private async Task UpdateBookImagesAsync(Book book, BookDtoForUpdate bookDto, List<string>? newFilePaths)
         {
             if (bookDto.ExistingImageIds != null)
             {
                 var imagesToKeep = book.Images?.Where(img => bookDto.ExistingImageIds.Contains(img.Id)).ToList();
+                if (imagesToKeep != null)
+                {
+                    var imagesToDelete = book.Images?.Except(imagesToKeep).ToList();
+                    foreach (var img in imagesToDelete ?? new List<BookImage>())
+                    {
+                        if (File.Exists(img.ImageUrl))
+                        {
+                            File.Delete(img.ImageUrl);
+                        }
+                        await _manager.Book.DeleteBookImageAsync(img.Id);
+                    }
+                }
+
                 book.Images = imagesToKeep;
             }
             else
@@ -290,7 +301,20 @@ namespace Services
                 }
             }
 
-            return Task.CompletedTask;
+            if (bookDto.IsImagesUrl && bookDto.NewImagesUrl != null && bookDto.NewImagesUrl.Any())
+            {
+                foreach (var imageUrl in bookDto.NewImagesUrl)
+                {
+                    var bookImage = new BookImage
+                    {
+                        BookId = book.Id,
+                        ImageUrl = imageUrl,
+                        IsPrimary = false,
+                        Caption = $"{book.Title} Fotoğrafı"
+                    };
+                    book.Images!.Add(bookImage);
+                }
+            }
         }
     }
 }

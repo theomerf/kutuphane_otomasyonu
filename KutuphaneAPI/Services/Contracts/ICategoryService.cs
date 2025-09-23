@@ -6,7 +6,7 @@ namespace Services.Contracts
 {
     public interface ICategoryService
     {
-        Task<(IEnumerable<CategoryDto> categories, MetaData metaData)> GetAllCategoriesAsync(CategoryRequestParameters p, bool trackChanges);
+        Task<(IEnumerable<CategoryDto> categories, MetaData metaData)> GetAllCategoriesAsync(AdminRequestParameters p, bool trackChanges);
         Task<IEnumerable<CategoryDto>> GetAllCategoriesWithoutPaginationAsync(bool trackChanges);
         Task<int> GetAllCategoriesCountAsync();
         Task<IEnumerable<CategoryDto>> GetMostPopularCategoriesAsync(bool trackChanges);

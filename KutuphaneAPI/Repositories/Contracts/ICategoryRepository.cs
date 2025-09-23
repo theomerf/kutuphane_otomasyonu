@@ -5,7 +5,7 @@ namespace Repositories.Contracts
 {
     public interface ICategoryRepository : IRepositoryBase<Category>
     {
-        Task<(IEnumerable<Category> categories, int count)> GetAllCategoriesAsync(CategoryRequestParameters p, bool trackChanges);
+        Task<(IEnumerable<Category> categories, int count)> GetAllCategoriesAsync(AdminRequestParameters p, bool trackChanges);
         Task<IEnumerable<Category>> GetAllCategoriesWithoutPaginationAsync(bool trackChanges);
         Task<int> GetAllCategoriesCountAsync();
         Task<IEnumerable<Category>> GetMostPopularCategoriesAsync(bool trackChanges);

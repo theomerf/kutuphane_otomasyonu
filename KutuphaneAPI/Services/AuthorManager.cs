@@ -2,6 +2,7 @@
 using Entities.Dtos;
 using Entities.Exceptions;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -17,9 +18,19 @@ namespace Services
             _manager = manager;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<AuthorDto>> GetAllAuthorsAsync(bool trackChanges)
+        public async Task<(IEnumerable<AuthorDto> authors, MetaData metaData)> GetAllAuthorsAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var authors = await _manager.Author.GetAllAuthorsAsync(trackChanges);
+            var authors = await _manager.Author.GetAllAuthorsAsync(p, trackChanges);
+            var authorsDto = _mapper.Map<IEnumerable<AuthorDto>>(authors.authors);
+
+            var pagedAuthors = PagedList<AuthorDto>.ToPagedList(authorsDto, p.PageNumber, p.PageSize, authors.count);
+
+            return (pagedAuthors, pagedAuthors.MetaData);
+        }
+
+        public async Task<IEnumerable<AuthorDto>> GetAllAuthorsWithoutPaginationAsync(bool trackChanges)
+        {
+            var authors = await _manager.Author.GetAllAuthorsWithoutPaginationAsync(trackChanges);
             var authorsDto = _mapper.Map<IEnumerable<AuthorDto>>(authors);
 
             return authorsDto;
@@ -54,7 +65,7 @@ namespace Services
             return author;
         }
 
-        public async Task CreateAuthorAsync(AuthorDto authorDto)
+        public async Task CreateAuthorAsync(AuthorDtoForCreation authorDto)
         {
             var author = _mapper.Map<Author>(authorDto);
 
@@ -70,7 +81,7 @@ namespace Services
             await _manager.SaveAsync();
         }
 
-        public async Task UpdateAuthorAsync(AuthorDto authorDto)
+        public async Task UpdateAuthorAsync(AuthorDtoForUpdate authorDto)
         {
             var author = await GetOneAuthorForServiceAsync(authorDto.Id, true);
 

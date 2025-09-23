@@ -30,6 +30,7 @@ namespace KutuphaneAPI.Infrastructure.Mapper
             CreateMap<Author, AuthorDto>()
                 .ForMember(dest => dest.BookCount, opt => opt.MapFrom(src => src.Books != null ? src.Books.Count : 0))
                 .ReverseMap();
+            CreateMap<AuthorDtoForCreation, Author>();
             CreateMap<Cart, CartDto>()
                 .ForMember(dest => dest.CartLines, opt => opt.MapFrom(src => src.CartLines))
                 .ReverseMap();
@@ -49,7 +50,9 @@ namespace KutuphaneAPI.Infrastructure.Mapper
             CreateMap<Seat, SeatDto>().ReverseMap();
             CreateMap<TimeSlot, TimeSlotDto>().ReverseMap();
             CreateMap<Review, ReviewDto>();
-            CreateMap<Tag, TagDto>();
+            CreateMap<Tag, TagDto>()
+                .ForMember(dest => dest.BookCount, opt => opt.MapFrom(src => src.Books != null ? src.Books.Count : 0));
+            CreateMap<TagDtoForCreation, Tag>();
             CreateMap<BookImage, BookImageDto>();
             CreateMap<Loan, LoanDto>()
                 .ForMember(dest => dest.LoanLines, opt => opt.MapFrom(src => src.LoanLines))

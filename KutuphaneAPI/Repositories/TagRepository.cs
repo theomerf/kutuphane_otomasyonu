@@ -1,6 +1,8 @@
 ﻿using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
+using Repositories.Extensions;
 
 namespace Repositories
 {
@@ -10,13 +12,28 @@ namespace Repositories
         {
         }
 
-        public async Task<IEnumerable<Tag>> GetAllTagsAsync(bool trackChanges)
+        public async Task<(IEnumerable<Tag> tags, int count)> GetAllTagsAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var Tags = await FindAll(trackChanges)
+            var tags = await FindAll(trackChanges)
                 .Include(c => c.Books)
+                .FilterBy(p.SearchTerm, c => c.Name, FilterOperator.Contains)
+                .OrderBy(c => c.Id)
+                .ToPaginate(p.PageSize, p.PageNumber)
                 .ToListAsync();
 
-            return Tags;
+            var count = await CountAsync(false);
+
+            return (tags, count);
+        }
+
+        public async Task<IEnumerable<Tag>> GetAllTagsWithoutPaginationAsync(bool trackChanges)
+        {
+            var tags = await FindAll(trackChanges)
+                .Include(c => c.Books)
+                .OrderBy(c => c.Id)
+                .ToListAsync();
+
+            return tags;
         }
 
         public async Task<int> GetAllTagsCountAsync() => await CountAsync(false);

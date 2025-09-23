@@ -34,5 +34,7 @@ namespace Entities.Dtos
         public ICollection<int>? CategoryIds { get; init; }
         public ICollection<int>? TagIds { get; init; }
         public ICollection<IFormFile>? NewImages { get; init; }
+        public bool IsImagesUrl { get; init; } = false;
+        public ICollection<string>? NewImagesUrl { get; init; }
     }
 }

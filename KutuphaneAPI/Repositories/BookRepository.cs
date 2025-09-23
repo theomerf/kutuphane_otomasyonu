@@ -64,6 +64,15 @@ namespace Repositories
             return books;
         }
 
+        public async Task DeleteBookImageAsync(int id)
+        {
+            var image = await _context.Set<BookImage>().FirstOrDefaultAsync(img => img.Id == id);
+            if (image != null)
+            {
+                _context.Set<BookImage>().Remove(image);
+            }
+        }
+
         public void CreateBook(Book book)
         {
             Create(book);

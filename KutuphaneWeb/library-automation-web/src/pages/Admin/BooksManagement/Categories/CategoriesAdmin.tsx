@@ -6,7 +6,7 @@ import { useDebounce } from "../../../../hooks/useDebounce";
 import { useBreakpoint } from "../../../../hooks/useBreakpoint";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faEdit, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import type { RequestParameters } from "../../../../types/bookRequestParameters";
 import type Category from "../../../../types/category";
@@ -117,24 +117,30 @@ export default function CategoriesAdmin() {
 
     return (
         <div className="flex flex-col">
-            <div className="flex flex- row">
-                <p className="font-semibold text-4xl ml-8 lg:ml-20 text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Kategori Yönetimi</p>
-                <div className="flex flex-row ml-auto mr-auto content-center justify-center">
-                    <div className="flex flex-col  content-center justify-center relative">
+            <div className="flex flex-row mx-8 lg:mx-20">
+                <p className="font-semibold text-4xl  text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Kategori Yönetimi</p>
+                <div className="flex flex-row ml-auto mr-auto content-center justify-center bg-white px-4 py-3 rounded-3xl shadow-lg mb-3 w-2/6">
+                    <div className="flex flex-col w-full content-center justify-center relative">
                         <input
                             type="text"
                             value={searchInput}
                             onChange={handleSearchInputChange}
-                            className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 text-base transform transition-all duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)] focus:scale-[102%] focus:bg-white/100"
+                            className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 w-full text-base transform transition-all placeholder:text-gray-600 duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)] focus:scale-[102%] focus:bg-white/100"
                             placeholder="Kategori ara..."
                         />
                         {searchInput && <button onClick={() => setSearchInput("")} className="bg-red-600 right-2 rounded-full w-6 h-6 absolute text-white hover:scale-105 duration-300">X</button>}
                     </div>
                 </div>
-                <Link to="/admin/categories/create" className="button !bg-green-400 hover:scale-105 text-lg font-bold duration-500 self-center ml-auto mr-20">
-                    <FontAwesomeIcon icon={faPlus} className="mr-2" />
-                    Yeni Kategori Ekle
-                </Link>
+              <div className="flex flex-row gap-x-4 ml-auto">
+                    <Link to="/admin/dashboard/books" className="button font-bold text-lg self-center hover:scale-105 duration-500">
+                        <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+                        Geri
+                    </Link>
+                    <Link to="/admin/categories/create" className="button !bg-green-400 hover:scale-105 text-lg font-bold duration-500 self-center">
+                        <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                        Yeni Kategori Ekle
+                    </Link>
+                </div>
             </div>
             <div className="sm:px-1 px-5 lg:px-20">
 

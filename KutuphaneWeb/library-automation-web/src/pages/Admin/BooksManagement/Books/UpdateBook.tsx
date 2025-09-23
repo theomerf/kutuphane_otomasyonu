@@ -26,7 +26,6 @@ export function UpdateBook() {
         loading: false
     });
 
-    // Yeni state'ler
     const [allAuthors, setAllAuthors] = useState<Author[]>([]);
     const [allCategories, setAllCategories] = useState<Category[]>([]);
     const [allTags, setAllTags] = useState<Tag[]>([]);
@@ -38,6 +37,9 @@ export function UpdateBook() {
     const [selectedTagId, setSelectedTagId] = useState<number | null>(null);
     const [existingImages, setExistingImages] = useState<any[]>([]);
     const [newImages, setNewImages] = useState<File[]>([]);
+    const [isImagesUrl, setIsImagesUrl] = useState<boolean>(false);
+    const [newImagesUrl, setnewImagesUrl] = useState<string[]>([]);
+    const [imageUrl, setImageUrl] = useState<string>("");
     const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -52,13 +54,12 @@ export function UpdateBook() {
         }
     });
 
-    // Backend'den listeleri çek
     const fetchSelectionLists = async () => {
         try {
             const [authorsRes, categoriesRes, tagsRes] = await Promise.all([
-                requests.authors.getAllAuthors(),
+                requests.authors.getAllAuthorsWithoutPagination(),
                 requests.categories.getAllCategoriesWithoutPagination(),
-                requests.tags.getAllTags(),
+                requests.tags.getAllTagsWithoutPagination(),
             ]);
 
             setAllAuthors(authorsRes.data || []);
@@ -87,7 +88,6 @@ export function UpdateBook() {
                 summary: bookDetail.book.summary || "",
             });
 
-            // Mevcut seçimleri set et
             setSelectedAuthors(bookDetail.book.authors || []);
             setSelectedCategories(bookDetail.book.categories || []);
             setSelectedTags(bookDetail.book.tags || []);
@@ -123,10 +123,7 @@ export function UpdateBook() {
         try {
             const form = new FormData();
 
-            // Kitap ID'sini ekle
             form.append('Id', bookDetail.book!.id!.toString());
-
-            // Temel form alanları
             form.append('Title', formData.title);
             form.append('ISBN', formData.isbn);
             form.append('AvailableCopies', formData.availableCopies.toString());
@@ -134,8 +131,8 @@ export function UpdateBook() {
             form.append('Location', formData.location);
             form.append('PublishedDate', formData.publishedDate);
             form.append('Summary', formData.summary);
+            form.append('IsImagesUrl', isImagesUrl.toString());
 
-            // Seçili ID'leri ekle
             selectedAuthors.forEach((author, index) => {
                 form.append(`AuthorIds[${index}]`, author.id!.toString());
             });
@@ -148,15 +145,18 @@ export function UpdateBook() {
                 form.append(`TagIds[${index}]`, tag.id!.toString());
             });
 
-            // Mevcut fotoğrafları koru
             existingImages.forEach((image, index) => {
                 form.append(`ExistingImageIds[${index}]`, image.id!.toString());
             });
 
-            // Yeni fotoğrafları ekle
             newImages.forEach((file) => {
                 form.append('NewImages', file);
             });
+
+            newImagesUrl.forEach((url, index) => {
+                form.append(`NewImagesUrl[${index}]`, url);
+            });
+
 
             await requests.books.updateBook(form);
 
@@ -169,7 +169,6 @@ export function UpdateBook() {
         }
     };
 
-    // Yazar ekleme
     const addAuthor = () => {
         if (selectedAuthorId && !selectedAuthors.find(a => a.id === selectedAuthorId)) {
             const author = allAuthors.find(a => a.id === selectedAuthorId);
@@ -180,7 +179,6 @@ export function UpdateBook() {
         }
     };
 
-    // Kategori ekleme
     const addCategory = () => {
         if (selectedCategoryId && !selectedCategories.find(c => c.id === selectedCategoryId)) {
             const category = allCategories.find(c => c.id === selectedCategoryId);
@@ -191,7 +189,6 @@ export function UpdateBook() {
         }
     };
 
-    // Etiket ekleme
     const addTag = () => {
         if (selectedTagId && !selectedTags.find(t => t.id === selectedTagId)) {
             const tag = allTags.find(t => t.id === selectedTagId);
@@ -202,7 +199,6 @@ export function UpdateBook() {
         }
     };
 
-    // Öğe silme fonksiyonları
     const removeAuthor = (authorId: number | null) => {
         setSelectedAuthors(selectedAuthors.filter(a => a.id !== authorId));
     };
@@ -215,13 +211,11 @@ export function UpdateBook() {
         setSelectedTags(selectedTags.filter(t => t.id !== tagId));
     };
 
-    // Fotoğraf işlemleri
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(event.target.files || []);
         if (files.length > 0) {
             setNewImages([...newImages, ...files]);
 
-            // Önizlemeler oluştur
             files.forEach(file => {
                 const reader = new FileReader();
                 reader.onload = (e) => {
@@ -235,6 +229,7 @@ export function UpdateBook() {
     const removeNewImage = (index: number) => {
         setNewImages(newImages.filter((_, i) => i !== index));
         setImagePreviews(imagePreviews.filter((_, i) => i !== index));
+        setnewImagesUrl(newImagesUrl.filter((_, i) => i !== index));
     };
 
     const removeExistingImage = (imageId: number | null) => {
@@ -270,7 +265,6 @@ export function UpdateBook() {
                         </div>
                         <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">
 
-                            {/* Mevcut form alanları - Değişiklik YOK */}
                             <div className="flex flex-row gap-x-10">
                                 <div className="flex flex-col w-1/2">
                                     <label htmlFor="title" className="font-bold text-gray-500 text-base">Kitap Başlığı</label>
@@ -349,9 +343,6 @@ export function UpdateBook() {
                                 {errors.summary && <span className="text-red-700 text-left mt-1">{errors.summary?.message?.toString()}</span>}
                             </div>
 
-                            {/* YENİ BÖLÜMLER: Dinamik Seçim Alanları */}
-
-                            {/* Yazarlar */}
                             <div className="flex flex-col w-full">
                                 <label className="font-bold text-gray-500 text-base mb-4">Yazarlar</label>
                                 <div className="flex gap-x-4 mb-4">
@@ -374,7 +365,6 @@ export function UpdateBook() {
                                         <FontAwesomeIcon icon={faPlus} />
                                     </button>
                                 </div>
-                                {/* Seçili Yazarlar */}
                                 <div className="flex flex-wrap gap-2">
                                     {selectedAuthors.map(author => (
                                         <div key={author.id} className="flex items-center bg-violet-100 text-violet-800 px-3 py-2 rounded-lg border border-violet-200">
@@ -391,7 +381,6 @@ export function UpdateBook() {
                                 </div>
                             </div>
 
-                            {/* Kategoriler */}
                             <div className="flex flex-col w-full">
                                 <label className="font-bold text-gray-500 text-base mb-4">Kategoriler</label>
                                 <div className="flex gap-x-4 mb-4">
@@ -414,7 +403,6 @@ export function UpdateBook() {
                                         <FontAwesomeIcon icon={faPlus} />
                                     </button>
                                 </div>
-                                {/* Seçili Kategoriler */}
                                 <div className="flex flex-wrap gap-2">
                                     {selectedCategories.map(category => (
                                         <div key={category.id} className="flex items-center bg-blue-100 text-blue-800 px-3 py-2 rounded-lg border border-blue-200">
@@ -431,7 +419,6 @@ export function UpdateBook() {
                                 </div>
                             </div>
 
-                            {/* Etiketler */}
                             <div className="flex flex-col w-full">
                                 <label className="font-bold text-gray-500 text-base mb-4">Etiketler</label>
                                 <div className="flex gap-x-4 mb-4">
@@ -454,7 +441,6 @@ export function UpdateBook() {
                                         <FontAwesomeIcon icon={faPlus} />
                                     </button>
                                 </div>
-                                {/* Seçili Etiketler */}
                                 <div className="flex flex-wrap gap-2">
                                     {selectedTags.map(tag => (
                                         <div key={tag.id} className="flex items-center bg-green-100 text-green-800 px-3 py-2 rounded-lg border border-green-200">
@@ -471,30 +457,60 @@ export function UpdateBook() {
                                 </div>
                             </div>
 
-                            {/* Fotoğraf Yönetimi */}
                             <div className="flex flex-col w-full">
                                 <label className="font-bold text-gray-500 text-base mb-4">Fotoğraflar</label>
 
-                                {/* Yeni Fotoğraf Yükleme */}
-                                <div className="mb-6">
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        multiple
-                                        onChange={handleImageUpload}
-                                        className="hidden"
-                                        id="imageUpload"
-                                    />
-                                    <label
-                                        htmlFor="imageUpload"
-                                        className="button inline-flex items-center cursor-pointer hover:scale-105"
-                                    >
-                                        <FontAwesomeIcon icon={faUpload} className="mr-2" />
-                                        Fotoğraf Ekle
-                                    </label>
+                                <div className="flex flex-row gap-x-4 mb-6">
+                                    <div className="flex flex-row gap-x-1">
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            multiple
+                                            onChange={handleImageUpload}
+                                            className="hidden"
+                                            id="imageUpload"
+                                        />
+                                        <label
+                                            htmlFor="imageUpload"
+                                            className="button inline-flex items-center cursor-pointer hover:scale-105"
+                                        >
+                                            <FontAwesomeIcon icon={faUpload} className="mr-2" />
+                                            Fotoğraf Ekle
+                                        </label>
+                                    </div>
+
+                                    <div className="flex flex-row gap-x-1">
+                                        <input
+                                            type="checkbox"
+                                            id="isImagesUrl"
+                                            onChange={(e) => setIsImagesUrl(e.target.checked)}
+                                            name="isImagesUrl"
+                                        />
+                                        <label
+                                            htmlFor="isImagesUrl"
+                                            className="self-center font-semibold"
+                                        >
+                                            <FontAwesomeIcon icon={faUpload} className="mr-1" />
+                                            URL'den Yükle
+                                        </label>
+                                    </div>
+
                                 </div>
 
-                                {/* Mevcut Fotoğraflar */}
+                                {isImagesUrl &&
+                                    <div className="flex flex-row gap-x-4 mb-6">
+                                        <label htmlFor="newImagesUrl" className="font-bold self-center text-gray-500 w-1/5 text-base">Fotoğraf URL</label>
+                                        <input type="text" onChange={(e) => setImageUrl(e.target.value)} id="newImagesUrl" value={imageUrl} className="input w-full" />
+                                        <button
+                                            type="button"
+                                            onClick={() => { setnewImagesUrl([...newImagesUrl, imageUrl]); setImagePreviews([...imagePreviews, imageUrl]); setImageUrl(""); }}
+                                            className="button px-6 hover:scale-105"
+                                        >
+                                            <FontAwesomeIcon icon={faPlus} />
+                                        </button>
+                                    </div>
+                                }
+
                                 {existingImages.length > 0 && (
                                     <div>
                                         <h4 className="font-semibold text-gray-600 mb-3">Mevcut Fotoğraflar</h4>
@@ -519,8 +535,7 @@ export function UpdateBook() {
                                     </div>
                                 )}
 
-                                {/* Yeni Eklenen Fotoğraflar */}
-                                {newImages.length > 0 && (
+                                {(imagePreviews.length > 0 || newImages.length > 0) && (
                                     <div>
                                         <h4 className="font-semibold text-gray-600 mb-3">Yeni Fotoğraflar</h4>
                                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

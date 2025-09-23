@@ -12,7 +12,7 @@ namespace Repositories
         {
         }
 
-        public async Task<(IEnumerable<Category> categories, int count)> GetAllCategoriesAsync(CategoryRequestParameters p, bool trackChanges)
+        public async Task<(IEnumerable<Category> categories, int count)> GetAllCategoriesAsync(AdminRequestParameters p, bool trackChanges)
         {
             var categories = await FindAll(trackChanges)
                 .Include(c => c.Books)

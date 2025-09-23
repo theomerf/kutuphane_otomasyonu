@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faCheck, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import type Category from "../../../../types/category";
@@ -67,7 +67,7 @@ export function CreateCategory() {
             <form method="POST" onSubmit={handleSubmit(handleCategoryCreation)} noValidate>
                 <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
                     <p className="text-white font-bold text-3xl">
-                        <FontAwesomeIcon icon={faLayerGroup} className="mr-2" />
+                        <FontAwesomeIcon icon={faPlus} className="mr-2" />
                         Yeni Kategori Ekle
                     </p>
                 </div>

@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
+using System.Linq.Dynamic.Core;
+using System.Text.Json;
 
 namespace Presentation.Controllers
 {
@@ -15,10 +18,18 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllTags()
+        public async Task<IActionResult> GetAllTags([FromQuery] AdminRequestParameters p)
         {
-            var tags = await _manager.TagService.GetAllTagsAsync(false);
+            var pagedResult = await _manager.TagService.GetAllTagsAsync(p, false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
 
+            return Ok(pagedResult.tags);
+        }
+
+        [HttpGet("nopagination")]
+        public async Task<IActionResult> GetAllTagsWithoutPagination()
+        {
+            var tags = await _manager.TagService.GetAllTagsWithoutPaginationAsync(false);
             return Ok(tags);
         }
 

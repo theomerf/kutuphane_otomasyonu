@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Presentation.Controllers
@@ -20,9 +23,18 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAuthors()
+        public async Task<IActionResult> GetAllAuthors([FromQuery] AdminRequestParameters p)
         {
-            var authors = await _manager.AuthorService.GetAllAuthorsAsync(false);
+            var pagedResult = await _manager.AuthorService.GetAllAuthorsAsync(p, false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+
+            return Ok(pagedResult.authors);
+        }
+
+        [HttpGet("nopagination")]
+        public async Task<IActionResult> GetAllAuthorsWithoutPagination()
+        {
+            var authors = await _manager.AuthorService.GetAllAuthorsWithoutPaginationAsync(false);
             return Ok(authors);
         }
 

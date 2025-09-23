@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch, type RootState } from "../../store/store";
 import requests from "../../services/api";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { clearCart } from "../Cart/cartSlice";
 
 export default function Checkout() {
@@ -114,10 +114,10 @@ export default function Checkout() {
                                 <FontAwesomeIcon icon={faCheck} className="mr-2" />
                                 Kiralamayı Tamamla
                             </button>
-                            <button className="button w-1/2 !bg-red-500 font-bold !py-4 text-lg hover:scale-105 duration-300">
+                            <Link to="/cart" className="button w-1/2 !bg-red-500 text-center font-bold !py-4 text-lg hover:scale-105 duration-300">
                                 <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                                 Geri Dön
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

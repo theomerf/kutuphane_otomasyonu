@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faCheck, faPlus, faTimes, faTrash, faUpload, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faCheck, faPlus, faTimes, faTrash, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import type Author from "../../../../types/author";
@@ -42,9 +42,9 @@ export function CreateBook() {
         try {
             setIsLoading(true);
             const [authorsRes, categoriesRes, tagsRes] = await Promise.all([
-                requests.authors.getAllAuthors(),
+                requests.authors.getAllAuthorsWithoutPagination(),
                 requests.categories.getAllCategoriesWithoutPagination(),
-                requests.tags.getAllTags(),
+                requests.tags.getAllTagsWithoutPagination(),
             ]);
 
             setAllAuthors(authorsRes.data || []);
@@ -179,7 +179,7 @@ export function CreateBook() {
             <form method="POST" onSubmit={handleSubmit(handleBookCreation)} noValidate>
                 <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
                     <p className="text-white font-bold text-3xl">
-                        <FontAwesomeIcon icon={faBookOpen} className="mr-2" />
+                        <FontAwesomeIcon icon={faPlus} className="mr-2" />
                         Yeni Kitap Ekle
                     </p>
                 </div>
