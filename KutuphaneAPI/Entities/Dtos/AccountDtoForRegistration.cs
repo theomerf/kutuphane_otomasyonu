@@ -2,7 +2,7 @@
 
 namespace Entities.Dtos
 {
-    public record AccountForRegistrationDto
+    public record AccountDtoForRegistration
     {
         [Required(ErrorMessage = "Ad gereklidir.")]
         [MinLength(2, ErrorMessage = "Ad minimum 2 karakter olmalıdır.")]

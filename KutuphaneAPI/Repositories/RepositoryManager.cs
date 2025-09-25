@@ -14,8 +14,9 @@ namespace Repositories
         private readonly ISeatRepository _seatRepository;
         private readonly ILoanRepository _loanRepository;
         private readonly IPenaltyRepository _penaltyRepository;
+        private readonly IAccountRepository accountRepository;
 
-        public RepositoryManager(RepositoryContext context, IBookRepository bookRepository, ICategoryRepository categoryRepository, IAuthorRepository authorRepository, ICartRepository cartRepository, IReservationRepository reservationRepository, ISeatRepository seatRepository, ILoanRepository loanRepository, IPenaltyRepository penaltyRepository, ITagRepository tagRepository)
+        public RepositoryManager(RepositoryContext context, IBookRepository bookRepository, ICategoryRepository categoryRepository, IAuthorRepository authorRepository, ICartRepository cartRepository, IReservationRepository reservationRepository, ISeatRepository seatRepository, ILoanRepository loanRepository, IPenaltyRepository penaltyRepository, ITagRepository tagRepository, IAccountRepository accountRepository)
         {
             _context = context;
             _bookRepository = bookRepository;
@@ -27,6 +28,7 @@ namespace Repositories
             _loanRepository = loanRepository;
             _penaltyRepository = penaltyRepository;
             _tagRepository = tagRepository;
+            this.accountRepository = accountRepository;
         }
 
         public IBookRepository Book => _bookRepository;
@@ -38,6 +40,7 @@ namespace Repositories
         public ISeatRepository Seat => _seatRepository;
         public ILoanRepository Loan => _loanRepository;
         public IPenaltyRepository Penalty => _penaltyRepository;
+        public IAccountRepository Account => accountRepository;
 
         public void Save()
         {

@@ -1,0 +1,237 @@
+import { useEffect, useState } from "react";
+import requests from "../../../../services/api";
+import { ClipLoader } from "react-spinners";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import type Account from "../../../../types/account";
+
+type AccountDetail = {
+    error: string | null;
+    account?: Account | null;
+    loading: boolean;
+}
+
+export function UpdateAccount() {
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [roles, setRoles] = useState<string[]>([]);
+    const [accountDetail, setAccountDetail] = useState<AccountDetail>({
+        error: null,
+        account: null,
+        loading: false,
+    });
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+        defaultValues: {
+            id: "",
+            userName: "",
+            avatarUrl: "",
+            firstName: "",
+            lastName: "",
+            phoneNumber: "",
+            email: "",
+            birthDate: "",
+            roles: [] as string[],
+        }
+    });
+
+    const fetchAccount = async (id: string) => {
+        setAccountDetail({ error: null, account: null, loading: true });
+        try {
+            const response = await requests.account.getOneAccount(id);
+            console.log(response.data);
+            setAccountDetail({ error: null, account: response.data as Account, loading: false });
+        } catch (error: any) {
+            console.error('Hata:', error);
+            setAccountDetail({ error: 'Kullanıcı bilgileri alınırken hata oluştu.', account: null, loading: false });
+        }
+    };
+
+    useEffect(() => {
+        if (accountDetail.account) {
+            reset({
+                id: accountDetail.account?.id,
+                userName: accountDetail.account?.userName,
+                avatarUrl: accountDetail.account?.avatarUrl,
+                firstName: accountDetail.account?.firstName,
+                lastName: accountDetail.account?.lastName,
+                phoneNumber: accountDetail.account?.phoneNumber,
+                email: accountDetail.account?.email,
+                birthDate: accountDetail.account?.birthDate ? new Date(accountDetail.account?.birthDate).toISOString().split('T')[0] : "",
+                roles: accountDetail.account?.roles,
+            });
+        }
+    }, [accountDetail.account, reset]);
+
+    const fetchRoles = async () => {
+        try {
+            const response = await requests.account.getAllRoles();
+            return response.data as string[];
+        } catch (error) {
+            console.error('Roller alınırken hata oluştu:', error);
+            return [];
+        }
+    };
+
+    useEffect(() => {
+        const loadRoles = async () => {
+            const roles = await fetchRoles();
+            if (roles.length > 0) {
+                setRoles(roles);
+            }
+        };
+        const id = window.location.pathname.split('/').pop() || "";
+        fetchAccount(id);
+        loadRoles();
+    }, []);
+
+    const handleAccountUpdate = async (formData: any) => {
+        try {
+            setIsLoading(true);
+
+            await requests.account.updateAccount(formData);
+
+            toast.success('Kullanıcı başarıyla güncellendi!');
+            navigate('/admin/accounts');
+
+        } catch (error: any) {
+            console.error('Oluşturma hatası:', error);
+            toast.error('Kullanıcı güncellenirken hata oluştu.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <ClipLoader size={40} color="#8B5CF6" />
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex flex-col px-8 lg:px-80">
+            <form method="POST" onSubmit={handleSubmit(handleAccountUpdate)} noValidate>
+                <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
+                    <p className="text-white font-bold text-3xl">
+                        <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                        Kullanıcı Adı: {accountDetail.account?.userName} - Güncelle
+                    </p>
+                </div>
+                <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">
+                    <div className="flex flex-row gap-x-10">
+                        <div className="flex flex-col w-1/2">
+                            <label htmlFor="userName" className="font-bold text-gray-500 text-base">Kullanıcı Adı</label>
+                            <input type="text" {...register("userName", {
+                                required: "Kullanıcı adı gereklidir.",
+                                minLength: {
+                                    value: 3,
+                                    message: "Kullanıcı adı min. 3 karakter olmalıdır."
+                                },
+                                maxLength: {
+                                    value: 20,
+                                    message: "Kullanıcı adı max. 20 karakter olmalıdır."
+                                }
+                            })} id="userName" name="userName" className="input w-full mt-4" />
+                            {errors.userName && <span className="text-red-700 text-left mt-1">{errors.userName?.message?.toString()}</span>}
+                        </div>
+                        <div className="flex flex-col w-1/2">
+                            <label htmlFor="birthDate" className="font-bold text-gray-500 text-base">Doğum Tarihi</label>
+                            <input type="date" {...register("birthDate", {
+                                required: "Doğum tarihi gereklidir.",
+                            })} id="birthDate" name="birthDate" className="input w-full mt-4" />
+                            {errors.birthDate && <span className="text-red-700 text-left mt-1">{errors.birthDate?.message?.toString()}</span>}
+                        </div>
+                    </div>
+                    <div className="flex flex-row gap-x-10">
+                        <div className="flex flex-col w-1/2">
+                            <label htmlFor="firstName" className="font-bold text-gray-500 text-base">Ad</label>
+                            <input type="text" {...register("firstName", {
+                                required: "Ad gereklidir.",
+                                minLength: {
+                                    value: 2,
+                                    message: "Ad minimum 2 karakter olmalıdır."
+                                },
+                                maxLength: {
+                                    value: 13,
+                                    message: "Ad en fazla 20 karakter olmalıdır."
+                                }
+                            })} id="firstName" name="firstName" className="input w-full mt-4" />
+                            {errors.firstName && <span className="text-red-700 text-left mt-1">{errors.firstName?.message?.toString()}</span>}
+                        </div>
+                        <div className="flex flex-col w-1/2">
+                            <label htmlFor="lastName" className="font-bold text-gray-500 text-base">Soyad</label>
+                            <input type="text" {...register("lastName", {
+                                required: "Soyad gereklidir.",
+                                min: {
+                                    value: 2,
+                                    message: "Soyad minimum 2 karakter olmalıdır."
+                                },
+                                max: {
+                                    value: 20,
+                                    message: "Soyad en fazla 20 karakter olmalıdır."
+                                },
+                            })} id="lastName" name="lastName" className="input w-full mt-4" />
+                            {errors.lastName && <span className="text-red-700 text-left mt-1">{errors.lastName?.message?.toString()}</span>}
+                        </div>
+                    </div>
+                    <div className="flex flex-row gap-x-10">
+                        <div className="flex flex-col w-1/2">
+                            <label htmlFor="phoneNumber" className="font-bold text-gray-500 text-base">Telefon Numarası</label>
+                            <input type="text" {...register("phoneNumber", {
+                                required: "Telefon numarası gereklidir.",
+                            })} id="phoneNumber" name="phoneNumber" className="input w-full mt-4" />
+                            {errors.phoneNumber && <span className="text-red-700 text-left mt-1">{errors.phoneNumber?.message?.toString()}</span>}
+                        </div>
+                        <div className="flex flex-col w-1/2">
+                            <label htmlFor="email" className="font-bold text-gray-500 text-base">E-Posta</label>
+                            <input type="text" {...register("email", {
+                                required: "Email gereklidir.",
+                            })} id="email" name="email" className="input w-full mt-4" />
+                            {errors.email && <span className="text-red-700 text-left mt-1">{errors.email?.message?.toString()}</span>}
+                        </div>
+                    </div>
+
+
+                    <div className="flex flex-col w-full">
+                        <label htmlFor="roles" className="font-bold text-gray-500 text-base">Roller</label>
+                        {roles.length > 0 && roles.map((role) => (
+                            <div key={role} className="flex items-center mt-2">
+                                <input type="checkbox" value={role} {...register("roles", {
+                                    required: "En az bir rol seçilmelidir."
+                                })} id={role} name="roles" className="h-4 w-4 text-violet-600 focus:ring-violet-500 border-gray-300 rounded" />
+                                <label htmlFor={role} className="ml-2 block text-gray-700">{role}</label>
+                            </div>
+                        ))}
+                        {errors.roles && <span className="text-red-700 text-left mt-1">{errors.roles?.message?.toString()}</span>}
+                    </div>
+
+                    <div className="flex flex-row mt-10 gap-x-4 px-20">
+                        <button
+                            type="submit"
+                            className="button w-1/2 font-bold text-lg !py-4 hover:scale-105 duration-300"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? (
+                                <ClipLoader size={20} color="#fff" />
+                            ) : (
+                                <>
+                                    <FontAwesomeIcon icon={faCheck} className="mr-2" />
+                                    Onayla
+                                </>
+                            )}
+                        </button>
+                        <Link to="/admin/accounts" className="button w-1/2 !bg-red-500 font-bold !py-4 text-center text-lg hover:scale-105 duration-300">
+                            <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+                            Geri Dön
+                        </Link>
+                    </div>
+                </div>
+            </form>
+        </div>
+    );
+}

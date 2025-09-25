@@ -37,6 +37,9 @@ import { UpdateAuthor } from './pages/Admin/BooksManagement/Authors/UpdateAuthor
 import TagsAdmin from './pages/Admin/BooksManagement/Tags/TagsAdmin.tsx'
 import { CreateTag } from './pages/Admin/BooksManagement/Tags/CreateTag.tsx'
 import { UpdateTag } from './pages/Admin/BooksManagement/Tags/UpdateTag.tsx'
+import AccountsAdmin from './pages/Admin/AccountsManagement/Accounts/AccountsAdmin.tsx'
+import { CreateAccount } from './pages/Admin/AccountsManagement/Accounts/CreateAccount.tsx'
+import { UpdateAccount } from './pages/Admin/AccountsManagement/Accounts/UpdateAccount.tsx'
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -124,9 +127,13 @@ function App() {
             <Route path="/admin/tags" element={<TagsAdmin />}></Route>
             <Route path="/admin/tags/create" element={<CreateTag />}></Route>
             <Route path="/admin/tags/update/:id" element={<UpdateTag />}></Route>
+            <Route path="/admin/accounts" element={<AccountsAdmin />}></Route>
+            <Route path="/admin/accounts/create" element={<CreateAccount />}></Route>
+            <Route path="/admin/accounts/update/:id" element={<UpdateAccount />}></Route>
             <Route path="/admin/*" element={<NotFound />}></Route>
           </Route>
         </Route>
+        
         <Route element={<MainLayout isAdmin={isAdmin} />}>
           <Route path="/" element={<Home />} ></Route>
           <Route path="/books" element={<Books />}></Route>

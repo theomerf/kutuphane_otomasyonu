@@ -5,12 +5,30 @@ import { Link } from "react-router-dom";
 import requests from "../../../services/api";
 import { useEffect, useState } from "react";
 
+interface DashboardStats {
+    booksCount: number;
+    accountsCount: number;
+    reservationsCount: number;
+}
+
 export default function Dashboard() {
-    const [booksCount, setBooksCount] = useState<number>(0);
+    const [dashboardStats, setDashboardStats] = useState<DashboardStats>({
+        booksCount: 0,
+        accountsCount: 0,
+        reservationsCount: 0
+    });
     const fetchStats = async () => {
         try {
-            const response = await requests.books.countBooks();
-            setBooksCount(response.data as number);
+            const [booksRes, accountsRes] = await Promise.all([
+                requests.books.countBooks(),
+                requests.account.countAccounts(),
+            ]);
+            
+            setDashboardStats({
+                booksCount: booksRes.data,
+                accountsCount: accountsRes.data,
+                reservationsCount: 50
+            });
         }
         catch (error) {
             console.error("Error fetching book count:", error);
@@ -30,7 +48,7 @@ export default function Dashboard() {
                         <FontAwesomeIcon icon={faBook} className="text-green-400 text-5xl" />
                     </p>
                     <div className="flex flex-col text-center gap-y-2">
-                        <p className="ml-2 text-gray-500 font-bold text-3xl">{booksCount}</p>
+                        <p className="ml-2 text-gray-500 font-bold text-3xl">{dashboardStats.booksCount}</p>
                         <p className="ml-2 text-gray-500 font-bold text-xl">Kitap</p>
                     </div>
                     <div className="flex flex-row mt-5 justify-center">
@@ -42,11 +60,11 @@ export default function Dashboard() {
                         <FontAwesomeIcon icon={faUser} className="text-red-400 text-5xl" />
                     </p>
                     <div className="flex flex-col text-center gap-y-2">
-                        <p className="ml-2 text-gray-500 font-bold text-3xl">20</p>
+                        <p className="ml-2 text-gray-500 font-bold text-3xl">{dashboardStats.accountsCount}</p>
                         <p className="ml-2 text-gray-500 font-bold text-xl">Kullanıcı</p>
                     </div>
                     <div className="flex flex-row mt-5 justify-center">
-                        <Link to="/admin/books" className="button !bg-red-400 hover:scale-105 text-lg font-semibold duration-500">Kullanıcıları Yönet</Link>
+                        <Link to="/admin/accounts" className="button !bg-red-400 hover:scale-105 text-lg font-semibold duration-500">Kullanıcıları Yönet</Link>
                     </div>
                 </div>
                 <div className="flex flex-col gap-y-4 rounded-lg shadow-xl bg-white py-8 border-2 border-gray-200 hover:scale-105 duration-500">
@@ -58,7 +76,7 @@ export default function Dashboard() {
                         <p className="ml-2 text-gray-500 font-bold text-xl">Rezervasyon</p>
                     </div>
                     <div className="flex flex-row mt-5 justify-center">
-                        <Link to="/admin/books" className="button !bg-orange-400 hover:scale-105 text-lg font-semibold duration-500">Rezervasyonları Yönet</Link>
+                        <Link to="/admin/reservations" className="button !bg-orange-400 hover:scale-105 text-lg font-semibold duration-500">Rezervasyonları Yönet</Link>
                     </div>
                 </div>
             </div>

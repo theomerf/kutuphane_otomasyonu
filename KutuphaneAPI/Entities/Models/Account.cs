@@ -8,7 +8,7 @@ namespace Entities.Models
         public String? FirstName { get; set; }
         public String? LastName { get; set; }
         public DateTime MembershipDate { get; set; } = DateTime.UtcNow;
-        public DateTime? BirthDate { get; set; }
+        public DateOnly? BirthDate { get; set; }
         public DateTime? LastLoginDate { get; set; }
         public String? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }

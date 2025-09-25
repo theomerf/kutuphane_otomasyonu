@@ -49,6 +49,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<ISeatRepository, SeatRepository>();
             services.AddScoped<ILoanRepository, LoanRepository>();
             services.AddScoped<IPenaltyRepository, PenaltyRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
         }
 
         public static void ConfigureServiceRegistration(this IServiceCollection services)

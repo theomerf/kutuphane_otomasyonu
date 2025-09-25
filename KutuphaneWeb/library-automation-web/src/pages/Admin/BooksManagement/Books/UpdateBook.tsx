@@ -14,7 +14,6 @@ import { toast } from "react-toastify";
 type BookDetail = {
     error: string | null;
     book?: Book | null;
-    relatedBookList?: Book[] | null;
     loading: boolean;
 }
 

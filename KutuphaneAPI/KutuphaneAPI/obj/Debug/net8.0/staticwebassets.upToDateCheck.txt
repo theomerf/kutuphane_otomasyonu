@@ -1,3 +1,4 @@
+wwwroot\images\avatars\default.png
 wwwroot\images\books\1.jpg
 wwwroot\images\books\2.jpg
 wwwroot\images\books\3.jpg

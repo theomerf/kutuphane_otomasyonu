@@ -171,7 +171,15 @@ const account = {
     login: (formData: any) => methods.post("account/login", formData),
     register: (formData: any) => methods.post("account/register", formData),
     getUser: (userName: string) => methods.get(`account/${userName}`),
-    refresh: (user: LoginResponse) => methods.post("account/refresh", user)
+    refresh: (user: LoginResponse) => methods.post("account/refresh", user),
+    getAllAccounts: (query: URLSearchParams, signal?: AbortSignal) => methods.get("admin/accounts", { params: query }, signal),
+    countAccounts: (signal?: AbortSignal) => methods.get("account/count", {}, signal),
+    createAccount: (accountDto: any) => methods.post("admin/accounts/create", accountDto),
+    updateAccount: (accountDto: any) => methods.put("admin/accounts/update", accountDto),
+    deleteAccount: (id: string) => methods.delete(`admin/accounts/delete/${id}`),
+    resetPassword: (resetPasswordDto: any) => methods.post("admin/accounts/reset-password", resetPasswordDto),
+    getOneAccount: (id: string, signal?: AbortSignal) => methods.get(`admin/accounts/${id}`, {}, signal),
+    getAllRoles: (signal?: AbortSignal) => methods.get("admin/accounts/roles", {}, signal),
 }
 
 const admin = {

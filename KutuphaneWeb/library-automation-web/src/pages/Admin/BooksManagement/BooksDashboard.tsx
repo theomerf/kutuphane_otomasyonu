@@ -21,26 +21,19 @@ export default function BooksDashboard() {
 
     const fetchStats = async () => {
         try {
-            const booksResponse = await requests.books.countBooks();
-            setBooksDashboardStats(prevStats => ({
-                ...prevStats,
-                booksCount: booksResponse.data as number
-            }));
-            const categoriesResponse = await requests.categories.countCategories();
-            setBooksDashboardStats(prevStats => ({
-                ...prevStats,
-                categoriesCount: categoriesResponse.data as number
-            }));
-            const authorsResponse = await requests.authors.countAuthors();
-            setBooksDashboardStats(prevStats => ({
-                ...prevStats,
-                authorsCount: authorsResponse.data as number
-            }));
-            const tagsResponse = await requests.tags.countTags();
-            setBooksDashboardStats(prevStats => ({
-                ...prevStats,
-                tagsCount: tagsResponse.data as number
-            }));
+            const [booksRes, categoriesRes, authorsRes, tagsRes] = await Promise.all([
+                requests.books.countBooks(),
+                requests.categories.countCategories(),
+                requests.authors.countAuthors(),
+                requests.tags.countTags(),
+            ]);
+
+            setBooksDashboardStats({
+                booksCount: booksRes.data,
+                categoriesCount: categoriesRes.data,
+                authorsCount: authorsRes.data,
+                tagsCount: tagsRes.data
+            });
         }
         catch (error) {
             console.error("Error fetching book count:", error);

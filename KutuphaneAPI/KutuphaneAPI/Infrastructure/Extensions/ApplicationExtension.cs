@@ -56,7 +56,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
                 {
                     FirstName = "Admin",
                     LastName = "Root",
-                    BirthDate = DateTime.UtcNow,
+                    BirthDate = DateOnly.FromDateTime(DateTime.UtcNow),
                     Email = "omerfarukyalcin08@gmail.com",
                     PhoneNumber = "05425946284",
                     UserName = adminUser

@@ -17,6 +17,16 @@
   },
   {
     "ContainingType": "Presentation.Controllers.AccountController",
+    "Method": "GetAllAccountsCount",
+    "RelativePath": "api/account/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.AccountController",
     "Method": "Login",
     "RelativePath": "api/account/login",
     "HttpMethod": "POST",
@@ -25,7 +35,7 @@
     "Parameters": [
       {
         "Name": "accountDto",
-        "Type": "Entities.Dtos.AccountForLoginDto",
+        "Type": "Entities.Dtos.AccountDtoForLogin",
         "IsRequired": true
       }
     ],
@@ -57,7 +67,128 @@
     "Parameters": [
       {
         "Name": "accountDto",
-        "Type": "Entities.Dtos.AccountForRegistrationDto",
+        "Type": "Entities.Dtos.AccountDtoForRegistration",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
+    "Method": "GetAllAccounts",
+    "RelativePath": "api/admin/accounts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SearchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
+    "Method": "GetAccountById",
+    "RelativePath": "api/admin/accounts/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
+    "Method": "CreateAccount",
+    "RelativePath": "api/admin/accounts/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accountDto",
+        "Type": "Entities.Dtos.AccountDtoForCreation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
+    "Method": "DeleteAccount",
+    "RelativePath": "api/admin/accounts/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/admin/accounts/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accountDto",
+        "Type": "Entities.Dtos.AccountDtoForPassword",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
+    "Method": "GetAllRoles",
+    "RelativePath": "api/admin/accounts/roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
+    "Method": "UpdateAccount",
+    "RelativePath": "api/admin/accounts/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accountDto",
+        "Type": "Entities.Dtos.AccountDtoForUpdate",
         "IsRequired": true
       }
     ],

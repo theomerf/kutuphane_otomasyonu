@@ -11,6 +11,7 @@
         ISeatRepository Seat { get; }
         ILoanRepository Loan { get; }
         IPenaltyRepository Penalty { get; }
+        IAccountRepository Account { get; }
         void Save();
         Task SaveAsync();
     }

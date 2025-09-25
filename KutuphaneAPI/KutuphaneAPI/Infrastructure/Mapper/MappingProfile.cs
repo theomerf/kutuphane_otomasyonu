@@ -8,8 +8,10 @@ namespace KutuphaneAPI.Infrastructure.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<AccountForRegistrationDto, Account>();
+            CreateMap<AccountDtoForRegistration, Account>();
             CreateMap<Account, AccountDto>();
+            CreateMap<AccountDtoForCreation, Account>();
+            CreateMap<AccountDtoForUpdate, Account>();
             CreateMap<Book, BookDto>();
             CreateMap<BookDtoForCreation, Book>()
                 .ForMember(dest => dest.AvailableCopies, opt => opt.MapFrom(src => src.TotalCopies))

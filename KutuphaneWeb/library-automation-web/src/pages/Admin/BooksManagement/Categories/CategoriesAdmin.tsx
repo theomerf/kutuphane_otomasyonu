@@ -10,7 +10,7 @@ import { faArrowLeft, faEdit, faPlus, faTrash } from "@fortawesome/free-solid-sv
 import { toast } from "react-toastify";
 import type { RequestParameters } from "../../../../types/bookRequestParameters";
 import type Category from "../../../../types/category";
-import CategoryPagination from "../../../../components/books/CategoryPagination";
+import AdminPagination from "../../../../components/ui/AdminPagination";
 
 export default function CategoriesAdmin() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -192,7 +192,7 @@ export default function CategoriesAdmin() {
                         </div>
                     )}
 
-                    <CategoryPagination data={data} pagination={pagination} isLoading={isLoading} error={error} up={up} query={query} setQuery={setQuery} />
+                    <AdminPagination data={data} pagination={pagination} isLoading={isLoading} error={error} up={up} query={query} setQuery={setQuery} />
                 </div>
             </div>
         </div>

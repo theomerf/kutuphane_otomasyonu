@@ -20,7 +20,7 @@ namespace Presentation.Controllers
 
         [HttpPost("login")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> Login([FromBody] AccountForLoginDto accountDto)
+        public async Task<IActionResult> Login([FromBody] AccountDtoForLogin accountDto)
         {
             if(!await _manager.AccountService.LoginUserAsync(accountDto))
             {
@@ -34,7 +34,7 @@ namespace Presentation.Controllers
 
         [HttpPost("register")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> Register([FromBody] AccountForRegistrationDto accountDto)
+        public async Task<IActionResult> Register([FromBody] AccountDtoForRegistration accountDto)
         {
             var result = await _manager.AccountService.RegisterUserAsync(accountDto);
 
@@ -90,9 +90,17 @@ namespace Presentation.Controllers
         [HttpGet("{userName}")]
         public async Task<IActionResult> GetAccount([FromRoute] String userName)
         {
-            var user = await _manager.AccountService.GetUserByIdAsync(userName);
+            var user = await _manager.AccountService.GetAccountByIdAsync(userName);
 
             return Ok(user);
+        }
+
+        [HttpGet("count")]
+        public async Task<IActionResult> GetAllAccountsCount()
+        {
+            var count = await _manager.AccountService.GetAllAccountsCountAsync();
+
+            return Ok(count);
         }
     }
 }

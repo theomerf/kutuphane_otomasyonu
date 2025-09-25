@@ -10,7 +10,8 @@
         public String? PhoneNumber { get; init; }
         public String? Email { get; init; }
         public DateTime MembershipDate { get; init; }
-        public DateTime? BirthDate { get; init; }
+        public DateOnly? BirthDate { get; init; }
         public DateTime? LastLoginDate { get; init; }
+        public ICollection<String>? Roles { get; set; }
     }
 }

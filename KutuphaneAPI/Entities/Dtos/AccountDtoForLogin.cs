@@ -2,7 +2,7 @@
 
 namespace Entities.Dtos
 {
-    public class AccountForLoginDto
+    public class AccountDtoForLogin
     {
         [Required(ErrorMessage = "Kullanıcı adı gereklidir.")]
         [MinLength(3, ErrorMessage = "Kullanıcı adı minimum 3 karakter olmalıdır.")]

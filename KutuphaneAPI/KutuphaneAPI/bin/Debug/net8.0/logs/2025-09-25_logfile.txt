@@ -1,0 +1,474 @@
+2025-09-25 10:49:52.5292 ERROR Bir şeyler yanlış gitti: Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - Presentation.Controllers.Admin.AccountAdminController.CreateAccount (Presentation). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.PrepareGenerateOperation(IGrouping`2 group)
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperationsAsync(OpenApiDocument document, IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(OpenApiDocument document, IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository, Func`4 operationsGenerator)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(OpenApiDocument document, IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 10:51:31.4009 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T10:51:31.2115321+03:00"}
+2025-09-25 10:56:33.3298 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T10:56:33.1533291+03:00"}
+2025-09-25 10:57:54.4983 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T10:57:54.3173143+03:00"}
+2025-09-25 10:59:14.0986 ERROR Bir şeyler yanlış gitti: System.ArgumentNullException: Value cannot be null. (Parameter 'user')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.ArgumentNullException.ThrowIfNull(Object argument, String paramName)
+   at Microsoft.AspNetCore.Identity.UserManager`1.ResetPasswordAsync(TUser user, String token, String newPassword)
+   at Services.AccountManager.ResetPasswordAsync(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 243
+   at Presentation.Controllers.Admin.AccountAdminController.ResetPassword(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 65
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 10:59:59.6355 ERROR Bir şeyler yanlış gitti: System.ArgumentNullException: Value cannot be null. (Parameter 'user')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.ArgumentNullException.ThrowIfNull(Object argument, String paramName)
+   at Microsoft.AspNetCore.Identity.UserManager`1.ResetPasswordAsync(TUser user, String token, String newPassword)
+   at Services.AccountManager.ResetPasswordAsync(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 243
+   at Presentation.Controllers.Admin.AccountAdminController.ResetPassword(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 65
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 11:03:30.0263 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T11:03:29.8714442+03:00"}
+2025-09-25 11:29:43.0622 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T11:29:42.8678158+03:00"}
+2025-09-25 11:29:45.1686 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:29:45.1684779+03:00"}
+2025-09-25 11:29:45.2345 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:29:45.234462+03:00"}
+2025-09-25 11:30:02.4433 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:02.4432713+03:00"}
+2025-09-25 11:30:02.4617 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:02.4616561+03:00"}
+2025-09-25 11:30:02.4804 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:02.4803557+03:00"}
+2025-09-25 11:30:02.4944 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:02.4937818+03:00"}
+2025-09-25 11:30:09.9308 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:09.9307036+03:00"}
+2025-09-25 11:30:09.9311 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:09.9418697+03:00"}
+2025-09-25 11:30:09.9584 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:09.9583116+03:00"}
+2025-09-25 11:30:09.9694 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:09.9694444+03:00"}
+2025-09-25 11:30:14.0743 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:14.0743265+03:00"}
+2025-09-25 11:30:14.0950 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:14.0950003+03:00"}
+2025-09-25 11:30:14.1061 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:14.1057618+03:00"}
+2025-09-25 11:30:14.1183 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:30:14.11832+03:00"}
+2025-09-25 11:31:52.5520 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:31:52.5519082+03:00"}
+2025-09-25 11:31:52.5707 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:31:52.5706823+03:00"}
+2025-09-25 11:31:52.5826 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:31:52.5824798+03:00"}
+2025-09-25 11:31:52.5934 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:31:52.5930857+03:00"}
+2025-09-25 11:32:43.2386 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:43.2386317+03:00"}
+2025-09-25 11:32:43.2520 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:43.2519593+03:00"}
+2025-09-25 11:32:43.2643 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:43.2642952+03:00"}
+2025-09-25 11:32:43.2753 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:43.274337+03:00"}
+2025-09-25 11:32:45.7728 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:45.7727341+03:00"}
+2025-09-25 11:32:45.8058 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:45.8057598+03:00"}
+2025-09-25 11:32:45.8178 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:45.8178149+03:00"}
+2025-09-25 11:32:45.8400 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:45.8400217+03:00"}
+2025-09-25 11:32:46.9567 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:46.9566845+03:00"}
+2025-09-25 11:32:46.9709 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:46.9709032+03:00"}
+2025-09-25 11:32:55.0553 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:55.0553041+03:00"}
+2025-09-25 11:32:55.0692 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:55.0692454+03:00"}
+2025-09-25 11:32:55.0814 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:55.0814286+03:00"}
+2025-09-25 11:32:55.0921 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:32:55.0921467+03:00"}
+2025-09-25 11:33:01.5164 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:01.5164284+03:00"}
+2025-09-25 11:33:01.5350 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:01.5344083+03:00"}
+2025-09-25 11:33:01.5460 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:01.5459829+03:00"}
+2025-09-25 11:33:01.5586 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:01.5578427+03:00"}
+2025-09-25 11:33:28.0605 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:28.0605068+03:00"}
+2025-09-25 11:33:28.0803 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:28.0802439+03:00"}
+2025-09-25 11:33:28.0907 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:28.0907064+03:00"}
+2025-09-25 11:33:28.0907 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:28.0996371+03:00"}
+2025-09-25 11:33:30.6803 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:30.6803379+03:00"}
+2025-09-25 11:33:30.7002 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:30.7001757+03:00"}
+2025-09-25 11:33:30.7153 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:30.7153361+03:00"}
+2025-09-25 11:33:30.7153 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:30.7262817+03:00"}
+2025-09-25 11:33:36.4698 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:36.4698544+03:00"}
+2025-09-25 11:33:36.4844 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:36.4837832+03:00"}
+2025-09-25 11:33:36.4958 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:36.4957977+03:00"}
+2025-09-25 11:33:36.4958 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:36.5050126+03:00"}
+2025-09-25 11:33:41.8731 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:41.8730837+03:00"}
+2025-09-25 11:33:41.8847 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:41.8847654+03:00"}
+2025-09-25 11:33:41.8847 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:41.8955304+03:00"}
+2025-09-25 11:33:41.9079 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:41.907935+03:00"}
+2025-09-25 11:33:48.6278 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:48.6278049+03:00"}
+2025-09-25 11:33:48.6438 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:48.6438005+03:00"}
+2025-09-25 11:33:48.6537 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:48.6536954+03:00"}
+2025-09-25 11:33:48.6537 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:48.6622753+03:00"}
+2025-09-25 11:33:50.4227 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:50.4227129+03:00"}
+2025-09-25 11:33:50.4412 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:50.4412201+03:00"}
+2025-09-25 11:33:50.4515 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:50.4513385+03:00"}
+2025-09-25 11:33:50.4624 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:33:50.4618348+03:00"}
+2025-09-25 11:53:56.4506 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:53:56.2416098+03:00"}
+2025-09-25 11:53:56.4968 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T11:53:56.4967872+03:00"}
+2025-09-25 12:08:08.6055 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.AccountNotFoundException: ae08110b-2d73-48a8-9ca0-03584ed18d8f kullanıcı adına sahip kullanıcı bulunamadı.
+   at Services.AccountManager.GetUserByIdForServiceAsync(String userName) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 77
+   at Services.AccountManager.GetAccountByIdAsync(String userName) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 85
+   at Presentation.Controllers.Admin.AccountAdminController.GetAccountById(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 12:08:08.7513 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.AccountNotFoundException: ae08110b-2d73-48a8-9ca0-03584ed18d8f kullanıcı adına sahip kullanıcı bulunamadı.
+   at Services.AccountManager.GetUserByIdForServiceAsync(String userName) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 77
+   at Services.AccountManager.GetAccountByIdAsync(String userName) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 85
+   at Presentation.Controllers.Admin.AccountAdminController.GetAccountById(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 12:08:08.8620 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.AccountNotFoundException: ae08110b-2d73-48a8-9ca0-03584ed18d8f kullanıcı adına sahip kullanıcı bulunamadı.
+   at Services.AccountManager.GetUserByIdForServiceAsync(String userName) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 77
+   at Services.AccountManager.GetAccountByIdAsync(String userName) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 85
+   at Presentation.Controllers.Admin.AccountAdminController.GetAccountById(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 12:08:08.9967 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.AccountNotFoundException: ae08110b-2d73-48a8-9ca0-03584ed18d8f kullanıcı adına sahip kullanıcı bulunamadı.
+   at Services.AccountManager.GetUserByIdForServiceAsync(String userName) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 77
+   at Services.AccountManager.GetAccountByIdAsync(String userName) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 85
+   at Presentation.Controllers.Admin.AccountAdminController.GetAccountById(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 12:08:27.0240 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:08:27.0149201+03:00"}
+2025-09-25 12:08:27.0341 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:08:27.0341202+03:00"}
+2025-09-25 12:11:35.6185 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:11:35.5045883+03:00"}
+2025-09-25 12:11:35.6586 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:11:35.6585337+03:00"}
+2025-09-25 12:11:35.6664 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:11:35.666356+03:00"}
+2025-09-25 12:11:35.6664 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:11:35.673714+03:00"}
+2025-09-25 12:11:37.5746 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:11:37.5744802+03:00"}
+2025-09-25 12:11:37.6012 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:11:37.6012117+03:00"}
+2025-09-25 12:29:27.8842 ERROR Bir şeyler yanlış gitti: System.InvalidOperationException: The instance of entity type 'Account' cannot be tracked because another instance with the key value '{Id: ae08110b-2d73-48a8-9ca0-03584ed18d8f}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NullableKeyIdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey, Nullable`1 fallbackState)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.Attach[TEntity](TEntity entity)
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.UpdateAsync(TUser user, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.UpdateUserAsync(TUser user)
+   at Services.AccountManager.UpdateAccountAsync(AccountDtoForUpdate accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 258
+   at Presentation.Controllers.Admin.AccountAdminController.UpdateAccount(AccountDtoForUpdate accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 49
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 12:33:08.5440 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:33:08.436191+03:00"}
+2025-09-25 12:33:08.5811 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:33:08.5810935+03:00"}
+2025-09-25 12:35:06.7204 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T12:35:06.7203916+03:00"}
+2025-09-25 12:35:09.3288 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T12:35:09.3287868+03:00"}
+2025-09-25 12:35:10.6811 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:35:10.6810509+03:00"}
+2025-09-25 12:35:10.6811 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:35:10.6942143+03:00"}
+2025-09-25 12:43:08.9341 ERROR Bir şeyler yanlış gitti: AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+AccountDtoForUpdate -> Account
+Entities.Dtos.AccountDtoForUpdate -> Entities.Models.Account
+
+Type Map configuration:
+AccountDtoForUpdate -> Account
+Entities.Dtos.AccountDtoForUpdate -> Entities.Models.Account
+
+Destination Member:
+BirthDate
+
+ ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+DateTime -> DateOnly
+System.DateTime -> System.DateOnly
+
+Destination Member:
+BirthDate
+
+   at lambda_method273(Closure, DateTime, DateOnly, ResolutionContext)
+   at lambda_method272(Closure, AccountDtoForUpdate, Account, ResolutionContext)
+   --- End of inner exception stack trace ---
+   at lambda_method272(Closure, AccountDtoForUpdate, Account, ResolutionContext)
+   at Services.AccountManager.UpdateAccountAsync(AccountDtoForUpdate accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 258
+   at Presentation.Controllers.Admin.AccountAdminController.UpdateAccount(AccountDtoForUpdate accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 49
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 12:43:46.9524 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:43:46.8509953+03:00"}
+2025-09-25 12:43:46.9860 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T12:43:46.985944+03:00"}
+2025-09-25 13:01:44.9167 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.AccountNotFoundException:  id'li kullanıcı bulunamadı.
+   at Services.AccountManager.GetUserByIdForServiceAsync(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 77
+   at Services.AccountManager.ResetPasswordAsync(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 247
+   at Presentation.Controllers.Admin.AccountAdminController.ResetPassword(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 65
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 13:01:47.2293 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:01:47.2193591+03:00"}
+2025-09-25 13:01:47.2460 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:01:47.2459916+03:00"}
+2025-09-25 13:02:26.8302 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.AccountNotFoundException:  id'li kullanıcı bulunamadı.
+   at Services.AccountManager.GetUserByIdForServiceAsync(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 77
+   at Services.AccountManager.ResetPasswordAsync(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 247
+   at Presentation.Controllers.Admin.AccountAdminController.ResetPassword(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 65
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 13:02:41.1267 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:02:41.1267321+03:00"}
+2025-09-25 13:02:41.1532 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:02:41.1532327+03:00"}
+2025-09-25 13:06:17.2832 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.AccountNotFoundException:  id'li kullanıcı bulunamadı.
+   at Services.AccountManager.GetUserByIdForServiceAsync(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 77
+   at Services.AccountManager.ResetPasswordAsync(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 247
+   at Presentation.Controllers.Admin.AccountAdminController.ResetPassword(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 65
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 13:06:20.0720 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:06:20.0720185+03:00"}
+2025-09-25 13:06:20.1113 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:06:20.1112746+03:00"}
+2025-09-25 13:06:45.8674 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.AccountNotFoundException:  id'li kullanıcı bulunamadı.
+   at Services.AccountManager.GetUserByIdForServiceAsync(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 77
+   at Services.AccountManager.ResetPasswordAsync(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 247
+   at Presentation.Controllers.Admin.AccountAdminController.ResetPassword(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 65
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 13:08:18.7782 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:08:18.777729+03:00"}
+2025-09-25 13:08:18.8107 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:08:18.8107367+03:00"}
+2025-09-25 13:08:28.3641 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.AccountNotFoundException:  id'li kullanıcı bulunamadı.
+   at Services.AccountManager.GetUserByIdForServiceAsync(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 77
+   at Services.AccountManager.ResetPasswordAsync(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 247
+   at Presentation.Controllers.Admin.AccountAdminController.ResetPassword(AccountDtoForPassword accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\AccountAdminController.cs:line 65
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-25 13:08:30.5361 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:08:30.5361119+03:00"}
+2025-09-25 13:08:30.5518 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:08:30.5514689+03:00"}
+2025-09-25 13:10:15.4649 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:10:15.3437121+03:00"}
+2025-09-25 13:10:15.5008 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:10:15.5007961+03:00"}
+2025-09-25 13:10:44.6383 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:10:44.6382622+03:00"}
+2025-09-25 13:10:44.7546 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:10:44.7545499+03:00"}
+2025-09-25 13:10:44.7811 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:10:44.7810231+03:00"}
+2025-09-25 13:10:44.8036 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:10:44.8035723+03:00"}
+2025-09-25 13:11:25.1725 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:11:25.1725067+03:00"}
+2025-09-25 13:11:25.1845 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:11:25.1845354+03:00"}
+2025-09-25 13:12:00.1420 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:00.1420241+03:00"}
+2025-09-25 13:12:00.1502 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:00.1502379+03:00"}
+2025-09-25 13:12:07.7472 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:07.7472232+03:00"}
+2025-09-25 13:12:07.7691 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:07.7689582+03:00"}
+2025-09-25 13:12:07.7814 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:07.7812971+03:00"}
+2025-09-25 13:12:07.7916 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:07.7912399+03:00"}
+2025-09-25 13:12:21.4450 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:21.4447736+03:00"}
+2025-09-25 13:12:21.4661 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:21.4658325+03:00"}
+2025-09-25 13:12:21.4661 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:21.4760723+03:00"}
+2025-09-25 13:12:21.4848 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:21.4847844+03:00"}
+2025-09-25 13:12:58.4262 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:58.4262301+03:00"}
+2025-09-25 13:12:58.4406 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:58.4406239+03:00"}
+2025-09-25 13:12:58.4547 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:58.4544496+03:00"}
+2025-09-25 13:12:58.4626 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:12:58.4626239+03:00"}
+2025-09-25 13:13:18.1596 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:13:18.1596107+03:00"}
+2025-09-25 13:13:18.1714 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:13:18.1714001+03:00"}
+2025-09-25 13:14:58.0207 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:14:58.0205783+03:00"}
+2025-09-25 13:14:58.0327 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:14:58.0326817+03:00"}
+2025-09-25 13:15:08.2226 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T13:15:08.2226309+03:00"}
+2025-09-25 13:15:14.0916 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T13:15:14.0915795+03:00"}
+2025-09-25 13:15:32.2627 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T13:15:32.2626809+03:00"}
+2025-09-25 13:15:33.5375 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:15:33.5374797+03:00"}
+2025-09-25 13:15:33.5502 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:15:33.5501348+03:00"}
+2025-09-25 13:21:15.4898 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:21:15.4897492+03:00"}
+2025-09-25 13:21:15.4991 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:21:15.4991583+03:00"}
+2025-09-25 13:21:18.1265 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:21:18.1264847+03:00"}
+2025-09-25 13:21:18.1471 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:21:18.1471007+03:00"}
+2025-09-25 13:22:26.0571 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T13:22:26.0570841+03:00"}
+2025-09-25 13:22:29.0079 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:22:29.0078676+03:00"}
+2025-09-25 13:22:29.0259 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:22:29.0259253+03:00"}
+2025-09-25 13:22:49.4873 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-25T13:22:49.4871383+03:00"}
+2025-09-25 13:22:50.8208 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:22:50.8208558+03:00"}
+2025-09-25 13:22:50.8327 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:22:50.832635+03:00"}
+2025-09-25 13:23:45.0779 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:45.0779175+03:00"}
+2025-09-25 13:23:45.0970 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:45.0969803+03:00"}
+2025-09-25 13:23:47.8402 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:47.8402397+03:00"}
+2025-09-25 13:23:47.8578 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:47.8578507+03:00"}
+2025-09-25 13:23:47.8699 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:47.8699004+03:00"}
+2025-09-25 13:23:47.8699 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:47.8815097+03:00"}
+2025-09-25 13:23:49.7773 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:49.7772924+03:00"}
+2025-09-25 13:23:49.8008 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:49.8007817+03:00"}
+2025-09-25 13:23:49.8237 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:49.8237218+03:00"}
+2025-09-25 13:23:49.8388 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:49.838675+03:00"}
+2025-09-25 13:23:52.4767 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:52.476748+03:00"}
+2025-09-25 13:23:52.4891 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:52.4891304+03:00"}
+2025-09-25 13:23:58.7653 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:58.7653205+03:00"}
+2025-09-25 13:23:58.7887 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:58.788727+03:00"}
+2025-09-25 13:23:58.8113 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:58.8111046+03:00"}
+2025-09-25 13:23:58.8463 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:23:58.8462924+03:00"}
+2025-09-25 13:24:21.6499 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:24:21.6499512+03:00"}
+2025-09-25 13:24:21.6679 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:24:21.6679574+03:00"}
+2025-09-25 13:24:23.8026 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:24:23.8026181+03:00"}
+2025-09-25 13:24:23.8178 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:24:23.8172946+03:00"}
+2025-09-25 13:24:25.8088 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:24:25.8086884+03:00"}
+2025-09-25 13:24:25.8088 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:24:25.8213677+03:00"}
+2025-09-25 13:24:29.3534 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:24:29.3534617+03:00"}
+2025-09-25 13:24:29.3718 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:24:29.3717602+03:00"}
+2025-09-25 13:26:40.4719 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:26:40.4719123+03:00"}
+2025-09-25 13:26:40.4930 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:26:40.4930337+03:00"}
+2025-09-25 13:30:53.9120 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:30:53.9120137+03:00"}
+2025-09-25 13:30:53.9444 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:30:53.9443625+03:00"}
+2025-09-25 13:30:53.9779 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:30:53.9779079+03:00"}
+2025-09-25 13:30:54.0045 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:30:54.0045297+03:00"}
+2025-09-25 13:30:58.5144 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:30:58.5143583+03:00"}
+2025-09-25 13:30:58.5307 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:30:58.5307389+03:00"}
+2025-09-25 13:30:58.5446 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:30:58.544672+03:00"}
+2025-09-25 13:30:58.5560 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:30:58.5559882+03:00"}
+2025-09-25 13:31:00.5118 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:31:00.511871+03:00"}
+2025-09-25 13:31:00.5303 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:31:00.5303234+03:00"}
+2025-09-25 13:31:00.5454 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:31:00.5454086+03:00"}
+2025-09-25 13:31:00.5586 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:31:00.5586178+03:00"}
+2025-09-25 13:31:24.5086 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:31:24.5085896+03:00"}
+2025-09-25 13:31:24.5264 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:31:24.5264365+03:00"}
+2025-09-25 13:31:51.4686 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:31:51.4686375+03:00"}
+2025-09-25 13:31:51.4900 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-25T13:31:51.4899787+03:00"}

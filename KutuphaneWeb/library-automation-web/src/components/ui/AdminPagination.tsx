@@ -1,12 +1,11 @@
 import type PaginationHeader from "../../types/paginationHeader";
-import { Pagination } from "../../components/ui/Pagination";
+import { Pagination } from "./Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
-import type Category from "../../types/category";
 import type { RequestParameters } from "../../types/bookRequestParameters";
 
-type CategoryPaginationProps = {
-    data: Category[] | null;
+type AdminPaginationProps = {
+    data: any[] | null;
     pagination: PaginationHeader;
     isLoading: boolean;
     error: string | null;
@@ -15,7 +14,7 @@ type CategoryPaginationProps = {
     query: RequestParameters;
 }
 
-export default function CategoryPagination({ data, pagination, isLoading, error, up, query, setQuery }: CategoryPaginationProps) {
+export default function AdminPagination({ data, pagination, isLoading, error, up, query, setQuery }: AdminPaginationProps) {
     const handlePageChange = (newPage: number) => {
         setQuery(prev => ({
             ...prev,

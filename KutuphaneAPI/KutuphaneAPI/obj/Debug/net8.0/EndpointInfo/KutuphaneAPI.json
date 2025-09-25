@@ -14,17 +14,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountForLoginDto"
+                "$ref": "#/components/schemas/AccountDtoForLogin"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountForLoginDto"
+                "$ref": "#/components/schemas/AccountDtoForLogin"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountForLoginDto"
+                "$ref": "#/components/schemas/AccountDtoForLogin"
               }
             }
           }
@@ -45,17 +45,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountForRegistrationDto"
+                "$ref": "#/components/schemas/AccountDtoForRegistration"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountForRegistrationDto"
+                "$ref": "#/components/schemas/AccountDtoForRegistration"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AccountForRegistrationDto"
+                "$ref": "#/components/schemas/AccountDtoForRegistration"
               }
             }
           }
@@ -112,6 +112,211 @@
               "type": "string"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/account/count": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/accounts": {
+      "get": {
+        "tags": [
+          "AccountAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "SearchTerm",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/accounts/{id}": {
+      "get": {
+        "tags": [
+          "AccountAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/accounts/create": {
+      "post": {
+        "tags": [
+          "AccountAdmin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForCreation"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForCreation"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForCreation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/accounts/update": {
+      "put": {
+        "tags": [
+          "AccountAdmin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/accounts/delete/{id}": {
+      "delete": {
+        "tags": [
+          "AccountAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/accounts/reset-password": {
+      "post": {
+        "tags": [
+          "AccountAdmin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForPassword"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForPassword"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/accounts/roles": {
+      "get": {
+        "tags": [
+          "AccountAdmin"
         ],
         "responses": {
           "200": {
@@ -2011,7 +2216,65 @@
   },
   "components": {
     "schemas": {
-      "AccountForLoginDto": {
+      "AccountDtoForCreation": {
+        "required": [
+          "birthDate",
+          "email",
+          "firstName",
+          "lastName",
+          "password",
+          "phoneNumber",
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "userName": {
+            "maxLength": 20,
+            "minLength": 3,
+            "type": "string"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "maxLength": 20,
+            "minLength": 2,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 20,
+            "minLength": 2,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "password": {
+            "maxLength": 20,
+            "minLength": 6,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountDtoForLogin": {
         "required": [
           "password",
           "userName"
@@ -2032,7 +2295,25 @@
         },
         "additionalProperties": false
       },
-      "AccountForRegistrationDto": {
+      "AccountDtoForPassword": {
+        "required": [
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountDtoForRegistration": {
         "required": [
           "birthDate",
           "email",
@@ -2081,6 +2362,68 @@
             "items": {
               "type": "string"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountDtoForUpdate": {
+        "required": [
+          "birthDate",
+          "email",
+          "firstName",
+          "lastName",
+          "password",
+          "phoneNumber",
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "userName": {
+            "maxLength": 20,
+            "minLength": 3,
+            "type": "string"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "maxLength": 20,
+            "minLength": 2,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 20,
+            "minLength": 2,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "password": {
+            "maxLength": 20,
+            "minLength": 6,
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
             "nullable": true
           }
         },

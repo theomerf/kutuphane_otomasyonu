@@ -2,9 +2,11 @@
 using Entities.Dtos;
 using Entities.Exceptions;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Repositories.Contracts;
 using Services.Contracts;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -16,21 +18,25 @@ namespace Services
     public class AccountManager : IAccountService
     {
         private readonly UserManager<Account> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IRepositoryManager _manager;
         private readonly IMapper _mapper;
         private readonly ILoggerService _logger;
         private readonly IConfiguration _configuration;
 
         private Account? _account;
 
-        public AccountManager(UserManager<Account> userManager, ILoggerService logger, IMapper mapper, IConfiguration configuration)
+        public AccountManager(UserManager<Account> userManager, RoleManager<IdentityRole> roleManager, ILoggerService logger, IMapper mapper, IConfiguration configuration, IRepositoryManager manager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _logger = logger;
             _mapper = mapper;
             _configuration = configuration;
+            _manager = manager;
         }
 
-        public async Task<IdentityResult> RegisterUserAsync(AccountForRegistrationDto accountDto)
+        public async Task<IdentityResult> RegisterUserAsync(AccountDtoForRegistration accountDto)
         {
             var user = _mapper.Map<Account>(accountDto);
             accountDto.Roles?.Add("User");
@@ -50,7 +56,7 @@ namespace Services
             return IdentityResult.Failed(new IdentityError { Description = "Kullanıcı oluşturma başarısız." });
         }
 
-        public async Task<bool> LoginUserAsync(AccountForLoginDto accountDto)
+        public async Task<bool> LoginUserAsync(AccountDtoForLogin accountDto)
         {
             if(accountDto.UserName != null && accountDto.Password != null)
             {
@@ -62,22 +68,25 @@ namespace Services
             return false;
         }
 
-        private async Task<Account> GetUserByIdForServiceAsync(string userName)
+        private async Task<Account> GetUserByIdForServiceAsync(string id)
         {
-            var user = await _userManager.FindByNameAsync(userName);
+            var user = await _userManager.FindByIdAsync(id);
 
             if (user == null)
             {
-                throw new AccountNotFoundException(userName);
+                throw new AccountNotFoundException(id);
             }
 
             return user;
         }
 
-        public async Task<AccountDto> GetUserByIdAsync(string userName)
+        public async Task<AccountDto> GetAccountByIdAsync(string userName)
         {
             var user = await GetUserByIdForServiceAsync(userName);
             var userDto = _mapper.Map<AccountDto>(user);
+
+            var roles = await _userManager.GetRolesAsync(user);
+            userDto.Roles = roles.ToList();
 
             return userDto;
         }
@@ -213,6 +222,80 @@ namespace Services
 
             _account = account;
             return await CreateTokenAsync(populateExp: false, rememberMe: false);
+        }
+
+        public async Task<IdentityResult> CreateAccountAsync(AccountDtoForCreation accountDto)
+        {
+            var account = _mapper.Map<Account>(accountDto);
+            if (accountDto.Roles != null && accountDto.Password != null)
+            {
+                var result = await _userManager.CreateAsync(account, accountDto.Password);
+
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRolesAsync(account, accountDto.Roles);
+                }
+
+                return result;
+            }
+
+            return IdentityResult.Failed(new IdentityError { Description = "Kullanıcı oluşturma başarısız." });
+        }
+
+        public async Task<IdentityResult> ResetPasswordAsync(AccountDtoForPassword accountDto)
+        {
+            var account = await GetUserByIdForServiceAsync(accountDto.Id);
+
+            account.PasswordHash = _userManager.PasswordHasher.HashPassword(account, accountDto.Password);
+            var result = await _userManager.UpdateAsync(account);
+
+            return result;
+        }
+
+        public async Task<IdentityResult> UpdateAccountAsync(AccountDtoForUpdate accountDto)
+        {
+            var accountExists = await GetUserByIdForServiceAsync(accountDto.Id!);
+            _mapper.Map(accountDto, accountExists);
+
+            var result = await _userManager.UpdateAsync(accountExists);
+            var accountRoles = await _userManager.GetRolesAsync(accountExists);
+
+            var toAdd = accountDto.Roles.Except(accountRoles);
+            var toRemove = accountRoles.Except(accountDto.Roles);
+
+            if (toAdd.Any())
+                await _userManager.AddToRolesAsync(accountExists, toAdd);
+
+            if (toRemove.Any())
+                await _userManager.RemoveFromRolesAsync(accountExists, toRemove);
+
+            return result;
+        }
+
+        public async Task<IdentityResult> DeleteAccountAsync(string id)
+        {
+            var account = await GetUserByIdForServiceAsync(id);
+            var result = await _userManager.DeleteAsync(account!);
+
+            return result;
+        }
+
+        public async Task<(IEnumerable<AccountDto> accounts, MetaData metaData)> GetAllAccountsAsync(AdminRequestParameters p, bool trackChanges)
+        {
+            var result = await _manager.Account.GetAllAccountsAsync(p, trackChanges);
+            var accountsDto = _mapper.Map<IEnumerable<AccountDto>>(result.accounts);
+
+            var pagedAccounts = PagedList<AccountDto>.ToPagedList(accountsDto, p.PageNumber, p.PageSize, result.count);
+
+            return (pagedAccounts, pagedAccounts.MetaData);
+        }
+
+        public async Task<int> GetAllAccountsCountAsync() => await _manager.Account.GetAllAccountsCountAsync();
+
+        public IEnumerable<string> GetAllRoles()
+        {
+            var roles = _roleManager.Roles.Select(r => r.Name!).ToList();
+            return roles;
         }
     }
 }

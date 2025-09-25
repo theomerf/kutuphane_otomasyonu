@@ -19,7 +19,7 @@ const links: LinkType[] = [
     { name: "Kategoriler", to: "admin/categories" },
     { name: "Yazarlar", to: "admin/authors" },
     { name: "Etiketler", to: "admin/tags" },
-    { name: "Rezervasyon", to: "admin/reservation" },
+    { name: "Rezervasyonlar", to: "admin/reservation" },
     { name: "Kullanıcılar", to: "admin/accounts" }
 ]
 

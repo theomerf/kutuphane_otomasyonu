@@ -418,7 +418,7 @@ export default function Reservation() {
                                         setSelectedSeat(null);
                                         setModalTimer(0);
                                         signalRService.releaseSeat(selectedSeat?.seatId!, selectedDate!, selectedTimeSlot?.id!);
-                                    }} className="smallButton text-sm lg:button font-semibold bg-red-500 lg:hover:scale-105">
+                                    }} className="smallButton text-sm lg:button font-semibold !bg-red-500 lg:hover:scale-105">
                                         <FontAwesomeIcon icon={faXmark} className="mr-2" />
                                         İşlemi İptal Et
                                     </button>
