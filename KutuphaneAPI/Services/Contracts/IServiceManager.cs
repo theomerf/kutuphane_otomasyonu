@@ -12,5 +12,6 @@
         ISeatService SeatService { get; }
         ILoanService LoanService { get; }
         IPenaltyService PenaltyService { get; }
+        IUserReviewService UserReviewService { get; }
     }
 }

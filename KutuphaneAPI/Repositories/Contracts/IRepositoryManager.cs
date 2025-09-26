@@ -12,6 +12,7 @@
         ILoanRepository Loan { get; }
         IPenaltyRepository Penalty { get; }
         IAccountRepository Account { get; }
+        IUserReviewRepository UserReview { get; }
         void Save();
         Task SaveAsync();
     }

@@ -43,7 +43,7 @@ export default function ProtectedRoute({ adminOnly = false }: { adminOnly?: bool
 
   if (!user) {
     toast.warning("Bu sayfayı görüntülemek için giriş yapmalısınız.");
-    return <Navigate to="/Account/Login" replace />;
+    return <Navigate to="/account/login" replace />;
   }
 
   if (adminOnly) {

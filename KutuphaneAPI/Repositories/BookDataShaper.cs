@@ -10,11 +10,11 @@ namespace Repositories
 {
     public class BookDataShaper : IBookDataShaper
     {
-        private const string DEFAULT_PROFILE = "Id,Title,AvailableCopies,Images.Id,Images.ImageUrl,Tags.Id,Tags.Name,Authors.Id,Authors.Name,Categories.Id,Categories.Name";
+        private const string DEFAULT_PROFILE = "Id,Title,AvailableCopies,AverageRating,Images.Id,Images.ImageUrl,Tags.Id,Tags.Name,Authors.Id,Authors.Name,Categories.Id,Categories.Name";
 
         private static readonly HashSet<string> _scalarFields = new(StringComparer.InvariantCultureIgnoreCase)
         {
-            "Id","ISBN","Title","TotalCopies","AvailableCopies","Location","PublishedDate","Summary"
+            "Id","Title","AvailableCopies","AverageRating"
         };
 
         private static readonly Dictionary<string, HashSet<string>> _collectionFieldMap =
@@ -58,13 +58,9 @@ namespace Repositories
                 Scalars = new
                 {
                     b.Id,
-                    b.ISBN,
                     b.Title,
-                    b.TotalCopies,
                     b.AvailableCopies,
-                    b.Location,
-                    b.PublishedDate,
-                    b.Summary
+                    b.AverageRating
                 },
                 Images = parseResult.IncludeImages
                     ? b.Images!.Select(i => new

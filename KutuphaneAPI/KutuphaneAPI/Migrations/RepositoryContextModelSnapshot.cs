@@ -455,42 +455,6 @@ namespace KutuphaneAPI.Migrations
                     b.ToTable("Reservation");
                 });
 
-            modelBuilder.Entity("Entities.Models.Review", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AccountId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comment")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("Review");
-                });
-
             modelBuilder.Entity("Entities.Models.Seat", b =>
                 {
                     b.Property<int>("Id")
@@ -550,6 +514,43 @@ namespace KutuphaneAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TimeSlot");
+                });
+
+            modelBuilder.Entity("Entities.Models.UserReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("UserReview");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -859,12 +860,13 @@ namespace KutuphaneAPI.Migrations
                     b.Navigation("TimeSlot");
                 });
 
-            modelBuilder.Entity("Entities.Models.Review", b =>
+            modelBuilder.Entity("Entities.Models.UserReview", b =>
                 {
                     b.HasOne("Entities.Models.Account", "Account")
                         .WithMany("Reviews")
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Entities.Models.Book", "Book")
                         .WithMany("Reviews")

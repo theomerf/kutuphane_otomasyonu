@@ -15,7 +15,7 @@
         public ICollection<TagDto>? Tags { get; init; }
         public ICollection<AuthorDto>? Authors { get; init; }
         public ICollection<CategoryDto>? Categories { get; init; }
-        public ICollection<ReviewDto>? Reviews { get; init; }
+        public ICollection<UserReviewDto>? Reviews { get; init; }
         public ICollection<CartLineDto>? CartLines { get; init; }
     }
 }

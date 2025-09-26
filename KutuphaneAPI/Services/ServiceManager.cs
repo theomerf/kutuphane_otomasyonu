@@ -14,8 +14,9 @@ namespace Services
         private readonly ISeatService _seatService;
         private readonly ILoanService _loanService;
         private readonly IPenaltyService _penaltyService;
+        private readonly IUserReviewService _userReviewService;
 
-        public ServiceManager(IAccountService accountService, IBookService bookService, ICategoryService categoryService, IAuthorService authorService, ICartService cartService, IReservationService reservationService, ISeatService seatService, ILoanService loanService, IPenaltyService penaltyService, ITagService tagService)
+        public ServiceManager(IAccountService accountService, IBookService bookService, ICategoryService categoryService, IAuthorService authorService, ICartService cartService, IReservationService reservationService, ISeatService seatService, ILoanService loanService, IPenaltyService penaltyService, ITagService tagService, IUserReviewService userReviewService)
         {
             _accountService = accountService;
             _bookService = bookService;
@@ -27,6 +28,7 @@ namespace Services
             _loanService = loanService;
             _penaltyService = penaltyService;
             _tagService = tagService;
+            _userReviewService = userReviewService;
         }
 
         public IAccountService AccountService => _accountService;
@@ -39,5 +41,6 @@ namespace Services
         public ISeatService SeatService => _seatService;
         public ILoanService LoanService => _loanService;
         public IPenaltyService PenaltyService => _penaltyService;
+        public IUserReviewService UserReviewService => _userReviewService;
     }
 }

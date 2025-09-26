@@ -167,6 +167,16 @@ const reservation = {
     cancelReservation: (reservationId: number) => methods.delete(`reservation/cancel-reservation/${reservationId}`),
 }
 
+const userReview = {
+    getAllUserReviews: (query?: URLSearchParams, signal?: AbortSignal) => methods.get("userreview", { params: query }, signal),
+    getOneUserReview: (id: number, signal?: AbortSignal) => methods.get(`userreview/${id}`, {}, signal),
+    getUserReviewsByBookId: (bookId: number, query?: URLSearchParams, signal?: AbortSignal) => methods.get(`userreview/book/${bookId}`, { params: query }, signal),
+    getUserReviewsCountByBookId: (bookId: number, signal?: AbortSignal) => methods.get(`userreview/book/${bookId}/count`, {}, signal),
+    createUserReview: (userReviewDto: any) => methods.post("userreview/create", userReviewDto),
+    updateUserReview: (userReviewDto: any) => methods.put("userreview/update", userReviewDto),
+    deleteUserReview: (id: number) => methods.delete(`userreview/delete/${id}`),
+}
+
 const account = {
     login: (formData: any) => methods.post("account/login", formData),
     register: (formData: any) => methods.post("account/register", formData),
@@ -196,6 +206,7 @@ const errors = {
 
 const requests = {
     admin,
+    userReview,
     books,
     account,
     categories,

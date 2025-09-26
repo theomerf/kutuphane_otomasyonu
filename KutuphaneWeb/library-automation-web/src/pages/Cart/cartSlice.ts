@@ -4,6 +4,7 @@ import type CartResponse from "../../types/cartResponse";
 import type { CartLine } from "../../types/cartResponse";
 import { store } from "../../store/store";
 import type { ApiErrorResponse, FormError } from "../../types/apiError";
+import { toast } from "react-toastify";
 
 type cartState = {
     cart: CartResponse | null;
@@ -159,10 +160,14 @@ export const increaseQuantity = createAsyncThunk<CartLine, QuantityUpdatePayload
                 const localCart = store.getState().cart.cart;
                 const line = localCart?.cartLines?.find(line => line.id === data.cartLineId);
 
-                return { ...line, quantity: line!.quantity + data.quantity }; 
+                return { ...line, quantity: line!.quantity + data.quantity };
             }
         }
         catch (error: any) {
+            if (error.response?.status === 400) {
+                toast.warn("Stokta yeterli kitap yok.");
+                return thunkAPI.abort();
+            }
             if (error.response?.data) {
                 const errorData = error.response.data as ApiErrorResponse;
                 return thunkAPI.rejectWithValue(errorData);
@@ -184,7 +189,7 @@ export const decreaseQuantity = createAsyncThunk<CartLine, QuantityUpdatePayload
                 const localCart = store.getState().cart.cart;
                 const line = localCart?.cartLines?.find(line => line.id === data.cartLineId);
 
-                return { ...line, quantity: line!.quantity - data.quantity }; 
+                return { ...line, quantity: line!.quantity - data.quantity };
             }
         }
         catch (error: any) {
@@ -276,7 +281,7 @@ export const cartSlice = createSlice({
         });
         builder.addCase(increaseQuantity.fulfilled, (state, action) => {
             if (!state.cart?.cartLines) return;
-            
+
             const lineIndex = state.cart.cartLines.findIndex(line => line.id === action.payload.id);
             if (lineIndex !== -1) {
                 state.cart.cartLines[lineIndex].quantity = action.payload.quantity;
@@ -295,7 +300,7 @@ export const cartSlice = createSlice({
         });
         builder.addCase(decreaseQuantity.fulfilled, (state, action) => {
             if (!state.cart?.cartLines) return;
-            
+
             const lineIndex = state.cart.cartLines.findIndex(line => line.id === action.payload.id);
             if (lineIndex !== -1) {
                 state.cart.cartLines[lineIndex].quantity = action.payload.quantity;

@@ -63,6 +63,7 @@ namespace Repositories
             var cartLine = await FindByCondition(c => c.CartLines.Any(cl => cl.Id == cartLineId), trackChanges)
                 .SelectMany(c => c.CartLines)
                 .Where(cl => cl.Id == cartLineId)
+                .Include(cl => cl.Book)
                 .FirstOrDefaultAsync();
 
             return cartLine;

@@ -12,9 +12,9 @@ namespace Entities.Models
         public DateTime? LastLoginDate { get; set; }
         public String? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
-        public ICollection<Review>? Reviews { get; set; }
-        public Cart? Cart { get; set; }
         public int CartId { get; set; }
+        public Cart? Cart { get; set; }
+        public ICollection<UserReview>? Reviews { get; set; }
         public ICollection<Reservation>? Reservations { get; set; }
         public ICollection<Loan>? Loans { get; set; }
         public ICollection<Penalty>? Penalties { get; set; }

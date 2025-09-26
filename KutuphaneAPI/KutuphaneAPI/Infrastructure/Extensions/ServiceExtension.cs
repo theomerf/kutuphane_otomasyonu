@@ -50,6 +50,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<ILoanRepository, LoanRepository>();
             services.AddScoped<IPenaltyRepository, PenaltyRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IUserReviewRepository, UserReviewRepository>();
         }
 
         public static void ConfigureServiceRegistration(this IServiceCollection services)
@@ -66,6 +67,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddSingleton<ISeatCacheService, SeatCacheService>();
             services.AddScoped<ILoanService, LoanManager>();
             services.AddScoped<IPenaltyService, PenaltyManager>();
+            services.AddScoped<IUserReviewService, UserReviewManager>();
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)

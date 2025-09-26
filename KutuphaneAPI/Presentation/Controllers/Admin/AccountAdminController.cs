@@ -2,6 +2,7 @@
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.ActionFilters;
 using Services.Contracts;
 using System.Text.Json;
 
@@ -36,6 +37,7 @@ namespace Presentation.Controllers.Admin
         }
 
         [HttpPost("create")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateAccount([FromBody] AccountDtoForCreation accountDto)
         {
             var result = await _manager.AccountService.CreateAccountAsync(accountDto);
@@ -44,6 +46,7 @@ namespace Presentation.Controllers.Admin
         }
 
         [HttpPut("update")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateAccount([FromBody] AccountDtoForUpdate accountDto)
         {
             var result = await _manager.AccountService.UpdateAccountAsync(accountDto);
@@ -59,7 +62,8 @@ namespace Presentation.Controllers.Admin
             return NoContent();
         }
 
-        [HttpPost("reset-password")]    
+        [HttpPost("reset-password")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> ResetPassword([FromBody] AccountDtoForPassword accountDto)
         {
             var result = await _manager.AccountService.ResetPasswordAsync(accountDto);

@@ -5,7 +5,7 @@ import { Rating } from "../../components/ui/Rating";
 import ImageSwiper from "../../components/ui/ImageSwiper";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faBarcode, faCartPlus, faCircleDot, faLayerGroup, faLocationDot, faPen, faTag, faTags, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faBan, faBarcode, faCartPlus, faCircleDot, faLayerGroup, faLocationDot, faPen, faTag, faTags, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAppDispatch, type RootState } from "../../store/store";
 import { useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import { addLineToCart, removeLineFromCart } from "../Cart/cartSlice";
 import type { CartLine } from "../../types/cartResponse";
 import type BookRequestParameters from "../../types/bookRequestParameters";
 import BookCard from "../../components/books/BookCard";
+import UserReviews from "../../components/books/UserReviews";
 
 type BookDetail = {
     error: string | null;
@@ -32,6 +33,7 @@ export function BookDetail() {
         relatedBookList: null,
         loading: false
     });
+    const [reviewsCount, setReviewsCount] = useState<number>(0);
     const [activePanel, setActivePanel] = useState<'details' | 'reviews'>('details');
     const dispatch = useAppDispatch();
     const { cart } = useSelector((state: RootState) => state.cart);
@@ -111,6 +113,10 @@ export function BookDetail() {
     }, []);
 
     useEffect(() => {
+        fetchUserReviewsCount();
+    }, []);
+
+    useEffect(() => {
         if (bookDetail.book && bookDetail.book.tags && bookDetail.book.tags.length > 0) {
             setRelatedBookParams({
                 pageNumber: 1,
@@ -148,7 +154,17 @@ export function BookDetail() {
         dispatch(removeLineFromCart(line.id!));
     }
 
-
+    const fetchUserReviewsCount = async (signal?: AbortSignal) => {
+        try {
+            const id: string = window.location.pathname.split('/').pop() || '';
+            const response = await requests.userReview.getUserReviewsCountByBookId(parseInt(id), signal);
+            setReviewsCount(response.data as number);
+        }
+        catch (error) {
+            return 0;
+        }
+    };
+    
     return (
         <>
             {(bookDetail.loading) && (
@@ -188,7 +204,7 @@ export function BookDetail() {
                             </div>
                             <div className="mt-3 gap-x-3 flex flex-row">
                                 <div className="self-center flex"><Rating rating={bookDetail.book?.averageRating || 0} /></div>
-                                <p className="self-center text-gray-500 font-bold">({bookDetail.book.averageRating})</p>
+                                <p className="self-center text-gray-500 font-bold">({reviewsCount} değerlendirme)</p>
                             </div>
                             <div className="rounded-3xl px-4 py-8 shadow-xl border border-gray-200 bg-gray-50 grid grid-cols-2 gap-x-2 w-4/5">
                                 <div className="flex flex-col gap-y-2">
@@ -219,7 +235,12 @@ export function BookDetail() {
                                 </div>
                             </div>
                             <div className="flex flex-col gap-y-4 mt-16">
-                                {(cart?.cartLines && cart?.cartLines?.findIndex(l => l.bookId === bookDetail.book?.id) !== -1) ? (
+                                {(bookDetail.book.availableCopies ?? 0) < 1 ? (
+                                    <button type="button" disabled className="button w-1/2 text-2xl font-semibold !bg-gray-400 cursor-not-allowed">
+                                        <FontAwesomeIcon icon={faBan} className="mr-2" />
+                                        <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Stokta Yok</span>
+                                    </button>
+                                ) : ((cart?.cartLines && cart?.cartLines?.findIndex(l => l.bookId === bookDetail.book?.id) !== -1) ? (
                                     <button type="button" onClick={(e) => handleRemoveFromCart(e, bookDetail.book?.id!)} className="button w-1/2 hover:scale-105 text-2xl font-semibold !bg-red-600">
                                         <FontAwesomeIcon icon={faTrash} className="mr-2" />
                                         <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepetten Kaldır</span>
@@ -229,7 +250,7 @@ export function BookDetail() {
                                         <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
                                         <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepete Ekle</span>
                                     </button>
-                                )}
+                                ))}
                                 <Link to="/books" className="button w-1/2 !bg-yellow-400 hover:scale-105 text-center text-2xl font-semibold">
                                     <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                                     Kitaplara Dön
@@ -255,7 +276,7 @@ export function BookDetail() {
                             }
                             {activePanel === 'reviews' &&
                                 <div className="text-gray-500 font-medium text-base px-8 py-10 whitespace-pre-line">
-                                    Kullanıcı Değerlendirmeleri yakında eklenecektir.
+                                    <UserReviews bookId={bookDetail.book.id!} />
                                 </div>
                             }
 

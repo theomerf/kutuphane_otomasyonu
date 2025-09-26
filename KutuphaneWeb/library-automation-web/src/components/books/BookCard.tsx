@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import type Book from "../../types/book";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faCartPlus, faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Rating } from "../ui/Rating";
 import { useAppDispatch, type RootState } from "../../store/store";
 import { useSelector } from "react-redux";
@@ -46,7 +46,7 @@ export default function BookCard({ book }: BookCardProps) {
                 show: { y: 0, opacity: 1 }
             }}
                 transition={{ duration: 0.6, ease: "easeOut" }} className="flex flex-col  bg-white/90 relative p-3 lg:p-6 border-2 border-white/20 shadow-lg rounded-2xl ">
-                <div className="absolute rotate-[-60deg] top-[-5%] right-[-20%] lg:top-[-5%] lg:left-[-15%] lg:right-[180%] lg:rotate-[30deg] text-center  z-[3] rounded-3xl bg-green-500 px-2 py-[5px] lg:py-[10px] w-fit text-xs lg:text-sm [text-transform:uppercase] mx-auto mt-3 font-semibold [letter-spacing:0.5px] text-white before:content-[''] before:absolute before:right-[-5px] before:top-2  lg:before:left-[-7px] lg:before:top-[25%] lg:before:bottom-0 before:w-3 before:h-3 lg:before:w-[14px] lg:before:h-[14px] before:bg-[radial-gradient(circle,rgba(217,_20,_20,_1)_0%,_rgba(201,_41,_20,_1)_100%)] before:[border-radius:50%]">
+                <div className={`${(book.availableCopies ?? 0) > 0 ? "bg-green-500": "bg-red-500"} absolute rotate-[-60deg] top-[-5%] right-[-20%] lg:top-[-5%] lg:left-[-15%] lg:right-[180%] lg:rotate-[30deg] text-center  z-[3] rounded-3xl  px-2 py-[5px] lg:py-[10px] w-fit text-xs lg:text-sm [text-transform:uppercase] mx-auto mt-3 font-semibold [letter-spacing:0.5px] text-white before:content-[''] before:absolute before:right-[-5px] before:top-2  lg:before:left-[-7px] lg:before:top-[25%] lg:before:bottom-0 before:w-3 before:h-3 lg:before:w-[14px] lg:before:h-[14px] before:bg-[radial-gradient(circle,rgba(217,_20,_20,_1)_0%,_rgba(201,_41,_20,_1)_100%)] before:[border-radius:50%]`}>
                     {(book.availableCopies ?? 0) > 0 ? "Mevcut" : "Tükendi"}
                 </div>
                 <div className="absolute top-4 right-7 flex gap-3 z-[4] opacity-0 translate-x-[20px] scale-[80%] duration-500 group-hover:opacity-100">
@@ -68,17 +68,22 @@ export default function BookCard({ book }: BookCardProps) {
                 </div>
                 <div className="flex justify-center gap-3 lg:mt-3">
 
-                    {(cart?.cartLines && cart?.cartLines?.findIndex(l => l.bookId === book.id) !== -1) ? (
+                    {(book.availableCopies ?? 0) < 1 ? (
+                        <button type="button" disabled className="w-full py-[11px] lg:py-[14px] border-none rounded-3xl shadow-gray-400 shadow-lg bg-gray-400 text-white font-bold text-[9px] lg:text-base items-center justify-center gap-3 duration-[0.4s] [text-transform:uppercase] cursor-not-allowed relative overflow-hidden">
+                            <FontAwesomeIcon icon={faBan} className="mr-2" />
+                            <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Stokta Yok</span>
+                        </button>
+                    ) : ((cart?.cartLines && cart?.cartLines?.findIndex(l => l.bookId === book.id) !== -1) ? (
                         <button type="button" onClick={(e) => handleRemoveFromCart(e, book.id!)} className="w-full py-[11px] lg:py-[14px] border-none rounded-3xl shadow-red-200 shadow-lg bg-red-600 text-white font-bold text-[9px] lg:text-base items-center justify-center gap-3 duration-[0.4s] [text-transform:uppercase] cursor-pointer relative overflow-hidden hover:scale-110">
                             <FontAwesomeIcon icon={faTrash} className="mr-2" />
                             <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepetten Kaldır</span>
                         </button>
                     ) : (
-                        <button type="button" onClick={(e) => handleAddToCart(e, book)} className="w-full py-[11px] lg:py-[14px] border-none rounded-3xl shadow-violet-400 shadow-lg bg-hero-gradient text-white font-bold text-[9px] lg:text-base items-center justify-center gap-3 duration-[0.4s] [text-transform:uppercase] cursor-pointer relative overflow-hidden hover:scale-110">
+                        <button type="button" disabled={(book.availableCopies ?? 0) < 1} onClick={(e) => handleAddToCart(e, book)} className="w-full py-[11px] lg:py-[14px] border-none rounded-3xl shadow-violet-400 shadow-lg bg-hero-gradient text-white font-bold text-[9px] lg:text-base items-center justify-center gap-3 duration-[0.4s] [text-transform:uppercase] cursor-pointer relative overflow-hidden hover:scale-110">
                             <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
                             <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepete Ekle</span>
                         </button>
-                    )}
+                    ))}
                 </div>
             </motion.div>
         </Link>

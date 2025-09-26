@@ -29,7 +29,7 @@ namespace Repositories
             query = query.SortExtensionForBooks(p.OrderBy ?? "")
                 .ToPaginate(p.PageSize, p.PageNumber);
 
-            var shaped = await _bookShaper.ShapeAsync(query, p.Fields,p, ct);
+            var shaped = await _bookShaper.ShapeAsync(query, p.Fields, p, ct);
 
             return (shaped, count);
         }
@@ -53,7 +53,7 @@ namespace Repositories
 
         public async Task<Book?> GetOneBookAsync(int id, bool trackChanges)
         {
-            var books = await FindByCondition(b => b.Id == id, trackChanges)
+            var book = await FindByCondition(b => b.Id == id, trackChanges)
                 .Include(b => b.Categories)
                 .Include(b => b.Authors)
                 .Include(b => b.Tags)
@@ -61,7 +61,16 @@ namespace Repositories
                 .AsSplitQuery()
                 .FirstOrDefaultAsync();
 
-            return books;
+            return book;
+        }
+
+        public async Task<Book?> GetOneBookForReviewAsync(int id, bool trackChanges)
+        {
+            var book = await FindByCondition(b => b.Id == id, trackChanges)
+                .Include(b => b.Reviews)
+                .FirstOrDefaultAsync();
+
+            return book;
         }
 
         public async Task DeleteBookImageAsync(int id)

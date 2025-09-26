@@ -192,6 +192,11 @@ namespace Services
         {
             var cartLine = await GetCartLineByIdForServiceAsync(cartLineId, true);
 
+            if (cartLine?.Book!.AvailableCopies < cartLine?.Quantity + quantity)
+            {
+                throw new InsufficientBookCopiesException(cartLine?.Book?.Title!, cartLine!.Book!.AvailableCopies, cartLine.Quantity + quantity);
+            }
+
             cartLine!.Quantity += quantity;
             await _manager.SaveAsync();
 

@@ -51,7 +51,6 @@ namespace KutuphaneAPI.Infrastructure.Mapper
                 .ForMember(dest => dest.ReservationDate, opt => opt.MapFrom(src => DateOnly.Parse(src.ReservationDate)));
             CreateMap<Seat, SeatDto>().ReverseMap();
             CreateMap<TimeSlot, TimeSlotDto>().ReverseMap();
-            CreateMap<Review, ReviewDto>();
             CreateMap<Tag, TagDto>()
                 .ForMember(dest => dest.BookCount, opt => opt.MapFrom(src => src.Books != null ? src.Books.Count : 0));
             CreateMap<TagDtoForCreation, Tag>();
@@ -67,6 +66,10 @@ namespace KutuphaneAPI.Infrastructure.Mapper
                 .ForMember(dest => dest.BookImageUrl, opt => opt.MapFrom(src => src.Book!.Images != null && src.Book.Images.Any() ? src.Book.Images.First().ImageUrl : string.Empty))
                 .ReverseMap();
             CreateMap<Penalty, PenaltyDto>().ReverseMap();
+            CreateMap<UserReview, UserReviewDto>()
+                .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName));
+            CreateMap<UserReviewDtoForCreation, UserReview>();
+            CreateMap<UserReviewDtoForUpdate, UserReview>();
         }
     }
 }

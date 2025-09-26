@@ -1,6 +1,7 @@
 ﻿using Entities.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.ActionFilters;
 using Services.Contracts;
 
 namespace Presentation.Controllers.Admin
@@ -18,6 +19,7 @@ namespace Presentation.Controllers.Admin
         }
 
         [HttpPost("create")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateAuthor([FromBody] AuthorDtoForCreation authorDto)
         {
             await _manager.AuthorService.CreateAuthorAsync(authorDto);
@@ -26,6 +28,7 @@ namespace Presentation.Controllers.Admin
         }
 
         [HttpPut("update")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateAuthor([FromBody] AuthorDtoForUpdate authorDto)
         {
             await _manager.AuthorService.UpdateAuthorAsync(authorDto);

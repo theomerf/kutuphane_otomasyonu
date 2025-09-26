@@ -59,6 +59,8 @@ export function CreateAccount() {
         } catch (error: any) {
             console.error('Oluşturma hatası:', error);
             toast.error('Kullanıcı oluşturulurken hata oluştu.');
+            setIsLoading(false);
+            return;
         } finally {
             setIsLoading(false);
         }

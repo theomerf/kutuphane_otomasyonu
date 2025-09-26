@@ -15,7 +15,7 @@
         public ICollection<Tag>? Tags { get; set; }
         public ICollection<Author>? Authors { get; set; }
         public ICollection<Category>? Categories { get; set; }
-        public ICollection<Review>? Reviews { get; set; }
+        public ICollection<UserReview>? Reviews { get; set; }
         public ICollection<CartLine>? CartLines { get; set; }
         public ICollection<LoanLine>? LoanLines { get; set; }
     }
