@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1200" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFFFFF" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.08"/>
+    </linearGradient>
+    <clipPath id="round2">
+      <rect x="0" y="0" width="1200" height="320" rx="18" ry="18"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#round2)">
+    <rect width="1200" height="320" fill="url(#g2)"/>
+
+    <!-- Decorative shapes -->
+    <g opacity="0.14">
+      <circle cx="180" cy="80" r="140" fill="#FFFFFF"/>
+      <circle cx="300" cy="-10" r="90" fill="#FFFFFF"/>
+      <circle cx="200" cy="210" r="110" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Glass card -->
+    <g transform="translate(40,44)">
+      <rect x="0" y="0" width="640" height="232" rx="18" fill="url(#glass)"/>
+      <rect x="0" y="0" width="640" height="232" rx="18" fill="#FFFFFF" opacity="0.05"/>
+
+      <g transform="translate(24,20)">
+        <rect x="0" y="0" rx="10" ry="10" width="146" height="32" fill="#F59E0B"/>
+        <text x="73" y="22" text-anchor="middle" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF">ÖNEMLİ DUYURU</text>
+      </g>
+
+      <text x="24" y="96" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-weight="800" font-size="34" fill="#FFFFFF">
+        Hafta İçi Çalışma Saatleri Güncellendi
+      </text>
+      <text x="24" y="136" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#ECFEFF">
+        Pazartesi - Cuma 08:30 - 22:00, Cumartesi 10:00 - 18:00. Pazar günleri kapalıyız.
+      </text>
+
+      <g transform="translate(24, 164)">
+        <rect x="0" y="0" rx="999" ry="999" width="240" height="44" fill="#FFFFFF" opacity="0.2"/>
+        <text x="20" y="28" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-weight="600" font-size="16" fill="#FFFFFF">
+          Detayları Görüntüle →
+        </text>
+      </g>
+    </g>
+
+    <!-- Right abstract waves -->
+    <path d="M720 220 C 840 170, 980 260, 1200 200 L 1200 360 L 720 360 Z" fill="#FFFFFF" opacity="0.10"/>
+    <path d="M760 240 C 900 190, 1040 280, 1200 220 L 1200 360 L 760 360 Z" fill="#FFFFFF" opacity="0.08"/>
+  </g>
+</svg>

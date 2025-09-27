@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1200" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1040 40) rotate(45) scale(400)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="round">
+      <rect x="0" y="0" width="1200" height="320" rx="18" ry="18"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#round)">
+    <rect width="1200" height="320" fill="url(#g1)"/>
+    <circle cx="1000" cy="60" r="260" fill="url(#glow1)"/>
+    <circle cx="1060" cy="-40" r="180" fill="#A78BFA" opacity="0.2"/>
+    <circle cx="980" cy="140" r="120" fill="#C4B5FD" opacity="0.25"/>
+
+    <path d="M0 230 C 200 270, 420 210, 620 235 C 820 260, 1060 200, 1200 235 L 1200 360 L 0 360 Z" fill="#FFFFFF" opacity="0.12"/>
+    <path d="M0 250 C 220 290, 400 230, 650 255 C 880 278, 1060 220, 1200 255 L 1200 360 L 0 360 Z" fill="#FFFFFF" opacity="0.08"/>
+
+    <rect x="0" y="0" width="1200" height="6" fill="url(#shine)" opacity="0.35"/>
+
+    <!-- Badge -->
+    <g transform="translate(40,48)">
+      <rect x="0" y="0" rx="10" ry="10" width="120" height="32" fill="#22C55E" opacity="0.95"/>
+      <text x="60" y="22" text-anchor="middle" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF">DUYURU</text>
+    </g>
+
+    <!-- Title -->
+    <text x="40" y="120" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-weight="800" font-size="36" fill="#FFFFFF">
+      Kütüphanemizde Yeni Gelen Kitaplar!
+    </text>
+    <!-- Subtitle -->
+    <text x="40" y="160" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#F3E8FF">
+      Popüler yazarların en güncel eserleri raflarda yerini aldı. Hemen göz atın.
+    </text>
+
+    <!-- CTA pill -->
+    <g transform="translate(40, 200)">
+      <rect x="0" y="0" rx="999" ry="999" width="210" height="44" fill="#FFFFFF" opacity="0.18"/>
+      <text x="20" y="28" font-family="Segoe UI, system-ui, -apple-system, sans-serif" font-weight="600" font-size="16" fill="#FFFFFF">
+        Koleksiyonu Keşfet →
+      </text>
+    </g>
+  </g>
+</svg>

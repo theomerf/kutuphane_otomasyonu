@@ -2,13 +2,15 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar.tsx'
 import Footer from './Footer.tsx'
 import { AnimatePresence, motion } from "framer-motion";
+import { useBreakpoint } from '../../hooks/useBreakpoint.ts';
 
 export default function MainLayout({ isAdmin = false }: { isAdmin?: boolean }) {
     const location = useLocation();
+    const { up } = useBreakpoint();
 
     return (
         <div className="flex flex-col min-h-screen">
-            <Navbar isAdmin= { isAdmin }/>
+            <Navbar isAdmin={isAdmin} />
 
             <main className="flex-grow pt-16 pb-10 my-5">
                 <AnimatePresence mode="wait">
@@ -22,8 +24,8 @@ export default function MainLayout({ isAdmin = false }: { isAdmin?: boolean }) {
                     </motion.div>
                 </AnimatePresence>
             </main>
-
-            <Footer />
+            
+            {up.lg && <Footer />}
         </div>
     )
 }

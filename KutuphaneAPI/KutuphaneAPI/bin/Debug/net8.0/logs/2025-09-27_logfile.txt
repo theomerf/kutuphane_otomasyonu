@@ -1,0 +1,3 @@
+2025-09-27 12:26:55.7552 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-27T12:26:55.4160725+03:00"}
+2025-09-27 12:27:54.1860 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-27T12:27:54.1859483+03:00"}
+2025-09-27 12:27:54.2099 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-27T12:27:54.2099092+03:00"}
