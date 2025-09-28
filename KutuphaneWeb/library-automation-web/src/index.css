@@ -62,10 +62,6 @@ body{
       hover:text-gray-600;
   }
 
-  .pagination-ellipsis:hover .ellipsis-dropdown {
-    @apply block;
-  }
-
   .ellipsis-dropdown {
     @apply
       hidden absolute top-12 left-1/2 transform -translate-x-1/2

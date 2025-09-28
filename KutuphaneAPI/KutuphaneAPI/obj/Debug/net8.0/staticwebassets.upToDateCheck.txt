@@ -1,3 +1,5 @@
+wwwroot\images\announcements\1.svg
+wwwroot\images\announcements\2.svg
 wwwroot\images\avatars\default.png
 wwwroot\images\books\1.jpg
 wwwroot\images\books\2.jpg

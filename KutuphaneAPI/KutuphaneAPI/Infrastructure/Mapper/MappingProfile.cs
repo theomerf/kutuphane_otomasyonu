@@ -67,7 +67,8 @@ namespace KutuphaneAPI.Infrastructure.Mapper
                 .ReverseMap();
             CreateMap<Penalty, PenaltyDto>().ReverseMap();
             CreateMap<UserReview, UserReviewDto>()
-                .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName));
+                .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName))
+                .ForMember(dest => dest.AccountAvatarUrl, opt => opt.MapFrom(src => src.Account!.AvatarUrl));
             CreateMap<UserReviewDtoForCreation, UserReview>();
             CreateMap<UserReviewDtoForUpdate, UserReview>();
         }

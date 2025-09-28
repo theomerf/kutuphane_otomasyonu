@@ -6,7 +6,7 @@ import ImageSwiper from "../../components/ui/ImageSwiper";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faBan, faBarcode, faCartPlus, faCircleDot, faLayerGroup, faLocationDot, faPen, faTag, faTags, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, type RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import { addLineToCart, removeLineFromCart } from "../Cart/cartSlice";
@@ -36,6 +36,7 @@ export function BookDetail() {
     const [reviewsCount, setReviewsCount] = useState<number>(0);
     const [activePanel, setActivePanel] = useState<'details' | 'reviews'>('details');
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { cart } = useSelector((state: RootState) => state.cart);
     const [relatedBookParams, setRelatedBookParams] = useState<BookRequestParameters | null>(null);
 
@@ -251,10 +252,10 @@ export function BookDetail() {
                                         <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepete Ekle</span>
                                     </button>
                                 ))}
-                                <Link to="/books" className="button w-1/2 !bg-yellow-400 hover:scale-105 text-center text-2xl font-semibold">
+                                <button type="button" onClick={() => navigate(-1)} className="button w-1/2 !bg-yellow-400 hover:scale-105 text-center text-2xl font-semibold">
                                     <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                                     Kitaplara Dön
-                                </Link>
+                                </button>
                             </div>
                         </div>
                     </div>

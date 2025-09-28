@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import type BookRequestParameters from "../../types/bookRequestParameters";
 import requests from "../../services/api";
 import type Book from "../../types/book";
@@ -10,6 +10,7 @@ import Filters, { type FilterSection } from "../../components/books/Filters";
 import BookPagination from "../../components/books/BookPagination";
 import { motion } from "framer-motion";
 import BookCard from "../../components/books/BookCard";
+import { useSearchParams } from "react-router-dom";
 
 export default function Books() {
   const [openSections, setOpenSections] = useState<string[]>(["categories", "authors", "other"]);
@@ -20,6 +21,7 @@ export default function Books() {
   const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
   const [filters, setFilters] = useState<FilterSection[]>([]);
   const { up } = useBreakpoint();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [pagination, setPagination] = useState<PaginationHeader>({
     CurrentPage: 1,
     TotalPage: 0,
@@ -28,17 +30,78 @@ export default function Books() {
     HasPrevious: false,
     HasPage: false
   });
-  const [searchInput, setSearchInput] = useState("");
+
+  const getInitialSearchFromUrl = () => {
+    const searchTerm = searchParams.get("searchTerm");
+    return searchTerm || "";
+  }
+  const [searchInput, setSearchInput] = useState<string>(getInitialSearchFromUrl());
   const debouncedSearch = useDebounce(searchInput, 500);
-  const [query, setQuery] = useState<BookRequestParameters>({
-    pageNumber: 1,
-    pageSize: 6
-  });
+
+  const getQueriesFromUrl = () => {
+    const pageNumber = searchParams.get("pageNumber");
+    const pageSize = searchParams.get("pageSize");
+    const searchTerm = searchParams.get("searchTerm");
+    const orderBy = searchParams.get("orderBy");
+    const authorId = searchParams.get("authorId");
+    const categoryId = searchParams.get("categoryId");
+    const isAvailable = searchParams.get("isAvailable");
+    const isPopular = searchParams.get("isPopular");
+
+    return ({
+      pageNumber: pageNumber ? parseInt(pageNumber) : 1,
+      pageSize: pageSize ? parseInt(pageSize) : 6,
+      searchTerm: searchTerm || undefined,
+      orderBy: orderBy || undefined,
+      authorId: authorId ? parseInt(authorId) : undefined,
+      categoryId: categoryId ? parseInt(categoryId) : undefined,
+      isAvailable: isAvailable ? isAvailable === "true" : undefined,
+      isPopular: isPopular ? isPopular === "true" : undefined
+    });
+  }
+
+  const [query, setQuery] = useState<BookRequestParameters>(getQueriesFromUrl());
 
   const finalQuery = useMemo(() => ({
     ...query,
     searchTerm: debouncedSearch || undefined
   }), [query, debouncedSearch]);
+
+  const modifyUrl = useCallback(() => {
+    const params = new URLSearchParams();
+
+    if (finalQuery.pageNumber && finalQuery.pageNumber !== 1) {
+      params.set("pageNumber", finalQuery.pageNumber.toString());
+    }
+    if (finalQuery.pageSize && finalQuery.pageSize !== 6) {
+      params.set("pageSize", finalQuery.pageSize.toString());
+    }
+    if (finalQuery.searchTerm) {
+      params.set("searchTerm", finalQuery.searchTerm);
+    }
+    if (finalQuery.orderBy) {
+      params.set("orderBy", finalQuery.orderBy);
+    }
+    if (finalQuery.authorId) {
+      params.set("authorId", finalQuery.authorId.toString());
+    }
+    if (finalQuery.categoryId) {
+      params.set("categoryId", finalQuery.categoryId.toString());
+    }
+    if (finalQuery.isAvailable !== undefined) {
+      params.set("isAvailable", finalQuery.isAvailable.toString());
+    }
+    if (finalQuery.isPopular !== undefined) {
+      params.set("isPopular", finalQuery.isPopular.toString());
+    }
+
+    const newParamsString = params.toString();
+    const currentParamsString = searchParams.toString();
+
+    if (newParamsString !== currentParamsString) {
+      setSearchParams(params, { replace: true });
+    }
+  }, [finalQuery, searchParams]);
 
   const fetchBooks = async (queryParams: BookRequestParameters, signal?: AbortSignal) => {
     try {
@@ -70,6 +133,10 @@ export default function Books() {
   };
 
   useEffect(() => {
+    modifyUrl();
+  }, [finalQuery]);
+
+  useEffect(() => {
     const controller = new AbortController();
 
     const loadBooks = async () => {
@@ -77,7 +144,7 @@ export default function Books() {
         setIsLoading(true);
         setError(null);
 
-        const books = await fetchBooks(finalQuery);
+        const books = await fetchBooks(finalQuery, controller.signal);
         setData(books);
       }
       catch (error: any) {

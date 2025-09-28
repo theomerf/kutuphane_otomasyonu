@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 namespace Presentation.Controllers
 {
-    [Authorize]
+
     [ApiController]
     [Route("api/[controller]")]
     public class UserReviewController : ControllerBase
@@ -18,6 +18,7 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllUserReviews()
         {
@@ -34,6 +35,7 @@ namespace Presentation.Controllers
             return Ok(reviewCount);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOneUserReviewById([FromRoute] int id)
         {
@@ -50,7 +52,7 @@ namespace Presentation.Controllers
             return Ok(reviews);
         }
 
-
+        [Authorize]
         [HttpGet("account/{accountId}")]
         public async Task<IActionResult> GetUserReviewsByAccountId([FromRoute] string accountId)
         {
@@ -59,6 +61,7 @@ namespace Presentation.Controllers
             return Ok(reviews);
         }
 
+        [Authorize]
         [HttpPost("create")]
         public async Task<IActionResult> CreateUserReview([FromBody] UserReviewDtoForCreation userReviewDto)
         {
@@ -70,6 +73,7 @@ namespace Presentation.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut("update")]
         public async Task<IActionResult> UpdateUserReview([FromBody] UserReviewDtoForUpdate userReviewDto)
         {
@@ -78,6 +82,7 @@ namespace Presentation.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut("delete/{id}")]
         public async Task<IActionResult> DeleteUserReview([FromRoute] int id)
         {

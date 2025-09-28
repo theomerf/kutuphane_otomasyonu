@@ -81,6 +81,14 @@ export default function Filters({ isFiltersOpen, setIsFiltersOpen, setOpenSectio
         );
     };
 
+    const clearAllFilters = () => {
+        setQuery({
+            pageNumber: 1,
+            pageSize: 6
+        });
+        setSearchInput("");
+    }
+
     return (
         <div className="flex flex-col fixed lg:static left-0 top-20 z-10 lg:col-span-1 overflow-y-auto w-5/6 h-fit  bg-white/95 lg:bg-white/90 shadow-lg rounded-tr-xl rounded-br-xl lg:rounded-xl">
             {(up.lg || isFiltersOpen) ? (
@@ -90,6 +98,11 @@ export default function Filters({ isFiltersOpen, setIsFiltersOpen, setOpenSectio
                             <FontAwesomeIcon icon={faFilter} className="mr-2" />
                             Kitap Filtreleri
                         </p>
+                        {query.categoryId || query.authorId || query.isAvailable || query.isPopular || searchInput ? (
+                            <button onClick={clearAllFilters} title="Tüm Filtreleri Temizle" className="bg-red-600 rounded-full w-8 h-8 absolute left-4 top-4 hover:scale-110 duration-300 text-white">
+                                <FontAwesomeIcon icon={faFilterCircleXmark}></FontAwesomeIcon>
+                            </button>
+                        ) : null}
                         {!up.lg && <button onClick={() => setIsFiltersOpen(false)} className="bg-red-600 rounded-full w-8 h-8 absolute right-3 top-3 text-white py-1 px-2">X</button>}
                     </div>
                     <div className="max-h-[80vh] lg:max-h-[140vh] overflow-y-auto">
@@ -215,7 +228,7 @@ export default function Filters({ isFiltersOpen, setIsFiltersOpen, setOpenSectio
                                                 <p className="text-sm text-gray-500">Popüler Kitaplar</p>
                                             </div>
                                             <div className="ml-auto">
-                                                <Switch size="sm" onChange={() => {
+                                                <Switch size="sm" checked={query.isPopular} onChange={() => {
                                                     setQuery(prev => ({
                                                         ...prev,
                                                         isPopular: prev.isPopular ? undefined : true,
@@ -230,7 +243,7 @@ export default function Filters({ isFiltersOpen, setIsFiltersOpen, setOpenSectio
                                                 <p className="text-sm text-gray-500">Sadece mevcut kitaplar</p>
                                             </div>
                                             <div className="ml-auto">
-                                                <Switch size="sm" onChange={() => {
+                                                <Switch size="sm" checked={query.isAvailable} onChange={() => {
                                                     setQuery(prev => ({
                                                         ...prev,
                                                         isAvailable: prev.isAvailable ? undefined : true,

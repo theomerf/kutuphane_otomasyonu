@@ -24,6 +24,11 @@ axios.interceptors.response.use(
         return response;
     },
     async (error) => {
+        if (error.name === "AbortError" || error.name === "CanceledError" ||
+            error.code === "ERR_CANCELED" || error.message?.includes("canceled")) {
+            return Promise.reject(error);
+        }
+        
         if (!error.response) {
             toast.error("Sunucuya ulaşılamıyor");
             return Promise.reject(error);

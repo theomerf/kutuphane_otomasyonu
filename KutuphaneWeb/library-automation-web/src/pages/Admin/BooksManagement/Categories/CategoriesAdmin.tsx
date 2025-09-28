@@ -4,7 +4,7 @@ import { ClipLoader } from "react-spinners";
 import type PaginationHeader from "../../../../types/paginationHeader";
 import { useDebounce } from "../../../../hooks/useDebounce";
 import { useBreakpoint } from "../../../../hooks/useBreakpoint";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faEdit, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
@@ -17,6 +17,7 @@ export default function CategoriesAdmin() {
     const [error, setError] = useState<string | null>(null);
     const [data, setData] = useState<Category[] | null>(null);
     const { up } = useBreakpoint();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [isDeleted, setIsDeleted] = useState(false);
     const [pagination, setPagination] = useState<PaginationHeader>({
         CurrentPage: 1,
@@ -26,17 +27,55 @@ export default function CategoriesAdmin() {
         HasPrevious: false,
         HasPage: false
     });
-    const [searchInput, setSearchInput] = useState("");
+    const getInitialSearchFromUrl = () => {
+        const searchTerm = searchParams.get("searchTerm");
+        return searchTerm || "";
+    }
+    const [searchInput, setSearchInput] = useState<string>(getInitialSearchFromUrl());
     const debouncedSearch = useDebounce(searchInput, 500);
-    const [query, setQuery] = useState<RequestParameters>({
-        pageNumber: 1,
-        pageSize: 6
-    });
+    const getQueriesFromUrl = () => {
+        const pageNumber = searchParams.get("pageNumber");
+        const pageSize = searchParams.get("pageSize");
+        const searchTerm = searchParams.get("searchTerm");
+        const orderBy = searchParams.get("orderBy");
+
+        return ({
+            pageNumber: pageNumber ? parseInt(pageNumber) : 1,
+            pageSize: pageSize ? parseInt(pageSize) : 6,
+            searchTerm: searchTerm || undefined,
+            orderBy: orderBy || undefined,
+        });
+    }
+    const [query, setQuery] = useState<RequestParameters>(getQueriesFromUrl());
 
     const finalQuery = useMemo(() => ({
         ...query,
         searchTerm: debouncedSearch || undefined
     }), [query, debouncedSearch]);
+
+    const modifyUrl = useCallback(() => {
+        const params = new URLSearchParams();
+
+        if (finalQuery.pageNumber && finalQuery.pageNumber !== 1) {
+            params.set("pageNumber", finalQuery.pageNumber.toString());
+        }
+        if (finalQuery.pageSize && finalQuery.pageSize !== 6) {
+            params.set("pageSize", finalQuery.pageSize.toString());
+        }
+        if (finalQuery.searchTerm) {
+            params.set("searchTerm", finalQuery.searchTerm);
+        }
+        if (finalQuery.orderBy) {
+            params.set("orderBy", finalQuery.orderBy);
+        }
+
+        const newParamsString = params.toString();
+        const currentParamsString = searchParams.toString();
+
+        if (newParamsString !== currentParamsString) {
+            setSearchParams(params, { replace: true });
+        }
+    }, [finalQuery, searchParams]);
 
     const fetchCategories = async (queryParams: RequestParameters, signal?: AbortSignal) => {
         try {
@@ -68,6 +107,10 @@ export default function CategoriesAdmin() {
     };
 
     useEffect(() => {
+        modifyUrl();
+    }, [finalQuery]);
+
+    useEffect(() => {
         const controller = new AbortController();
 
         const loadCategories = async () => {
@@ -75,7 +118,7 @@ export default function CategoriesAdmin() {
                 setIsLoading(true);
                 setError(null);
 
-                const categories = await fetchCategories(finalQuery);
+                const categories = await fetchCategories(finalQuery, controller.signal);
                 setData(categories);
             }
             catch (error: any) {
@@ -131,7 +174,7 @@ export default function CategoriesAdmin() {
                         {searchInput && <button onClick={() => setSearchInput("")} className="bg-red-600 right-2 rounded-full w-6 h-6 absolute text-white hover:scale-105 duration-300">X</button>}
                     </div>
                 </div>
-              <div className="flex flex-row gap-x-4 ml-auto">
+                <div className="flex flex-row gap-x-4 ml-auto">
                     <Link to="/admin/dashboard/books" className="button font-bold text-lg self-center hover:scale-105 duration-500">
                         <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                         Geri

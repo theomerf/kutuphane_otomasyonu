@@ -20,10 +20,19 @@ export const Pagination = ({
   maxVisible = 5
 }: PaginationProps) => {
   const [inputPage, setInputPage] = useState('')
+  const [isEllipsisHovered, setIsEllipsisHovered] = useState<Map<number, boolean>>(new Map());
+
+  function addItem(key: number, value: boolean) {
+    setIsEllipsisHovered(prev => {
+      const newMap = new Map(prev);
+      newMap.set(key, value);
+      return newMap;
+    });
+  }
 
   const getVisiblePages = () => {
     const pages: (number | 'ellipsis')[] = []
-    
+
     if (totalPages <= maxVisible) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i)
@@ -100,9 +109,9 @@ export const Pagination = ({
         if (page === 'ellipsis') {
           return (
             <div key={`ellipsis-${index}`} className="pagination-ellipsis">
-              <span>...</span>
-              <div className="ellipsis-dropdown">
-                <form onSubmit={handleInputSubmit} className="p-2">
+              <span onMouseEnter={() => addItem(index, true)}>...</span>
+              <div className={`${isEllipsisHovered.get(index) ? "block" : ""} ellipsis-dropdown`}>
+                <form onSubmit={handleInputSubmit} onMouseLeave={() => addItem(index, false)} className="p-2">
                   <input
                     type="number"
                     min={1}

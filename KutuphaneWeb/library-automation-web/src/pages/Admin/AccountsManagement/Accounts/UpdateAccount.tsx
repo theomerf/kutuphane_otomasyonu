@@ -3,7 +3,7 @@ import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import type Account from "../../../../types/account";
@@ -225,10 +225,10 @@ export function UpdateAccount() {
                                 </>
                             )}
                         </button>
-                        <Link to="/admin/accounts" className="button w-1/2 !bg-red-500 font-bold !py-4 text-center text-lg hover:scale-105 duration-300">
+                        <button type="button" onClick={() => navigate(-1)} className="button w-1/2 !bg-red-500 font-bold !py-4 text-center text-lg hover:scale-105 duration-300">
                             <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                             Geri Dön
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </form>

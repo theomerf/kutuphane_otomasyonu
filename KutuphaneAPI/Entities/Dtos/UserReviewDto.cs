@@ -9,6 +9,7 @@
         public DateTime? UpdatedAt { get; init; }
         public String AccountId { get; init; } = null!;
         public String AccountUserName { get; init; } = null!;
+        public String AccountAvatarUrl { get; init; } = null!;
         public int BookId { get; init; }
     }
 }

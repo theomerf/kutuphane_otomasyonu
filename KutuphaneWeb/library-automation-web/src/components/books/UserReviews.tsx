@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type UserReview from "../../types/userReview";
-import { faCalendar, faCheck, faComment, faPenAlt, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faCheck, faComment, faExclamation, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import requests from "../../services/api";
@@ -8,6 +8,8 @@ import { ClipLoader } from "react-spinners";
 import { useEffect, useState } from "react";
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { Rating } from "../ui/Rating";
+import type { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
 
 type UserReviewsProps = {
     bookId: number;
@@ -21,6 +23,7 @@ export default function UserReviews({ bookId }: UserReviewsProps) {
             bookId: bookId
         }
     });
+    const { user } = useSelector((state: RootState) => state.account);
     const [reviews, setReviews] = useState<UserReview[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [hoveredRating, setHoveredRating] = useState<number | null>(null);
@@ -86,8 +89,8 @@ export default function UserReviews({ bookId }: UserReviewsProps) {
                     {reviews.map((review) => (
                         <div key={review.id} className="flex flex-col gap-y-6 rounded-lg shadow-md border bg-violet-50 border-gray-200 px-8 py-6 mb-6">
                             <div className="flex flex-row">
-                                <p className="font-semibold text-gray-500 text-lg text-left">
-                                    <FontAwesomeIcon icon={faPenAlt} className="text-violet-400 mr-2" />
+                                <img src={"https://localhost:7214/images/" + review.accountAvatarUrl} alt="User Avatar" className="w-12 h-12 rounded-full mr-4" />   
+                                <p className="font-semibold text-gray-500 text-lg text-left self-center">
                                     {review.accountUserName}
                                 </p>
                                 <div className="ml-auto">
@@ -107,85 +110,94 @@ export default function UserReviews({ bookId }: UserReviewsProps) {
                     ))}
                 </div>
             )}
-            <form method="POST" onSubmit={handleSubmit(handleReviewCreation)}>
-                <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
-                    <p className="text-white font-bold text-3xl">
-                        <FontAwesomeIcon icon={faComment} className="mr-2" />
-                        Değerlendirme Ekle
+            {!user ? (
+                <div className="flex justify-center rounded-lg w-fit self-center px-4 py-2 shadow-md border-gray-200 border">
+                    <FontAwesomeIcon icon={faExclamation} className="mr-2 self-center text-xl text-yellow-400 animate-pulse" />
+                    <p className="text-lg font-semibold text-gray-500">
+                        Değerlendirme eklemek için lütfen giriş yapın.
                     </p>
                 </div>
-                <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">
-                    <div className="flex flex-col w-full">
-                        <p className="font-bold text-gray-500 text-base">Puanlamanız:</p>
-                        <div
-                            onMouseLeave={handleStarLeave}
-                            className="mt-3 w-fit"
-                        >
-                            {[1, 2, 3, 4, 5].map((star) => (
-                                <button
-                                    type="button"
-                                    key={star}
-                                    onClick={() => handleStarClick(star)}
-                                    onMouseEnter={() => handleStarHover(star)}
-                                    className="mr-1 text-2xl group"
-                                >
-                                    <FontAwesomeIcon
-                                        icon={
-                                            (hoveredRating
-                                                ? star <= hoveredRating
-                                                : star <= selectedRating)
-                                                ? faStar
-                                                : farStar
-                                        }
-                                        className="text-yellow-300 group-hover:scale-125 transition-all duration-200"
-                                    />
-                                </button>
-                            ))}
-                        </div>
-                        <input
-                            type="hidden"
-                            {...register("rating", {
-                                required: "Puanlama zorunludur.",
-                                min: { value: 1, message: "Minimum 1 puan verilmelidir." },
-                                max: { value: 5, message: "Maksimum 5 puan verilmelidir." }
-                            })}
-                            value={selectedRating}
-                            readOnly
-                        />
-                        {errors.rating && (
-                            <span className="text-red-700 text-left mt-1">{errors.rating.message}</span>
-                        )}
+            ) : (
+                <form method="POST" onSubmit={handleSubmit(handleReviewCreation)}>
+                    <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
+                        <p className="text-white font-bold text-3xl">
+                            <FontAwesomeIcon icon={faComment} className="mr-2" />
+                            Değerlendirme Ekle
+                        </p>
                     </div>
-                    <div className="flex flex-col w-full">
-                        <label htmlFor="comment" className="font-bold text-gray-500 text-base">Yorumunuz</label>
-                        <textarea
-                            {...register("comment", {
-                                maxLength: { value: 1000, message: "Maksimum 1000 karakter girebilirsiniz." },
-                            })}
-                            id="comment"
-                            name="comment"
-                            className="input w-full mt-4 resize-none"
-                        />
-                        {errors.comment && <span className="text-red-700 text-left mt-1">{errors.comment?.message?.toString()}</span>}
-                    </div>
-                    <div className="mt-10 justify-center flex px-20">
-                        <button
-                            type="submit"
-                            className="button w-1/2 font-bold text-lg !py-4 hover:scale-105 duration-300"
-                            disabled={isLoading}
-                        >
-                            {isLoading ? (
-                                <ClipLoader size={20} color="#fff" />
-                            ) : (
-                                <>
-                                    <FontAwesomeIcon icon={faCheck} className="mr-2" />
-                                    Onayla
-                                </>
+                    <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">
+                        <div className="flex flex-col w-full">
+                            <p className="font-bold text-gray-500 text-base">Puanlamanız:</p>
+                            <div
+                                onMouseLeave={handleStarLeave}
+                                className="mt-3 w-fit"
+                            >
+                                {[1, 2, 3, 4, 5].map((star) => (
+                                    <button
+                                        type="button"
+                                        key={star}
+                                        onClick={() => handleStarClick(star)}
+                                        onMouseEnter={() => handleStarHover(star)}
+                                        className="mr-1 text-2xl group"
+                                    >
+                                        <FontAwesomeIcon
+                                            icon={
+                                                (hoveredRating
+                                                    ? star <= hoveredRating
+                                                    : star <= selectedRating)
+                                                    ? faStar
+                                                    : farStar
+                                            }
+                                            className="text-yellow-300 group-hover:scale-125 transition-all duration-200"
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                            <input
+                                type="hidden"
+                                {...register("rating", {
+                                    required: "Puanlama zorunludur.",
+                                    min: { value: 1, message: "Minimum 1 puan verilmelidir." },
+                                    max: { value: 5, message: "Maksimum 5 puan verilmelidir." }
+                                })}
+                                value={selectedRating}
+                                readOnly
+                            />
+                            {errors.rating && (
+                                <span className="text-red-700 text-left mt-1">{errors.rating.message}</span>
                             )}
-                        </button>
+                        </div>
+                        <div className="flex flex-col w-full">
+                            <label htmlFor="comment" className="font-bold text-gray-500 text-base">Yorumunuz</label>
+                            <textarea
+                                {...register("comment", {
+                                    maxLength: { value: 1000, message: "Maksimum 1000 karakter girebilirsiniz." },
+                                })}
+                                id="comment"
+                                name="comment"
+                                className="input w-full mt-4 resize-none"
+                            />
+                            {errors.comment && <span className="text-red-700 text-left mt-1">{errors.comment?.message?.toString()}</span>}
+                        </div>
+                        <div className="mt-10 justify-center flex px-20">
+                            <button
+                                type="submit"
+                                className="button w-1/2 font-bold text-lg !py-4 hover:scale-105 duration-300"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? (
+                                    <ClipLoader size={20} color="#fff" />
+                                ) : (
+                                    <>
+                                        <FontAwesomeIcon icon={faCheck} className="mr-2" />
+                                        Onayla
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            )}
         </div>
     );
 }

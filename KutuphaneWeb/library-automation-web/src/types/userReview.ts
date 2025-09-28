@@ -7,4 +7,5 @@ export default interface UserReview {
     accountId: string;
     bookId: number;
     accountUserName: string;
+    accountAvatarUrl: string;
 }

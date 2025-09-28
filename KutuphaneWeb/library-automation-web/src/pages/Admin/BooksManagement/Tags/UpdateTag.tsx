@@ -3,7 +3,7 @@ import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCheck, faEdit } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import type Tag from "../../../../types/tag";
@@ -80,7 +80,7 @@ export function UpdateTag() {
     }, []);
 
     return (
-        <div className="flex justify-center"> 
+        <div className="flex justify-center">
             {(tagDetail.loading) && (
                 <div className="flex justify-center items-center h-64">
                     <ClipLoader size={40} color="#8B5CF6" />
@@ -121,10 +121,10 @@ export function UpdateTag() {
                                     <FontAwesomeIcon icon={faCheck} className="mr-2" />
                                     Onayla
                                 </button>
-                                <Link to="/admin/tags" className="button w-1/2 !bg-red-500 font-bold !py-4 text-center text-lg hover:scale-105 duration-300">
+                                <button type="button" onClick={() => navigate(-1)} className="button w-1/2 !bg-red-500 font-bold !py-4 text-center text-lg hover:scale-105 duration-300">
                                     <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                                     Geri Dön
-                                </Link>
+                                </button>
                             </div>
                         </div>
                     </form>
