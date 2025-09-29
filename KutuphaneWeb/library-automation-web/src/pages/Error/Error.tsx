@@ -19,7 +19,7 @@ export default function Error() {
                         <FontAwesomeIcon icon={faCircleExclamation} className="text-violet-400 text-5xl animate-pulse self-center" />
                         <div>
                             <p className="text-gray-500 text-3xl font-bold">{state.error}</p>
-                            <p className="text-gray-400 text-lg font-bold mt-2">{state.status}</p>
+                            <p className="text-gray-400 mt-2">{state.status}</p>
                         </div>
                         <Link to="/" className="button w-fit self-center hover:scale-105">Anasayfaya Dön</Link>
                     </div>
@@ -30,7 +30,7 @@ export default function Error() {
                         <FontAwesomeIcon icon={faCircleExclamation} className="text-violet-400 text-5xl animate-pulse self-center" />
                         <div>
                             <p className="text-gray-500 text-3xl font-bold">Server Error</p>
-                            <p className="text-gray-400 text-lg font-bold mt-2">Bilinmeyen Bir Hata Oluştu</p>
+                            <p className="text-gray-400 mt-2">Bilinmeyen Bir Hata Oluştu</p>
                         </div>
                         <Link to="/" className="button w-fit self-center hover:scale-105">Anasayfaya Dön</Link>
                     </div>

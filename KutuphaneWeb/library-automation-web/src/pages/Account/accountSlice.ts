@@ -5,6 +5,7 @@ import requests from '../../services/api';
 import { history } from '../../utils/history';
 import type { FormError, ApiErrorResponse } from '../../types/apiError';
 import { clearLocalCart } from '../Cart/cartSlice';
+import { jwtDecode } from 'jwt-decode';
 
 type userState = {
     user: LoginResponse | null;
@@ -21,14 +22,13 @@ const initialState: userState = {
 export const loginUser = createAsyncThunk(
     "account/login",
     async (data, thunkAPI) => {
-        try{
+        try {
             const result = await requests.account.login(data);
-            localStorage.setItem("user", JSON.stringify(result));
             toast.success("Başarıyla giriş yaptınız.");
             history.push("/");
             return result;
         }
-        catch(error: any){
+        catch (error: any) {
             if (error.response?.status === 401) {
                 return thunkAPI.rejectWithValue("Kullanıcı adı veya şifre yanlış.");
             }
@@ -43,13 +43,13 @@ export const loginUser = createAsyncThunk(
 export const registerUser = createAsyncThunk(
     "account/register",
     async (data, thunkAPI) => {
-        try{
+        try {
             var result = await requests.account.register(data);
             toast.success("Başarıyla kayıt oldunuz, lütfen giriş yapın.");
             history.push("/account/login");
             return result;
         }
-        catch(error: any){
+        catch (error: any) {
             if (error.response?.data) {
                 const errorData = error.response.data as ApiErrorResponse;
                 return thunkAPI.rejectWithValue(errorData);
@@ -79,7 +79,7 @@ export const refresh = createAsyncThunk(
 
         const user: LoginResponse | null = storedUser ? JSON.parse(storedUser) as LoginResponse : null;
         if (user) thunkAPI.dispatch(setUser(user));
-        try{
+        try {
             var result = await requests.account.refresh(data);
             const newUser = result.data;
 
@@ -88,7 +88,7 @@ export const refresh = createAsyncThunk(
 
             return result;
         }
-        catch(error: any){
+        catch (error: any) {
             if (error.response?.data) {
                 const errorData = error.response.data as ApiErrorResponse;
                 return thunkAPI.rejectWithValue(errorData);
@@ -111,7 +111,15 @@ export const accountSlice = createSlice({
             state.status = "pending";
         });
         builder.addCase(loginUser.fulfilled, (state, action) => {
-            state.user = action.payload;
+            const decoded: any = jwtDecode(action.payload.accessToken);
+
+            state.user = {
+                ...action.payload,
+                userName: decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"],
+                avatarUrl: decoded["picture"]
+            };
+
+            localStorage.setItem("user", JSON.stringify(state.user));
             state.status = "idle";
         });
         builder.addCase(loginUser.rejected, (state, action) => {
@@ -134,7 +142,7 @@ export const accountSlice = createSlice({
         builder.addCase(logout.fulfilled, (state) => {
             state.user = null;
         });
-        
+
         builder.addCase(refresh.pending, (state) => {
             state.status = "pending";
         });

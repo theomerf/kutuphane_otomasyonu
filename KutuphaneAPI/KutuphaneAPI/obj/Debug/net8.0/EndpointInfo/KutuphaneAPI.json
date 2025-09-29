@@ -1620,6 +1620,220 @@
         }
       }
     },
+    "/api/notification/account": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/account/count": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/account/mark-as-read/{id}": {
+      "patch": {
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/account/mark-all-as-read": {
+      "patch": {
+        "tags": [
+          "Notification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/account/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/account/delete-all": {
+      "delete": {
+        "tags": [
+          "Notification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/notifications": {
+      "get": {
+        "tags": [
+          "NotificationAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/notifications/{id}": {
+      "get": {
+        "tags": [
+          "NotificationAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/notifications/create": {
+      "post": {
+        "tags": [
+          "NotificationAdmin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoForCreation"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoForCreation"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoForCreation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/notifications/update": {
+      "put": {
+        "tags": [
+          "NotificationAdmin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoForUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoForUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationDtoForUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/notifications/delete/{id}": {
+      "delete": {
+        "tags": [
+          "NotificationAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/penalty": {
       "get": {
         "tags": [
@@ -2808,6 +3022,77 @@
         ],
         "type": "string"
       },
+      "NotificationDtoForCreation": {
+        "required": [
+          "message",
+          "title",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "message": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/NotificationType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotificationDtoForUpdate": {
+        "required": [
+          "message",
+          "title",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "message": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/NotificationType"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isRead": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotificationType": {
+        "enum": [
+          "Info",
+          "Warning",
+          "Alert"
+        ],
+        "type": "string"
+      },
       "PenaltyDto": {
         "type": "object",
         "properties": {
@@ -2944,10 +3229,6 @@
             "nullable": true
           },
           "refreshToken": {
-            "type": "string",
-            "nullable": true
-          },
-          "userName": {
             "type": "string",
             "nullable": true
           }

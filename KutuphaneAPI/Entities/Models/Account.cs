@@ -18,5 +18,6 @@ namespace Entities.Models
         public ICollection<Reservation>? Reservations { get; set; }
         public ICollection<Loan>? Loans { get; set; }
         public ICollection<Penalty>? Penalties { get; set; }
+        public ICollection<Notification>? Notifications { get; set; }
     }
 }

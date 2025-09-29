@@ -16,8 +16,9 @@ namespace Repositories
         private readonly IPenaltyRepository _penaltyRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IUserReviewRepository _userReviewRepository;
+        private readonly INotificationRepository _notificationRepository;
 
-        public RepositoryManager(RepositoryContext context, IBookRepository bookRepository, ICategoryRepository categoryRepository, IAuthorRepository authorRepository, ICartRepository cartRepository, IReservationRepository reservationRepository, ISeatRepository seatRepository, ILoanRepository loanRepository, IPenaltyRepository penaltyRepository, ITagRepository tagRepository, IAccountRepository accountRepository, IUserReviewRepository userReviewRepository)
+        public RepositoryManager(RepositoryContext context, IBookRepository bookRepository, ICategoryRepository categoryRepository, IAuthorRepository authorRepository, ICartRepository cartRepository, IReservationRepository reservationRepository, ISeatRepository seatRepository, ILoanRepository loanRepository, IPenaltyRepository penaltyRepository, ITagRepository tagRepository, IAccountRepository accountRepository, IUserReviewRepository userReviewRepository, INotificationRepository notificationRepository)
         {
             _context = context;
             _bookRepository = bookRepository;
@@ -31,6 +32,7 @@ namespace Repositories
             _tagRepository = tagRepository;
             _accountRepository = accountRepository;
             _userReviewRepository = userReviewRepository;
+            _notificationRepository = notificationRepository;
         }
 
         public IBookRepository Book => _bookRepository;
@@ -44,6 +46,7 @@ namespace Repositories
         public IPenaltyRepository Penalty => _penaltyRepository;
         public IAccountRepository Account => _accountRepository;
         public IUserReviewRepository UserReview => _userReviewRepository;
+        public INotificationRepository Notification => _notificationRepository;
 
         public void Save()
         {

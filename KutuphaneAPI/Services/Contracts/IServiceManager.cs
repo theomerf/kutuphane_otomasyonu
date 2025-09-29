@@ -13,5 +13,6 @@
         ILoanService LoanService { get; }
         IPenaltyService PenaltyService { get; }
         IUserReviewService UserReviewService { get; }
+        INotificationService NotificationService { get; }
     }
 }

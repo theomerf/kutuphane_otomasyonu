@@ -1,0 +1,72 @@
+2025-09-29 12:12:15.1884 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T12:12:14.7190043+03:00"}
+2025-09-29 12:27:19.9220 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T12:27:19.7445384+03:00"}
+2025-09-29 12:28:17.0841 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T12:28:17.0840462+03:00"}
+2025-09-29 12:32:15.3846 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T12:32:15.3845593+03:00"}
+2025-09-29 12:32:24.1318 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T12:32:24.1317833+03:00"}
+2025-09-29 12:35:32.7959 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T12:35:32.7959464+03:00"}
+2025-09-29 12:50:11.3581 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T12:50:11.3581163+03:00"}
+2025-09-29 12:59:33.9885 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T12:59:33.9884453+03:00"}
+2025-09-29 12:59:34.0277 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T12:59:34.0277306+03:00"}
+2025-09-29 13:03:30.0571 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T13:03:30.0570813+03:00"}
+2025-09-29 13:29:11.3101 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T13:29:11.3100732+03:00"}
+2025-09-29 13:29:58.3476 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T13:29:58.3475608+03:00"}
+2025-09-29 13:29:58.3654 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T13:29:58.3652858+03:00"}
+2025-09-29 13:30:05.6418 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T13:30:05.6418181+03:00"}
+2025-09-29 13:30:05.6418 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T13:30:05.6538021+03:00"}
+2025-09-29 17:04:22.4077 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:04:21.852643+03:00"}
+2025-09-29 17:15:16.4898 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:15:16.3288799+03:00"}
+2025-09-29 17:15:27.1552 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:15:27.1551576+03:00"}
+2025-09-29 17:16:06.4346 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:16:06.4345224+03:00"}
+2025-09-29 17:16:24.8023 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:16:24.8022601+03:00"}
+2025-09-29 17:16:32.6990 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:16:32.6990108+03:00"}
+2025-09-29 17:17:30.8617 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:17:30.8617301+03:00"}
+2025-09-29 17:36:44.1409 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:36:43.9236674+03:00"}
+2025-09-29 17:39:05.4946 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:39:05.4944397+03:00"}
+2025-09-29 17:39:57.7999 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:39:57.7999081+03:00"}
+2025-09-29 17:40:59.5798 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:40:59.5798152+03:00"}
+2025-09-29 17:46:16.6502 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:46:16.6501694+03:00"}
+2025-09-29 17:47:29.1764 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:47:29.1764002+03:00"}
+2025-09-29 17:48:20.5841 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:48:20.5840681+03:00"}
+2025-09-29 17:48:22.9736 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:48:22.9736317+03:00"}
+2025-09-29 17:48:53.4289 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:48:53.4289035+03:00"}
+2025-09-29 17:49:12.9594 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-29T17:49:12.9594223+03:00"}
+2025-09-29 17:57:36.0469 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T17:57:36.046881+03:00"}
+2025-09-29 17:57:36.0885 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T17:57:36.0885287+03:00"}
+2025-09-29 18:01:56.3793 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.BookNotFoundException: 101 id'sine sahip kitap bulunamadı.
+   at Services.BookManager.GetOneBookAsync(Int32 id, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\BookManager.cs:line 48
+   at Presentation.Controllers.BooksController.GetOneBook(Int32 id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\BooksController.cs:line 48
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-29 18:01:56.5482 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.BookNotFoundException: 101 id'sine sahip kitap bulunamadı.
+   at Services.BookManager.GetOneBookAsync(Int32 id, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\BookManager.cs:line 48
+   at Presentation.Controllers.BooksController.GetOneBook(Int32 id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\BooksController.cs:line 48
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-29 18:07:36.5821 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T18:07:36.3562039+03:00"}
+2025-09-29 18:07:36.6433 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-29T18:07:36.6431083+03:00"}

@@ -40,6 +40,7 @@ import { UpdateTag } from './pages/Admin/BooksManagement/Tags/UpdateTag.tsx'
 import AccountsAdmin from './pages/Admin/AccountsManagement/Accounts/AccountsAdmin.tsx'
 import { CreateAccount } from './pages/Admin/AccountsManagement/Accounts/CreateAccount.tsx'
 import { UpdateAccount } from './pages/Admin/AccountsManagement/Accounts/UpdateAccount.tsx'
+import Notifications from './pages/Notifications/Notifications.tsx'
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -139,6 +140,9 @@ function App() {
           <Route path="/books" element={<Books />}></Route>
           <Route path="/books/:id" element={<BookDetail />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/notifications" element={<Notifications />}></Route>
+          </Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/checkout" element={<Checkout />}></Route>
           </Route>

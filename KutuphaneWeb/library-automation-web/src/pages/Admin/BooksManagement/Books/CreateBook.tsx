@@ -24,6 +24,9 @@ export function CreateBook() {
     const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
     const [selectedTagId, setSelectedTagId] = useState<number | null>(null);
     const [newImages, setNewImages] = useState<File[]>([]);
+    const [isImagesUrl, setIsImagesUrl] = useState<boolean>(false);
+    const [newImagesUrl, setnewImagesUrl] = useState<string[]>([]);
+    const [imageUrl, setImageUrl] = useState<string>("");
     const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -74,6 +77,7 @@ export function CreateBook() {
             form.append('Location', formData.location);
             form.append('PublishedDate', formData.publishedDate);
             form.append('Summary', formData.summary);
+            form.append('IsImagesUrl', isImagesUrl.toString());
 
             selectedAuthors.forEach((author, index) => {
                 form.append(`AuthorIds[${index}]`, author.id!.toString());
@@ -89,6 +93,10 @@ export function CreateBook() {
 
             newImages.forEach((file) => {
                 form.append('NewImages', file);
+            });
+
+            newImagesUrl.forEach((url, index) => {
+                form.append(`NewImagesUrl[${index}]`, url);
             });
 
             await requests.books.createBook(form);
@@ -164,6 +172,7 @@ export function CreateBook() {
     const removeNewImage = (index: number) => {
         setNewImages(newImages.filter((_, i) => i !== index));
         setImagePreviews(imagePreviews.filter((_, i) => i !== index));
+        setnewImagesUrl(newImagesUrl.filter((_, i) => i !== index));
     };
 
     if (isLoading) {
@@ -380,25 +389,58 @@ export function CreateBook() {
                     <div className="flex flex-col w-full">
                         <label className="font-bold text-gray-500 text-base mb-4">Fotoğraflar</label>
 
-                        <div className="mb-6">
-                            <input
-                                type="file"
-                                accept="image/*"
-                                multiple
-                                onChange={handleImageUpload}
-                                className="hidden"
-                                id="imageUpload"
-                            />
-                            <label
-                                htmlFor="imageUpload"
-                                className="button inline-flex items-center cursor-pointer hover:scale-105"
-                            >
-                                <FontAwesomeIcon icon={faUpload} className="mr-2" />
-                                Fotoğraf Ekle
-                            </label>
+                        <div className="flex flex-row gap-x-4 mb-6">
+                            <div className="flex flex-row gap-x-1">
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    multiple
+                                    onChange={handleImageUpload}
+                                    className="hidden"
+                                    id="imageUpload"
+                                />
+                                <label
+                                    htmlFor="imageUpload"
+                                    className="button inline-flex items-center cursor-pointer hover:scale-105"
+                                >
+                                    <FontAwesomeIcon icon={faUpload} className="mr-2" />
+                                    Fotoğraf Ekle
+                                </label>
+                            </div>
+
+                            <div className="flex flex-row gap-x-1">
+                                <input
+                                    type="checkbox"
+                                    id="isImagesUrl"
+                                    onChange={(e) => setIsImagesUrl(e.target.checked)}
+                                    name="isImagesUrl"
+                                />
+                                <label
+                                    htmlFor="isImagesUrl"
+                                    className="self-center font-semibold"
+                                >
+                                    <FontAwesomeIcon icon={faUpload} className="mr-1" />
+                                    URL'den Yükle
+                                </label>
+                            </div>
+
                         </div>
 
-                        {newImages.length > 0 && (
+                        {isImagesUrl &&
+                            <div className="flex flex-row gap-x-4 mb-6">
+                                <label htmlFor="newImagesUrl" className="font-bold self-center text-gray-500 w-1/5 text-base">Fotoğraf URL</label>
+                                <input type="text" onChange={(e) => setImageUrl(e.target.value)} id="newImagesUrl" value={imageUrl} className="input w-full" />
+                                <button
+                                    type="button"
+                                    onClick={() => { setnewImagesUrl([...newImagesUrl, imageUrl]); setImagePreviews([...imagePreviews, imageUrl]); setImageUrl(""); }}
+                                    className="button px-6 hover:scale-105"
+                                >
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </button>
+                            </div>
+                        }
+
+                        {imagePreviews.length > 0 && (
                             <div>
                                 <h4 className="font-semibold text-gray-600 mb-3">Seçilen Fotoğraflar</h4>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -424,8 +466,8 @@ export function CreateBook() {
                     </div>
 
                     <div className="flex flex-row mt-10 gap-x-4 px-20">
-                        <button 
-                            type="submit" 
+                        <button
+                            type="submit"
                             className="button w-1/2 font-bold text-lg !py-4 hover:scale-105 duration-300"
                             disabled={isLoading}
                         >

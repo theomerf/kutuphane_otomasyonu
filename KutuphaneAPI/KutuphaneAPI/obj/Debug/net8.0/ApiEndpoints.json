@@ -479,6 +479,80 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Presentation.Controllers.Admin.NotificationAdminController",
+    "Method": "GetAllNotifications",
+    "RelativePath": "api/admin/notifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.NotificationAdminController",
+    "Method": "GetOneNotificationById",
+    "RelativePath": "api/admin/notifications/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.NotificationAdminController",
+    "Method": "CreateNotification",
+    "RelativePath": "api/admin/notifications/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationDto",
+        "Type": "Entities.Dtos.NotificationDtoForCreation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.NotificationAdminController",
+    "Method": "DeleteNotification",
+    "RelativePath": "api/admin/notifications/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.NotificationAdminController",
+    "Method": "UpdateNotification",
+    "RelativePath": "api/admin/notifications/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationDto",
+        "Type": "Entities.Dtos.NotificationDtoForUpdate",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Presentation.Controllers.Admin.TagsAdminController",
     "Method": "CreateTag",
     "RelativePath": "api/admin/tags/create",
@@ -1038,6 +1112,78 @@
       {
         "Name": "loanDto",
         "Type": "Entities.Dtos.LoanDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.NotificationController",
+    "Method": "GetAllNotificationsOfOneUser",
+    "RelativePath": "api/notification/account",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.NotificationController",
+    "Method": "GetNotificationsCountOfOneUser",
+    "RelativePath": "api/notification/account/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.NotificationController",
+    "Method": "DeleteAllNotificationsOfOneUser",
+    "RelativePath": "api/notification/account/delete-all",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.NotificationController",
+    "Method": "DeleteNotificationForUser",
+    "RelativePath": "api/notification/account/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.NotificationController",
+    "Method": "MarkAllNotificationsAsReadOfOneUser",
+    "RelativePath": "api/notification/account/mark-all-as-read",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.NotificationController",
+    "Method": "MarkNotificationAsRead",
+    "RelativePath": "api/notification/account/mark-as-read/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

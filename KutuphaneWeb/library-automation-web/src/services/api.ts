@@ -28,7 +28,7 @@ axios.interceptors.response.use(
             error.code === "ERR_CANCELED" || error.message?.includes("canceled")) {
             return Promise.reject(error);
         }
-        
+
         if (!error.response) {
             toast.error("Sunucuya ulaşılamıyor");
             return Promise.reject(error);
@@ -138,7 +138,7 @@ const authors = {
 
 const tags = {
     getAllTags: (query: URLSearchParams, signal?: AbortSignal) => methods.get("tags", { params: query }, signal),
-    getAllTagsWithoutPagination: (signal?: AbortSignal) => methods.get("authors/nopagination", {}, signal),
+    getAllTagsWithoutPagination: (signal?: AbortSignal) => methods.get("tags/nopagination", {}, signal),
     getPopularTags: (signal?: AbortSignal) => methods.get("tags/popular", {}, signal),
     getOneTag: (id: number, signal?: AbortSignal) => methods.get(`tags/${id}`, {}, signal),
     countTags: (signal?: AbortSignal) => methods.get("tags/count", {}, signal),
@@ -182,6 +182,20 @@ const userReview = {
     deleteUserReview: (id: number) => methods.delete(`userreview/delete/${id}`),
 }
 
+const notifications = {
+    getAllNotifications: (signal?: AbortSignal) => methods.get("admin/notification", {}, signal),
+    getAllNotificationsOfOneUser: (signal?: AbortSignal) => methods.get(`notification/account`, {}, signal),
+    getNotificationsCountOfOneUser: (signal?: AbortSignal) => methods.get(`notification/account/count`, {}, signal),
+    markAsRead: (id: number) => methods.patch(`notification/account/mark-as-read/${id}`, {}),
+    markAllAsReadOfOneUser: () => methods.patch("notification/account/mark-all-as-read", {}),
+    deleteNotification: (id: number) => methods.delete(`admin/notification/delete/${id}`),
+    deleteNotificationForUser: (id: number) => methods.delete(`notification/account/delete/${id}`),    
+    deleteAllNotificationsOfOneUser: () => methods.delete(`notification/account/delete-all`),
+    getOneNotification: (id: number, signal?: AbortSignal) => methods.get(`admin/notification/${id}`, {}, signal),
+    createNotification: (notificationDto: any) => methods.post("admin/notification/create", notificationDto),
+    updateNotification: (notificationDto: any) => methods.put("admin/notification/update", notificationDto),
+}
+
 const account = {
     login: (formData: any) => methods.post("account/login", formData),
     register: (formData: any) => methods.post("account/register", formData),
@@ -222,6 +236,7 @@ const requests = {
     cart,
     seats,
     reservation,
+    notifications,
     errors
 }
 

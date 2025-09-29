@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\userreviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\userreviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\admin\\booksadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\admin\\booksadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5F9E6D0D-3276-48D1-ABC0-0EFFB55EF3FF}|Repositories\\Repositories.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\repositories\\bookdatashaper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5F9E6D0D-3276-48D1-ABC0-0EFFB55EF3FF}|Repositories\\Repositories.csproj|solutionrelative:repositories\\bookdatashaper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9E30CDE3-AD43-484F-A66C-9C607748A588}|Services\\Services.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\services\\bookmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E30CDE3-AD43-484F-A66C-9C607748A588}|Services\\Services.csproj|solutionrelative:services\\bookmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9E30CDE3-AD43-484F-A66C-9C607748A588}|Services\\Services.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\services\\userreviewmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E30CDE3-AD43-484F-A66C-9C607748A588}|Services\\Services.csproj|solutionrelative:services\\userreviewmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\entities\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|solutionrelative:entities\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\admin\\notificationadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\admin\\notificationadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\entities\\dtos\\userreviewdtoforcreation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|solutionrelative:entities\\dtos\\userreviewdtoforcreation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\entities\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|solutionrelative:entities\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,64 +50,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BookDataShaper.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Repositories\\BookDataShaper.cs",
-              "RelativeDocumentMoniker": "Repositories\\BookDataShaper.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Repositories\\BookDataShaper.cs",
-              "RelativeToolTip": "Repositories\\BookDataShaper.cs",
-              "ViewState": "AgIAAOYAAAAAAAAAAAAgwDwAAAAcAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "BooksAdminController.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\BooksAdminController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\Admin\\BooksAdminController.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\BooksAdminController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\Admin\\BooksAdminController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T14:56:49.538Z",
+              "WhenOpened": "2025-09-29T14:03:54.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookManager.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Services\\BookManager.cs",
+              "RelativeDocumentMoniker": "Services\\BookManager.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Services\\BookManager.cs",
+              "RelativeToolTip": "Services\\BookManager.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAUwKEAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-29T14:03:54.149Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Book.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Book.cs",
-              "RelativeDocumentMoniker": "Entities\\Models\\Book.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Book.cs",
-              "RelativeToolTip": "Entities\\Models\\Book.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "NotificationAdminController.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\NotificationAdminController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\Admin\\NotificationAdminController.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\NotificationAdminController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\Admin\\NotificationAdminController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwDkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T12:29:41.338Z"
+              "WhenOpened": "2025-09-29T13:45:25.457Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UserReviewManager.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Services\\UserReviewManager.cs",
-              "RelativeDocumentMoniker": "Services\\UserReviewManager.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Services\\UserReviewManager.cs",
-              "RelativeToolTip": "Services\\UserReviewManager.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAjwDEAAABNAAAAAAAAAA==",
+              "Title": "NotificationController.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\NotificationController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\NotificationController.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\NotificationController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\NotificationController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA2wB8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T14:23:32.166Z"
+              "WhenOpened": "2025-09-29T08:58:12.343Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "UserReviewDtoForCreation.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Dtos\\UserReviewDtoForCreation.cs",
-              "RelativeDocumentMoniker": "Entities\\Dtos\\UserReviewDtoForCreation.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Dtos\\UserReviewDtoForCreation.cs",
-              "RelativeToolTip": "Entities\\Dtos\\UserReviewDtoForCreation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAATAAAAAAAAAA==",
+              "Title": "Notification.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Notification.cs",
+              "RelativeDocumentMoniker": "Entities\\Models\\Notification.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Notification.cs",
+              "RelativeToolTip": "Entities\\Models\\Notification.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T13:10:26.919Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserReviewController.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\UserReviewController.cs",
-              "RelativeDocumentMoniker": "Presentation\\Controllers\\UserReviewController.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\UserReviewController.cs",
-              "RelativeToolTip": "Presentation\\Controllers\\UserReviewController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAYwCkAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T12:16:13.11Z",
+              "WhenOpened": "2025-09-29T08:33:37.912Z",
               "EditorCaption": ""
             }
           ]

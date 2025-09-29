@@ -113,24 +113,53 @@ namespace Services
             _manager.Book.CreateBook(book);
             await _manager.SaveAsync();
 
-            if (newFilePaths.Any())
+            if (bookDto.IsImagesUrl && bookDto.NewImagesUrl != null && bookDto.NewImagesUrl.Any())
             {
-                bool isFirst = true;
-                foreach (var filePath in newFilePaths)
+                foreach (var imageUrl in bookDto.NewImagesUrl)
                 {
                     var bookImage = new BookImage
                     {
                         BookId = book.Id,
-                        ImageUrl = filePath,
-                        IsPrimary = isFirst,
+                        ImageUrl = imageUrl,
+                        IsPrimary = false,
                         Caption = $"{book.Title} Fotoğrafı"
                     };
                     book.Images!.Add(bookImage);
-                    isFirst = false;
                 }
-                _manager.Book.UpdateBook(book);
-                await _manager.SaveAsync();
             }
+
+            if (newFilePaths != null && newFilePaths.Any())
+            {
+                int i = 0;
+                foreach (var filePath in newFilePaths)
+                {
+                    i++;
+                    if (i == 1)
+                    {
+                        var bookImage = new BookImage
+                        {
+                            BookId = book.Id,
+                            ImageUrl = filePath,
+                            IsPrimary = true,
+                            Caption = $"{book.Title} Fotoğrafı"
+                        };
+                        book.Images!.Add(bookImage);
+                    }
+                    else
+                    {
+                        var bookImage = new BookImage
+                        {
+                            BookId = book.Id,
+                            ImageUrl = filePath,
+                            IsPrimary = false,
+                            Caption = $"{book.Title} Fotoğrafı"
+                        };
+                        book.Images!.Add(bookImage);
+                    }
+                }
+            }
+
+            await _manager.SaveAsync();
         }
 
 

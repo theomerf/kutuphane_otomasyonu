@@ -122,7 +122,6 @@ namespace Services
             var accessToken = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return new TokenDto()
             {
-                UserName = _account?.UserName,
                 AccessToken = accessToken,
                 RefreshToken = refreshToken
             };
@@ -142,7 +141,8 @@ namespace Services
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, _account?.Id!),
-                new Claim(ClaimTypes.Name, _account?.UserName!)
+                new Claim(ClaimTypes.Name, _account?.UserName!),
+                new Claim("picture", _account?.AvatarUrl!)
             };
 
             var roles = await _userManager.GetRolesAsync(_account!);

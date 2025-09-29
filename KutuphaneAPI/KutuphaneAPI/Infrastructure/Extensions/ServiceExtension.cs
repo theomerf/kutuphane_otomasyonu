@@ -51,6 +51,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<IPenaltyRepository, PenaltyRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IUserReviewRepository, UserReviewRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
         }
 
         public static void ConfigureServiceRegistration(this IServiceCollection services)
@@ -68,6 +69,7 @@ namespace KutuphaneAPI.Infrastructure.Extensions
             services.AddScoped<ILoanService, LoanManager>();
             services.AddScoped<IPenaltyService, PenaltyManager>();
             services.AddScoped<IUserReviewService, UserReviewManager>();
+            services.AddScoped<INotificationService, NotificationManager>();
         }
 
         public static void ConfigureIdentity(this IServiceCollection services)

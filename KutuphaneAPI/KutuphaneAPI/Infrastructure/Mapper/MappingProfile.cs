@@ -71,6 +71,9 @@ namespace KutuphaneAPI.Infrastructure.Mapper
                 .ForMember(dest => dest.AccountAvatarUrl, opt => opt.MapFrom(src => src.Account!.AvatarUrl));
             CreateMap<UserReviewDtoForCreation, UserReview>();
             CreateMap<UserReviewDtoForUpdate, UserReview>();
+            CreateMap<Notification, NotificationDto>();
+            CreateMap<NotificationDtoForCreation, Notification>();
+            CreateMap<NotificationDtoForUpdate, Notification>();
         }
     }
 }

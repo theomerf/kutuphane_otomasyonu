@@ -379,6 +379,50 @@ namespace KutuphaneAPI.Migrations
                     b.ToTable("LoanLine");
                 });
 
+            modelBuilder.Entity("Entities.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<bool>("IsRead")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Type")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Notification");
+                });
+
             modelBuilder.Entity("Entities.Models.Penalty", b =>
                 {
                     b.Property<int>("Id")
@@ -822,6 +866,17 @@ namespace KutuphaneAPI.Migrations
                     b.Navigation("Loan");
                 });
 
+            modelBuilder.Entity("Entities.Models.Notification", b =>
+                {
+                    b.HasOne("Entities.Models.Account", "Account")
+                        .WithMany("Notifications")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
             modelBuilder.Entity("Entities.Models.Penalty", b =>
                 {
                     b.HasOne("Entities.Models.Account", "Account")
@@ -935,6 +990,8 @@ namespace KutuphaneAPI.Migrations
                     b.Navigation("Cart");
 
                     b.Navigation("Loans");
+
+                    b.Navigation("Notifications");
 
                     b.Navigation("Penalties");
 

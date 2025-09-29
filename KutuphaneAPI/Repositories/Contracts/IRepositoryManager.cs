@@ -13,6 +13,7 @@
         IPenaltyRepository Penalty { get; }
         IAccountRepository Account { get; }
         IUserReviewRepository UserReview { get; }
+        INotificationRepository Notification { get; }
         void Save();
         Task SaveAsync();
     }

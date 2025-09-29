@@ -14,6 +14,10 @@ body{
   @apply text-white rounded-xl lg:rounded-3xl px-2 py-2 lg:px-4 lg:py-3 bg-violet-500 scale-[102%] lg:hover:scale-110 hover:bg-violet-600 transition-all duration-500 shadow-md
 }
 
+.avatarButton{
+  @apply text-white rounded-xl lg:rounded-3xl p-1 bg-violet-500 scale-[102%] lg:hover:scale-110 hover:bg-violet-600 transition-all duration-500 shadow-md
+}
+
 .navButtonActive{
   @apply text-white rounded-xl lg:rounded-3xl px-2 py-2 lg:px-4 lg:py-3 bg-violet-600 scale-[102%] lg:scale-110 hover:bg-violet-600 transition-all duration-500 shadow-lg border-2 border-violet-800
 }
