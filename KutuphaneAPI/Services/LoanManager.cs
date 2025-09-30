@@ -11,11 +11,13 @@ namespace Services
     {
         private readonly IRepositoryManager _manager;
         private readonly IMapper _mapper;
+        private readonly INotificationService _notificationService;
 
-        public LoanManager(IRepositoryManager manager, IMapper mapper)
+        public LoanManager(IRepositoryManager manager, IMapper mapper, INotificationService notificationService)
         {
             _manager = manager;
             _mapper = mapper;
+            _notificationService = notificationService;
         }
 
         public async Task<IEnumerable<LoanDto>> GetAllLoansAsync(bool trackChanges)
@@ -74,6 +76,16 @@ namespace Services
 
             _manager.Loan.CreateLoan(loan);
             await _manager.SaveAsync();
+
+            var notificationDto = new NotificationDtoForCreation()
+            {
+                AccountId = loanDto.AccountId,
+                Title = "Yeni Kitap Kiralama",
+                Message = "Kitap kiralamanız oluşturuldu. Kütüphaneden kitapları teslim alabilirsiniz.",
+                Type = NotificationType.Info
+            };
+
+            await _notificationService.CreateNotificationAsync(notificationDto);
         }
 
         public async Task DeleteLoanAsync(int loanId)

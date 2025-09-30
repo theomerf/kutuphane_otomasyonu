@@ -23,10 +23,10 @@ namespace Services
             var seats = await _manager.Seat.GetAllSeatsAsync(trackChanges);
             var seatsDto = _mapper.Map<IEnumerable<SeatDto>>(seats);
 
-
-
             return seatsDto;
         }
+
+        public async Task<int> GetAllSeatsCountAsync() => await _manager.Seat.GetAllSeatsCountAsync();
 
         public async Task<SeatDto?> GetSeatByIdAsync(int seatId, bool trackChanges)
         {
@@ -40,7 +40,7 @@ namespace Services
             return seatDto;
         }
 
-        private async Task<Seat?> GetSeatByIdForServiceAsync(int seatId, bool trackChanges)
+        private async Task<Seat> GetSeatByIdForServiceAsync(int seatId, bool trackChanges)
         {
             var seat = await _manager.Seat.GetSeatByIdAsync(seatId, trackChanges);
             if (seat == null)
@@ -66,11 +66,48 @@ namespace Services
             return timeSlotsDto;
         }
 
+        public async Task<int> GetAllTimeSlotsCountAsync() => await _manager.Seat.GetAllTimeSlotsCountAsync();
+
         public async Task CreateTimeSlotAsync(TimeSlotDto timeSlotDto)
         {
             var timeSlot = _mapper.Map<TimeSlot>(timeSlotDto);
 
             _manager.Seat.CreateTimeSlot(timeSlot);
+            await _manager.SaveAsync();
+        }
+
+        public async Task<TimeSlot> GetTimeSlotByIdForServiceAsync(int timeSlotId, bool trackChanges)
+        {
+            var timeSlot = await _manager.Seat.GetTimeSlotByIdAsync(timeSlotId, trackChanges);
+            if (timeSlot == null)
+            {
+                throw new TimeSlotNotFoundException(timeSlotId);
+            }
+
+            return timeSlot;
+        }
+
+        public async Task<TimeSlotDto> GetTimeSlotByIdAsync(int timeSlotId, bool trackChanges)
+        {
+            var timeSlot = await GetTimeSlotByIdForServiceAsync(timeSlotId, trackChanges);
+            var timeSlotDto = _mapper.Map<TimeSlotDto>(timeSlot);
+
+            return timeSlotDto;
+        }
+
+        public async Task UpdateTimeSlotAsync(TimeSlotDto timeSlotDto)
+        {
+            var timeSlot = await _manager.Seat.GetTimeSlotByIdAsync(timeSlotDto.Id, true);
+           
+            _mapper.Map(timeSlotDto, timeSlot);
+            await _manager.SaveAsync();
+        }
+
+        public async Task DeleteTimeSlotAsync(int timeSlotId)
+        {
+            var timeSlot = await GetTimeSlotByIdForServiceAsync(timeSlotId, true);
+
+            _manager.Seat.DeleteTimeSlot(timeSlot);
             await _manager.SaveAsync();
         }
 

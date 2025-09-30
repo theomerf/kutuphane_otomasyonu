@@ -1,37 +1,33 @@
-import { useEffect, useState } from "react"
-import type BackendData from "../../types/backendData"
+import { useEffect, useReducer } from "react"
 import requests from "../../services/api";
 import { ClipLoader } from "react-spinners";
 import type Notification from "../../types/notification";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faCheckDouble, faQuestion, faTrash, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faCalendarAlt, faCheck, faCheckDouble, faQuestion, faTrash, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+import BackendDataReducer from "../../types/backendData";
 
 export default function Notifications() {
-    const [notifications, setNotifications] = useState<BackendData<Notification>>({
-        data: [] as Notification[],
+    const [notifications, dispatch] = useReducer(BackendDataReducer<Notification>, {
+        data: null,
         isLoading: false,
         error: null
     });
 
     const fetchNotifications = async () => {
+        dispatch({ type: "FETCH_START" });
         try {
-            setNotifications({ ...notifications, isLoading: true });
-
             const result = await requests.notifications.getAllNotificationsOfOneUser();
-            setNotifications({ data: result.data as Notification[], isLoading: false, error: null });
+            dispatch({ type: "FETCH_SUCCESS", payload: result.data as Notification[] });
         }
         catch (error: any) {
-            setNotifications({ data: null, isLoading: false, error: error.message });
-        }
-        finally {
-            setNotifications({ ...notifications, isLoading: false });
+            dispatch({ type: "FETCH_ERROR", payload: error.message || "Bildirimler yüklenirken bir hata oluştu." });
         }
     };
 
     useEffect(() => {
         fetchNotifications();
-    }, [])
+    }, []);
 
     const handleMarkAsRead = async (id: number) => {
         try {
@@ -75,7 +71,18 @@ export default function Notifications() {
 
     return (
         <div className="flex flex-col">
-            <p className="font-semibold text-4xl ml-8 lg:ml-20 text-violet-500 h-fit border-none pb-2 mb-8 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Bildirimler</p>
+            <div className="flex flex-row mx-8 lg:mx-20">
+                <p className="font-semibold text-4xl  text-violet-500 h-fit border-none pb-2 mb-8 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Bildirimler</p>
+                <div className="ml-auto flex flex-row self-center justify-end gap-x-2 mb-2">
+                    <button type="button" onClick={handleMarkAllAsRead} title="Tümünü okundu olarak işaretle" className="bg-green-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-green-600 duration-500 text-lg">
+                        <FontAwesomeIcon icon={faCheckDouble} className="self-center" />
+                    </button>
+                    <button type="button" onClick={handleDeleteAll} title="Tümünü sil" className="bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-red-600 duration-500 text-lg">
+                        <FontAwesomeIcon icon={faTrashCan} className="self-center" />
+                    </button>
+                </div>
+            </div>
+
             <div className="flex flex-col gap-y-4 border-gray-200 border shadow-lg mx-20 px-4 py-6 rounded-lg bg-white">
                 {(notifications.isLoading) && (
                     <div className="flex justify-center items-center h-64">
@@ -91,37 +98,37 @@ export default function Notifications() {
 
                 {(!notifications.isLoading && !notifications.error && notifications.data && notifications.data.length === 0) && (
                     <div className="flex flex-col gap-y-6 justify-center items-center h-64 ">
-                        <FontAwesomeIcon icon={faQuestion} className="text-5xl text-violet-400 animate-pulse"/>
+                        <FontAwesomeIcon icon={faQuestion} className="text-5xl text-violet-400 animate-pulse" />
                         <p className="text-gray-500 text-2xl">Henüz bildiriminiz yok.</p>
                     </div>
                 )}
 
                 {(!notifications.isLoading && !notifications.error && notifications.data && notifications.data.length > 0) && (
                     <>
-                        <div className="flex flex-row justify-end gap-x-2 mb-2">
-                            <button type="button" onClick={handleMarkAllAsRead} title="Tümünü okundu olarak işaretle" className="bg-green-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-green-600 duration-500 text-lg">
-                                <FontAwesomeIcon icon={faCheckDouble} />
-                            </button>
-                            <button type="button" onClick={handleDeleteAll} title="Tümünü sil" className="bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-red-600 duration-500 text-lg">
-                                <FontAwesomeIcon icon={faTrashCan} />
-                            </button>
-                        </div>
+
                         {notifications.data.map((notification) => (
-                            <div key={notification.id} className={`flex flex-col gap-y-2 border border-gray-200 px-4 py-2 rounded-md hover:shadow-md transition-shadow duration-200 ${notification.isRead ? 'bg-gray-400' : 'bg-white'}`}>
+                            <div key={notification.id} className={`flex flex-col relative gap-y-4 border border-gray-200 px-6 py-4 rounded-md hover:shadow-md hover:scale-[101%] transition-all duration-500 ${notification.isRead ? 'bg-gray-400' : notification.type === 'Info' ? 'bg-green-400' : notification.type === 'Warning' ? 'bg-yellow-400' : 'bg-red-400'}`}>
+                                <div className="absolute top-[-4px] left-[-4px] w-5 h-5 rounded-full bg-violet-400"></div>
                                 <div className="flex flex-row justify-between items-center">
-                                    <h3 className="text-lg font-semibold">{notification.title}</h3>
-                                    <span className="text-sm text-gray-500">{new Date(notification.createdAt || "").toLocaleString()}</span>
+                                    <p className="text-2xl text-white font-semibold">
+                                        <FontAwesomeIcon icon={faBell} className="mr-2"/>
+                                        {notification.title}
+                                    </p>
+                                    <span className="text-base font-semibold text-white">
+                                        <FontAwesomeIcon icon={faCalendarAlt} className="mr-2"/>
+                                        {new Date(notification.createdAt || "").toLocaleString()}
+                                    </span>
                                 </div>
                                 <div className="flex flex-row">
-                                    <p className="text-gray-700">{notification.message}</p>
+                                    <p className="text-white font-semibold">{notification.message}</p>
                                     <div className="flex flex-row ml-auto gap-x-2">
                                         {!notification.isRead &&
-                                            <button type="button" onClick={() => handleMarkAsRead(notification.id!)} title="Okundu olarak işaretle" className="bg-green-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-green-600 duration-500 text-lg">
-                                                <FontAwesomeIcon icon={faCheck} />
+                                            <button type="button" onClick={() => handleMarkAsRead(notification.id!)} title="Okundu olarak işaretle" className="bg-green-600 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-green-700 duration-500 text-lg">
+                                                <FontAwesomeIcon icon={faCheck} className="self-center" />
                                             </button>
                                         }
                                         <button type="button" onClick={() => handleDelete(notification.id!)} title="Sil" className="bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-red-600 duration-500 text-lg">
-                                            <FontAwesomeIcon icon={faTrash} />
+                                            <FontAwesomeIcon icon={faTrash} className="self-center" />
                                         </button>
                                     </div>
                                 </div>

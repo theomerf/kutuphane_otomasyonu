@@ -3,11 +3,13 @@ import type TimeSlot from "./timeSlot";
 export default interface ReservationResponse {
     id?: number;
     accountId?: number;
+    accountUserName?: string;
     seatId: number;
     timeSlotId: number;
     reservationDate: string;
     timeSlot?: TimeSlot;
-    createdAt?: string
+    createdAt?: Date;
     updatedAt?: string
     status?: "Active" | "Cancelled" | "Completed" | "Expired";
+    displayStatus?: string;
 }

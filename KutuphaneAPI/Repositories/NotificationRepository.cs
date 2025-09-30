@@ -32,6 +32,16 @@ namespace Repositories
         public async Task<IEnumerable<Notification>> GetNotificationsByUserIdAsync(string accountId, bool trackChanges)
         {
             var notifications = await FindByCondition(n => n.AccountId == accountId, trackChanges)
+                .OrderBy(n => n.IsRead)
+                .OrderByDescending(n => n.CreatedAt)
+                .ToListAsync();
+
+            return notifications;
+        }
+
+        public async Task<IEnumerable<Notification>> GetUnreadNotificationsByUserIdAsync(string accountId, bool trackChanges)
+        {
+            var notifications = await FindByCondition(n => n.AccountId == accountId && !n.IsRead, trackChanges)
                 .OrderByDescending(n => n.CreatedAt)
                 .ToListAsync();
 

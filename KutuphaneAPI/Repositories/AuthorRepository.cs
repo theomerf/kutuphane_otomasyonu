@@ -14,14 +14,14 @@ namespace Repositories
 
         public async Task<(IEnumerable<Author> authors, int count)> GetAllAuthorsAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var authors = await FindAll(trackChanges)
+            var authorsQuery = FindAll(trackChanges)
                 .Include(c => c.Books)
                 .FilterBy(p.SearchTerm, c => c.Name, FilterOperator.Contains)
                 .OrderBy(c => c.Id)
-                .ToPaginate(p.PageSize, p.PageNumber)
-                .ToListAsync();
+                .ToPaginate(p.PageSize, p.PageNumber);
 
-            var count = await CountAsync(false);
+            var authors = await authorsQuery.ToListAsync();
+            var count = await authorsQuery.CountAsync();
 
             return (authors, count);
         }

@@ -1976,18 +1976,6 @@
         }
       }
     },
-    "/api/reservation": {
-      "get": {
-        "tags": [
-          "Reservation"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/reservation/statuses": {
       "get": {
         "tags": [
@@ -2009,25 +1997,32 @@
               "type": "integer",
               "format": "int32"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/reservation/{id}": {
-      "get": {
-        "tags": [
-          "Reservation"
-        ],
-        "parameters": [
+          },
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            "name": "SearchTerm",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2041,21 +2036,10 @@
         }
       }
     },
-    "/api/reservation/user/{accountId}": {
+    "/api/reservation/account": {
       "get": {
         "tags": [
           "Reservation"
-        ],
-        "parameters": [
-          {
-            "name": "accountId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -2095,10 +2079,128 @@
         }
       }
     },
-    "/api/reservation/cancel-reservation/{reservationId}": {
+    "/api/reservation/account/cancel-reservation/{reservationId}": {
       "patch": {
         "tags": [
           "Reservation"
+        ],
+        "parameters": [
+          {
+            "name": "reservationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/reservation": {
+      "get": {
+        "tags": [
+          "ReservationAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "Date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "TimeSlotId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SearchTerm",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/reservation/active-count": {
+      "get": {
+        "tags": [
+          "ReservationAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/reservation/{id}": {
+      "get": {
+        "tags": [
+          "ReservationAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/reservation/cancel-reservation/{reservationId}": {
+      "patch": {
+        "tags": [
+          "ReservationAdmin"
         ],
         "parameters": [
           {
@@ -2130,7 +2232,7 @@
         }
       }
     },
-    "/api/seats/statuses": {
+    "/api/seats/timeslots": {
       "get": {
         "tags": [
           "Seats"
@@ -2142,10 +2244,34 @@
         }
       }
     },
-    "/api/seats/{id}": {
+    "/api/admin/seats/statuses": {
       "get": {
         "tags": [
-          "Seats"
+          "SeatsAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/seats/count": {
+      "get": {
+        "tags": [
+          "SeatsAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/seats/{id}": {
+      "get": {
+        "tags": [
+          "SeatsAdmin"
         ],
         "parameters": [
           {
@@ -2165,10 +2291,10 @@
         }
       }
     },
-    "/api/seats/create": {
+    "/api/admin/seats/create": {
       "post": {
         "tags": [
-          "Seats"
+          "SeatsAdmin"
         ],
         "requestBody": {
           "content": {
@@ -2196,26 +2322,26 @@
         }
       }
     },
-    "/api/seats/timeslot/create": {
-      "post": {
+    "/api/admin/seats/update": {
+      "put": {
         "tags": [
-          "Seats"
+          "SeatsAdmin"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TimeSlotDto"
+                "$ref": "#/components/schemas/SeatDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TimeSlotDto"
+                "$ref": "#/components/schemas/SeatDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TimeSlotDto"
+                "$ref": "#/components/schemas/SeatDto"
               }
             }
           }
@@ -2227,10 +2353,141 @@
         }
       }
     },
-    "/api/seats/timeslots": {
+    "/api/admin/seats/delete/{id}": {
+      "delete": {
+        "tags": [
+          "SeatsAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/seats/timeslots/{id}": {
       "get": {
         "tags": [
-          "Seats"
+          "SeatsAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/seats/timeslots/count": {
+      "get": {
+        "tags": [
+          "SeatsAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/seats/timeslots/create": {
+      "post": {
+        "tags": [
+          "SeatsAdmin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/seats/timeslots/update": {
+      "put": {
+        "tags": [
+          "SeatsAdmin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/seats/timeslots/delete/{id}": {
+      "delete": {
+        "tags": [
+          "SeatsAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {

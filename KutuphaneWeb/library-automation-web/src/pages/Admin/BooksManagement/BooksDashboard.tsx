@@ -36,7 +36,7 @@ export default function BooksDashboard() {
             });
         }
         catch (error) {
-            console.error("Error fetching book count:", error);
+            console.error("Kitap dashboard istatistikleri çekilirken hata oluştu:", error);
         }
     }
 

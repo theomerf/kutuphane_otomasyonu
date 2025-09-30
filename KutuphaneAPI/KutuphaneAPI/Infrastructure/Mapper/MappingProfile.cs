@@ -46,7 +46,9 @@ namespace KutuphaneAPI.Infrastructure.Mapper
             CreateMap<CartLine, CartLineDtoForInsertion>()
                 .ForMember(dest => dest.BookId, opt => opt.MapFrom(src => src.Book!.Id))
                 .ReverseMap();
-            CreateMap<Reservation, ReservationDto>().ReverseMap();
+            CreateMap<Reservation, ReservationDto>()
+                .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName))
+                .ReverseMap();
             CreateMap<ReservationDtoForCreation, Reservation>()
                 .ForMember(dest => dest.ReservationDate, opt => opt.MapFrom(src => DateOnly.Parse(src.ReservationDate)));
             CreateMap<Seat, SeatDto>().ReverseMap();

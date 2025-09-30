@@ -9,7 +9,6 @@ import { logout } from '../../pages/Account/accountSlice'
 import { useBreakpoint } from "../../hooks/useBreakpoint";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import requests from "../../services/api";
 
 type LinkType = {
   name: string;
@@ -30,7 +29,6 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { down, up } = useBreakpoint();
-  const [ notificationsCount, setNotificationsCount ] = useState<number | undefined>(undefined);
   const [ searchTerm, setSearchTerm ] = useState<string>("");
 
   useEffect(() => {
@@ -61,24 +59,6 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
-  useEffect(() => {
-    async function fetchNotificationCount() {
-      if (!user) {
-        return;
-      }
-      else {
-        try {
-          var response = await requests.notifications.getNotificationsCountOfOneUser();
-          setNotificationsCount(response.data as number);
-        }
-        catch (error: any){
-          console.log(error.message);
-        }
-      }
-    };
-    fetchNotificationCount();
-  }, [user]);
 
   const handleSearch = () => {
     navigate(`/books?searchTerm=${searchTerm}`);
@@ -116,12 +96,8 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
                 <>
                   {up.lg &&
                     <>
-                      <Link to="/notifications" className="navButton relative">
+                      <Link to="/notifications" className="navButton">
                         <FontAwesomeIcon icon={faBell} />
-                        {<span className="absolute flex right-0 bottom-0 rounded-full w-5 h-5 text-sm bg-red-500 text-white justify-center font-semibold">
-                          {notificationsCount ?? 0}
-                        </span>
-                        }
                       </Link>
                       <Link to="/favourites" title="Favoriler" className="navButton">
                         <FontAwesomeIcon icon={faHeart} className="h-4 w-4" />

@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\admin\\booksadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\admin\\booksadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\admin\\reservationadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\admin\\reservationadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9E30CDE3-AD43-484F-A66C-9C607748A588}|Services\\Services.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\services\\bookmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E30CDE3-AD43-484F-A66C-9C607748A588}|Services\\Services.csproj|solutionrelative:services\\bookmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\admin\\seatsadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\admin\\seatsadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\admin\\notificationadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\admin\\notificationadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\entities\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|solutionrelative:entities\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\seatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\seatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,66 +47,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BooksAdminController.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\BooksAdminController.cs",
-              "RelativeDocumentMoniker": "Presentation\\Controllers\\Admin\\BooksAdminController.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\BooksAdminController.cs",
-              "RelativeToolTip": "Presentation\\Controllers\\Admin\\BooksAdminController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBkAAAAIAAAAAAAAAA==",
+              "Title": "ReservationAdminController.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\ReservationAdminController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\Admin\\ReservationAdminController.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\ReservationAdminController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\Admin\\ReservationAdminController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAxwBwAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T14:03:54.138Z",
+              "WhenOpened": "2025-09-30T11:41:14.877Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BookManager.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Services\\BookManager.cs",
-              "RelativeDocumentMoniker": "Services\\BookManager.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Services\\BookManager.cs",
-              "RelativeToolTip": "Services\\BookManager.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAUwKEAAAAnAAAAAAAAAA==",
+              "Title": "ReservationController.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\ReservationController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\ReservationController.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\ReservationController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\ReservationController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAIwB0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T14:03:54.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NotificationAdminController.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\NotificationAdminController.cs",
-              "RelativeDocumentMoniker": "Presentation\\Controllers\\Admin\\NotificationAdminController.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\NotificationAdminController.cs",
-              "RelativeToolTip": "Presentation\\Controllers\\Admin\\NotificationAdminController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwDkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T13:45:25.457Z",
+              "WhenOpened": "2025-09-30T11:42:05.512Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "NotificationController.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\NotificationController.cs",
-              "RelativeDocumentMoniker": "Presentation\\Controllers\\NotificationController.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\NotificationController.cs",
-              "RelativeToolTip": "Presentation\\Controllers\\NotificationController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA2wB8AAAAIAAAAAAAAAA==",
+              "Title": "SeatsAdminController.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\SeatsAdminController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\Admin\\SeatsAdminController.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\SeatsAdminController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\Admin\\SeatsAdminController.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAIwFcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T08:58:12.343Z",
+              "WhenOpened": "2025-09-30T12:04:23.618Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Notification.cs",
-              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Notification.cs",
-              "RelativeDocumentMoniker": "Entities\\Models\\Notification.cs",
-              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Notification.cs",
-              "RelativeToolTip": "Entities\\Models\\Notification.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "SeatsController.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\SeatsController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\SeatsController.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\SeatsController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\SeatsController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T08:33:37.912Z",
+              "WhenOpened": "2025-09-30T11:42:27.216Z",
               "EditorCaption": ""
             }
           ]

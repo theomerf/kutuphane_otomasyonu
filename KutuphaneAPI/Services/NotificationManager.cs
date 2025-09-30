@@ -57,7 +57,7 @@ namespace Services
 
         public async Task MarkAllNotificationsAsReadAsync(string accountId)
         {
-            var notifications = await _manager.Notification.GetNotificationsByUserIdAsync(accountId, true);
+            var notifications = await _manager.Notification.GetUnreadNotificationsByUserIdAsync(accountId, true);
             foreach (var notification in notifications)
             {
                 notification.IsRead = true;

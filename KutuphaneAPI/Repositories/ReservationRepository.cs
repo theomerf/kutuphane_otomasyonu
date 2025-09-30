@@ -12,15 +12,24 @@ namespace Repositories
         public ReservationRepository(RepositoryContext context) : base(context)
         {
         }
-        public async Task<IEnumerable<Reservation>> GetAllReservationsAsync(bool trackChanges)
+        public async Task<(IEnumerable<Reservation> reservations, int count)> GetAllReservationsAsync(ReservationRequestParameters p, bool trackChanges)
         {
-            var reservations = await FindAll(trackChanges)
+            var reservationQuery = FindAll(trackChanges)
                 .Include(r => r.Seat)
+                .Include(r => r.Account)
+                .FilterBy(p.Date, r => r.ReservationDate, FilterOperator.Equal)
+                .FilterBy(p.TimeSlotId, r => r.TimeSlotId, FilterOperator.Equal)
                 .OrderByDescending(r => r.CreatedAt)
-                .ToListAsync();
+                .ToPaginate(p.PageSize, p.PageNumber);
+            
+            var reservations = await reservationQuery.ToListAsync();
 
-            return reservations;
+            var count = await reservationQuery.CountAsync();
+
+            return (reservations, count);
         }
+
+        public async Task<int> GetActiveReservationsCountAsync() => await FindByCondition(r => r.Status == ReservationStatus.Active, false).CountAsync();
 
         public async Task<IEnumerable<ReservationDtoForStatus>> GetAllReservationsForStatusesAsync(ReservationRequestParameters p, bool trackChanges)
         {
@@ -48,7 +57,7 @@ namespace Repositories
             return reservation;
         }
 
-        public async Task<IEnumerable<Reservation>> GetReservationsOfOneUserAsync(int accountId, bool trackChanges)
+        public async Task<IEnumerable<Reservation>> GetReservationsOfOneUserAsync(string accountId, bool trackChanges)
         {
             var reservations = await FindByCondition(r => r.AccountId!.Equals(accountId), trackChanges)
                 .Include(r => r.Seat)

@@ -129,7 +129,6 @@ export default function Reservation() {
 
         initializeSignalR();
 
-        // Cleanup function
         return () => {
             if (modalTimerRef.current) {
                 clearInterval(modalTimerRef.current);

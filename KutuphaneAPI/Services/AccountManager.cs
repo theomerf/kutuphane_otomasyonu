@@ -23,10 +23,11 @@ namespace Services
         private readonly IMapper _mapper;
         private readonly ILoggerService _logger;
         private readonly IConfiguration _configuration;
+        private readonly INotificationService _notificationService;
 
         private Account? _account;
 
-        public AccountManager(UserManager<Account> userManager, RoleManager<IdentityRole> roleManager, ILoggerService logger, IMapper mapper, IConfiguration configuration, IRepositoryManager manager)
+        public AccountManager(UserManager<Account> userManager, RoleManager<IdentityRole> roleManager, ILoggerService logger, IMapper mapper, IConfiguration configuration, IRepositoryManager manager, INotificationService notificationService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -34,6 +35,7 @@ namespace Services
             _mapper = mapper;
             _configuration = configuration;
             _manager = manager;
+            _notificationService = notificationService;
         }
 
         public async Task<IdentityResult> RegisterUserAsync(AccountDtoForRegistration accountDto)
@@ -248,6 +250,16 @@ namespace Services
 
             account.PasswordHash = _userManager.PasswordHasher.HashPassword(account, accountDto.Password);
             var result = await _userManager.UpdateAsync(account);
+
+            var notificationDto = new NotificationDtoForCreation()
+            {
+                AccountId = account.Id,
+                Title = "Şifre Sıfırlama",
+                Message = "Hesabınızın şifresi admin tarafından sıfırlandı.",
+                Type = NotificationType.Warning
+            };
+            
+            await _notificationService.CreateNotificationAsync(notificationDto);
 
             return result;
         }

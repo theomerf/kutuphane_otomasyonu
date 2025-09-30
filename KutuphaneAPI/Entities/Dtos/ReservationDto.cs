@@ -5,9 +5,10 @@ namespace Entities.Dtos
     public record ReservationDto
     {
         public int Id { get; init; }
-        public required String AccountId { get; init; }
-        public required int SeatId { get; init; }
-        public required int TimeSlotId { get; init; }
+        public String AccountId { get; init; } = null!;
+        public String AccountUserName { get; init; } = null!;
+        public int SeatId { get; init; }
+        public int TimeSlotId { get; init; }
         public DateTime CreatedAt { get; init; }
         public DateTime UpdatedAt { get; init; }
         public ReservationStatus Status { get; init; }

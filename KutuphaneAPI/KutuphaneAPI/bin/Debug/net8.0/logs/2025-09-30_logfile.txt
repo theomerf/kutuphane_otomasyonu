@@ -1,0 +1,321 @@
+2025-09-30 13:37:00.7650 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-30T13:37:00.306414+03:00"}
+2025-09-30 14:12:36.6871 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-30T14:12:36.6859288+03:00"}
+2025-09-30 14:12:41.5205 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-30T14:12:41.5204898+03:00"}
+2025-09-30 14:12:45.5493 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T14:12:45.549228+03:00"}
+2025-09-30 14:12:45.5920 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T14:12:45.5919836+03:00"}
+2025-09-30 14:13:03.6853 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-30T14:13:03.6852912+03:00"}
+2025-09-30 14:25:16.8174 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-30T14:25:16.6887776+03:00"}
+2025-09-30 14:27:20.5643 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T14:27:20.5643021+03:00"}
+2025-09-30 14:27:20.5971 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T14:27:20.5971338+03:00"}
+2025-09-30 14:27:49.6953 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T14:27:49.6952802+03:00"}
+2025-09-30 14:27:49.7078 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T14:27:49.7071404+03:00"}
+2025-09-30 14:27:49.7209 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T14:27:49.7207049+03:00"}
+2025-09-30 14:27:49.7209 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T14:27:49.731154+03:00"}
+2025-09-30 15:38:07.8507 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-30T15:38:07.4035851+03:00"}
+2025-09-30 15:38:10.5438 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:10.5436545+03:00"}
+2025-09-30 15:38:10.5781 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:10.5780634+03:00"}
+2025-09-30 15:38:15.3593 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:15.3592736+03:00"}
+2025-09-30 15:38:15.4074 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:15.4074089+03:00"}
+2025-09-30 15:38:15.4266 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:15.4265386+03:00"}
+2025-09-30 15:38:15.4430 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:15.4430396+03:00"}
+2025-09-30 15:38:17.3201 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:17.320098+03:00"}
+2025-09-30 15:38:17.3361 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:17.3361019+03:00"}
+2025-09-30 15:38:17.3486 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:17.3486093+03:00"}
+2025-09-30 15:38:17.3648 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:17.3647676+03:00"}
+2025-09-30 15:38:21.2944 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:21.294332+03:00"}
+2025-09-30 15:38:21.3179 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:21.3178669+03:00"}
+2025-09-30 15:38:21.3312 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:21.3312262+03:00"}
+2025-09-30 15:38:21.3444 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:38:21.3442922+03:00"}
+2025-09-30 15:40:11.9880 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:11.9879773+03:00"}
+2025-09-30 15:40:12.0136 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:12.0136267+03:00"}
+2025-09-30 15:40:12.0299 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:12.0298602+03:00"}
+2025-09-30 15:40:12.0475 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:12.0472066+03:00"}
+2025-09-30 15:40:14.1453 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:14.1453091+03:00"}
+2025-09-30 15:40:14.1636 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:14.1635879+03:00"}
+2025-09-30 15:40:14.1753 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:14.1752547+03:00"}
+2025-09-30 15:40:14.1909 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:14.1908585+03:00"}
+2025-09-30 15:40:24.3685 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:24.3685243+03:00"}
+2025-09-30 15:40:24.3887 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:24.3886684+03:00"}
+2025-09-30 15:40:24.4042 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:24.4041556+03:00"}
+2025-09-30 15:40:24.4220 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:40:24.4211132+03:00"}
+2025-09-30 15:47:31.6577 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:47:31.4462663+03:00"}
+2025-09-30 15:47:31.7131 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:47:31.7130615+03:00"}
+2025-09-30 15:47:39.4967 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:47:39.4966767+03:00"}
+2025-09-30 15:47:39.5546 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:47:39.5545471+03:00"}
+2025-09-30 15:55:31.7786 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:55:31.7785201+03:00"}
+2025-09-30 15:55:31.8187 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:55:31.8175987+03:00"}
+2025-09-30 15:55:36.0832 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:55:36.0831425+03:00"}
+2025-09-30 15:55:36.1296 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:55:36.1296148+03:00"}
+2025-09-30 15:55:56.4040 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:55:56.4039984+03:00"}
+2025-09-30 15:55:56.4448 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:55:56.4447609+03:00"}
+2025-09-30 15:56:24.4097 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:56:24.4096514+03:00"}
+2025-09-30 15:56:24.4410 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:56:24.440941+03:00"}
+2025-09-30 15:57:09.3368 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:09.3366914+03:00"}
+2025-09-30 15:57:09.3639 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:09.3611109+03:00"}
+2025-09-30 15:57:09.3835 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:09.3829904+03:00"}
+2025-09-30 15:57:09.4058 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:09.4045349+03:00"}
+2025-09-30 15:57:16.9894 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:16.9891856+03:00"}
+2025-09-30 15:57:17.0141 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:17.0140797+03:00"}
+2025-09-30 15:57:17.0314 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:17.0313509+03:00"}
+2025-09-30 15:57:17.0548 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:17.05482+03:00"}
+2025-09-30 15:57:29.4737 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:29.4736506+03:00"}
+2025-09-30 15:57:29.4982 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:29.4981946+03:00"}
+2025-09-30 15:57:29.5142 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:29.5139948+03:00"}
+2025-09-30 15:57:29.5339 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:29.5339168+03:00"}
+2025-09-30 15:57:42.8718 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:42.8717926+03:00"}
+2025-09-30 15:57:42.8883 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:42.8883476+03:00"}
+2025-09-30 15:57:42.9136 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:42.9136484+03:00"}
+2025-09-30 15:57:42.9319 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:42.9301655+03:00"}
+2025-09-30 15:57:45.2838 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:45.2838315+03:00"}
+2025-09-30 15:57:45.3082 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:45.3076771+03:00"}
+2025-09-30 15:57:45.3277 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:45.3277429+03:00"}
+2025-09-30 15:57:45.3446 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:57:45.3444112+03:00"}
+2025-09-30 15:58:30.5017 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:30.5016892+03:00"}
+2025-09-30 15:58:30.6253 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:30.6252653+03:00"}
+2025-09-30 15:58:30.6582 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:30.6581796+03:00"}
+2025-09-30 15:58:30.6757 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:30.6757203+03:00"}
+2025-09-30 15:58:32.8952 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:32.8951162+03:00"}
+2025-09-30 15:58:32.9217 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:32.9215122+03:00"}
+2025-09-30 15:58:32.9217 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:32.9337121+03:00"}
+2025-09-30 15:58:32.9496 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:32.9495717+03:00"}
+2025-09-30 15:58:53.5680 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:53.5679661+03:00"}
+2025-09-30 15:58:53.5921 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:53.5921165+03:00"}
+2025-09-30 15:58:53.6218 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:53.6218289+03:00"}
+2025-09-30 15:58:53.6413 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:53.641341+03:00"}
+2025-09-30 15:58:57.8251 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:57.8251031+03:00"}
+2025-09-30 15:58:57.8541 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:57.8541028+03:00"}
+2025-09-30 15:58:57.8746 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:57.8744679+03:00"}
+2025-09-30 15:58:57.8931 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:58:57.8931381+03:00"}
+2025-09-30 15:59:06.6109 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:59:06.6109032+03:00"}
+2025-09-30 15:59:06.6331 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:59:06.6331356+03:00"}
+2025-09-30 15:59:06.6590 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:59:06.6589695+03:00"}
+2025-09-30 15:59:06.6837 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T15:59:06.6836234+03:00"}
+2025-09-30 16:01:30.7148 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:30.7146003+03:00"}
+2025-09-30 16:01:30.7486 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:30.7486176+03:00"}
+2025-09-30 16:01:30.7845 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:30.7841603+03:00"}
+2025-09-30 16:01:30.8200 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:30.8199902+03:00"}
+2025-09-30 16:01:33.8994 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:33.8994228+03:00"}
+2025-09-30 16:01:33.9225 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:33.9224748+03:00"}
+2025-09-30 16:01:33.9384 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:33.9384235+03:00"}
+2025-09-30 16:01:33.9693 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:33.9678657+03:00"}
+2025-09-30 16:01:35.6174 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:35.6173833+03:00"}
+2025-09-30 16:01:35.6448 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:35.6448459+03:00"}
+2025-09-30 16:01:35.6647 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:35.6647713+03:00"}
+2025-09-30 16:01:35.6930 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:35.6929661+03:00"}
+2025-09-30 16:01:37.6168 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:37.6168405+03:00"}
+2025-09-30 16:01:37.6380 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:37.6380769+03:00"}
+2025-09-30 16:01:37.6617 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:37.6617684+03:00"}
+2025-09-30 16:01:37.6774 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:37.6774053+03:00"}
+2025-09-30 16:01:53.3025 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:53.3025759+03:00"}
+2025-09-30 16:01:53.3248 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:01:53.3248217+03:00"}
+2025-09-30 16:03:31.4060 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:03:31.4060164+03:00"}
+2025-09-30 16:03:31.4476 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:03:31.4476221+03:00"}
+2025-09-30 16:03:31.4745 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:03:31.474444+03:00"}
+2025-09-30 16:03:31.4950 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:03:31.4948881+03:00"}
+2025-09-30 16:14:12.3838 ERROR Bir şeyler yanlış gitti: AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ValueTuple`2 -> IEnumerable`1
+System.ValueTuple`2[[System.Collections.Generic.IEnumerable`1[[Entities.Models.Reservation, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] -> System.Collections.Generic.IEnumerable`1[[Entities.Dtos.ReservationDto, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+   at lambda_method808(Closure, Object, IEnumerable`1, ResolutionContext)
+   at Services.ReservationManager.GetAllReservationsAsync(ReservationRequestParameters p, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\ReservationManager.cs:line 30
+   at Presentation.Controllers.Admin.ReservationAdminController.GetAllReservations(ReservationRequestParameters p) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\ReservationAdminController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-30 16:15:51.2876 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:15:51.2875658+03:00"}
+2025-09-30 16:15:51.3395 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:15:51.3395143+03:00"}
+2025-09-30 16:15:53.4533 ERROR Bir şeyler yanlış gitti: AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ValueTuple`2 -> IEnumerable`1
+System.ValueTuple`2[[System.Collections.Generic.IEnumerable`1[[Entities.Models.Reservation, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] -> System.Collections.Generic.IEnumerable`1[[Entities.Dtos.ReservationDto, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+   at lambda_method808(Closure, Object, IEnumerable`1, ResolutionContext)
+   at Services.ReservationManager.GetAllReservationsAsync(ReservationRequestParameters p, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\ReservationManager.cs:line 30
+   at Presentation.Controllers.Admin.ReservationAdminController.GetAllReservations(ReservationRequestParameters p) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\ReservationAdminController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-30 16:16:11.6938 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:16:11.6938212+03:00"}
+2025-09-30 16:16:11.7210 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:16:11.7210366+03:00"}
+2025-09-30 16:17:21.7360 ERROR Bir şeyler yanlış gitti: AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ValueTuple`2 -> IEnumerable`1
+System.ValueTuple`2[[System.Collections.Generic.IEnumerable`1[[Entities.Models.Reservation, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] -> System.Collections.Generic.IEnumerable`1[[Entities.Dtos.ReservationDto, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+   at lambda_method808(Closure, Object, IEnumerable`1, ResolutionContext)
+   at Services.ReservationManager.GetAllReservationsAsync(ReservationRequestParameters p, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\ReservationManager.cs:line 30
+   at Presentation.Controllers.Admin.ReservationAdminController.GetAllReservations(ReservationRequestParameters p) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\ReservationAdminController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-30 16:17:38.0265 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:17:38.0265236+03:00"}
+2025-09-30 16:17:38.1425 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:17:38.1425557+03:00"}
+2025-09-30 16:24:17.4050 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:24:17.4049742+03:00"}
+2025-09-30 16:24:17.4278 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:24:17.4277346+03:00"}
+2025-09-30 16:24:17.4532 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:24:17.4532244+03:00"}
+2025-09-30 16:24:17.4684 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:24:17.4683826+03:00"}
+2025-09-30 16:24:21.2465 ERROR Bir şeyler yanlış gitti: AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ValueTuple`2 -> IEnumerable`1
+System.ValueTuple`2[[System.Collections.Generic.IEnumerable`1[[Entities.Models.Reservation, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] -> System.Collections.Generic.IEnumerable`1[[Entities.Dtos.ReservationDto, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+   at lambda_method808(Closure, Object, IEnumerable`1, ResolutionContext)
+   at Services.ReservationManager.GetAllReservationsAsync(ReservationRequestParameters p, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\ReservationManager.cs:line 30
+   at Presentation.Controllers.Admin.ReservationAdminController.GetAllReservations(ReservationRequestParameters p) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\ReservationAdminController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-30 16:24:32.9993 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:24:32.9993333+03:00"}
+2025-09-30 16:24:33.0184 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:24:33.0184239+03:00"}
+2025-09-30 16:27:28.6624 ERROR Bir şeyler yanlış gitti: AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ValueTuple`2 -> IEnumerable`1
+System.ValueTuple`2[[System.Collections.Generic.IEnumerable`1[[Entities.Models.Reservation, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] -> System.Collections.Generic.IEnumerable`1[[Entities.Dtos.ReservationDto, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+   at lambda_method373(Closure, Object, IEnumerable`1, ResolutionContext)
+   at Services.ReservationManager.GetAllReservationsAsync(ReservationRequestParameters p, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\ReservationManager.cs:line 30
+   at Presentation.Controllers.Admin.ReservationAdminController.GetAllReservations(ReservationRequestParameters p) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\Admin\ReservationAdminController.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-09-30 16:28:15.0921 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:28:14.8042057+03:00"}
+2025-09-30 16:28:15.1433 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:28:15.1432131+03:00"}
+2025-09-30 16:40:29.3763 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-30T16:40:29.2025823+03:00"}
+2025-09-30 16:40:31.3309 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:40:31.3308453+03:00"}
+2025-09-30 16:40:31.3662 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:40:31.3661822+03:00"}
+2025-09-30 16:42:14.7928 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:42:14.792316+03:00"}
+2025-09-30 16:42:14.8159 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:42:14.8159539+03:00"}
+2025-09-30 16:42:14.8366 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:42:14.8364003+03:00"}
+2025-09-30 16:42:14.8529 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:42:14.8528717+03:00"}
+2025-09-30 16:42:21.5452 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:42:21.5450869+03:00"}
+2025-09-30 16:42:21.5730 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:42:21.5729943+03:00"}
+2025-09-30 16:42:21.5888 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:42:21.5887827+03:00"}
+2025-09-30 16:42:21.6077 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:42:21.6077081+03:00"}
+2025-09-30 16:47:35.6232 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:47:35.6232295+03:00"}
+2025-09-30 16:47:35.6515 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:47:35.6515475+03:00"}
+2025-09-30 16:47:35.6687 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:47:35.6686955+03:00"}
+2025-09-30 16:47:35.6888 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:47:35.6887077+03:00"}
+2025-09-30 16:56:26.2813 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:56:26.2812364+03:00"}
+2025-09-30 16:56:26.3076 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T16:56:26.30765+03:00"}
+2025-09-30 17:01:12.5824 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:01:12.58098+03:00"}
+2025-09-30 17:01:12.6090 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:01:12.6089816+03:00"}
+2025-09-30 17:01:12.6315 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:01:12.6312841+03:00"}
+2025-09-30 17:01:12.6437 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:01:12.6437374+03:00"}
+2025-09-30 17:03:02.3451 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:03:02.3450447+03:00"}
+2025-09-30 17:03:02.3923 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:03:02.3921811+03:00"}
+2025-09-30 17:03:02.4232 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:03:02.4232527+03:00"}
+2025-09-30 17:03:02.4414 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:03:02.4414066+03:00"}
+2025-09-30 17:04:37.6801 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:04:37.6549689+03:00"}
+2025-09-30 17:04:37.7285 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:04:37.7274589+03:00"}
+2025-09-30 17:04:37.7612 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:04:37.7612267+03:00"}
+2025-09-30 17:04:37.7818 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:04:37.7818105+03:00"}
+2025-09-30 17:05:04.2256 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:05:04.2252815+03:00"}
+2025-09-30 17:05:04.2527 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:05:04.2525426+03:00"}
+2025-09-30 17:05:04.2655 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:05:04.2654972+03:00"}
+2025-09-30 17:05:04.2813 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:05:04.281238+03:00"}
+2025-09-30 17:18:54.8451 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:18:54.8451236+03:00"}
+2025-09-30 17:18:54.8845 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:18:54.8845494+03:00"}
+2025-09-30 17:21:38.1889 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:21:38.1884179+03:00"}
+2025-09-30 17:21:38.2188 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:21:38.2187467+03:00"}
+2025-09-30 17:21:38.2387 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:21:38.2386778+03:00"}
+2025-09-30 17:21:38.2558 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:21:38.2558062+03:00"}
+2025-09-30 17:22:23.2332 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:22:23.2332032+03:00"}
+2025-09-30 17:22:23.2576 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:22:23.2572671+03:00"}
+2025-09-30 17:22:23.2746 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:22:23.2744879+03:00"}
+2025-09-30 17:22:23.2880 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:22:23.2878339+03:00"}
+2025-09-30 17:23:08.6088 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:23:08.6087464+03:00"}
+2025-09-30 17:23:08.6342 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:23:08.6342214+03:00"}
+2025-09-30 17:23:08.6618 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:23:08.6618563+03:00"}
+2025-09-30 17:23:08.6810 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:23:08.6810309+03:00"}
+2025-09-30 17:23:45.9599 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:23:45.9588494+03:00"}
+2025-09-30 17:23:45.9941 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:23:45.9940876+03:00"}
+2025-09-30 17:23:46.0100 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:23:46.009988+03:00"}
+2025-09-30 17:23:46.0334 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:23:46.0334296+03:00"}
+2025-09-30 17:24:04.9012 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:24:04.9010339+03:00"}
+2025-09-30 17:24:04.9207 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:24:04.9206714+03:00"}
+2025-09-30 17:24:04.9207 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:24:04.9339819+03:00"}
+2025-09-30 17:24:04.9518 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:24:04.9515824+03:00"}
+2025-09-30 17:27:51.1050 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:27:51.1048212+03:00"}
+2025-09-30 17:27:51.1233 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:27:51.1233254+03:00"}
+2025-09-30 17:32:33.9484 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:32:33.9484418+03:00"}
+2025-09-30 17:32:33.9687 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:32:33.9686345+03:00"}
+2025-09-30 17:32:53.4844 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:32:53.4843909+03:00"}
+2025-09-30 17:32:53.5061 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:32:53.5061529+03:00"}
+2025-09-30 17:39:06.2285 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:39:06.2285117+03:00"}
+2025-09-30 17:39:06.2576 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:39:06.2565479+03:00"}
+2025-09-30 17:39:06.2740 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:39:06.2739593+03:00"}
+2025-09-30 17:39:06.2882 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:39:06.2881326+03:00"}
+2025-09-30 17:43:14.6536 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-09-30T17:43:14.6535706+03:00"}
+2025-09-30 17:43:16.6112 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:43:16.6112063+03:00"}
+2025-09-30 17:43:16.6495 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:43:16.6494838+03:00"}
+2025-09-30 17:52:11.6056 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:52:11.2944652+03:00"}
+2025-09-30 17:52:11.6443 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:52:11.6442336+03:00"}
+2025-09-30 17:52:11.6539 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:52:11.6539456+03:00"}
+2025-09-30 17:52:11.6630 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:52:11.6629404+03:00"}
+2025-09-30 17:55:34.2788 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:55:34.0845816+03:00"}
+2025-09-30 17:55:34.3251 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:55:34.3250808+03:00"}
+2025-09-30 17:55:34.3344 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:55:34.334389+03:00"}
+2025-09-30 17:55:34.3344 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T17:55:34.3427498+03:00"}
+2025-09-30 18:04:59.4196 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T18:04:59.4195084+03:00"}
+2025-09-30 18:04:59.4523 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAllAccountsCount","Id":null,"CreatedAt":"2025-09-30T18:04:59.4522857+03:00"}

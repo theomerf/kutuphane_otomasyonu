@@ -19,15 +19,16 @@ export default function Dashboard() {
     });
     const fetchStats = async () => {
         try {
-            const [booksRes, accountsRes] = await Promise.all([
+            const [booksRes, accountsRes, reservationsRes] = await Promise.all([
                 requests.books.countBooks(),
                 requests.account.countAccounts(),
+                requests.reservation.getActiveReservationsCount()
             ]);
             
             setDashboardStats({
                 booksCount: booksRes.data,
                 accountsCount: accountsRes.data,
-                reservationsCount: 50
+                reservationsCount:  reservationsRes.data
             });
         }
         catch (error) {
@@ -72,11 +73,11 @@ export default function Dashboard() {
                         <EventAvailableIcon style={{ color: "#fb923c", fontSize: "48px" }} />
                     </p>
                     <div className="flex flex-col text-center gap-y-2">
-                        <p className="ml-2 text-gray-500 font-bold text-3xl">50</p>
+                        <p className="ml-2 text-gray-500 font-bold text-3xl">{dashboardStats.reservationsCount}</p>
                         <p className="ml-2 text-gray-500 font-bold text-xl">Rezervasyon</p>
                     </div>
                     <div className="flex flex-row mt-5 justify-center">
-                        <Link to="/admin/reservations" className="button !bg-orange-400 hover:scale-105 text-lg font-semibold duration-500">Rezervasyonları Yönet</Link>
+                        <Link to="/admin/dashboard/reservations" className="button !bg-orange-400 hover:scale-105 text-lg font-semibold duration-500">Rezervasyonları Yönet</Link>
                     </div>
                 </div>
             </div>

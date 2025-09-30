@@ -19,6 +19,8 @@ namespace Repositories
             return seats;
         }
 
+        public async Task<int> GetAllSeatsCountAsync() => await FindAll(false).CountAsync();
+
         public async Task<Seat?> GetSeatByIdAsync(int seatId, bool trackChanges)
         {
             var seats = await FindByCondition(s => s.Id.Equals(seatId), trackChanges)
@@ -50,11 +52,30 @@ namespace Repositories
             return timeSlots;
         }
 
+        public async Task<int> GetAllTimeSlotsCountAsync() => await _context.Set<TimeSlot>().CountAsync();
+
+        public async Task<TimeSlot?> GetTimeSlotByIdAsync(int timeSlotId, bool trackChanges)
+        {
+            var timeSlot = await _context.Set<TimeSlot>()
+                .FirstOrDefaultAsync(ts => ts.Id == timeSlotId);
+
+            return timeSlot;
+        }
+
         public void CreateTimeSlot(TimeSlot timeSlot)
         {
             _context.Set<TimeSlot>().Add(timeSlot);
         }
 
+        public void UpdateTimeSlot(TimeSlot timeSlot)
+        {
+            _context.Set<TimeSlot>().Update(timeSlot);
+        }
+
+        public void DeleteTimeSlot(TimeSlot timeSlot)
+        {
+            _context.Set<TimeSlot>().Remove(timeSlot);
+        }
 
         public void CreateSeat(Seat seat)
         {

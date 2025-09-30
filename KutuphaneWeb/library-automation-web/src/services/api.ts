@@ -159,17 +159,31 @@ const cart = {
 
 const seats = {
     getAllSeats: (signal?: AbortSignal) => methods.get("seats", {}, signal),
+    getAllSeatsCount: (signal?: AbortSignal) => methods.get("admin/seats/count", {}, signal),
+    getOneSeat: (id: number, signal?: AbortSignal) => methods.get(`admin/seats/${id}`, {}, signal),
+    createSeat: (seatDto: any) => methods.post("admin/seats/create", seatDto),
+    updateSeat: (seatDto: any) => methods.put("admin/seats/update", seatDto),
+    deleteSeat: (id: number) => methods.delete(`admin/seats/delete/${id}`),
 }
 
 const timeSlots = {
     getAllTimeSlots: (signal?: AbortSignal) => methods.get("seats/timeslots", {}, signal),
+    getAllTimeSlotsCount: (signal?: AbortSignal) => methods.get("admin/seats/timeslots/count", {}, signal),
+    getOneTimeSlot: (id: number, signal?: AbortSignal) => methods.get(`admin/seats/timeslots/${id}`, {}, signal),
+    createTimeSlot: (timeSlotDto: any) => methods.post("admin/seats/timeslots/create", timeSlotDto),
+    updateTimeSlot: (timeSlotDto: any) => methods.put("admin/seats/timeslots/update", timeSlotDto),
+    deleteTimeSlot: (id: number) => methods.delete(`admin/seats/timeslots/delete/${id}`),
 }
 
 const reservation = {
+    getAllReservations: (query: URLSearchParams, signal?: AbortSignal) => methods.get("admin/reservation", { params: query }, signal),
+    getActiveReservationsCount: (signal?: AbortSignal) => methods.get("admin/reservation/active-count", {}, signal),
+    getOneReservation: (id: number, signal?: AbortSignal) => methods.get(`admin/reservation/${id}`, {}, signal),
     getAllReservationsStatuses: (query: URLSearchParams, signal?: AbortSignal) => methods.get("reservation/statuses", { params: query }, signal),
     createReservation: (reservation: ReservationResponse, config?: any) => methods.post(`reservation/reserve-seat`, reservation, config),
-    getUserReservations: (signal?: AbortSignal) => methods.get("reservation/user", {}, signal),
-    cancelReservation: (reservationId: number) => methods.delete(`reservation/cancel-reservation/${reservationId}`),
+    getUserReservations: (signal?: AbortSignal) => methods.get("reservation/account", {}, signal),
+    cancelReservationForUser: (reservationId: number) => methods.patch(`account/reservation/cancel-reservation/${reservationId}`, {} ),
+    cancelReservation: (reservationId: number) => methods.patch(`admin/reservation/cancel-reservation/${reservationId}`, {}),
 }
 
 const userReview = {

@@ -14,14 +14,14 @@ namespace Repositories
 
         public async Task<(IEnumerable<Tag> tags, int count)> GetAllTagsAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var tags = await FindAll(trackChanges)
+            var tagsQuery = FindAll(trackChanges)
                 .Include(c => c.Books)
                 .FilterBy(p.SearchTerm, c => c.Name, FilterOperator.Contains)
                 .OrderBy(c => c.Id)
-                .ToPaginate(p.PageSize, p.PageNumber)
-                .ToListAsync();
+                .ToPaginate(p.PageSize, p.PageNumber);
 
-            var count = await CountAsync(false);
+            var tags = await tagsQuery.ToListAsync();
+            var count = await tagsQuery.CountAsync();
 
             return (tags, count);
         }

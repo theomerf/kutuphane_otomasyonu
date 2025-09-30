@@ -14,14 +14,14 @@ namespace Repositories
 
         public async Task<(IEnumerable<Category> categories, int count)> GetAllCategoriesAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var categories = await FindAll(trackChanges)
+            var categoriesQuery = FindAll(trackChanges)
                 .Include(c => c.Books)
                 .FilterBy(p.SearchTerm, c => c.Name, FilterOperator.Contains)
                 .OrderBy(c => c.Id)
-                .ToPaginate(p.PageSize, p.PageNumber)
-                .ToListAsync();
+                .ToPaginate(p.PageSize, p.PageNumber);
 
-            var count = await CountAsync(false);
+            var categories = await categoriesQuery.ToListAsync();
+            var count = await categoriesQuery.CountAsync();
 
             return (categories, count);
         }

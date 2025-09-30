@@ -41,6 +41,8 @@ import AccountsAdmin from './pages/Admin/AccountsManagement/Accounts/AccountsAdm
 import { CreateAccount } from './pages/Admin/AccountsManagement/Accounts/CreateAccount.tsx'
 import { UpdateAccount } from './pages/Admin/AccountsManagement/Accounts/UpdateAccount.tsx'
 import Notifications from './pages/Notifications/Notifications.tsx'
+import ReservationsAdmin from './pages/Admin/ReservationsManager/Reservations/ReservationsAdmin.tsx'
+import ReservationsDashboard from './pages/Admin/ReservationsManager/ReservationsDashboard.tsx'
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -131,6 +133,8 @@ function App() {
             <Route path="/admin/accounts" element={<AccountsAdmin />}></Route>
             <Route path="/admin/accounts/create" element={<CreateAccount />}></Route>
             <Route path="/admin/accounts/update/:id" element={<UpdateAccount />}></Route>
+            <Route path="/admin/dashboard/reservations" element={<ReservationsDashboard />}></Route>
+            <Route path="/admin/reservations" element={<ReservationsAdmin />}></Route>
             <Route path="/admin/*" element={<NotFound />}></Route>
           </Route>
         </Route>

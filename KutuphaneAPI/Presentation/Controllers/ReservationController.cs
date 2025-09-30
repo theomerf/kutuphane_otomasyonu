@@ -29,13 +29,6 @@ namespace Presentation.Controllers
             _cache = cache;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllReservations()
-        {
-            var reservations = await _manager.ReservationService.GetAllReservationsAsync(false);
-            return Ok(reservations);
-        }
-
         [HttpGet("statuses")]
         public async Task<IActionResult> GetAllReservationsStatuses([FromQuery] ReservationRequestParameters p)
         {
@@ -44,23 +37,18 @@ namespace Presentation.Controllers
             return Ok(reservationsStatus);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetReservationById([FromRoute] int id)
+        [HttpGet("account")]
+        public async Task<IActionResult> GetReservationsOfOneUser()
         {
-            var reservation = await _manager.ReservationService.GetReservationByIdAsync(id, false);
-            return Ok(reservation);
-        }
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var reservations = await _manager.ReservationService.GetReservationsOfOneUserAsync(accountId!, false);
 
-        [HttpGet("user/{accountId}")]
-        public async Task<IActionResult> GetReservationsOfOneUser([FromRoute] int accountId)
-        {
-            var reservations = await _manager.ReservationService.GetReservationsOfOneUserAsync(accountId, false);
             return Ok(reservations);
         }
 
         [HttpPost("reserve-seat")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> CreateReservation([FromBody]ReservationDtoForCreation reservationDto)
+        public async Task<IActionResult> CreateReservation([FromBody] ReservationDtoForCreation reservationDto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             reservationDto.AccountId = userId!;
@@ -83,8 +71,8 @@ namespace Presentation.Controllers
             return Ok();
         }
 
-        [HttpPatch("cancel-reservation/{reservationId}")]
-        public async Task<IActionResult> CancelReservation([FromRoute] int reservationId)
+        [HttpPatch("account/cancel-reservation/{reservationId}")]
+        public async Task<IActionResult> CancelReservationForUser([FromRoute] int reservationId)
         {
             var reservation = await _manager.ReservationService.ChangeStatusOfReservation(reservationId, ReservationStatus.Cancelled);
 

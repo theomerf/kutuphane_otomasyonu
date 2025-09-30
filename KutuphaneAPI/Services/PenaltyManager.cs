@@ -11,11 +11,13 @@ namespace Services
     {
         private readonly IRepositoryManager _manager;
         private readonly IMapper _mapper;
+        private readonly INotificationService _notificationService;
 
-        public PenaltyManager(IRepositoryManager manager, IMapper mapper)
+        public PenaltyManager(IRepositoryManager manager, IMapper mapper, INotificationService notificationService)
         {
             _manager = manager;
             _mapper = mapper;
+            _notificationService = notificationService;
         }
 
         public async Task<IEnumerable<PenaltyDto>> GetAllPenaltiesAsync(bool trackChanges)
@@ -58,6 +60,16 @@ namespace Services
 
             _manager.Penalty.CreatePenalty(penalty);
             await _manager.SaveAsync();
+
+            var notificationDto = new NotificationDtoForCreation()
+            {
+                AccountId = penaltyDto.AccountId,
+                Title = "Yeni Ceza",
+                Message = $"Yeni bir kitap gecikme cezanız bulunmaktadır. Ceza miktarı: {penaltyDto.Amount}.",
+                Type = NotificationType.Alert
+            };
+
+            await _notificationService.CreateNotificationAsync(notificationDto);
         }
 
         public async Task DeletePenaltyAsync(int penaltyId)
