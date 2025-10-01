@@ -59,6 +59,9 @@ namespace KutuphaneAPI.Infrastructure.Mapper
             CreateMap<BookImage, BookImageDto>();
             CreateMap<Loan, LoanDto>()
                 .ForMember(dest => dest.LoanLines, opt => opt.MapFrom(src => src.LoanLines))
+                .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName))
+                .ForMember(dest => dest.AccountFirstName, opt => opt.MapFrom(src => src.Account!.FirstName))
+                .ForMember(dest => dest.AccountLastName, opt => opt.MapFrom(src => src.Account!.LastName))
                 .ReverseMap();
             CreateMap<LoanLine, LoanLineDto>()
                 .ForMember(dest => dest.BookId, opt => opt.MapFrom(src => src.Book!.Id))

@@ -17,6 +17,7 @@
     {
         OnLoan,
         Returned,
-        Overdue
+        Overdue,
+        Canceled
     }
 }

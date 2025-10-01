@@ -1478,41 +1478,6 @@
         }
       }
     },
-    "/api/loan": {
-      "get": {
-        "tags": [
-          "Loan"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/loan/{id}": {
-      "get": {
-        "tags": [
-          "Loan"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/loan/account/{accountId}": {
       "get": {
         "tags": [
@@ -1613,6 +1578,154 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/loan": {
+      "get": {
+        "tags": [
+          "LoanAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "SearchTerm",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/loan/count": {
+      "get": {
+        "tags": [
+          "LoanAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/loan/{id}": {
+      "get": {
+        "tags": [
+          "LoanAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/loan/cancel/{id}": {
+      "patch": {
+        "tags": [
+          "LoanAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/loan/delete/{id}": {
+      "delete": {
+        "tags": [
+          "LoanAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/loan/return/{id}": {
+      "patch": {
+        "tags": [
+          "LoanAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -3198,6 +3311,18 @@
             "type": "string",
             "nullable": true
           },
+          "accountFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountLastName": {
+            "type": "string",
+            "nullable": true
+          },
           "loanLines": {
             "type": "array",
             "items": {
@@ -3252,10 +3377,6 @@
             "type": "integer",
             "format": "int32"
           },
-          "bookAuthor": {
-            "type": "string",
-            "nullable": true
-          },
           "bookISBN": {
             "type": "string",
             "nullable": true
@@ -3275,7 +3396,8 @@
         "enum": [
           "OnLoan",
           "Returned",
-          "Overdue"
+          "Overdue",
+          "Canceled"
         ],
         "type": "string"
       },

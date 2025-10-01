@@ -123,6 +123,13 @@ const categories = {
 
 const loan = {
     createLoan: (loanDto: Loan) => methods.post("loan/create", loanDto),
+    getAllLoans: (query: URLSearchParams, signal?: AbortSignal) => methods.get("admin/loan", { params: query }, signal),
+    getAllLoansCount: (signal?: AbortSignal) => methods.get("admin/loan/count", {}, signal),
+    getOneLoan: (id: number, signal?: AbortSignal) => methods.get(`admin/loan/${id}`, {}, signal),
+    cancelLoan: (loanId: number) => methods.patch(`admin/loan/cancel/${loanId}`, {}),
+    deleteLoan: (id: number) => methods.delete(`admin/loan/delete/${id}`),
+    deleteLoanForUser: (id: number) => methods.delete(`loan/delete/${id}`),
+    returnLoan: (loanId: number) => methods.patch(`admin/loan/return/${loanId}`, {}),
 }
 
 const authors = {

@@ -9,7 +9,6 @@ namespace Entities.Dtos
         public int BookId { get; set; }
         public String? BookTitle { get; set; }
         public int AvailableCopies { get; set; }    
-        public String? BookAuthor { get; set; }
         public String? BookISBN { get; set; }
         public String? BookImageUrl { get; set; }
         public int Quantity { get; set; }

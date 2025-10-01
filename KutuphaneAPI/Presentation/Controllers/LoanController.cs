@@ -19,22 +19,6 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllLoans()
-        {
-            var loans = await _manager.LoanService.GetAllLoansAsync(trackChanges: false);
-
-            return Ok(loans);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetOneLoanById(int id)
-        {
-            var loan = await _manager.LoanService.GetOneLoanByIdAsync(id, trackChanges: false);
-
-            return Ok(loan);
-        }
-
         [HttpGet("account/{accountId}")]
         public async Task<IActionResult> GetLoansByAccountId(string accountId)
         {
@@ -52,13 +36,14 @@ namespace Presentation.Controllers
 
             await _manager.LoanService.CreateLoanAsync(loanDto);
 
-            return CreatedAtAction(nameof(GetOneLoanById), new { id = loanDto.Id }, loanDto);
+            return Ok();
         }
 
         [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> DeleteLoan([FromRoute] int id)
+        public async Task<IActionResult> DeleteLoanForUser([FromRoute] int id)
         {
-            await _manager.LoanService.DeleteLoanAsync(id);
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await _manager.LoanService.DeleteLoanForUserAsync(id, accountId!);
 
             return Ok();
         }

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp, faFilter, faFilterCircleXmark, faFire, faLayerGroup, faSearch, faSliders, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faFilter, faFilterCircleXmark, faFire, faLayerGroup, faSearch, faSliders, faStar } from "@fortawesome/free-solid-svg-icons";
 import type BookRequestParameters from "../../types/bookRequestParameters";
 import { Switch } from "../ui/Switch";
 import { useCallback, useEffect } from "react";
@@ -140,7 +140,7 @@ export default function Filters({ isFiltersOpen, setIsFiltersOpen, setOpenSectio
                                                 <FontAwesomeIcon icon={faFilterCircleXmark}></FontAwesomeIcon>
                                             </button>}
                                         <FontAwesomeIcon
-                                            icon={isOpen ? faChevronUp : faChevronDown}
+                                            icon={faChevronDown}
                                             className={`text-gray-400 text-sm transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                                         />
                                     </button>
@@ -192,7 +192,7 @@ export default function Filters({ isFiltersOpen, setIsFiltersOpen, setOpenSectio
                                     Diğer Filtreler
                                 </span>
                                 <FontAwesomeIcon
-                                    icon={isOthersOpen ? faChevronUp : faChevronDown}
+                                    icon={faChevronDown}
                                     className={`text-gray-400 text-sm transition-transform duration-200 ${isOthersOpen ? 'rotate-180' : ''}`}
                                 />
                             </button>

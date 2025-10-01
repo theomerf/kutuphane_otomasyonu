@@ -20,7 +20,11 @@ const links: LinkType[] = [
     { name: "Yazarlar", to: "admin/authors" },
     { name: "Etiketler", to: "admin/tags" },
     { name: "Rezervasyonlar", to: "admin/reservations" },
-    { name: "Kullanıcılar", to: "admin/accounts" }
+    { name: "Kullanıcılar", to: "admin/accounts" },
+    { name: "Koltuklar", to: "admin/seats" },
+    { name: "Z. Aralıkları", to: "admin/timeslots" },
+    { name: "Kiralamalar", to: "admin/loans" },
+    { name: "Cezalar", to: "admin/penalties" },
 ]
 
 export default function AdminNavbar() {

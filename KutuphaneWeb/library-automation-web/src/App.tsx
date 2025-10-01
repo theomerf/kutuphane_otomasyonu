@@ -43,6 +43,13 @@ import { UpdateAccount } from './pages/Admin/AccountsManagement/Accounts/UpdateA
 import Notifications from './pages/Notifications/Notifications.tsx'
 import ReservationsAdmin from './pages/Admin/ReservationsManager/Reservations/ReservationsAdmin.tsx'
 import ReservationsDashboard from './pages/Admin/ReservationsManager/ReservationsDashboard.tsx'
+import SeatsAdmin from './pages/Admin/ReservationsManager/Seats/SeatsAdmin.tsx'
+import TimeSlotsAdmin from './pages/Admin/ReservationsManager/TimeSlots/TimeSlotsAdmin.tsx'
+import { CreateTimeSlot } from './pages/Admin/ReservationsManager/TimeSlots/CreateTimeSlot.tsx'
+import { UpdateTimeSlot } from './pages/Admin/ReservationsManager/TimeSlots/UpdateTimeSlot.tsx'
+import LoansDashboard from './pages/Admin/LoansManagement/LoansDashboard.tsx'
+import LoansAdmin from './pages/Admin/LoansManagement/Loans/LoansAdmin.tsx'
+import LoanDetail from './pages/Admin/LoansManagement/Loans/LoanDetail.tsx'
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -135,6 +142,13 @@ function App() {
             <Route path="/admin/accounts/update/:id" element={<UpdateAccount />}></Route>
             <Route path="/admin/dashboard/reservations" element={<ReservationsDashboard />}></Route>
             <Route path="/admin/reservations" element={<ReservationsAdmin />}></Route>
+            <Route path="/admin/seats" element={<SeatsAdmin />}></Route>
+            <Route path="/admin/timeslots" element={<TimeSlotsAdmin />}></Route>
+            <Route path="/admin/timeslots/create" element={<CreateTimeSlot />}></Route>
+            <Route path="/admin/timeslots/update/:id" element={<UpdateTimeSlot />}></Route>
+            <Route path="/admin/dashboard/loans" element={<LoansDashboard />}></Route>
+            <Route path="/admin/loans" element={<LoansAdmin />}></Route>
+            <Route path="/admin/loans/:id" element={<LoanDetail />}></Route>
             <Route path="/admin/*" element={<NotFound />}></Route>
           </Route>
         </Route>

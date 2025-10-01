@@ -2,6 +2,7 @@
 using Entities.Dtos;
 using Entities.Exceptions;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -20,12 +21,21 @@ namespace Services
             _notificationService = notificationService;
         }
 
-        public async Task<IEnumerable<LoanDto>> GetAllLoansAsync(bool trackChanges)
+        public async Task<(IEnumerable<LoanDto> loans, MetaData metaData)> GetAllLoansAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var loans = await _manager.Loan.GetAllLoansAsync(trackChanges);
-            var loansDto = _mapper.Map<IEnumerable<LoanDto>>(loans);
+            var loans = await _manager.Loan.GetAllLoansAsync(p, trackChanges);
+            var loansDto = _mapper.Map<IEnumerable<LoanDto>>(loans.loans);
 
-            return loansDto;
+            var pagedLoans = PagedList<LoanDto>.ToPagedList(loansDto, p.PageNumber, p.PageSize, loans.count);
+
+            return (pagedLoans, pagedLoans.MetaData);
+        }
+
+        public async Task<int> GetAllLoansCountAsync()
+        {
+            var count = await _manager.Loan.GetAllLoansCountAsync();
+
+            return count;
         }
 
         public async Task<IEnumerable<LoanDto>> GetLoansByAccountIdAsync(string accountId, bool trackChanges)
@@ -53,6 +63,71 @@ namespace Services
             }
 
             return loan;
+        }
+
+        public async Task ChangeStatusOfLoanAsync(int loanId, LoanStatus status)
+        {
+            var loan = await GetOneLoanByIdForServiceAsync(loanId, true);
+
+            if (status == LoanStatus.Canceled || status == LoanStatus.Returned)
+            {
+                foreach (var line in loan.LoanLines!)
+                {
+                    var book = await _manager.Book.GetOneBookAsync(line.BookId, false);
+                    if (book is null)
+                    {
+                        throw new BookNotFoundException(line.BookId);
+                    }
+                    _manager.Book.Attach(line.Book!);
+                    book.AvailableCopies += line.Quantity;
+                    line.Book!.AvailableCopies = book.AvailableCopies;
+                }
+            }
+
+            if (status == LoanStatus.Returned)
+            {
+                loan.ReturnDate = DateTime.UtcNow;
+            }
+
+            loan.Status = status;
+
+            _manager.Loan.UpdateLoan(loan);
+            await _manager.SaveAsync();
+
+            if (status == LoanStatus.Canceled)
+            {
+                var notificationDto = new NotificationDtoForCreation()
+                {
+                    AccountId = loan.AccountId,
+                    Title = "Kiralamanız İptal Edildi",
+                    Message = "Kitap kiralamanız iptal edildi. Detaylar için desteğe ulaşın.",
+                    Type = NotificationType.Warning
+                };
+
+                await _notificationService.CreateNotificationAsync(notificationDto);
+            }
+            else if (status == LoanStatus.Returned)
+            {
+                var notificationDto = new NotificationDtoForCreation()
+                {
+                    AccountId = loan.AccountId,
+                    Title = "Kitap İadesi Onaylandı",
+                    Message = "Kitaplarınızı iade ettiğiniz için teşekkür ederiz. Tekrar görüşmek üzere!",
+                    Type = NotificationType.Info
+                };
+                await _notificationService.CreateNotificationAsync(notificationDto);
+            }
+            else if (status == LoanStatus.Overdue)
+            {
+                var notificationDto = new NotificationDtoForCreation()
+                {
+                    AccountId = loan.AccountId,
+                    Title = "Kiralamanız Gecikti",
+                    Message = "Kiraladığınız kitapları zamanında iade etmediniz. Lütfen en kısa sürede iade ediniz.",
+                    Type = NotificationType.Alert
+                };
+                await _notificationService.CreateNotificationAsync(notificationDto);
+            }
         }
         public async Task CreateLoanAsync(LoanDto loanDto)
         {
@@ -90,7 +165,31 @@ namespace Services
 
         public async Task DeleteLoanAsync(int loanId)
         {
+            var loan = await GetOneLoanByIdForServiceAsync(loanId, true);
+
+            _manager.Loan.DeleteLoan(loan);
+            await _manager.SaveAsync();
+        }
+
+        public async Task DeleteLoanForUserAsync(int loanId, string accountId)
+        {
             var loan = await GetOneLoanByIdForServiceAsync(loanId, false);
+            if (loan.AccountId != accountId)
+            {
+                throw new AccessViolationException("Bu kiralamayı silmek için yetkiniz bulunmamaktadır.");
+            }
+
+            foreach (var line in loan.LoanLines!)
+            {
+                var book = await _manager.Book.GetOneBookAsync(line.BookId, false);
+                if (book is null)
+                {
+                    throw new BookNotFoundException(line.BookId);
+                }
+                _manager.Book.Attach(line.Book!);
+                book.AvailableCopies += line.Quantity;
+                line.Book!.AvailableCopies = book.AvailableCopies;
+            }
 
             _manager.Loan.DeleteLoan(loan);
             await _manager.SaveAsync();

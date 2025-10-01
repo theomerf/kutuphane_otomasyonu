@@ -7,16 +7,16 @@ import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCalendarAlt, faCalendarDays, faCancel, faChevronDown, faClock } from "@fortawesome/free-solid-svg-icons";
 import AdminPagination from "../../../../components/ui/AdminPagination";
-import BackendDataReducer from "../../../../types/backendData";
 import type ReservationRequestParameters from "../../../../types/reservationRequestParameters";
 import { toast } from "react-toastify";
 import { getTodayFormatted, getTomorrowFormatted } from "../../../../utils/dateUtils";
 import type TimeSlot from "../../../../types/timeSlot";
 import { formatTime } from "../../../../utils/formatTime";
 import type ReservationResponse from "../../../../types/reservation";
+import BackendDataListReducer from "../../../../types/backendDataList";
 
 export default function ReservationsAdmin() {
-    const [reservations, dispatch] = useReducer(BackendDataReducer<ReservationResponse>, {
+    const [reservations, dispatch] = useReducer(BackendDataListReducer<ReservationResponse>, {
         data: null,
         isLoading: false,
         error: null
@@ -357,7 +357,7 @@ export default function ReservationsAdmin() {
                                                 dateStyle: "full", timeStyle: "short"
                                             })}</td>
                                             <td className="text-gray-500 font-semibold text-lg border border-violet-200 px-4 py-6">{res.seatId}</td>
-                                            <td className="text-gray-500 font-semibold text-lg border border-violet-200 px-4 py-6">{res.displayStatus}</td>
+                                            <td className="text-gray-500 font-semibold text-lg border border-violet-200 px-4 py-6 text-center"><p className={`rounded-full text-white shadow-md hover:scale-105 duration-500 py-1 ${res.displayStatus == "Aktif" ? "bg-green-400" : res.displayStatus == "İptal Edildi" ? "bg-red-400" : res.displayStatus == "Tamamlandı" ? "bg-violet-400" : "bg-gray-400"}`}>{res.displayStatus}</p></td>
                                             <td className="border-l border-t border-b border-violet-200 px-4 py-6">
                                                 {res.status !== "Cancelled" && <div className="flex flex-row justify-center gap-x-2">
                                                     <button onClick={() => handleReservationCancel(res.id!)} title="Rezervasyonu İptal Et" className="bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-red-600 duration-500 text-lg">

@@ -1,16 +1,16 @@
-interface BackendData<T> {
+interface BackendDataList<T> {
     data: T[] | null;
     isLoading: boolean;
     error: any | null;
 }
 
-type BackendDataAction<T> =
+type BackendDataListAction<T> =
     | { type: "FETCH_START" }
     | { type: "FETCH_SUCCESS"; payload: T[] }
     | { type: "FETCH_ERROR"; payload: string };
 
 
-export default function BackendDataReducer<T>(state: BackendData<T>, action: BackendDataAction<T>): BackendData<T> {
+export default function BackendDataListReducer<T>(state: BackendDataList<T>, action: BackendDataListAction<T>): BackendDataList<T> {
     switch (action.type) {
         case "FETCH_START":
             return { ...state, isLoading: true, error: null };

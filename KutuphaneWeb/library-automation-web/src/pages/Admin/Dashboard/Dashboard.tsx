@@ -1,4 +1,4 @@
-import { faBook, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightArrowLeft, faBook, faUser } from "@fortawesome/free-solid-svg-icons";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -9,26 +9,30 @@ interface DashboardStats {
     booksCount: number;
     accountsCount: number;
     reservationsCount: number;
+    loansCount: number;
 }
 
 export default function Dashboard() {
     const [dashboardStats, setDashboardStats] = useState<DashboardStats>({
         booksCount: 0,
         accountsCount: 0,
-        reservationsCount: 0
+        reservationsCount: 0,
+        loansCount: 0
     });
     const fetchStats = async () => {
         try {
-            const [booksRes, accountsRes, reservationsRes] = await Promise.all([
+            const [booksRes, accountsRes, reservationsRes, loanRes] = await Promise.all([
                 requests.books.countBooks(),
                 requests.account.countAccounts(),
-                requests.reservation.getActiveReservationsCount()
+                requests.reservation.getActiveReservationsCount(),
+                requests.loan.getAllLoansCount(),
             ]);
-            
+
             setDashboardStats({
                 booksCount: booksRes.data,
                 accountsCount: accountsRes.data,
-                reservationsCount:  reservationsRes.data
+                reservationsCount: reservationsRes.data,
+                loansCount: loanRes.data
             });
         }
         catch (error) {
@@ -58,26 +62,39 @@ export default function Dashboard() {
                 </div>
                 <div className="flex flex-col gap-y-4 rounded-lg shadow-xl bg-white py-8 border-2 border-gray-200 hover:scale-105 duration-500">
                     <p className="text-gray-500 font-bold text-center text-2xl">
-                        <FontAwesomeIcon icon={faUser} className="text-red-400 text-5xl" />
+                        <FontAwesomeIcon icon={faUser} className="text-blue-400 text-5xl" />
                     </p>
                     <div className="flex flex-col text-center gap-y-2">
                         <p className="ml-2 text-gray-500 font-bold text-3xl">{dashboardStats.accountsCount}</p>
                         <p className="ml-2 text-gray-500 font-bold text-xl">Kullanıcı</p>
                     </div>
                     <div className="flex flex-row mt-5 justify-center">
-                        <Link to="/admin/accounts" className="button !bg-red-400 hover:scale-105 text-lg font-semibold duration-500">Kullanıcıları Yönet</Link>
+                        <Link to="/admin/accounts" className="button !bg-blue-400 hover:scale-105 text-lg font-semibold duration-500">Kullanıcıları Yönet</Link>
                     </div>
                 </div>
                 <div className="flex flex-col gap-y-4 rounded-lg shadow-xl bg-white py-8 border-2 border-gray-200 hover:scale-105 duration-500">
                     <p className="text-gray-500 font-bold text-center text-2xl">
-                        <EventAvailableIcon style={{ color: "#fb923c", fontSize: "48px" }} />
+                        <EventAvailableIcon style={{ color: "#f87171", fontSize: "48px" }} />
                     </p>
                     <div className="flex flex-col text-center gap-y-2">
                         <p className="ml-2 text-gray-500 font-bold text-3xl">{dashboardStats.reservationsCount}</p>
                         <p className="ml-2 text-gray-500 font-bold text-xl">Rezervasyon</p>
                     </div>
                     <div className="flex flex-row mt-5 justify-center">
-                        <Link to="/admin/dashboard/reservations" className="button !bg-orange-400 hover:scale-105 text-lg font-semibold duration-500">Rezervasyonları Yönet</Link>
+                        <Link to="/admin/dashboard/reservations" className="button !bg-red-400 hover:scale-105 text-lg font-semibold duration-500">Rezervasyonları Yönet</Link>
+                    </div>
+                </div>
+                <div className="flex flex-col gap-y-4 rounded-lg shadow-xl bg-white py-8 border-2 border-gray-200 hover:scale-105 duration-500">
+                    <p className="text-gray-500 font-bold text-center text-2xl">
+                        <FontAwesomeIcon icon={faBook} className="text-orange-400 text-5xl"/>
+                        <FontAwesomeIcon icon={faArrowRightArrowLeft} className="text-orange-400 text-5xl"/>
+                    </p>
+                    <div className="flex flex-col text-center gap-y-2">
+                        <p className="ml-2 text-gray-500 font-bold text-3xl">{dashboardStats.loansCount}</p>
+                        <p className="ml-2 text-gray-500 font-bold text-xl">Kiralamalar</p>
+                    </div>
+                    <div className="flex flex-row mt-5 justify-center">
+                        <Link to="/admin/dashboard/loans" className="button !bg-orange-400 hover:scale-105 text-lg font-semibold duration-500">Kiralamaları Yönet</Link>
                     </div>
                 </div>
             </div>

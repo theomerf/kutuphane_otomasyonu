@@ -36,7 +36,7 @@ export default function ReservationsDashboard() {
         catch (error) {
             console.error("Rezervasyon dashboard istatistikleri çekilirken hata oluştu:", error);
         }
-    }
+    };
 
     useEffect(() => {
         fetchStats();

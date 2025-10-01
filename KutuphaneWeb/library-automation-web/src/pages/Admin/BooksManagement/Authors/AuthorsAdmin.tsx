@@ -177,13 +177,13 @@ export default function AuthorsAdmin() {
                     </div>
                 </div>
                 <div className="flex flex-row gap-x-4 ml-auto">
-                    <Link to="/admin/dashboard/books" className="button font-bold text-lg self-center hover:scale-105 duration-500">
-                        <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
-                        Geri
-                    </Link>
                     <Link to="/admin/authors/create" className="button !bg-green-400 hover:scale-105 text-lg font-bold duration-500 self-center">
                         <FontAwesomeIcon icon={faPlus} className="mr-2" />
                         Yeni Yazar Ekle
+                    </Link>
+                    <Link to="/admin/dashboard/books" className="button font-bold text-lg self-center hover:scale-105 duration-500">
+                        <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+                        Geri
                     </Link>
                 </div>
             </div>

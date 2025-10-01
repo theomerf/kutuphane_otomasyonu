@@ -479,6 +479,111 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Presentation.Controllers.Admin.LoanAdminController",
+    "Method": "GetAllLoans",
+    "RelativePath": "api/admin/loan",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SearchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.LoanAdminController",
+    "Method": "GetOneLoanById",
+    "RelativePath": "api/admin/loan/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.LoanAdminController",
+    "Method": "CancelLoan",
+    "RelativePath": "api/admin/loan/cancel/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.LoanAdminController",
+    "Method": "GetAllLoansCount",
+    "RelativePath": "api/admin/loan/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.LoanAdminController",
+    "Method": "DeleteLoan",
+    "RelativePath": "api/admin/loan/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.LoanAdminController",
+    "Method": "ReturnLoan",
+    "RelativePath": "api/admin/loan/return/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Presentation.Controllers.Admin.NotificationAdminController",
     "Method": "GetAllNotifications",
     "RelativePath": "api/admin/notifications",
@@ -1270,32 +1375,6 @@
   },
   {
     "ContainingType": "Presentation.Controllers.LoanController",
-    "Method": "GetAllLoans",
-    "RelativePath": "api/loan",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.LoanController",
-    "Method": "GetOneLoanById",
-    "RelativePath": "api/loan/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.LoanController",
     "Method": "GetLoansByAccountId",
     "RelativePath": "api/loan/account/{accountId}",
     "HttpMethod": "GET",
@@ -1328,7 +1407,7 @@
   },
   {
     "ContainingType": "Presentation.Controllers.LoanController",
-    "Method": "DeleteLoan",
+    "Method": "DeleteLoanForUser",
     "RelativePath": "api/loan/delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,

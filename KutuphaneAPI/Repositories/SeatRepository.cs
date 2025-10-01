@@ -44,9 +44,8 @@ namespace Repositories
 
         public async Task<IEnumerable<TimeSlot>> GetAllTimeSlotsAsync(bool trackChanges)
         {
-            var now = TimeOnly.FromDateTime(DateTime.Now);
-
             var timeSlots = await _context.Set<TimeSlot>()
+                .OrderBy(ts => ts.StartTime)
                 .ToListAsync();
             
             return timeSlots;

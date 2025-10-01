@@ -1,11 +1,15 @@
 export default interface Loan {
     id?: number;
     accountId?: number;
+    accountUserName?: string;
+    accountFirstName?: string;
+    accountLastName?: string;
     loanLines: LoanLine[];
     loanDate: string;
     dueDate: string;
     returnDate?: string;
-    status?: "OnLoan" | "Returned" | "Overdue";
+    status?: "OnLoan" | "Returned" | "Overdue" | "Canceled";
+    displayStatus?: string;
     fineAmount?: number;
 }
 
@@ -16,7 +20,7 @@ export interface LoanLine {
     bookTitle?: string;
     availableCopies?: number;
     bookAuthor?: string;
-    bookIsbn?: string;
+    bookISBN?: string;
     bookImageUrl?: string;
     quantity: number;
 }

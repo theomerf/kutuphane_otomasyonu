@@ -5,7 +5,7 @@ import type Notification from "../../types/notification";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faCalendarAlt, faCheck, faCheckDouble, faQuestion, faTrash, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
-import BackendDataReducer from "../../types/backendData";
+import BackendDataReducer from "../../types/backendDataList";
 
 export default function Notifications() {
     const [notifications, dispatch] = useReducer(BackendDataReducer<Notification>, {
@@ -33,6 +33,7 @@ export default function Notifications() {
         try {
             await requests.notifications.markAsRead(id);
             fetchNotifications();
+            toast.success("Bildirim okundu olarak işaretlendi.");
         }
         catch (error) {
             toast.error("Bildirim okundu olarak işaretlenirken bir hata oluştu.");
@@ -43,6 +44,7 @@ export default function Notifications() {
         try {
             await requests.notifications.markAllAsReadOfOneUser();
             fetchNotifications();
+            toast.success("Tüm bildirimler okundu olarak işaretlendi.");
         }
         catch (error) {
             toast.error("Tüm bildirimler okundu olarak işaretlenirken bir hata oluştu.");
@@ -53,6 +55,7 @@ export default function Notifications() {
         try {
             await requests.notifications.deleteNotificationForUser(id);
             fetchNotifications();
+            toast.success("Bildirim başarıyla silindi.");
         }
         catch (error) {
             toast.error("Bildirim silinirken bir hata oluştu.");
@@ -63,6 +66,7 @@ export default function Notifications() {
         try {
             await requests.notifications.deleteAllNotificationsOfOneUser();
             fetchNotifications();
+            toast.success("Tüm bildirimler başarıyla silindi.");
         }
         catch (error) {
             toast.error("Tüm bildirimler silinirken bir hata oluştu.");

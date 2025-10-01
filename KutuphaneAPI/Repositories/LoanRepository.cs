@@ -1,6 +1,8 @@
 ﻿using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
+using Repositories.Extensions;
 
 namespace Repositories
 {
@@ -10,13 +12,25 @@ namespace Repositories
         {
         }
 
-        public async Task<IEnumerable<Loan>> GetAllLoansAsync(bool trackChanges)
+        public async Task<(IEnumerable<Loan> loans, int count)> GetAllLoansAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var loans = await FindAll(trackChanges)
-                .Include(l => l.LoanLines)
-                .ToListAsync();
+            var loansQuery = FindAll(trackChanges)
+                .Include(l => l.Account)
+                .FilterBy(p.SearchTerm, l => l.Account!.UserName!, FilterOperator.Contains)
+                .OrderByDescending(l => l.LoanDate)
+                .ToPaginate(p.PageSize, p.PageNumber);
 
-            return loans;
+            var loans = await loansQuery.ToListAsync();
+            var count = await loansQuery.CountAsync();
+
+            return (loans, count);
+        }
+
+        public async Task<int> GetAllLoansCountAsync()
+        {
+            var count = await CountAsync(false);
+
+            return count;
         }
 
         public async Task<IEnumerable<Loan>> GetLoansByAccountIdAsync(string accountId, bool trackChanges)
@@ -31,7 +45,11 @@ namespace Repositories
         public async Task<Loan?> GetOneLoanByIdAsync(int id, bool trackChanges)
         {
             var loans = await FindByCondition(l => l.Id == id, trackChanges)
-                .Include(l => l.LoanLines)
+                .Include(l => l.LoanLines!)
+                .ThenInclude(ll => ll.Book)
+                .ThenInclude(b => b!.Images)
+                .Include(l => l.Account)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync();
 
             return loans;
