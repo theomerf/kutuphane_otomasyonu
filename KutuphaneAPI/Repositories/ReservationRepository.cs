@@ -19,10 +19,11 @@ namespace Repositories
                 .Include(r => r.Account)
                 .FilterBy(p.Date, r => r.ReservationDate, FilterOperator.Equal)
                 .FilterBy(p.TimeSlotId, r => r.TimeSlotId, FilterOperator.Equal)
-                .OrderByDescending(r => r.CreatedAt)
-                .ToPaginate(p.PageSize, p.PageNumber);
+                .OrderByDescending(r => r.CreatedAt);
             
-            var reservations = await reservationQuery.ToListAsync();
+            var reservations = await reservationQuery
+                .ToPaginate(p.PageSize, p.PageNumber)
+                .ToListAsync();
 
             var count = await reservationQuery.CountAsync();
 

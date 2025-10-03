@@ -17,10 +17,12 @@ namespace Repositories
             var authorsQuery = FindAll(trackChanges)
                 .Include(c => c.Books)
                 .FilterBy(p.SearchTerm, c => c.Name, FilterOperator.Contains)
-                .OrderBy(c => c.Id)
-                .ToPaginate(p.PageSize, p.PageNumber);
+                .OrderBy(c => c.Id);
 
-            var authors = await authorsQuery.ToListAsync();
+            var authors = await authorsQuery
+                .ToPaginate(p.PageSize, p.PageNumber)
+                .ToListAsync();
+
             var count = await authorsQuery.CountAsync();
 
             return (authors, count);

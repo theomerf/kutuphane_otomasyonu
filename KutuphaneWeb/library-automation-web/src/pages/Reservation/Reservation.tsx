@@ -157,14 +157,21 @@ export default function Reservation() {
     }
 
     useEffect(() => {
+        const controller = new AbortController();
+
         async function fetchSeats() {
-            const result = await requests.seats.getAllSeats();
+            try {
+            const result = await requests.seats.getAllSeats(controller.signal);
             setSeats(result.data as Seat[]);
+            }
+            catch (error) {
+                console.error('Seats fetch error:', error);
+            }
         }
 
         async function fetchTimeSlots() {
             try {
-                const result = await requests.timeSlots.getAllTimeSlots();
+                const result = await requests.timeSlots.getAllTimeSlots(controller.signal);
                 const newTimeSlots = new Map<string, TimeSlot[]>();
 
                 const todayKey = getTodayFormatted();
@@ -202,7 +209,7 @@ export default function Reservation() {
 
         fetchSeats();
         fetchTimeSlots();
-        fetchReservationsStatuses({ date: selectedDate?.toString(), timeSlotId: selectedTimeSlot?.id });
+        fetchReservationsStatuses({ date: selectedDate?.toString(), timeSlotId: selectedTimeSlot?.id }, controller.signal);
     }, []);
 
     useEffect(() => {

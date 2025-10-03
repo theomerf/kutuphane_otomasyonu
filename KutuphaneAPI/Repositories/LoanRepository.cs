@@ -17,10 +17,12 @@ namespace Repositories
             var loansQuery = FindAll(trackChanges)
                 .Include(l => l.Account)
                 .FilterBy(p.SearchTerm, l => l.Account!.UserName!, FilterOperator.Contains)
-                .OrderByDescending(l => l.LoanDate)
-                .ToPaginate(p.PageSize, p.PageNumber);
+                .OrderByDescending(l => l.LoanDate);
 
-            var loans = await loansQuery.ToListAsync();
+            var loans = await loansQuery
+                .ToPaginate(p.PageSize, p.PageNumber)
+                .ToListAsync();
+
             var count = await loansQuery.CountAsync();
 
             return (loans, count);

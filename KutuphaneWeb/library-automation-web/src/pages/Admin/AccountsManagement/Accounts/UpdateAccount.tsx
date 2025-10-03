@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,23 +7,17 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import type Account from "../../../../types/account";
-
-type AccountDetail = {
-    error: string | null;
-    account?: Account | null;
-    loading: boolean;
-}
+import BackendDataObjectReducer from "../../../../types/backendDataObject";
 
 export function UpdateAccount() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [roles, setRoles] = useState<string[]>([]);
-    const [accountDetail, setAccountDetail] = useState<AccountDetail>({
-        error: null,
-        account: null,
-        loading: false,
+    const [accountDetail, dispatch] = useReducer(BackendDataObjectReducer<Account>, {
+        data: null,
+        isLoading: false,
+        error: null
     });
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         defaultValues: {
             id: "",
@@ -38,54 +32,80 @@ export function UpdateAccount() {
         }
     });
 
-    const fetchAccount = async (id: string) => {
-        setAccountDetail({ error: null, account: null, loading: true });
+    const fetchAccount = async (id: string, signal: AbortSignal) => {
+        dispatch({ type: 'FETCH_START' });
         try {
-            const response = await requests.account.getOneAccount(id);
-            console.log(response.data);
-            setAccountDetail({ error: null, account: response.data as Account, loading: false });
+            const response = await requests.account.getOneAccount(id, signal);
+            dispatch({ type: 'FETCH_SUCCESS', payload: response.data as Account });
         } catch (error: any) {
-            console.error('Hata:', error);
-            setAccountDetail({ error: 'Kullanıcı bilgileri alınırken hata oluştu.', account: null, loading: false });
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                console.error('Hata:', error);
+                dispatch({ type: 'FETCH_ERROR', payload: error.message || 'Hata oluştu' });
+            }
         }
     };
 
     useEffect(() => {
-        if (accountDetail.account) {
+        if (accountDetail.data) {
             reset({
-                id: accountDetail.account?.id,
-                userName: accountDetail.account?.userName,
-                avatarUrl: accountDetail.account?.avatarUrl,
-                firstName: accountDetail.account?.firstName,
-                lastName: accountDetail.account?.lastName,
-                phoneNumber: accountDetail.account?.phoneNumber,
-                email: accountDetail.account?.email,
-                birthDate: accountDetail.account?.birthDate ? new Date(accountDetail.account?.birthDate).toISOString().split('T')[0] : "",
-                roles: accountDetail.account?.roles,
+                id: accountDetail.data.id,
+                userName: accountDetail.data.userName,
+                avatarUrl: accountDetail.data.avatarUrl,
+                firstName: accountDetail.data.firstName,
+                lastName: accountDetail.data.lastName,
+                phoneNumber: accountDetail.data.phoneNumber,
+                email: accountDetail.data.email,
+                birthDate: accountDetail.data.birthDate ? new Date(accountDetail.data.birthDate).toISOString().split('T')[0] : "",
+                roles: accountDetail.data.roles,
             });
         }
-    }, [accountDetail.account, reset]);
+    }, [accountDetail.data, reset]);
 
-    const fetchRoles = async () => {
+    const fetchRoles = async (signal: AbortSignal) => {
         try {
-            const response = await requests.account.getAllRoles();
+            const response = await requests.account.getAllRoles(signal);
             return response.data as string[];
-        } catch (error) {
-            console.error('Roller alınırken hata oluştu:', error);
-            return [];
+        } catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return[];
+            }
+            else {
+                console.error('Roller alınırken hata oluştu:', error);
+                return [];
+            }
         }
     };
 
     useEffect(() => {
+        const controller = new AbortController();
+
         const loadRoles = async () => {
-            const roles = await fetchRoles();
-            if (roles.length > 0) {
-                setRoles(roles);
+            try {
+                const roles = await fetchRoles(controller.signal);
+
+                if (roles!.length > 0) {
+                    setRoles(roles!);
+                }
+            }
+            catch (error: any) {
+                if (error.name === "CanceledError" || error.name === "AbortError") {
+                    return;
+                }
+                else {
+                    console.error('Roller alınırken hata oluştu:', error);
+                }
             }
         };
         const id = window.location.pathname.split('/').pop() || "";
-        fetchAccount(id);
+        fetchAccount(id, controller.signal);
         loadRoles();
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     const handleAccountUpdate = async (formData: any) => {
@@ -119,7 +139,7 @@ export function UpdateAccount() {
                 <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
                     <p className="text-white font-bold text-3xl">
                         <FontAwesomeIcon icon={faEdit} className="mr-2" />
-                        Kullanıcı Adı: {accountDetail.account?.userName} - Güncelle
+                        Kullanıcı Adı: {accountDetail.data?.userName} - Güncelle
                     </p>
                 </div>
                 <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">

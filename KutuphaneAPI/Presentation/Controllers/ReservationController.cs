@@ -38,7 +38,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("account")]
-        public async Task<IActionResult> GetReservationsOfOneUser()
+        public async Task<IActionResult> GetReservationsOfAccount()
         {
             var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var reservations = await _manager.ReservationService.GetReservationsOfOneUserAsync(accountId!, false);
@@ -50,8 +50,8 @@ namespace Presentation.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateReservation([FromBody] ReservationDtoForCreation reservationDto)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            reservationDto.AccountId = userId!;
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            reservationDto.AccountId = accountId!;
 
             var groupName = $"date_{reservationDto.ReservationDate}_slot_{reservationDto.TimeSlotId}";
             var seatKey = $"{reservationDto.SeatId}_{reservationDto.ReservationDate}_{reservationDto.TimeSlotId}";
@@ -72,7 +72,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPatch("account/cancel-reservation/{reservationId}")]
-        public async Task<IActionResult> CancelReservationForUser([FromRoute] int reservationId)
+        public async Task<IActionResult> CancelReservationForAccount([FromRoute] int reservationId)
         {
             var reservation = await _manager.ReservationService.ChangeStatusOfReservation(reservationId, ReservationStatus.Cancelled);
 

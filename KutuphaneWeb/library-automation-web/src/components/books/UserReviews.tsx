@@ -5,11 +5,12 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import requests from "../../services/api";
 import { ClipLoader } from "react-spinners";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { Rating } from "../ui/Rating";
 import type { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
+import BackendDataListReducer from "../../types/backendDataList";
 
 type UserReviewsProps = {
     bookId: number;
@@ -23,30 +24,31 @@ export default function UserReviews({ bookId }: UserReviewsProps) {
             bookId: bookId
         }
     });
+    const [refreshReviews, setRefreshReviews] = useState(0);
     const { user } = useSelector((state: RootState) => state.account);
-    const [reviews, setReviews] = useState<UserReview[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [reviews, dispatch] = useReducer(BackendDataListReducer<UserReview>, {
+        data: null,
+        isLoading: false,
+        error: null
+    });
     const [hoveredRating, setHoveredRating] = useState<number | null>(null);
     const [selectedRating, setSelectedRating] = useState<number>(0);
 
-    const fetchReviews = async () => {
+    const fetchReviews = async (signal: AbortSignal) => {
+        dispatch({ type: "FETCH_START" });
         try {
-            const response = await requests.userReview.getUserReviewsByBookId(bookId);
-            return response.data as UserReview[];
-        } catch (error) {
-            toast.error("Değerlendirmeler yüklenirken bir hata oluştu.");
-            return [];
+            const response = await requests.userReview.getUserReviewsByBookId(bookId, signal);
+            dispatch({ type: "FETCH_SUCCESS", payload: response.data as UserReview[] });
+        } catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                toast.error("Değerlendirmeler yüklenirken bir hata oluştu.");
+                dispatch({ type: "FETCH_ERROR", payload: error.message || "Değerlendirmeler yüklenirken bir hata oluştu." });
+            }
         }
     };
-
-    useEffect(() => {
-        const loadReviews = async () => {
-            const fetchedReviews = await fetchReviews();
-            setReviews(fetchedReviews);
-        };
-
-        loadReviews();
-    }, []);
 
     const handleReviewCreation = async (formData: any) => {
         if (!selectedRating) {
@@ -54,20 +56,27 @@ export default function UserReviews({ bookId }: UserReviewsProps) {
             return;
         }
         try {
-            setIsLoading(true);
             await requests.userReview.createUserReview({ ...formData, rating: selectedRating });
             toast.success("Değerlendirme başarıyla oluşturuldu.");
             reset();
             setSelectedRating(0);
             setHoveredRating(null);
+            setRefreshReviews(prev => prev + 1);
         }
         catch (error) {
             toast.error("Değerlendirme oluşturulurken bir hata oluştu.");
         }
-        finally {
-            setIsLoading(false);
-        }
     };
+
+    useEffect(() => {
+        const controller = new AbortController();
+
+        fetchReviews(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
+    }, [refreshReviews]);
 
     const handleStarHover = (star: number) => setHoveredRating(star);
     const handleStarLeave = () => setHoveredRating(null);
@@ -78,7 +87,7 @@ export default function UserReviews({ bookId }: UserReviewsProps) {
 
     return (
         <div className="flex flex-col gap-6">
-            {reviews.length === 0 ? (
+            {reviews.data?.length === 0 ? (
                 <div className="flex flex-col text-center content-center items-center justify-center mt-5 mb-8">
                     <FontAwesomeIcon icon={faComment} className="text-violet-400 text-6xl mb-4 animate-pulse" />
                     <p className="text-gray-500 font-bold text-2xl">Henüz değerlendirme yok.</p>
@@ -86,10 +95,10 @@ export default function UserReviews({ bookId }: UserReviewsProps) {
                 </div>
             ) : (
                 <div>
-                    {reviews.map((review) => (
+                    {reviews.data?.map((review) => (
                         <div key={review.id} className="flex flex-col gap-y-6 rounded-lg shadow-md border bg-violet-50 border-gray-200 px-8 py-6 mb-6">
                             <div className="flex flex-row">
-                                <img src={"https://localhost:7214/images/" + review.accountAvatarUrl} alt="User Avatar" className="w-12 h-12 rounded-full mr-4" />   
+                                <img src={"https://localhost:7214/images/" + review.accountAvatarUrl} alt="User Avatar" className="w-12 h-12 rounded-full mr-4" />
                                 <p className="font-semibold text-gray-500 text-lg text-left self-center">
                                     {review.accountUserName}
                                 </p>
@@ -183,9 +192,9 @@ export default function UserReviews({ bookId }: UserReviewsProps) {
                             <button
                                 type="submit"
                                 className="button w-1/2 font-bold text-lg !py-4 hover:scale-105 duration-300"
-                                disabled={isLoading}
+                                disabled={reviews.isLoading}
                             >
-                                {isLoading ? (
+                                {reviews.isLoading ? (
                                     <ClipLoader size={20} color="#fff" />
                                 ) : (
                                     <>

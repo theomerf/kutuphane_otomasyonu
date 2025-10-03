@@ -1,8 +1,10 @@
 ﻿using Entities.Dtos;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
 using Services.Contracts;
+using System.Text.Json;
 
 namespace Presentation.Controllers.Admin
 {
@@ -16,6 +18,23 @@ namespace Presentation.Controllers.Admin
         public CategoriesAdminController(IServiceManager manager)
         {
             _manager = manager;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllCategories([FromQuery] AdminRequestParameters p)
+        {
+            var pagedResult = await _manager.CategoryService.GetAllCategoriesAsync(p, false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+
+            return Ok(pagedResult.categories);
+        }
+
+        [HttpGet("count")]
+        public async Task<IActionResult> GetAllCategoriesCount()
+        {
+            var count = await _manager.CategoryService.GetAllCategoriesCountAsync();
+
+            return Ok(count);
         }
 
         [HttpPost("create")]

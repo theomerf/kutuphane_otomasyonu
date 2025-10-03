@@ -28,6 +28,14 @@ namespace Presentation.Controllers.Admin
             return Ok(pagedAccounts.accounts);
         }
 
+        [HttpGet("count")]
+        public async Task<IActionResult> GetAllAccountsCount()
+        {
+            var count = await _manager.AccountService.GetAllAccountsCountAsync();
+
+            return Ok(count);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAccountById([FromRoute] String id)
         {

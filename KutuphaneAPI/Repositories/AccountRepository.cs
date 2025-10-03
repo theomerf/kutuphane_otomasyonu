@@ -14,13 +14,15 @@ namespace Repositories
 
         public async Task<(IEnumerable<Account> accounts, int count)> GetAllAccountsAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var accounts = await FindAll(trackChanges)
+            var query = FindAll(trackChanges)
                 .FilterBy(p.SearchTerm, a => a.UserName, FilterOperator.Contains)
-                .OrderBy(a => a.Id)
+                .OrderBy(a => a.Id);
+
+            var accounts = await query
                 .ToPaginate(p.PageSize, p.PageNumber)
                 .ToListAsync();
 
-            var count = await CountAsync(false);
+            var count = await query.CountAsync();
 
             return (accounts, count);
         }

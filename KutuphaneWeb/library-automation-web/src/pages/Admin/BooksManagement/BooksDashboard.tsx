@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import requests from "../../../services/api";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface BooksDashboardStats {
     booksCount: number;
@@ -19,13 +20,13 @@ export default function BooksDashboard() {
         tagsCount: 0
     });
 
-    const fetchStats = async () => {
+    const fetchStats = async (signal: AbortSignal) => {
         try {
             const [booksRes, categoriesRes, authorsRes, tagsRes] = await Promise.all([
-                requests.books.countBooks(),
-                requests.categories.countCategories(),
-                requests.authors.countAuthors(),
-                requests.tags.countTags(),
+                requests.books.countBooks(signal),
+                requests.categories.countCategories(signal),
+                requests.authors.countAuthors(signal),
+                requests.tags.countTags(signal),
             ]);
 
             setBooksDashboardStats({
@@ -35,13 +36,24 @@ export default function BooksDashboard() {
                 tagsCount: tagsRes.data
             });
         }
-        catch (error) {
-            console.error("Kitap dashboard istatistikleri çekilirken hata oluştu:", error);
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                console.error("Kitap dashboard istatistikleri çekilirken hata oluştu:", error);
+                toast.error("Kitap dashboard istatistikleri yüklenirken bir hata oluştu.");
+            }
         }
     }
 
     useEffect(() => {
-        fetchStats();
+        const controller = new AbortController();
+        fetchStats(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (

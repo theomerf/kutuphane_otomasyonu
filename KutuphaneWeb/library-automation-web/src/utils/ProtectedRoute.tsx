@@ -11,7 +11,26 @@ export default function ProtectedRoute({ adminOnly = false }: { adminOnly?: bool
   const [hasChecked, setHasChecked] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
+  const checkPermission = async (signal: AbortSignal) => {
+    try {
+      await requests.admin.getAdminDashboard(signal);
+      setIsAdmin(true);
+    }
+    catch (error: any) {
+      if (error.name === "CanceledError" || error.name === "AbortError") {
+        setIsAdmin(true);
+      }
+      else {
+        setIsAdmin(false);
+      }
+    }
+    finally {
+      setHasChecked(true);
+    }
+  };
+
   useEffect(() => {
+    const controller = new AbortController();
     if (!adminOnly) {
       const timer = setTimeout(() => {
         setHasChecked(true);
@@ -20,18 +39,24 @@ export default function ProtectedRoute({ adminOnly = false }: { adminOnly?: bool
       return () => clearTimeout(timer);
     }
     else {
-      const check = async () => {
-        await requests.admin.getAdminDashboard();
-        setHasChecked(true);
-      }
-      check().catch(() => {
-        setIsAdmin(false);
-        setHasChecked(true);
-      });
-      setIsAdmin(true);
+      checkPermission(controller.signal);
+
+      return () => {
+        controller.abort();
+      };
     }
 
   }, []);
+
+  useEffect(() => {
+    if (hasChecked) {
+      if (!user) {
+        toast.warning("Bu sayfayı görüntülemek için giriş yapmalısınız.");
+      } else if (adminOnly && !isAdmin) {
+        toast.error("Bu sayfayı görüntüleme yetkiniz yok.");
+      }
+    }
+  }, [hasChecked, user, isAdmin, adminOnly]);
 
   if (!hasChecked) {
     return (
@@ -42,13 +67,11 @@ export default function ProtectedRoute({ adminOnly = false }: { adminOnly?: bool
   }
 
   if (!user) {
-    toast.warning("Bu sayfayı görüntülemek için giriş yapmalısınız.");
     return <Navigate to="/account/login" replace />;
   }
 
   if (adminOnly) {
     if (!isAdmin) {
-      toast.error("Bu sayfayı görüntüleme yetkiniz yok.");
       return <Navigate to="/" replace />;
     }
   }

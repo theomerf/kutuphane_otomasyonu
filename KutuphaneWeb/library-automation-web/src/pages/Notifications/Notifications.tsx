@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react"
+import { useEffect, useReducer, useState } from "react"
 import requests from "../../services/api";
 import { ClipLoader } from "react-spinners";
 import type Notification from "../../types/notification";
@@ -13,27 +13,29 @@ export default function Notifications() {
         isLoading: false,
         error: null
     });
+    const [refreshNotifications, setRefreshNotifications] = useState(0);
 
-    const fetchNotifications = async () => {
+    const fetchNotifications = async (signal: AbortSignal) => {
         dispatch({ type: "FETCH_START" });
         try {
-            const result = await requests.notifications.getAllNotificationsOfOneUser();
+            const result = await requests.notifications.getAllNotificationsOfOneUser(signal);
             dispatch({ type: "FETCH_SUCCESS", payload: result.data as Notification[] });
         }
         catch (error: any) {
-            dispatch({ type: "FETCH_ERROR", payload: error.message || "Bildirimler yüklenirken bir hata oluştu." });
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                dispatch({ type: "FETCH_ERROR", payload: error.message || "Bildirimler yüklenirken bir hata oluştu." });
+            }
         }
     };
-
-    useEffect(() => {
-        fetchNotifications();
-    }, []);
 
     const handleMarkAsRead = async (id: number) => {
         try {
             await requests.notifications.markAsRead(id);
-            fetchNotifications();
             toast.success("Bildirim okundu olarak işaretlendi.");
+            setRefreshNotifications(prev => prev + 1);
         }
         catch (error) {
             toast.error("Bildirim okundu olarak işaretlenirken bir hata oluştu.");
@@ -43,8 +45,8 @@ export default function Notifications() {
     const handleMarkAllAsRead = async () => {
         try {
             await requests.notifications.markAllAsReadOfOneUser();
-            fetchNotifications();
             toast.success("Tüm bildirimler okundu olarak işaretlendi.");
+            setRefreshNotifications(prev => prev + 1);
         }
         catch (error) {
             toast.error("Tüm bildirimler okundu olarak işaretlenirken bir hata oluştu.");
@@ -54,8 +56,8 @@ export default function Notifications() {
     const handleDelete = async (id: number) => {
         try {
             await requests.notifications.deleteNotificationForUser(id);
-            fetchNotifications();
             toast.success("Bildirim başarıyla silindi.");
+            setRefreshNotifications(prev => prev + 1);
         }
         catch (error) {
             toast.error("Bildirim silinirken bir hata oluştu.");
@@ -65,13 +67,22 @@ export default function Notifications() {
     const handleDeleteAll = async () => {
         try {
             await requests.notifications.deleteAllNotificationsOfOneUser();
-            fetchNotifications();
             toast.success("Tüm bildirimler başarıyla silindi.");
+            setRefreshNotifications(prev => prev + 1);
         }
         catch (error) {
             toast.error("Tüm bildirimler silinirken bir hata oluştu.");
         }
     };
+
+    useEffect(() => {
+        const controller = new AbortController();
+        fetchNotifications(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
+    }, [refreshNotifications]);
 
     return (
         <div className="flex flex-col">
@@ -115,11 +126,11 @@ export default function Notifications() {
                                 <div className="absolute top-[-4px] left-[-4px] w-5 h-5 rounded-full bg-violet-400"></div>
                                 <div className="flex flex-row justify-between items-center">
                                     <p className="text-2xl text-white font-semibold">
-                                        <FontAwesomeIcon icon={faBell} className="mr-2"/>
+                                        <FontAwesomeIcon icon={faBell} className="mr-2" />
                                         {notification.title}
                                     </p>
                                     <span className="text-base font-semibold text-white">
-                                        <FontAwesomeIcon icon={faCalendarAlt} className="mr-2"/>
+                                        <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
                                         {new Date(notification.createdAt || "").toLocaleString()}
                                     </span>
                                 </div>

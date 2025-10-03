@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import requests from "../../../../services/api";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,43 +11,50 @@ import BackendDataListReducer from "../../../../types/backendDataList";
 
 export default function TimeSlotsAdmin() {
     const [timeSlots, dispatch] = useReducer(BackendDataListReducer<TimeSlot>, {
-        data: [],
+        data: null,
         isLoading: false,
         error: null
     });
-
-    async function fetchTimeSlots() {
+    const [refreshTimeSlots, setRefreshTimeSlots] = useState(0);
+    async function fetchTimeSlots(signal: AbortSignal) {
         dispatch({ type: "FETCH_START" });
         try {
-            const controller = new AbortController();
 
-            const response = await requests.timeSlots.getAllTimeSlots(controller.signal);
+            const response = await requests.timeSlots.getAllTimeSlots(signal);
             dispatch({ type: "FETCH_SUCCESS", payload: response.data as TimeSlot[] });
         }
         catch (error: any) {
             if (error.name === "CanceledError" || error.name === "AbortError") {
-                console.log("Request cancelled");
+                return;
             }
-            dispatch({ type: "FETCH_ERROR", payload: error.message || "Zaman aralıkları çekilirken bir hata oluştu" });
+            else {
+                dispatch({ type: "FETCH_ERROR", payload: error.message || "Zaman aralıkları çekilirken bir hata oluştu" });
+            }
         }
     };
-
-    useEffect(() => {
-        fetchTimeSlots();
-    }, []);
 
     const handleTimeSlotDelete = async (seatId: number) => {
         if (!window.confirm("Bu zaman aralığını silmek istediğinize emin misiniz?")) return;
         try {
             await requests.timeSlots.deleteTimeSlot(seatId);
             toast.success("Zaman aralığı başarıyla silindi.");
-            fetchTimeSlots();
+            setRefreshTimeSlots(prev => prev + 1);
         }
         catch (error) {
             console.error(error);
             toast.error("Zaman aralığı silinirken hata oluştu.");
         }
     };
+
+    useEffect(() => {
+        const controller = new AbortController();
+
+        fetchTimeSlots(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
+    }, [refreshTimeSlots]);
 
     return (
         <div className="flex flex-col">

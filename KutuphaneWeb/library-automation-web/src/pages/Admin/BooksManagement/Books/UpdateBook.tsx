@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import type Book from "../../../../types/book";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
@@ -10,21 +10,15 @@ import type Author from "../../../../types/author";
 import type Category from "../../../../types/category";
 import type Tag from "../../../../types/tag";
 import { toast } from "react-toastify";
-
-type BookDetail = {
-    error: string | null;
-    book?: Book | null;
-    loading: boolean;
-}
+import BackendDataObjectReducer from "../../../../types/backendDataObject";
 
 export function UpdateBook() {
     const navigate = useNavigate();
-    const [bookDetail, setBookDetail] = useState<BookDetail>({
-        error: null,
-        book: null,
-        loading: false
+    const [bookDetail, dispatch] = useReducer(BackendDataObjectReducer<Book>, {
+        data: null,
+        isLoading: false,
+        error: null
     });
-
     const [allAuthors, setAllAuthors] = useState<Author[]>([]);
     const [allCategories, setAllCategories] = useState<Category[]>([]);
     const [allTags, setAllTags] = useState<Tag[]>([]);
@@ -74,47 +68,39 @@ export function UpdateBook() {
     }, []);
 
     useEffect(() => {
-        if (bookDetail.book) {
+        if (bookDetail.data) {
             reset({
-                title: bookDetail.book.title || "",
-                isbn: bookDetail.book.isbn || "",
-                availableCopies: bookDetail.book.availableCopies ?? 0,
-                totalCopies: bookDetail.book.totalCopies ?? 0,
-                location: bookDetail.book.location || "",
-                publishedDate: bookDetail.book.publishedDate
-                    ? new Date(bookDetail.book.publishedDate).toISOString().split("T")[0]
+                title: bookDetail.data.title || "",
+                isbn: bookDetail.data.isbn || "",
+                availableCopies: bookDetail.data.availableCopies ?? 0,
+                totalCopies: bookDetail.data.totalCopies ?? 0,
+                location: bookDetail.data.location || "",
+                publishedDate: bookDetail.data.publishedDate
+                    ? new Date(bookDetail.data.publishedDate).toISOString().split("T")[0]
                     : "",
-                summary: bookDetail.book.summary || "",
+                summary: bookDetail.data.summary || "",
             });
 
-            setSelectedAuthors(bookDetail.book.authors || []);
-            setSelectedCategories(bookDetail.book.categories || []);
-            setSelectedTags(bookDetail.book.tags || []);
-            setExistingImages(bookDetail.book.images || []);
+            setSelectedAuthors(bookDetail.data.authors || []);
+            setSelectedCategories(bookDetail.data.categories || []);
+            setSelectedTags(bookDetail.data.tags || []);
+            setExistingImages(bookDetail.data.images || []);
         }
-    }, [bookDetail.book, reset]);
+    }, [bookDetail.data, reset]);
 
-    const fetchBooks = async (id: string, signal?: AbortSignal) => {
+    const fetchBook = async (id: string, signal?: AbortSignal) => {
+        dispatch({ type: 'FETCH_START' });
         try {
-            setBookDetail(prev => ({
-                ...prev,
-                loading: true,
-            }));
             const response = await requests.books.getOneBook(id, signal);
-
-            setBookDetail({
-                book: response.data as Book,
-                loading: false,
-                error: null
-            });
+            dispatch({ type: 'FETCH_SUCCESS', payload: response.data as Book });
         }
-        catch (error) {
-            setBookDetail({
-                book: null,
-                loading: false,
-                error: 'Kitap bilgileri çekilirken hata oluştu.'
-            });
-            throw error;
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                dispatch({ type: 'FETCH_ERROR', payload: error.message || 'Kitap bilgisi yüklenirken bir hata oluştu.' });
+            }
         }
     };
 
@@ -122,7 +108,7 @@ export function UpdateBook() {
         try {
             const form = new FormData();
 
-            form.append('Id', bookDetail.book!.id!.toString());
+            form.append('Id', bookDetail.data!.id!.toString());
             form.append('Title', formData.title);
             form.append('ISBN', formData.isbn);
             form.append('AvailableCopies', formData.availableCopies.toString());
@@ -236,13 +222,18 @@ export function UpdateBook() {
     };
 
     useEffect(() => {
+        const controller = new AbortController();
         const id: string = window.location.pathname.split('/').pop() || '';
-        fetchBooks(id);
+        fetchBook(id, controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (
         <>
-            {(bookDetail.loading) && (
+            {(bookDetail.isLoading) && (
                 <div className="flex justify-center items-center h-64">
                     <ClipLoader size={40} color="#8B5CF6" />
                 </div>
@@ -253,13 +244,13 @@ export function UpdateBook() {
                     Kitap bilgisi yüklenirken bir hata oluştu.
                 </div>
             )}
-            {bookDetail.book && !bookDetail.loading &&
+            {bookDetail.data && !bookDetail.isLoading &&
                 <div className="flex flex-col px-8 lg:px-80">
                     <form method="POST" onSubmit={handleSubmit(handleBookCreation)} noValidate>
                         <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
                             <p className="text-white font-bold text-3xl">
                                 <FontAwesomeIcon icon={faEdit} className="mr-2" />
-                                Kitap Id: {bookDetail.book.id} - Düzenle
+                                Kitap Id: {bookDetail.data.id} - Düzenle
                             </p>
                         </div>
                         <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">

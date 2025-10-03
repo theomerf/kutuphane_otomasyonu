@@ -14,26 +14,32 @@ export default function LoanDetail() {
         error: null
     });
 
-    async function fetchLoan() {
+    async function fetchLoan(id: string, signal: AbortSignal) {
         dispatch({ type: "FETCH_START" });
-        const controller = new AbortController();
         try {
-            const id = window.location.pathname.split("/").pop();
-            if (!id) throw new Error("Geçersiz kiralama ID'si");
-            const response = await requests.loan.getOneLoan(parseInt(id), controller.signal);
-
+            const response = await requests.loan.getOneLoan(parseInt(id), signal);
             dispatch({ type: "FETCH_SUCCESS", payload: response.data as Loan });
         }
         catch (error: any) {
             if (error.name === "CanceledError" || error.name === "AbortError") {
-                console.log("Request cancelled");
+                return;
             }
-            dispatch({ type: "FETCH_ERROR", payload: error.message || "Zaman aralıkları çekilirken bir hata oluştu" });
+            else {
+                dispatch({ type: "FETCH_ERROR", payload: error.message || "Kiralamalar listesi çekilirken bir hata oluştu" });
+            }
         }
     };
 
     useEffect(() => {
-        fetchLoan();
+        const controller = new AbortController();
+        const id = window.location.pathname.split("/").pop();
+        if (!id) throw new Error("Geçersiz kiralama ID'si");
+
+        fetchLoan(id, controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (

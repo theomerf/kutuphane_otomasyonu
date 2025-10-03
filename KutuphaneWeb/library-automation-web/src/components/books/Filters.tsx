@@ -30,20 +30,45 @@ export type FilterSection = {
 }
 
 export default function Filters({ isFiltersOpen, setIsFiltersOpen, setOpenSections, filters, openSections, query, setQuery, isOthersOpen, searchInput, setSearchInput, up, debouncedSearch, setFilters }: FiltersProps) {
-    const fetchCategories = async () => {
-        const response = await requests.categories.getPopularCategories();
-        return response.data as Category[];
+    const fetchCategories = async (signal: AbortSignal) => {
+        try {
+            const response = await requests.categories.getPopularCategories(signal);
+            return response.data as Category[];
+        }
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return [];
+            }
+            else {
+                console.error("Kategoriler yüklenirken hata oluştu:", error);
+                return [];
+            }
+        }
+
     }
 
-    const fetchAuthors = async () => {
-        const response = await requests.authors.getPopularAuthors();
-        return response.data as Author[];
+    const fetchAuthors = async (signal: AbortSignal) => {
+        try {
+            const response = await requests.authors.getPopularAuthors(signal);
+            return response.data as Author[];
+        }
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return [];
+            }
+            else {
+                console.error("Yazarlar yüklenirken hata oluştu:", error);
+                return [];
+            }
+        }
     }
 
     useEffect(() => {
+        const controller = new AbortController();
+
         const loadFilters = async () => {
-            const categories = await fetchCategories();
-            const authors = await fetchAuthors();
+            const categories = await fetchCategories(controller.signal);
+            const authors = await fetchAuthors(controller.signal);
 
             setFilters([
                 {
@@ -60,6 +85,10 @@ export default function Filters({ isFiltersOpen, setIsFiltersOpen, setOpenSectio
         };
 
         loadFilters();
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     useEffect(() => {

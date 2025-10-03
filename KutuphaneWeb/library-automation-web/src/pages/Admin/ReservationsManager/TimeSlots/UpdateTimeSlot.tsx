@@ -14,22 +14,32 @@ export function UpdateTimeSlot() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const fetchTimeSlot = async () => {
+    const fetchTimeSlot = async (signal: AbortSignal) => {
         try {
-            const controller = new AbortController();
             const id = window.location.pathname.split("/").pop();
             if (!id) return;
-            var response = await requests.timeSlots.getOneTimeSlot(parseInt(id), controller.signal);
+            var response = await requests.timeSlots.getOneTimeSlot(parseInt(id), signal);
             setTimeSlots(response.data as TimeSlot);
         }
-        catch (error) {
-            console.error("Zaman aralığı çekilirken hata oluştu:", error);
-            toast.error("Zaman aralığı çekilirken hata oluştu.");
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                console.error("Zaman aralığı çekilirken hata oluştu:", error);
+                toast.error("Zaman aralığı çekilirken hata oluştu.");
+            }
         }
     }
 
     useEffect(() => {
-        fetchTimeSlot();
+        const controller = new AbortController();
+
+        fetchTimeSlot(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     useEffect(() => {

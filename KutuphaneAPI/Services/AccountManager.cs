@@ -82,9 +82,9 @@ namespace Services
             return user;
         }
 
-        public async Task<AccountDto> GetAccountByIdAsync(string userName)
+        public async Task<AccountDto> GetAccountByIdAsync(string userId)
         {
-            var user = await GetUserByIdForServiceAsync(userName);
+            var user = await GetUserByIdForServiceAsync(userId);
             var userDto = _mapper.Map<AccountDto>(user);
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -284,9 +284,9 @@ namespace Services
             return result;
         }
 
-        public async Task<IdentityResult> DeleteAccountAsync(string id)
+        public async Task<IdentityResult> DeleteAccountAsync(string userId)
         {
-            var account = await GetUserByIdForServiceAsync(id);
+            var account = await GetUserByIdForServiceAsync(userId);
             var result = await _userManager.DeleteAsync(account!);
 
             return result;

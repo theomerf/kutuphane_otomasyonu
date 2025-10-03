@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useReducer } from "react";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import type PaginationHeader from "../../../../types/paginationHeader";
@@ -12,11 +12,15 @@ import type { RequestParameters } from "../../../../types/bookRequestParameters"
 import type Account from "../../../../types/account";
 import AdminPagination from "../../../../components/ui/AdminPagination.tsx";
 import { useForm } from "react-hook-form";
+import BackendDataListReducer from "../../../../types/backendDataList.ts";
 
 export default function AccountsAdmin() {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-    const [data, setData] = useState<Account[] | null>(null);
+    const [accounts, dispatch] = useReducer(BackendDataListReducer<Account>, {
+        data: null,
+        isLoading: false,
+        error: null
+    });
+    const [refreshAccounts, setRefreshAccounts] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -28,7 +32,6 @@ export default function AccountsAdmin() {
     });
     const { up } = useBreakpoint();
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isDeleted, setIsDeleted] = useState(false);
     const [pagination, setPagination] = useState<PaginationHeader>({
         CurrentPage: 1,
         TotalPage: 0,
@@ -120,27 +123,33 @@ export default function AccountsAdmin() {
         modifyUrl();
     }, [finalQuery]);
 
+    const handleAccountDelete = async (id: string) => {
+        if (window.confirm("Bu kategoriyi silmek istediğinize emin misiniz?")) {
+            try {
+                await requests.account.deleteAccount(id);
+                toast.success("Kullanıcı başarıyla silindi.");
+            }
+            catch (error) {
+                toast.error("Kullanıcı silinirken bir hata oluştu.");
+            }
+        }
+    };
+
     useEffect(() => {
         const controller = new AbortController();
-
+        dispatch({ type: "FETCH_START" });
         const loadAccounts = async () => {
             try {
-                setIsLoading(true);
-                setError(null);
-
                 const accounts = await fetchAccounts(finalQuery, controller.signal);
-                setData(accounts);
+                dispatch({ type: "FETCH_SUCCESS", payload: accounts });
             }
             catch (error: any) {
                 if (error.name === "CanceledError" || error.name === "AbortError") {
-                    console.log("Request cancelled");
+                    return;
                 }
                 else {
-                    setError("Kullanıcılar yüklenirken bir hata oluştu.");
+                    dispatch({ type: "FETCH_ERROR", payload: error.message || "Kullanıcılar yüklenirken bir hata oluştu." });
                 }
-            }
-            finally {
-                setIsLoading(false);
             }
         };
 
@@ -149,34 +158,20 @@ export default function AccountsAdmin() {
         return () => {
             controller.abort();
         };
-    }, [finalQuery, isDeleted]);
-
-    const handleAccountDelete = async (id: string) => {
-        if (window.confirm("Bu kategoriyi silmek istediğinize emin misiniz?")) {
-            try {
-                await requests.account.deleteAccount(id);
-                setIsDeleted(true);
-                toast.success("Kullanıcı başarıyla silindi.");
-            }
-            catch (error) {
-                setError("Kullanıcı silinirken bir hata oluştu.");
-            }
-        }
-    };
+    }, [finalQuery, refreshAccounts]);
 
     const handlePasswordReset = async (formData: any) => {
         if (selectedId) {
             try {
-                setIsLoading(true);
                 await requests.account.resetPassword(formData);
                 setIsModalOpen(false);
                 toast.success('Şifre başarıyla sıfırlandı!');
+                setRefreshAccounts(prev => prev + 1);
             } catch (error: any) {
                 console.error('Şifre sıfırlama hatası:', error);
                 toast.error('Şifre sıfırlanırken hata oluştu.');
             }
         }
-        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -221,19 +216,19 @@ export default function AccountsAdmin() {
 
 
                     <div className="lg:col-span-3 flex flex-col mt-8 lg:mt-0">
-                        {(isLoading) && (
+                        {(accounts.isLoading) && (
                             <div className="flex justify-center items-center h-64">
                                 <ClipLoader size={40} color="#8B5CF6" />
                             </div>
                         )}
 
-                        {error && (
+                        {accounts.error && (
                             <div className="flex justify-center items-center h-64 text-red-500">
-                                {error}
+                                {accounts.error}
                             </div>
                         )}
 
-                        {data && !isLoading && (
+                        {accounts.data && !accounts.isLoading && (
                             <div>
                                 <table className="table-auto w-full border-collapse border border-gray-200 bg-white shadow-lg">
                                     <thead>
@@ -245,7 +240,7 @@ export default function AccountsAdmin() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {data.map((account) => (
+                                        {accounts.data.map((account) => (
                                             <tr key={account.id} className="hover:bg-gray-50">
                                                 <td className="border-t border-violet-200 justify-center flex px-4 py-6">
                                                     <img src={"https://localhost:7214/images/" + account.avatarUrl!} alt={account.userName + "Profil Fotoğrafı"} className="w-16 h-auto object-contain hover:scale-105 duration-500" />
@@ -272,7 +267,7 @@ export default function AccountsAdmin() {
                             </div>
                         )}
 
-                        <AdminPagination data={data} pagination={pagination} isLoading={isLoading} error={error} up={up} query={query} setQuery={setQuery} />
+                        <AdminPagination data={accounts.data} pagination={pagination} isLoading={accounts.isLoading} error={accounts.error} up={up} query={query} setQuery={setQuery} />
                     </div>
                 </div>
             </div>

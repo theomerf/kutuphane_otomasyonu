@@ -5,6 +5,7 @@ import EventSeatIcon from '@mui/icons-material/EventSeat';
 import { Link } from "react-router-dom";
 import requests from "../../../services/api";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface ReservationsDashboardStats {
     reservationsCount: number;
@@ -19,12 +20,12 @@ export default function ReservationsDashboard() {
         timeSlotsCount: 0,
     });
 
-    const fetchStats = async () => {
+    const fetchStats = async (signal: AbortSignal) => {
         try {
             const [reservationsRes, seatsRes, timeSlotsRes,] = await Promise.all([
-                requests.reservation.getActiveReservationsCount(),
-                requests.seats.getAllSeatsCount(),
-                requests.timeSlots.getAllTimeSlotsCount(),
+                requests.reservation.getActiveReservationsCount(signal),
+                requests.seats.getAllSeatsCount(signal),
+                requests.timeSlots.getAllTimeSlotsCount(signal),
             ]);
 
             setReservationsDashboardStats({
@@ -33,13 +34,25 @@ export default function ReservationsDashboard() {
                 timeSlotsCount: timeSlotsRes.data,
             });
         }
-        catch (error) {
-            console.error("Rezervasyon dashboard istatistikleri çekilirken hata oluştu:", error);
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                toast.error("Rezervasyon dashboard istatistikleri çekilirken hata oluştu.");
+                console.error("Rezervasyon dashboard istatistikleri çekilirken hata oluştu:", error);
+            }
         }
     };
 
     useEffect(() => {
-        fetchStats();
+        const controller = new AbortController();
+
+        fetchStats(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (

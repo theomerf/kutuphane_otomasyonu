@@ -1,8 +1,10 @@
 ﻿using Entities.Dtos;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
 using Services.Contracts;
+using System.Text.Json;
 
 namespace Presentation.Controllers.Admin
 {
@@ -16,6 +18,23 @@ namespace Presentation.Controllers.Admin
         public AuthorsAdminController(IServiceManager manager)
         {
             _manager = manager;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAuthors([FromQuery] AdminRequestParameters p)
+        {
+            var pagedResult = await _manager.AuthorService.GetAllAuthorsAsync(p, false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+
+            return Ok(pagedResult.authors);
+        }
+
+        [HttpGet("count")]
+        public async Task<IActionResult> GetAllAuthorsCount()
+        {
+            var count = await _manager.AuthorService.GetAllAuthorsCountAsync();
+
+            return Ok(count);
         }
 
         [HttpPost("create")]

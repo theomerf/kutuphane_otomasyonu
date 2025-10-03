@@ -10,11 +10,11 @@ namespace Services.Contracts
         Task<bool> LoginUserAsync(AccountDtoForLogin accountDto);
         Task<TokenDto> CreateTokenAsync(bool populateExp, bool rememberMe);
         Task<TokenDto> RefreshTokenAsync(TokenDto tokenDto);
-        Task<AccountDto> GetAccountByIdAsync(String userName);
+        Task<AccountDto> GetAccountByIdAsync(string userId);
         Task<IdentityResult> CreateAccountAsync(AccountDtoForCreation accountDto);
         Task<IdentityResult> ResetPasswordAsync(AccountDtoForPassword accountDto);
         Task<IdentityResult> UpdateAccountAsync(AccountDtoForUpdate accountDto);
-        Task<IdentityResult> DeleteAccountAsync(String userName);
+        Task<IdentityResult> DeleteAccountAsync(string userId);
         Task<(IEnumerable<AccountDto> accounts, MetaData metaData)> GetAllAccountsAsync(AdminRequestParameters p, bool trackChanges);
         Task<int> GetAllAccountsCountAsync();
         IEnumerable<String> GetAllRoles();

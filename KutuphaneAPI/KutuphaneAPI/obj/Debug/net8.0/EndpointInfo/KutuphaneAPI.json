@@ -98,29 +98,7 @@
         }
       }
     },
-    "/api/account/{userName}": {
-      "get": {
-        "tags": [
-          "Account"
-        ],
-        "parameters": [
-          {
-            "name": "userName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/account/count": {
+    "/api/account/details": {
       "get": {
         "tags": [
           "Account"
@@ -168,6 +146,18 @@
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/accounts/count": {
+      "get": {
+        "tags": [
+          "AccountAdmin"
         ],
         "responses": {
           "200": {
@@ -325,10 +315,57 @@
         }
       }
     },
-    "/api/authors": {
+    "/api/authors/nopagination": {
       "get": {
         "tags": [
           "Authors"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/authors/popular": {
+      "get": {
+        "tags": [
+          "Authors"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/authors/{id}": {
+      "get": {
+        "tags": [
+          "Authors"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/authors": {
+      "get": {
+        "tags": [
+          "AuthorsAdmin"
         ],
         "parameters": [
           {
@@ -369,57 +406,10 @@
         }
       }
     },
-    "/api/authors/nopagination": {
+    "/api/admin/authors/count": {
       "get": {
         "tags": [
-          "Authors"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/authors/count": {
-      "get": {
-        "tags": [
-          "Authors"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/authors/popular": {
-      "get": {
-        "tags": [
-          "Authors"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/authors/{id}": {
-      "get": {
-        "tags": [
-          "Authors"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
+          "AuthorsAdmin"
         ],
         "responses": {
           "200": {
@@ -1278,10 +1268,57 @@
         }
       }
     },
-    "/api/categories": {
+    "/api/categories/nopagination": {
       "get": {
         "tags": [
           "Categories"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/categories/popular": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/categories/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/categories": {
+      "get": {
+        "tags": [
+          "CategoriesAdmin"
         ],
         "parameters": [
           {
@@ -1322,57 +1359,10 @@
         }
       }
     },
-    "/api/categories/nopagination": {
+    "/api/admin/categories/count": {
       "get": {
         "tags": [
-          "Categories"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/categories/count": {
-      "get": {
-        "tags": [
-          "Categories"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/categories/popular": {
-      "get": {
-        "tags": [
-          "Categories"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/categories/{id}": {
-      "get": {
-        "tags": [
-          "Categories"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
+          "CategoriesAdmin"
         ],
         "responses": {
           "200": {
@@ -1478,20 +1468,10 @@
         }
       }
     },
-    "/api/loan/account/{accountId}": {
+    "/api/loan/account": {
       "get": {
         "tags": [
           "Loan"
-        ],
-        "parameters": [
-          {
-            "name": "accountId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
         ],
         "responses": {
           "200": {
@@ -2609,10 +2589,57 @@
         }
       }
     },
-    "/api/tags": {
+    "/api/tags/nopagination": {
       "get": {
         "tags": [
           "Tags"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tags/popular": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/tags/{id}": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/tags": {
+      "get": {
+        "tags": [
+          "TagsAdmin"
         ],
         "parameters": [
           {
@@ -2653,57 +2680,10 @@
         }
       }
     },
-    "/api/tags/nopagination": {
+    "/api/admin/tags/count": {
       "get": {
         "tags": [
-          "Tags"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/tags/count": {
-      "get": {
-        "tags": [
-          "Tags"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/tags/popular": {
-      "get": {
-        "tags": [
-          "Tags"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/tags/{id}": {
-      "get": {
-        "tags": [
-          "Tags"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
+          "TagsAdmin"
         ],
         "responses": {
           "200": {
@@ -2878,20 +2858,10 @@
         }
       }
     },
-    "/api/userreview/account/{accountId}": {
+    "/api/userreview/account": {
       "get": {
         "tags": [
           "UserReview"
-        ],
-        "parameters": [
-          {
-            "name": "accountId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
         ],
         "responses": {
           "200": {

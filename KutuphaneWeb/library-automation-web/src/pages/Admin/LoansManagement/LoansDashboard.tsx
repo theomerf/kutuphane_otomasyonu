@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import requests from "../../../services/api";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface LoansDashboardStats {
     loansCount: number;
@@ -15,10 +16,10 @@ export default function LoansDashboard() {
         penaltiesCount: 0,
     });
 
-    const fetchStats = async () => {
+    const fetchStats = async (signal: AbortSignal) => {
         try {
             const [loansRes] = await Promise.all([
-                requests.loan.getAllLoansCount(),
+                requests.loan.getAllLoansCount(signal),
             ]);
 
             setLoansDashboardStats({
@@ -26,13 +27,25 @@ export default function LoansDashboard() {
                 penaltiesCount: 0,
             });
         }
-        catch (error) {
-            console.error("Kiralam dashboard istatistikleri çekilirken hata oluştu:", error);
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                toast.error("Kiralama dashboard istatistikleri çekilirken hata oluştu.");
+                console.error("Kiralama dashboard istatistikleri çekilirken hata oluştu:", error);
+            }
         }
     }
 
     useEffect(() => {
-        fetchStats();
+        const controller = new AbortController();
+
+        fetchStats(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (

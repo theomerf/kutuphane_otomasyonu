@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
 using Services.Contracts;
+using System.Security.Claims;
 
 namespace Presentation.Controllers
 {
@@ -87,20 +88,13 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet("{userName}")]
-        public async Task<IActionResult> GetAccount([FromRoute] String userName)
+        [HttpGet("details")]
+        public async Task<IActionResult> GetAccount()
         {
-            var user = await _manager.AccountService.GetAccountByIdAsync(userName);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _manager.AccountService.GetAccountByIdAsync(userId!);
 
             return Ok(user);
-        }
-
-        [HttpGet("count")]
-        public async Task<IActionResult> GetAllAccountsCount()
-        {
-            var count = await _manager.AccountService.GetAllAccountsCountAsync();
-
-            return Ok(count);
         }
     }
 }

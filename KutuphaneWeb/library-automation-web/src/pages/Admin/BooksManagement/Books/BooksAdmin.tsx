@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useReducer } from "react";
 import type BookRequestParameters from "../../../../types/bookRequestParameters";
 import requests from "../../../../services/api";
 import type Book from "../../../../types/book";
@@ -12,18 +12,21 @@ import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faEdit, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+import BackendDataListReducer from "../../../../types/backendDataList";
 
 export default function BooksAdmin() {
+    const [books, dispatch] = useReducer(BackendDataListReducer<Book>, {
+        data: null,
+        isLoading: false,
+        error: null
+    });
+    const [refreshBooks, setRefreshBooks] = useState(0);
     const [openSections, setOpenSections] = useState<string[]>(["categories", "authors", "other"]);
     const isOthersOpen: boolean = openSections.includes("other");
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-    const [data, setData] = useState<Book[] | null>(null);
     const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
     const [filters, setFilters] = useState<FilterSection[]>([]);
     const { up } = useBreakpoint();
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isDeleted, setIsDeleted] = useState(false);
     const [pagination, setPagination] = useState<PaginationHeader>({
         CurrentPage: 1,
         TotalPage: 0,
@@ -136,27 +139,35 @@ export default function BooksAdmin() {
         modifyUrl();
     }, [finalQuery]);
 
+    const handleBookDelete = async (id: number) => {
+        if (window.confirm("Bu kitabı silmek istediğinize emin misiniz?")) {
+            try {
+                await requests.books.deleteBook(id);
+                toast.success("Kitap başarıyla silindi.");
+                setRefreshBooks(prev => prev + 1);
+            }
+            catch (error) {
+                toast.error("Kitap silinirken bir hata oluştu.");
+            }
+        }
+    };
+
     useEffect(() => {
         const controller = new AbortController();
 
         const loadBooks = async () => {
+            dispatch({ type: "FETCH_START" });
             try {
-                setIsLoading(true);
-                setError(null);
-
                 const books = await fetchBooks(finalQuery, controller.signal);
-                setData(books);
+                dispatch({ type: "FETCH_SUCCESS", payload: books as Book[] });
             }
             catch (error: any) {
                 if (error.name === "CanceledError" || error.name === "AbortError") {
-                    console.log("Request cancelled");
+                    return;
                 }
                 else {
-                    setError("Kitaplar yüklenirken bir hata oluştu.");
+                    dispatch({ type: "FETCH_ERROR", payload: error.message || "Kitaplar yüklenirken bir hata oluştu." });
                 }
-            }
-            finally {
-                setIsLoading(false);
             }
         };
 
@@ -165,20 +176,7 @@ export default function BooksAdmin() {
         return () => {
             controller.abort();
         };
-    }, [finalQuery, isDeleted]);
-
-    const handleBookDelete = async (id: number) => {
-        if (window.confirm("Bu kitabı silmek istediğinize emin misiniz?")) {
-            try {
-                await requests.books.deleteBook(id);
-                setIsDeleted(true);
-                toast.success("Kitap başarıyla silindi.");
-            }
-            catch (error) {
-                setError("Kitap silinirken bir hata oluştu.");
-            }
-        }
-    };
+    }, [finalQuery, refreshBooks]);
 
     return (
         <div className="flex flex-col">
@@ -199,19 +197,19 @@ export default function BooksAdmin() {
                 <Filters isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} filters={filters} setFilters={setFilters} openSections={openSections} setOpenSections={setOpenSections} isOthersOpen={isOthersOpen} searchInput={searchInput} query={query} setQuery={setQuery} setSearchInput={setSearchInput} debouncedSearch={debouncedSearch} up={up} />
 
                 <div className="lg:col-span-3 flex flex-col mt-8 lg:mt-0">
-                    {(isLoading) && (
+                    {(books.isLoading) && (
                         <div className="flex justify-center items-center h-64">
                             <ClipLoader size={40} color="#8B5CF6" />
                         </div>
                     )}
 
-                    {error && (
+                    {books.error && (
                         <div className="flex justify-center items-center h-64 text-red-500">
                             Kitaplar yüklenirken bir hata oluştu.
                         </div>
                     )}
 
-                    {data && !isLoading && (
+                    {books.data && !books.isLoading && (
                         <div>
                             <table className="table-auto w-full border-collapse border border-gray-200 bg-white shadow-lg">
                                 <thead>
@@ -223,7 +221,7 @@ export default function BooksAdmin() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data.map((book) => (
+                                    {books.data.map((book) => (
                                         <tr key={book.id} className="hover:bg-gray-50">
                                             <td className="border-t border-violet-200 justify-center flex px-4 py-6">
                                                 <img src={book.images![0].imageUrl!} alt={book.images![0].caption!} className="w-16 h-auto object-contain hover:scale-105 duration-500" />
@@ -247,7 +245,7 @@ export default function BooksAdmin() {
                         </div>
                     )}
 
-                    <BookPagination data={data} pagination={pagination} isLoading={isLoading} error={error} up={up} query={query} setQuery={setQuery} />
+                    <BookPagination data={books.data} pagination={pagination} isLoading={books.isLoading} error={books.error} up={up} query={query} setQuery={setQuery} />
                 </div>
             </div>
         </div>

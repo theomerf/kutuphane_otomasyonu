@@ -22,28 +22,11 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllAuthors([FromQuery] AdminRequestParameters p)
-        {
-            var pagedResult = await _manager.AuthorService.GetAllAuthorsAsync(p, false);
-            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
-
-            return Ok(pagedResult.authors);
-        }
-
         [HttpGet("nopagination")]
         public async Task<IActionResult> GetAllAuthorsWithoutPagination()
         {
             var authors = await _manager.AuthorService.GetAllAuthorsWithoutPaginationAsync(false);
             return Ok(authors);
-        }
-
-        [HttpGet("count")]
-        public async Task<IActionResult> GetAllAuthorsCount()
-        {
-            var count = await _manager.AuthorService.GetAllAuthorsCountAsync();
-
-            return Ok(count);
         }
 
         [HttpGet("popular")]

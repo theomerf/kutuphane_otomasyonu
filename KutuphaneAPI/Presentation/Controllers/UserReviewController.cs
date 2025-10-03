@@ -53,10 +53,11 @@ namespace Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet("account/{accountId}")]
-        public async Task<IActionResult> GetUserReviewsByAccountId([FromRoute] string accountId)
+        [HttpGet("account")]
+        public async Task<IActionResult> GetUserReviewsOfAccount()
         {
-            var reviews = await _manager.UserReviewService.GetUserReviewsByAccountIdAsync(accountId, trackChanges: false);
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var reviews = await _manager.UserReviewService.GetUserReviewsByAccountIdAsync(accountId!, trackChanges: false);
 
             return Ok(reviews);
         }

@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useReducer } from "react";
 import type BookRequestParameters from "../../types/bookRequestParameters";
 import requests from "../../services/api";
 import type Book from "../../types/book";
@@ -11,13 +11,16 @@ import BookPagination from "../../components/books/BookPagination";
 import { motion } from "framer-motion";
 import BookCard from "../../components/books/BookCard";
 import { useSearchParams } from "react-router-dom";
+import BackendDataListReducer from "../../types/backendDataList";
 
 export default function Books() {
+  const [books, dispatch] = useReducer(BackendDataListReducer<Book>, {
+    data: null,
+    isLoading: false,
+    error: null
+  });
   const [openSections, setOpenSections] = useState<string[]>(["categories", "authors", "other"]);
   const isOthersOpen: boolean = openSections.includes("other");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<Book[] | null>(null);
   const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
   const [filters, setFilters] = useState<FilterSection[]>([]);
   const { up } = useBreakpoint();
@@ -140,23 +143,18 @@ export default function Books() {
     const controller = new AbortController();
 
     const loadBooks = async () => {
+      dispatch({ type: "FETCH_START" });
       try {
-        setIsLoading(true);
-        setError(null);
-
         const books = await fetchBooks(finalQuery, controller.signal);
-        setData(books);
+        dispatch({ type: "FETCH_SUCCESS", payload: books });
       }
       catch (error: any) {
         if (error.name === "CanceledError" || error.name === "AbortError") {
-          console.log("Request cancelled");
+          return;
         }
         else {
-          setError("Kitaplar yüklenirken bir hata oluştu.");
+          dispatch({ type: "FETCH_ERROR", payload: error.message || "Kitaplar yüklenirken hata oluştu." });
         }
-      }
-      finally {
-        setIsLoading(false);
       }
     };
 
@@ -172,27 +170,27 @@ export default function Books() {
       <Filters isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} filters={filters} setFilters={setFilters} openSections={openSections} setOpenSections={setOpenSections} isOthersOpen={isOthersOpen} searchInput={searchInput} query={query} setQuery={setQuery} setSearchInput={setSearchInput} debouncedSearch={debouncedSearch} up={up} />
 
       <div className="lg:col-span-3 flex flex-col mt-8 lg:mt-0">
-        {(isLoading) && (
+        {(books.isLoading) && (
           <div className="flex justify-center items-center h-64">
             <ClipLoader size={40} color="#8B5CF6" />
           </div>
         )}
 
-        {error && (
+        {books.error && (
           <div className="flex justify-center items-center h-64 text-red-500">
             Kitaplar yüklenirken bir hata oluştu.
           </div>
         )}
 
-        {data && !isLoading && (
+        {books.data && !books.isLoading && (
           <motion.div initial="hidden" animate="show"
             variants={{
               hidden: {},
               show: { transition: { staggerChildren: 0.15 } }
             }}>
-            {data.length > 0 ? (
+            {books.data.length > 0 ? (
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-20 px-3 lg:gap-x-10 lg:gap-y-20 lg:px-20">
-                {data.map(book => (
+                {books.data.map(book => (
                   <BookCard key={book.id} book={book} />
                 ))}
               </div>
@@ -204,7 +202,7 @@ export default function Books() {
           </motion.div>
         )}
 
-        <BookPagination data={data} pagination={pagination} isLoading={isLoading} error={error} up={up} query={query} setQuery={setQuery} />
+        <BookPagination data={books.data} pagination={pagination} isLoading={books.isLoading} error={books.error} up={up} query={query} setQuery={setQuery} />
       </div>
     </div>
   );

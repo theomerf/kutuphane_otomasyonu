@@ -17,10 +17,12 @@ namespace Repositories
             var tagsQuery = FindAll(trackChanges)
                 .Include(c => c.Books)
                 .FilterBy(p.SearchTerm, c => c.Name, FilterOperator.Contains)
-                .OrderBy(c => c.Id)
-                .ToPaginate(p.PageSize, p.PageNumber);
+                .OrderBy(c => c.Id);
 
-            var tags = await tagsQuery.ToListAsync();
+            var tags = await tagsQuery
+                .ToPaginate(p.PageSize, p.PageNumber)
+                .ToListAsync();
+
             var count = await tagsQuery.CountAsync();
 
             return (tags, count);

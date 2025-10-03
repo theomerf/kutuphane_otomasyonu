@@ -22,28 +22,11 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllCategories([FromQuery] AdminRequestParameters p)
-        {
-            var pagedResult = await _manager.CategoryService.GetAllCategoriesAsync(p, false);
-            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
-
-            return Ok(pagedResult.categories);
-        }
-
         [HttpGet("nopagination")]
         public async Task<IActionResult> GetAllCategoriesWithoutPagination()
         {
             var categories = await _manager.CategoryService.GetAllCategoriesWithoutPaginationAsync(false);
             return Ok(categories);
-        }
-
-        [HttpGet("count")]
-        public async Task<IActionResult> GetAllCategoriesCount()
-        {
-            var count = await _manager.CategoryService.GetAllCategoriesCountAsync();
-
-            return Ok(count);
         }
 
         [HttpGet("popular")]

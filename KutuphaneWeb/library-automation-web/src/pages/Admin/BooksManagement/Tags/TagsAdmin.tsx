@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useReducer } from "react";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import type PaginationHeader from "../../../../types/paginationHeader";
@@ -11,14 +11,17 @@ import { toast } from "react-toastify";
 import type { RequestParameters } from "../../../../types/bookRequestParameters";
 import type Tag from "../../../../types/category";
 import AdminPagination from "../../../../components/ui/AdminPagination";
+import BackendDataListReducer from "../../../../types/backendDataList";
 
 export default function TagsAdmin() {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-    const [data, setData] = useState<Tag[] | null>(null);
+    const [tags, dispatch] = useReducer(BackendDataListReducer<Tag>, {
+        data: null,
+        isLoading: false,
+        error: null
+    });
+    const [refreshTags, setRefreshTags] = useState(0);
     const { up } = useBreakpoint();
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isDeleted, setIsDeleted] = useState(false);
     const [pagination, setPagination] = useState<PaginationHeader>({
         CurrentPage: 1,
         TotalPage: 0,
@@ -110,27 +113,35 @@ export default function TagsAdmin() {
         modifyUrl();
     }, [finalQuery]);
 
+    const handleTagDelete = async (id: number) => {
+        if (window.confirm("Bu kategoriyi silmek istediğinize emin misiniz?")) {
+            try {
+                await requests.tags.deleteTag(id);
+                toast.success("Etiket başarıyla silindi.");
+                setRefreshTags(prev => prev + 1);
+            }
+            catch (error) {
+                toast.error("Etiket silinirken bir hata oluştu.");
+            }
+        }
+    };
+
     useEffect(() => {
         const controller = new AbortController();
 
         const loadTags = async () => {
+            dispatch({ type: "FETCH_START" });
             try {
-                setIsLoading(true);
-                setError(null);
-
                 const tags = await fetchTags(finalQuery, controller.signal);
-                setData(tags);
+                dispatch({ type: "FETCH_SUCCESS", payload: tags as Tag[] });
             }
             catch (error: any) {
                 if (error.name === "CanceledError" || error.name === "AbortError") {
-                    console.log("Request cancelled");
+                    return;
                 }
                 else {
-                    setError("Etiketler yüklenirken bir hata oluştu.");
+                    dispatch({ type: "FETCH_ERROR", payload: error.message || 'Etiketler yüklenirken bir hata oluştu.' });
                 }
-            }
-            finally {
-                setIsLoading(false);
             }
         };
 
@@ -139,20 +150,9 @@ export default function TagsAdmin() {
         return () => {
             controller.abort();
         };
-    }, [finalQuery, isDeleted]);
+    }, [finalQuery, refreshTags]);
 
-    const handleTagDelete = async (id: number) => {
-        if (window.confirm("Bu kategoriyi silmek istediğinize emin misiniz?")) {
-            try {
-                await requests.tags.deleteTag(id);
-                setIsDeleted(true);
-                toast.success("Etiket başarıyla silindi.");
-            }
-            catch (error) {
-                setError("Etiket silinirken bir hata oluştu.");
-            }
-        }
-    };
+
 
     const handleSearchInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchInput(e.target.value);
@@ -189,19 +189,19 @@ export default function TagsAdmin() {
 
 
                 <div className="lg:col-span-3 flex flex-col mt-8 lg:mt-0">
-                    {(isLoading) && (
+                    {(tags.isLoading) && (
                         <div className="flex justify-center items-center h-64">
                             <ClipLoader size={40} color="#8B5CF6" />
                         </div>
                     )}
 
-                    {error && (
+                    {tags.error && (
                         <div className="flex justify-center items-center h-64 text-red-500">
-                            {error}
+                            {tags.error}
                         </div>
                     )}
 
-                    {data && !isLoading && (
+                    {tags.data && !tags.isLoading && (
                         <div>
                             <table className="table-auto w-full border-collapse border border-gray-200 bg-white shadow-lg">
                                 <thead>
@@ -212,7 +212,7 @@ export default function TagsAdmin() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data.map((cat) => (
+                                    {tags.data.map((cat) => (
                                         <tr key={cat.id} className="hover:bg-gray-50">
                                             <td className="text-gray-500 font-semibold text-lg border-t border-violet-200 px-4 py-6">{cat.name}</td>
                                             <td className="text-gray-500 font-semibold text-lg border border-violet-200 px-4 py-6">{cat.bookCount}</td>
@@ -233,7 +233,7 @@ export default function TagsAdmin() {
                         </div>
                     )}
 
-                    <AdminPagination data={data} pagination={pagination} isLoading={isLoading} error={error} up={up} query={query} setQuery={setQuery} />
+                    <AdminPagination data={tags.data} pagination={pagination} isLoading={tags.isLoading} error={tags.error} up={up} query={query} setQuery={setQuery} />
                 </div>
             </div>
         </div>

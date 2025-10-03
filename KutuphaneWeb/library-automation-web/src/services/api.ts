@@ -111,11 +111,11 @@ const books = {
 }
 
 const categories = {
-    getAllCategories: (query: URLSearchParams, signal?: AbortSignal) => methods.get("categories", { params: query }, signal),
+    getAllCategories: (query: URLSearchParams, signal?: AbortSignal) => methods.get("admin/categories", { params: query }, signal),
     getAllCategoriesWithoutPagination: (signal?: AbortSignal) => methods.get("categories/nopagination", {}, signal),
     getOneCategory: (id: number, signal?: AbortSignal) => methods.get(`categories/${id}`, {}, signal),
     getPopularCategories: (signal?: AbortSignal) => methods.get("categories/popular", {}, signal),
-    countCategories: (signal?: AbortSignal) => methods.get("categories/count", {}, signal),
+    countCategories: (signal?: AbortSignal) => methods.get("admin/categories/count", {}, signal),
     createCategory: (categoryDto: any) => methods.post("admin/categories/create", categoryDto),
     updateCategory: (categoryDto: any) => methods.put("admin/categories/update", categoryDto),
     deleteCategory: (id: number) => methods.delete(`admin/categories/delete/${id}`),
@@ -123,6 +123,7 @@ const categories = {
 
 const loan = {
     createLoan: (loanDto: Loan) => methods.post("loan/create", loanDto),
+    getAllLoansOfUser: (signal?: AbortSignal) => methods.get("loan/account", {}, signal),
     getAllLoans: (query: URLSearchParams, signal?: AbortSignal) => methods.get("admin/loan", { params: query }, signal),
     getAllLoansCount: (signal?: AbortSignal) => methods.get("admin/loan/count", {}, signal),
     getOneLoan: (id: number, signal?: AbortSignal) => methods.get(`admin/loan/${id}`, {}, signal),
@@ -133,22 +134,22 @@ const loan = {
 }
 
 const authors = {
-    getAllAuthors: (query: URLSearchParams, signal?: AbortSignal) => methods.get("authors", { params: query }, signal),
+    getAllAuthors: (query: URLSearchParams, signal?: AbortSignal) => methods.get("admin/authors", { params: query }, signal),
     getAllAuthorsWithoutPagination: (signal?: AbortSignal) => methods.get("authors/nopagination", {}, signal),
     getPopularAuthors: (signal?: AbortSignal) => methods.get("authors/popular", {}, signal),
     getOneAuthor: (id: number, signal?: AbortSignal) => methods.get(`authors/${id}`, {}, signal),
-    countAuthors: (signal?: AbortSignal) => methods.get("authors/count", {}, signal),
+    countAuthors: (signal?: AbortSignal) => methods.get("admin/authors/count", {}, signal),
     createAuthor: (authorDto: any) => methods.post("admin/authors/create", authorDto),
     updateAuthor: (authorDto: any) => methods.put("admin/authors/update", authorDto),
     deleteAuthor: (id: number) => methods.delete(`admin/authors/delete/${id}`),
 }
 
 const tags = {
-    getAllTags: (query: URLSearchParams, signal?: AbortSignal) => methods.get("tags", { params: query }, signal),
+    getAllTags: (query: URLSearchParams, signal?: AbortSignal) => methods.get("admin/tags", { params: query }, signal),
     getAllTagsWithoutPagination: (signal?: AbortSignal) => methods.get("tags/nopagination", {}, signal),
     getPopularTags: (signal?: AbortSignal) => methods.get("tags/popular", {}, signal),
     getOneTag: (id: number, signal?: AbortSignal) => methods.get(`tags/${id}`, {}, signal),
-    countTags: (signal?: AbortSignal) => methods.get("tags/count", {}, signal),
+    countTags: (signal?: AbortSignal) => methods.get("admin/tags/count", {}, signal),
     createTag: (authorDto: any) => methods.post("admin/tags/create", authorDto),
     updateTag: (authorDto: any) => methods.put("admin/tags/update", authorDto),
     deleteTag: (id: number) => methods.delete(`admin/tags/delete/${id}`),
@@ -188,7 +189,7 @@ const reservation = {
     getOneReservation: (id: number, signal?: AbortSignal) => methods.get(`admin/reservation/${id}`, {}, signal),
     getAllReservationsStatuses: (query: URLSearchParams, signal?: AbortSignal) => methods.get("reservation/statuses", { params: query }, signal),
     createReservation: (reservation: ReservationResponse, config?: any) => methods.post(`reservation/reserve-seat`, reservation, config),
-    getUserReservations: (signal?: AbortSignal) => methods.get("reservation/account", {}, signal),
+    getAllReservationsOfUser: (signal?: AbortSignal) => methods.get("reservation/account", {}, signal),
     cancelReservationForUser: (reservationId: number) => methods.patch(`account/reservation/cancel-reservation/${reservationId}`, {} ),
     cancelReservation: (reservationId: number) => methods.patch(`admin/reservation/cancel-reservation/${reservationId}`, {}),
 }
@@ -196,8 +197,9 @@ const reservation = {
 const userReview = {
     getAllUserReviews: (query?: URLSearchParams, signal?: AbortSignal) => methods.get("userreview", { params: query }, signal),
     getOneUserReview: (id: number, signal?: AbortSignal) => methods.get(`userreview/${id}`, {}, signal),
-    getUserReviewsByBookId: (bookId: number, query?: URLSearchParams, signal?: AbortSignal) => methods.get(`userreview/book/${bookId}`, { params: query }, signal),
+    getUserReviewsByBookId: (bookId: number, signal?: AbortSignal) => methods.get(`userreview/book/${bookId}`, {}, signal),
     getUserReviewsCountByBookId: (bookId: number, signal?: AbortSignal) => methods.get(`userreview/book/${bookId}/count`, {}, signal),
+    getAllUserReviewsOfUser: (signal?: AbortSignal) => methods.get("userreview/account", {}, signal),
     createUserReview: (userReviewDto: any) => methods.post("userreview/create", userReviewDto),
     updateUserReview: (userReviewDto: any) => methods.put("userreview/update", userReviewDto),
     deleteUserReview: (id: number) => methods.delete(`userreview/delete/${id}`),
@@ -206,7 +208,7 @@ const userReview = {
 const notifications = {
     getAllNotifications: (signal?: AbortSignal) => methods.get("admin/notification", {}, signal),
     getAllNotificationsOfOneUser: (signal?: AbortSignal) => methods.get(`notification/account`, {}, signal),
-    getNotificationsCountOfOneUser: (signal?: AbortSignal) => methods.get(`notification/account/count`, {}, signal),
+    getNotificationsCountOfUser: (signal?: AbortSignal) => methods.get(`notification/account/count`, {}, signal),
     markAsRead: (id: number) => methods.patch(`notification/account/mark-as-read/${id}`, {}),
     markAllAsReadOfOneUser: () => methods.patch("notification/account/mark-all-as-read", {}),
     deleteNotification: (id: number) => methods.delete(`admin/notification/delete/${id}`),
@@ -223,17 +225,18 @@ const account = {
     getUser: (userName: string) => methods.get(`account/${userName}`),
     refresh: (user: LoginResponse) => methods.post("account/refresh", user),
     getAllAccounts: (query: URLSearchParams, signal?: AbortSignal) => methods.get("admin/accounts", { params: query }, signal),
-    countAccounts: (signal?: AbortSignal) => methods.get("account/count", {}, signal),
+    countAccounts: (signal?: AbortSignal) => methods.get("admin/accounts/count", {}, signal),
     createAccount: (accountDto: any) => methods.post("admin/accounts/create", accountDto),
     updateAccount: (accountDto: any) => methods.put("admin/accounts/update", accountDto),
     deleteAccount: (id: string) => methods.delete(`admin/accounts/delete/${id}`),
     resetPassword: (resetPasswordDto: any) => methods.post("admin/accounts/reset-password", resetPasswordDto),
     getOneAccount: (id: string, signal?: AbortSignal) => methods.get(`admin/accounts/${id}`, {}, signal),
+    getAccountDetails: (signal?: AbortSignal) => methods.get("account/details", {}, signal),
     getAllRoles: (signal?: AbortSignal) => methods.get("admin/accounts/roles", {}, signal),
 }
 
 const admin = {
-    getAdminDashboard: () => methods.get("admin/dashboard"),
+    getAdminDashboard: (signal?: AbortSignal) => methods.get("admin/dashboard", {}, signal),
 }
 
 const errors = {

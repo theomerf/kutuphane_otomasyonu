@@ -17,28 +17,11 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllTags([FromQuery] AdminRequestParameters p)
-        {
-            var pagedResult = await _manager.TagService.GetAllTagsAsync(p, false);
-            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
-
-            return Ok(pagedResult.tags);
-        }
-
         [HttpGet("nopagination")]
         public async Task<IActionResult> GetAllTagsWithoutPagination()
         {
             var tags = await _manager.TagService.GetAllTagsWithoutPaginationAsync(false);
             return Ok(tags);
-        }
-
-        [HttpGet("count")]
-        public async Task<IActionResult> GetAllTagsCount()
-        {
-            var count = await _manager.TagService.GetAllTagsCountAsync();
-
-            return Ok(count);
         }
 
         [HttpGet("popular")]

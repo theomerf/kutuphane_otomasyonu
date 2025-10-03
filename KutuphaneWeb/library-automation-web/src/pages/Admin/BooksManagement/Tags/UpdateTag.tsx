@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,19 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import type Tag from "../../../../types/tag";
-
-type TagDetail = {
-    error: string | null;
-    tag?: Tag | null;
-    loading: boolean;
-}
+import BackendDataObjectReducer from "../../../../types/backendDataObject";
 
 export function UpdateTag() {
     const navigate = useNavigate();
-    const [tagDetail, setTagDetail] = useState<TagDetail>({
-        error: null,
-        tag: null,
-        loading: false
+    const [tagDetail, dispatch] = useReducer(BackendDataObjectReducer<Tag>, {
+        data: null,
+        isLoading: false,
+        error: null
     });
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
@@ -29,35 +24,27 @@ export function UpdateTag() {
     });
 
     useEffect(() => {
-        if (tagDetail.tag) {
+        if (tagDetail.data) {
             reset({
-                id: tagDetail.tag.id || 0,
-                name: tagDetail.tag.name || "",
+                id: tagDetail.data.id || 0,
+                name: tagDetail.data.name || "",
             });
         }
-    }, [tagDetail.tag, reset]);
+    }, [tagDetail.data, reset]);
 
     const fetchTags = async (id: string, signal?: AbortSignal) => {
+        dispatch({ type: 'FETCH_START' });
         try {
-            setTagDetail(prev => ({
-                ...prev,
-                loading: true,
-            }));
             const response = await requests.tags.getOneTag(parseInt(id), signal);
-
-            setTagDetail({
-                tag: response.data as Tag,
-                loading: false,
-                error: null
-            });
+            dispatch({ type: 'FETCH_SUCCESS', payload: response.data as Tag });
         }
-        catch (error) {
-            setTagDetail({
-                tag: null,
-                loading: false,
-                error: 'Etiket bilgileri çekilirken hata oluştu.'
-            });
-            throw error;
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                dispatch({ type: 'FETCH_ERROR', payload: error.message || 'Etiket bilgileri getirilirken bir hata oluştu.' });
+            }
         }
     };
 
@@ -75,13 +62,19 @@ export function UpdateTag() {
     };
 
     useEffect(() => {
+        const controller = new AbortController();
+
         const id: string = window.location.pathname.split('/').pop() || '';
-        fetchTags(id);
+        fetchTags(id, controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (
         <div className="flex justify-center">
-            {(tagDetail.loading) && (
+            {(tagDetail.isLoading) && (
                 <div className="flex justify-center items-center h-64">
                     <ClipLoader size={40} color="#8B5CF6" />
                 </div>
@@ -92,13 +85,13 @@ export function UpdateTag() {
                     {tagDetail.error}
                 </div>
             )}
-            {tagDetail.tag && !tagDetail.loading &&
+            {tagDetail.data && !tagDetail.isLoading &&
                 <div className="flex flex-col px-8 w-2/5">
                     <form method="POST" onSubmit={handleSubmit(handleTagUpdate)} noValidate>
                         <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
                             <p className="text-white font-bold text-3xl">
                                 <FontAwesomeIcon icon={faEdit} className="mr-2" />
-                                Etiket Id: {tagDetail.tag.id} - Düzenle
+                                Etiket Id: {tagDetail.data.id} - Düzenle
                             </p>
                         </div>
                         <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">

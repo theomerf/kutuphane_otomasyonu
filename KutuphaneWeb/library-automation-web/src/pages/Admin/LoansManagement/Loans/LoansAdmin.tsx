@@ -20,6 +20,7 @@ export default function LoansAdmin() {
         isLoading: false,
         error: null
     });
+    const [refreshLoans, setRefreshLoans] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
     const [pagination, setPagination] = useState<PaginationHeader>({
         CurrentPage: 1,
@@ -82,9 +83,9 @@ export default function LoansAdmin() {
         }
     }, [finalQuery, searchParams]);
 
-    async function fetchLoans(queryParams: RequestParameters) {
+    async function fetchLoans(queryParams: RequestParameters, signal: AbortSignal) {
         dispatch({ type: "FETCH_START" });
-        const controller = new AbortController();
+
         try {
             const queryString = new URLSearchParams();
 
@@ -93,7 +94,7 @@ export default function LoansAdmin() {
                     queryString.append(key, value.toString());
                 }
             });
-            const response = await requests.loan.getAllLoans(queryString, controller.signal);
+            const response = await requests.loan.getAllLoans(queryString, signal);
             const parsedResponse = response.data.map((loan: Loan) => ({
                 ...loan,
                 loanDate: new Date(loan.loanDate!).toLocaleDateString("tr-TR"),
@@ -114,26 +115,20 @@ export default function LoansAdmin() {
         }
         catch (error: any) {
             if (error.name === "CanceledError" || error.name === "AbortError") {
-                console.log("Request cancelled");
+                return;
             }
-            dispatch({ type: "FETCH_ERROR", payload: error.message || "Zaman aralıkları çekilirken bir hata oluştu" });
+            else {
+                dispatch({ type: "FETCH_ERROR", payload: error.message || "Zaman aralıkları çekilirken bir hata oluştu" });
+            }
         }
     };
-
-    useEffect(() => {
-        fetchLoans(finalQuery);
-    }, [finalQuery]);
-
-    useEffect(() => {
-        modifyUrl();
-    }, [finalQuery]);
 
     const handleLoanDelete = async (seatId: number) => {
         if (!window.confirm("Bu kiralamayı silmek istediğinize emin misiniz?")) return;
         try {
             await requests.loan.deleteLoan(seatId);
             toast.success("Kiralama başarıyla silindi.");
-            fetchLoans(finalQuery);
+            setRefreshLoans(prev => prev + 1);
         }
         catch (error) {
             console.error(error);
@@ -146,7 +141,7 @@ export default function LoansAdmin() {
         try {
             await requests.loan.cancelLoan(seatId);
             toast.success("Kiralama başarıyla iptal edildi.");
-            fetchLoans(finalQuery);
+            setRefreshLoans(prev => prev + 1);
         }
         catch (error) {
             console.error(error);
@@ -159,13 +154,26 @@ export default function LoansAdmin() {
         try {
             await requests.loan.returnLoan(seatId);
             toast.success("Kiralama başarıyla iade olarak işaretlendi.");
-            fetchLoans(finalQuery);
+            setRefreshLoans(prev => prev + 1);
         }
         catch (error) {
             console.error(error);
             toast.error("Kiralama iade edilirken hata oluştu.");
         }
     };
+
+    useEffect(() => {
+        const controller = new AbortController();
+        fetchLoans(finalQuery, controller.signal);
+
+        return () => {
+            controller.abort();
+        };
+    }, [finalQuery, refreshLoans]);
+
+    useEffect(() => {
+        modifyUrl();
+    }, [finalQuery]);
 
     const handleSearchInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchInput(e.target.value);
@@ -237,7 +245,7 @@ export default function LoansAdmin() {
                                                     {(loan.status != "Returned" && loan.status != "Canceled") && <button onClick={() => handleLoanReturn(loan.id!)} title="İadeyi Onayla" className="bg-green-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-green-600 duration-500 text-lg">
                                                         <FontAwesomeIcon icon={faCheck} className="self-center" />
                                                     </button>}
-                                                    {(loan.status == "OnLoan") &&<button onClick={() => handleLoanCancel(loan.id!)} title="İptal Et" className="bg-yellow-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-yellow-600 duration-500 text-lg">
+                                                    {(loan.status == "OnLoan") && <button onClick={() => handleLoanCancel(loan.id!)} title="İptal Et" className="bg-yellow-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-yellow-600 duration-500 text-lg">
                                                         <FontAwesomeIcon icon={faBan} className="self-center" />
                                                     </button>}
                                                     {loan.status == "Canceled" && <button onClick={() => handleLoanDelete(loan.id!)} title="Sil" className="bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-red-600 duration-500 text-lg">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,19 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import type Author from "../../../../types/author";
-
-type AuthorDetail = {
-    error: string | null;
-    author?: Author | null;
-    loading: boolean;
-}
+import BackendDataObjectReducer from "../../../../types/backendDataObject";
 
 export function UpdateAuthor() {
     const navigate = useNavigate();
-    const [authorDetail, setAuthorDetail] = useState<AuthorDetail>({
-        error: null,
-        author: null,
-        loading: false
+    const [authorDetail, dispatch] = useReducer(BackendDataObjectReducer<Author>, {
+        data: null,
+        isLoading: false,
+        error: null
     });
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
@@ -29,35 +24,27 @@ export function UpdateAuthor() {
     });
 
     useEffect(() => {
-        if (authorDetail.author) {
+        if (authorDetail.data) {
             reset({
-                id: authorDetail.author.id || 0,
-                name: authorDetail.author.name || "",
+                id: authorDetail.data.id || 0,
+                name: authorDetail.data.name || "",
             });
         }
-    }, [authorDetail.author, reset]);
+    }, [authorDetail.data, reset]);
 
     const fetchAuthors = async (id: string, signal?: AbortSignal) => {
+        dispatch({ type: "FETCH_START" });
         try {
-            setAuthorDetail(prev => ({
-                ...prev,
-                loading: true,
-            }));
             const response = await requests.authors.getOneAuthor(parseInt(id), signal);
-
-            setAuthorDetail({
-                author: response.data as Author,
-                loading: false,
-                error: null
-            });
+            dispatch({ type: "FETCH_SUCCESS", payload: response.data as Author });
         }
-        catch (error) {
-            setAuthorDetail({
-                author: null,
-                loading: false,
-                error: 'Yazar bilgileri çekilirken hata oluştu.'
-            });
-            throw error;
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                dispatch({ type: "FETCH_ERROR", payload: error.message || "Yazar bilgileri getirilirken bir hata oluştu." });
+            }
         }
     };
 
@@ -75,13 +62,18 @@ export function UpdateAuthor() {
     };
 
     useEffect(() => {
+        const controller = new AbortController();
         const id: string = window.location.pathname.split('/').pop() || '';
-        fetchAuthors(id);
+        fetchAuthors(id, controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (
         <div className="flex justify-center">
-            {(authorDetail.loading) && (
+            {(authorDetail.isLoading) && (
                 <div className="flex justify-center items-center h-64">
                     <ClipLoader size={40} color="#8B5CF6" />
                 </div>
@@ -92,13 +84,13 @@ export function UpdateAuthor() {
                     {authorDetail.error}
                 </div>
             )}
-            {authorDetail.author && !authorDetail.loading &&
+            {authorDetail.data && !authorDetail.isLoading &&
                 <div className="flex flex-col px-8 w-2/5">
                     <form method="POST" onSubmit={handleSubmit(handleAuthorUpdate)} noValidate>
                         <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
                             <p className="text-white font-bold text-3xl">
                                 <FontAwesomeIcon icon={faEdit} className="mr-2" />
-                                Yazar Id: {authorDetail.author.id} - Düzenle
+                                Yazar Id: {authorDetail.data.id} - Düzenle
                             </p>
                         </div>
                         <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">

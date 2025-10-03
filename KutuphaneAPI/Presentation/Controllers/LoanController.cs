@@ -19,10 +19,11 @@ namespace Presentation.Controllers
             _manager = manager;
         }
 
-        [HttpGet("account/{accountId}")]
-        public async Task<IActionResult> GetLoansByAccountId(string accountId)
+        [HttpGet("account")]
+        public async Task<IActionResult> GetLoansOfAccount()
         {
-            var loans = await _manager.LoanService.GetLoansByAccountIdAsync(accountId, trackChanges: false);
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var loans = await _manager.LoanService.GetLoansByAccountIdAsync(accountId!, trackChanges: false);
 
             return Ok(loans);
         }
@@ -31,8 +32,8 @@ namespace Presentation.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateLoan([FromBody] LoanDto loanDto)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            loanDto.AccountId = userId;
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            loanDto.AccountId = accountId;
 
             await _manager.LoanService.CreateLoanAsync(loanDto);
 

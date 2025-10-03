@@ -19,13 +19,13 @@ export default function Dashboard() {
         reservationsCount: 0,
         loansCount: 0
     });
-    const fetchStats = async () => {
+    const fetchStats = async (signal: AbortSignal) => {
         try {
             const [booksRes, accountsRes, reservationsRes, loanRes] = await Promise.all([
-                requests.books.countBooks(),
-                requests.account.countAccounts(),
-                requests.reservation.getActiveReservationsCount(),
-                requests.loan.getAllLoansCount(),
+                requests.books.countBooks(signal),
+                requests.account.countAccounts(signal),
+                requests.reservation.getActiveReservationsCount(signal),
+                requests.loan.getAllLoansCount(signal),
             ]);
 
             setDashboardStats({
@@ -35,13 +35,24 @@ export default function Dashboard() {
                 loansCount: loanRes.data
             });
         }
-        catch (error) {
-            console.error("Error fetching book count:", error);
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                console.error("Error fetching book count:", error);
+            }
         }
     }
 
     useEffect(() => {
-        fetchStats();
+        const controller = new AbortController();
+
+        fetchStats(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (
@@ -86,8 +97,8 @@ export default function Dashboard() {
                 </div>
                 <div className="flex flex-col gap-y-4 rounded-lg shadow-xl bg-white py-8 border-2 border-gray-200 hover:scale-105 duration-500">
                     <p className="text-gray-500 font-bold text-center text-2xl">
-                        <FontAwesomeIcon icon={faBook} className="text-orange-400 text-5xl"/>
-                        <FontAwesomeIcon icon={faArrowRightArrowLeft} className="text-orange-400 text-5xl"/>
+                        <FontAwesomeIcon icon={faBook} className="text-orange-400 text-5xl" />
+                        <FontAwesomeIcon icon={faArrowRightArrowLeft} className="text-orange-400 text-5xl" />
                     </p>
                     <div className="flex flex-col text-center gap-y-2">
                         <p className="ml-2 text-gray-500 font-bold text-3xl">{dashboardStats.loansCount}</p>

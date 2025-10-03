@@ -21,6 +21,7 @@ export default function ReservationsAdmin() {
         isLoading: false,
         error: null
     });
+    const [refreshReservations, setRefreshReservations] = useState(0);
     const [selectedDate, setSelectedDate] = useState<string | null>(getTodayFormatted());
     const [timeSlots, setTimeSlots] = useState<Map<string, TimeSlot[]>>(new Map());
     const [selectedTimeSlot, setSelectedTimeSlot] = useState<TimeSlot | null>(null);
@@ -53,9 +54,9 @@ export default function ReservationsAdmin() {
     }
     const [query, setQuery] = useState<ReservationRequestParameters>(getQueriesFromUrl());
 
-    async function fetchTimeSlots() {
+    async function fetchTimeSlots(signal: AbortSignal) {
         try {
-            const result = await requests.timeSlots.getAllTimeSlots();
+            const result = await requests.timeSlots.getAllTimeSlots(signal);
             const newTimeSlots = new Map<string, TimeSlot[]>();
 
             const todayKey = getTodayFormatted();
@@ -86,13 +87,23 @@ export default function ReservationsAdmin() {
                 setSelectedTimeSlot(firstAvailableSlot);
             }
 
-        } catch (error) {
-            console.error('Zaman dilimleri çekilirken hata oluştu:', error);
+        } catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                console.error('Zaman dilimleri çekilirken hata oluştu:', error);
+            }
         }
     }
 
     useEffect(() => {
-        fetchTimeSlots();
+        const controller = new AbortController();
+        fetchTimeSlots(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     const finalQuery = useMemo(() => ({
@@ -137,7 +148,6 @@ export default function ReservationsAdmin() {
             });
 
             const response = await requests.reservation.getAllReservations(queryString, signal);
-            console.log(response.data);
 
             const paginationHeaderStr = response.headers?.["x-pagination"];
             if (paginationHeaderStr) {
@@ -145,7 +155,6 @@ export default function ReservationsAdmin() {
                 setPagination(paginationData);
             }
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             return response.data as ReservationResponse[];
         }
         catch (error) {
@@ -159,6 +168,19 @@ export default function ReservationsAdmin() {
     useEffect(() => {
         modifyUrl();
     }, [finalQuery]);
+
+    const handleReservationCancel = async (id: number) => {
+        if (window.confirm("Bu rezervasyonu iptal etmek istediğinize emin misiniz?")) {
+            try {
+                await requests.reservation.cancelReservation(id);
+                toast.success("Rezervasyon başarıyla iptal edildi.");
+                setRefreshReservations(prev => prev + 1);
+            }
+            catch (error: any) {
+                toast.error("Rezervasyon iptal edilirken bir hata oluştu.");
+            }
+        }
+    };
 
     useEffect(() => {
         const controller = new AbortController();
@@ -181,7 +203,7 @@ export default function ReservationsAdmin() {
             }
             catch (error: any) {
                 if (error.name === "CanceledError" || error.name === "AbortError") {
-                    console.log("Request cancelled");
+                    return;
                 }
                 else {
                     dispatch({ type: "FETCH_ERROR", payload: error.message || "Rezervasyonlar yüklenirken bir hata oluştu." });
@@ -196,7 +218,7 @@ export default function ReservationsAdmin() {
         return () => {
             controller.abort();
         };
-    }, [finalQuery]);
+    }, [finalQuery, refreshReservations]);
 
     useEffect(() => {
         const date = searchParams.get("date");
@@ -224,30 +246,6 @@ export default function ReservationsAdmin() {
             }
         }
     }, [timeSlots]);
-
-    const handleReservationCancel = async (id: number) => {
-        if (window.confirm("Bu rezervasyonu iptal etmek istediğinize emin misiniz?")) {
-            try {
-                await requests.reservation.cancelReservation(id);
-
-                const updatedReservations = await fetchReservations(query);
-                const parsedUpdatedReservations = updatedReservations.map(res => ({
-                    ...res,
-                    displayStatus: res.status === "Active" ? "Aktif" :
-                        res.status === "Cancelled" ? "İptal Edildi" :
-                            res.status === "Completed" ? "Tamamlandı" :
-                                res.status === "Expired" ? "Süresi Doldu" :
-                                    res.status,
-                    createdAt: new Date(res.createdAt!)
-                }));
-                dispatch({ type: "FETCH_SUCCESS", payload: parsedUpdatedReservations });
-                toast.success("Rezervasyon başarıyla iptal edildi.");
-            }
-            catch (error: any) {
-                toast.error("Rezervasyon iptal edilirken bir hata oluştu.");
-            }
-        }
-    };
 
     return (
         <div className="flex flex-col">

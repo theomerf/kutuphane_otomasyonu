@@ -44,9 +44,9 @@ export default function SeatIconAdmin({ hovered, onHover, seatNumber, onMouseLea
 
             {/* Sil butonu */}
             <div className="absolute z-10 top-[-90%] right-[-20%] opacity-0 group-hover:opacity-100">
-                <button type="button" onClick={handleSeatDelete} title="Sil" className="button !bg-red-500">
+                <div onClick={handleSeatDelete} title="Sil" className="button !bg-red-500">
                     <FontAwesomeIcon icon={faTrash} />
-                </button>
+                </div>
             </div>
         </button>
 

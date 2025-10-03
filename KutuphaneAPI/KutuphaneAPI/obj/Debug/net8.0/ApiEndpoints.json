@@ -2,23 +2,7 @@
   {
     "ContainingType": "Presentation.Controllers.AccountController",
     "Method": "GetAccount",
-    "RelativePath": "api/account/{userName}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userName",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.AccountController",
-    "Method": "GetAllAccountsCount",
-    "RelativePath": "api/account/count",
+    "RelativePath": "api/account/details",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -122,6 +106,16 @@
   },
   {
     "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
+    "Method": "GetAllAccountsCount",
+    "RelativePath": "api/admin/accounts/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
     "Method": "CreateAccount",
     "RelativePath": "api/admin/accounts/create",
     "HttpMethod": "POST",
@@ -192,6 +186,47 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AuthorsAdminController",
+    "Method": "GetAllAuthors",
+    "RelativePath": "api/admin/authors",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SearchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.AuthorsAdminController",
+    "Method": "GetAllAuthorsCount",
+    "RelativePath": "api/admin/authors/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -418,6 +453,47 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.CategoriesAdminController",
+    "Method": "GetAllCategories",
+    "RelativePath": "api/admin/categories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SearchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.CategoriesAdminController",
+    "Method": "GetAllCategoriesCount",
+    "RelativePath": "api/admin/categories/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -900,6 +976,47 @@
   },
   {
     "ContainingType": "Presentation.Controllers.Admin.TagsAdminController",
+    "Method": "GetAllTags",
+    "RelativePath": "api/admin/tags",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SearchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OrderBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.TagsAdminController",
+    "Method": "GetAllTagsCount",
+    "RelativePath": "api/admin/tags/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.Admin.TagsAdminController",
     "Method": "CreateTag",
     "RelativePath": "api/admin/tags/create",
     "HttpMethod": "POST",
@@ -948,37 +1065,6 @@
   },
   {
     "ContainingType": "Presentation.Controllers.AuthorsController",
-    "Method": "GetAllAuthors",
-    "RelativePath": "api/authors",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "SearchTerm",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrderBy",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageNumber",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageSize",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.AuthorsController",
     "Method": "GetOneAuthor",
     "RelativePath": "api/authors/{id}",
     "HttpMethod": "GET",
@@ -991,16 +1077,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.AuthorsController",
-    "Method": "GetAllAuthorsCount",
-    "RelativePath": "api/authors/count",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -1298,37 +1374,6 @@
   },
   {
     "ContainingType": "Presentation.Controllers.CategoriesController",
-    "Method": "GetAllCategories",
-    "RelativePath": "api/categories",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "SearchTerm",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrderBy",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageNumber",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageSize",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.CategoriesController",
     "Method": "GetOneCategory",
     "RelativePath": "api/categories/{id}",
     "HttpMethod": "GET",
@@ -1341,16 +1386,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.CategoriesController",
-    "Method": "GetAllCategoriesCount",
-    "RelativePath": "api/categories/count",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -1375,18 +1410,12 @@
   },
   {
     "ContainingType": "Presentation.Controllers.LoanController",
-    "Method": "GetLoansByAccountId",
-    "RelativePath": "api/loan/account/{accountId}",
+    "Method": "GetLoansOfAccount",
+    "RelativePath": "api/loan/account",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "accountId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -1601,7 +1630,7 @@
   },
   {
     "ContainingType": "Presentation.Controllers.ReservationController",
-    "Method": "GetReservationsOfOneUser",
+    "Method": "GetReservationsOfAccount",
     "RelativePath": "api/reservation/account",
     "HttpMethod": "GET",
     "IsController": true,
@@ -1611,7 +1640,7 @@
   },
   {
     "ContainingType": "Presentation.Controllers.ReservationController",
-    "Method": "CancelReservationForUser",
+    "Method": "CancelReservationForAccount",
     "RelativePath": "api/reservation/account/cancel-reservation/{reservationId}",
     "HttpMethod": "PATCH",
     "IsController": true,
@@ -1704,37 +1733,6 @@
   },
   {
     "ContainingType": "Presentation.Controllers.TagsController",
-    "Method": "GetAllTags",
-    "RelativePath": "api/tags",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "SearchTerm",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "OrderBy",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageNumber",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageSize",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.TagsController",
     "Method": "GetOneTag",
     "RelativePath": "api/tags/{id}",
     "HttpMethod": "GET",
@@ -1747,16 +1745,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.TagsController",
-    "Method": "GetAllTagsCount",
-    "RelativePath": "api/tags/count",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -1807,18 +1795,12 @@
   },
   {
     "ContainingType": "Presentation.Controllers.UserReviewController",
-    "Method": "GetUserReviewsByAccountId",
-    "RelativePath": "api/userreview/account/{accountId}",
+    "Method": "GetUserReviewsOfAccount",
+    "RelativePath": "api/userreview/account",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "accountId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

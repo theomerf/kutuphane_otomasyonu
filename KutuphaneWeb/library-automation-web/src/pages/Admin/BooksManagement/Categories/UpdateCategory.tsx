@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,19 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import type Category from "../../../../types/category";
 import { toast } from "react-toastify";
-
-type CategoryDetail = {
-    error: string | null;
-    category?: Category | null;
-    loading: boolean;
-}
+import BackendDataObjectReducer from "../../../../types/backendDataObject";
 
 export function UpdateCategory() {
     const navigate = useNavigate();
-    const [categoryDetail, setCategoryDetail] = useState<CategoryDetail>({
-        error: null,
-        category: null,
-        loading: false
+    const [categoryDetail, dispatch] = useReducer(BackendDataObjectReducer<Category>, {
+        data: null,
+        isLoading: false,
+        error: null
     });
     const [allCategories, setAllCategories] = useState<Category[]>([]);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -45,36 +40,28 @@ export function UpdateCategory() {
     }, []);
 
     useEffect(() => {
-        if (categoryDetail.category) {
+        if (categoryDetail.data) {
             reset({
-                id: categoryDetail.category.id || 0,
-                name: categoryDetail.category.name || "",
-                parentId: categoryDetail.category.parentId || 0,
+                id: categoryDetail.data.id || 0,
+                name: categoryDetail.data.name || "",
+                parentId: categoryDetail.data.parentId || 0,
             });
         }
-    }, [categoryDetail.category, reset]);
+    }, [categoryDetail.data, reset]);
 
     const fetchCategories = async (id: string, signal?: AbortSignal) => {
+        dispatch({ type: 'FETCH_START' });
         try {
-            setCategoryDetail(prev => ({
-                ...prev,
-                loading: true,
-            }));
             const response = await requests.categories.getOneCategory(parseInt(id), signal);
-
-            setCategoryDetail({
-                category: response.data as Category,
-                loading: false,
-                error: null
-            });
+            dispatch({ type: 'FETCH_SUCCESS', payload: response.data as Category });
         }
-        catch (error) {
-            setCategoryDetail({
-                category: null,
-                loading: false,
-                error: 'Kategori bilgileri çekilirken hata oluştu.'
-            });
-            throw error;
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                dispatch({ type: 'FETCH_ERROR', payload: error.message || 'Kategori yüklenirken bir hata oluştu.' });
+            }
         }
     };
 
@@ -92,13 +79,18 @@ export function UpdateCategory() {
     };
 
     useEffect(() => {
+        const controller = new AbortController();
         const id: string = window.location.pathname.split('/').pop() || '';
-        fetchCategories(id);
+        fetchCategories(id, controller.signal);
+
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (
         <div className="flex justify-center">
-            {(categoryDetail.loading) && (
+            {(categoryDetail.isLoading) && (
                 <div className="flex justify-center items-center h-64">
                     <ClipLoader size={40} color="#8B5CF6" />
                 </div>
@@ -109,13 +101,13 @@ export function UpdateCategory() {
                     {categoryDetail.error}
                 </div>
             )}
-            {categoryDetail.category && !categoryDetail.loading &&
+            {categoryDetail.data && !categoryDetail.isLoading &&
                 <div className="flex flex-col px-8 w-2/5">
                     <form method="POST" onSubmit={handleSubmit(handleCategoryUpdate)} noValidate>
                         <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
                             <p className="text-white font-bold text-3xl">
                                 <FontAwesomeIcon icon={faEdit} className="mr-2" />
-                                Kategori Id: {categoryDetail.category.id} - Düzenle
+                                Kategori Id: {categoryDetail.data.id} - Düzenle
                             </p>
                         </div>
                         <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">

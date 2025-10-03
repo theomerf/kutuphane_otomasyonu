@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useReducer } from "react";
 import requests from "../../../../services/api";
 import { ClipLoader } from "react-spinners";
 import type PaginationHeader from "../../../../types/paginationHeader";
@@ -11,14 +11,17 @@ import { toast } from "react-toastify";
 import type { RequestParameters } from "../../../../types/bookRequestParameters";
 import type Author from "../../../../types/category";
 import AdminPagination from "../../../../components/ui/AdminPagination";
+import BackendDataListReducer from "../../../../types/backendDataList";
 
 export default function AuthorsAdmin() {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-    const [data, setData] = useState<Author[] | null>(null);
+    const [authors, dispatch] = useReducer(BackendDataListReducer<Author>, {
+        data: null,
+        isLoading: false,
+        error: null
+    });
+    const [refreshAuthors, setRefreshAuthors] = useState(0);
     const { up } = useBreakpoint();
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isDeleted, setIsDeleted] = useState(false);
     const [pagination, setPagination] = useState<PaginationHeader>({
         CurrentPage: 1,
         TotalPage: 0,
@@ -112,27 +115,35 @@ export default function AuthorsAdmin() {
         modifyUrl();
     }, [finalQuery]);
 
+    const handleAuthorDelete = async (id: number) => {
+        if (window.confirm("Bu kategoriyi silmek istediğinize emin misiniz?")) {
+            try {
+                await requests.authors.deleteAuthor(id);
+                toast.success("Yazar başarıyla silindi.");
+                setRefreshAuthors(prev => prev + 1);
+            }
+            catch (error) {
+                toast.error("Yazar silinirken bir hata oluştu.");
+            }
+        }
+    };
+
     useEffect(() => {
         const controller = new AbortController();
 
         const loadAuthors = async () => {
+            dispatch({ type: "FETCH_START" });
             try {
-                setIsLoading(true);
-                setError(null);
-
                 const authors = await fetchAuthors(finalQuery, controller.signal);
-                setData(authors);
+                dispatch({ type: "FETCH_SUCCESS", payload: authors as Author[] });
             }
             catch (error: any) {
                 if (error.name === "CanceledError" || error.name === "AbortError") {
-                    console.log("Request cancelled");
+                    return;
                 }
                 else {
-                    setError("Yazarlar yüklenirken bir hata oluştu.");
+                    dispatch({ type: "FETCH_ERROR", payload: "Yazarlar yüklenirken bir hata oluştu." });
                 }
-            }
-            finally {
-                setIsLoading(false);
             }
         };
 
@@ -141,20 +152,7 @@ export default function AuthorsAdmin() {
         return () => {
             controller.abort();
         };
-    }, [finalQuery, isDeleted]);
-
-    const handleAuthorDelete = async (id: number) => {
-        if (window.confirm("Bu kategoriyi silmek istediğinize emin misiniz?")) {
-            try {
-                await requests.authors.deleteAuthor(id);
-                setIsDeleted(true);
-                toast.success("Yazar başarıyla silindi.");
-            }
-            catch (error) {
-                setError("Yazar silinirken bir hata oluştu.");
-            }
-        }
-    };
+    }, [finalQuery, refreshAuthors]);
 
     const handleSearchInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchInput(e.target.value);
@@ -191,19 +189,19 @@ export default function AuthorsAdmin() {
 
 
                 <div className="lg:col-span-3 flex flex-col mt-8 lg:mt-0">
-                    {(isLoading) && (
+                    {(authors.isLoading) && (
                         <div className="flex justify-center items-center h-64">
                             <ClipLoader size={40} color="#8B5CF6" />
                         </div>
                     )}
 
-                    {error && (
+                    {authors.error && (
                         <div className="flex justify-center items-center h-64 text-red-500">
-                            {error}
+                            {authors.error}
                         </div>
                     )}
 
-                    {data && !isLoading && (
+                    {authors.data && !authors.isLoading && (
                         <div>
                             <table className="table-auto w-full border-collapse border border-gray-200 bg-white shadow-lg">
                                 <thead>
@@ -214,7 +212,7 @@ export default function AuthorsAdmin() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data.map((cat) => (
+                                    {authors.data.map((cat) => (
                                         <tr key={cat.id} className="hover:bg-gray-50">
                                             <td className="text-gray-500 font-semibold text-lg border-t border-violet-200 px-4 py-6">{cat.name}</td>
                                             <td className="text-gray-500 font-semibold text-lg border border-violet-200 px-4 py-6">{cat.bookCount}</td>
@@ -235,7 +233,7 @@ export default function AuthorsAdmin() {
                         </div>
                     )}
 
-                    <AdminPagination data={data} pagination={pagination} isLoading={isLoading} error={error} up={up} query={query} setQuery={setQuery} />
+                    <AdminPagination data={authors.data} pagination={pagination} isLoading={authors.isLoading} error={authors.error} up={up} query={query} setQuery={setQuery} />
                 </div>
             </div>
         </div>

@@ -18,53 +18,38 @@ export type SeatInfo = {
 
 export default function SeatsAdmin() {
     const [seats, dispatch] = useReducer(BackendDataListReducer<Seat>, {
-        data: [],
+        data: null,
         isLoading: false,
         error: null
     });
+    const [refreshSeats, setRefreshSeats] = useState(0);
     const [hoveredSeat, setHoveredSeat] = useState<SeatInfo | null>(null);
     const tables = groupSeatsByTable(seats.data ?? []);
     const [showCreateModal, setShowCreateModal] = useState(false);
     const { handleSubmit, register, clearErrors, reset, formState: { errors } } = useForm();
 
-    async function fetchSeats() {
+    async function fetchSeats(signal: AbortSignal) {
         dispatch({ type: "FETCH_START" });
         try {
-            const controller = new AbortController();
-
-            const response = await requests.seats.getAllSeats(controller.signal);
+            const response = await requests.seats.getAllSeats(signal);
             dispatch({ type: "FETCH_SUCCESS", payload: response.data as Seat[] });
         }
         catch (error: any) {
             if (error.name === "CanceledError" || error.name === "AbortError") {
-                console.log("Request cancelled");
+                return;
             }
-            dispatch({ type: "FETCH_ERROR", payload: error.message || "Koltuklar çekilirken bir hata oluştu" });
+            else {
+                dispatch({ type: "FETCH_ERROR", payload: error.message || "Koltuklar çekilirken bir hata oluştu" });
+            }
         }
     };
-
-    useEffect(() => {
-        fetchSeats();
-    }, []);
-
-    const handleHoverSeat = async (seatId: number, seatNumber: number, tableName: string) => {
-        setHoveredSeat({
-            seatId,
-            seatNumber,
-            tableName
-        });
-    }
-
-    const handleNoHoverSeat = () => {
-        setHoveredSeat(null);
-    }
 
     const handleSeatDelete = async (seatId: number) => {
         if (!window.confirm("Bu koltuğu silmek istediğinize emin misiniz?")) return;
         try {
             await requests.seats.deleteSeat(seatId);
             toast.success("Koltuk başarıyla silindi.");
-            fetchSeats();
+            setRefreshSeats(prev => prev + 1);
         }
         catch (error) {
             console.error(error);
@@ -79,7 +64,7 @@ export default function SeatsAdmin() {
             reset();
             clearErrors();
             setShowCreateModal(false);
-            fetchSeats();
+            setRefreshSeats(prev => prev + 1);
         }
         catch (error) {
             console.error(error);
@@ -87,12 +72,34 @@ export default function SeatsAdmin() {
         }
     };
 
+    useEffect(() => {
+        const controller = new AbortController();
+
+        fetchSeats(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
+    }, [refreshSeats]);
+
+    const handleHoverSeat = async (seatId: number, seatNumber: number, tableName: string) => {
+        setHoveredSeat({
+            seatId,
+            seatNumber,
+            tableName
+        });
+    }
+
+    const handleNoHoverSeat = () => {
+        setHoveredSeat(null);
+    }
+
     return (
         <div className="flex flex-col">
             <div className="flex flex-row mx-8 lg:mx-20">
                 <p className="font-semibold text-4xl  text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Koltuk Yönetimi</p>
                 <div className="flex flex-row gap-x-4 ml-auto ">
-                    <button type="button" onClick={() => {reset(); clearErrors(); setShowCreateModal(true)}} className="button !bg-green-400 hover:scale-105 text-lg font-bold duration-500 self-center">
+                    <button type="button" onClick={() => { reset(); clearErrors(); setShowCreateModal(true) }} className="button !bg-green-400 hover:scale-105 text-lg font-bold duration-500 self-center">
                         <FontAwesomeIcon icon={faPlus} className="mr-2" />
                         Yeni Koltuk Ekle
                     </button>
@@ -152,11 +159,12 @@ export default function SeatsAdmin() {
                                                 <FontAwesomeIcon icon={faCheck} className="mr-2" />
                                                 Onayla
                                             </button>
-                                            <button onClick={() => {{
-                                                setShowCreateModal(false);
-                                                reset();
-                                                clearErrors();  
-                                            }
+                                            <button onClick={() => {
+                                                {
+                                                    setShowCreateModal(false);
+                                                    reset();
+                                                    clearErrors();
+                                                }
                                             }} className="smallButton text-sm lg:button font-semibold !bg-red-500 lg:hover:scale-105">
                                                 <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                                                 Geri Dön

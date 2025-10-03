@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import requests from "../../services/api";
 import type Book from "../../types/book";
 import { motion } from "framer-motion";
 import BookCard from "../books/BookCard";
 import { ClipLoader } from "react-spinners";
+import BackendDataListReducer from "../../types/backendDataList";
 
 export default function PopularBooks() {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-    const [data, setData] = useState<Book[] | null>(null);
+    const [books, dispatch] = useReducer(BackendDataListReducer<Book>, {
+        data: null,
+        isLoading: false,
+        error: null
+    });
     const fetchBooks = async (signal?: AbortSignal) => {
         try {
             const queryString = new URLSearchParams();
@@ -32,23 +35,18 @@ export default function PopularBooks() {
         const controller = new AbortController();
 
         const loadBooks = async () => {
+            dispatch({ type: "FETCH_START" });
             try {
-                setIsLoading(true);
-                setError(null);
-
-                const books = await fetchBooks();
-                setData(books);
+                const books = await fetchBooks(controller.signal);
+                dispatch({ type: "FETCH_SUCCESS", payload: books as Book[] });
             }
             catch (error: any) {
                 if (error.name === "CanceledError" || error.name === "AbortError") {
-                    console.log("Request cancelled");
+                    return;
                 }
                 else {
-                    setError("Popüler kitaplar yüklenirken bir hata oluştu.");
+                    dispatch({ type: "FETCH_ERROR", payload: error.message || "Kitaplar yüklenirken bir hata oluştu." });
                 }
-            }
-            finally {
-                setIsLoading(false);
             }
         };
 
@@ -65,26 +63,26 @@ export default function PopularBooks() {
                     <p className="text-white text-4xl font-bold text-center">Popüler Kitaplar</p>
                 </div>
                 <div className="pt-6 px-6 pb-10">
-                    {(isLoading) && (
+                    {(books.isLoading) && (
                         <div className="flex justify-center items-center h-64">
                             <ClipLoader size={40} color="#8B5CF6" />
                         </div>
                     )}
 
-                    {error && (
+                    {books.error && (
                         <div className="flex justify-center items-center h-64 text-red-500">
                             Kitaplar yüklenirken bir hata oluştu.
                         </div>
                     )}
 
-                    {data && !isLoading && (
+                    {books.data && !books.isLoading && (
                         <motion.div initial="hidden" animate="show"
                             variants={{
                                 hidden: {},
                                 show: { transition: { staggerChildren: 0.15 } }
                             }}>
                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-20 lg:gap-x-10 lg:gap-y-20">
-                                {data.map(book => (
+                                {books.data.map(book => (
                                     <BookCard key={book.id} book={book} />
                                 ))}
                             </div>
