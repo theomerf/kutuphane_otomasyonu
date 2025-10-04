@@ -62,6 +62,15 @@ namespace Presentation.Controllers
             return Ok(reviews);
         }
 
+        [HttpGet("account/count")]
+        public async Task<IActionResult> GetUserReviewsCountOfAccount()
+        {
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var count = await _manager.UserReviewService.GetUserReviewCountByAccountIdAsync(accountId!);
+
+            return Ok(count);
+        }
+
         [Authorize]
         [HttpPost("create")]
         public async Task<IActionResult> CreateUserReview([FromBody] UserReviewDtoForCreation userReviewDto)

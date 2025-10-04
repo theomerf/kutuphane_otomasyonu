@@ -7,7 +7,10 @@ export default interface Account {
     lastName?: string;
     phoneNumber?: string;
     membershipDate?: Date;
+    displayMembershipDate?: string;
     birthDate?: Date;
+    displayBirthDate?: string;
     lastLoginDate?: Date;
+    displayLastLoginDate?: string;
     roles?: string[];
 }

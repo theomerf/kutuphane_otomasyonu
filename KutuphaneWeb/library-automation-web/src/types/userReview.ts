@@ -6,6 +6,7 @@ export default interface UserReview {
     updatedAt?: string;
     accountId: string;
     bookId: number;
+    bookTitle: string;
     accountUserName: string;
     accountAvatarUrl: string;
 }

@@ -48,6 +48,8 @@ namespace KutuphaneAPI.Infrastructure.Mapper
                 .ReverseMap();
             CreateMap<Reservation, ReservationDto>()
                 .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName))
+                .ForMember(dest => dest.TimeSlotStartTime, opt => opt.MapFrom(src => src.TimeSlot!.StartTime))
+                .ForMember(dest => dest.TimeSlotEndTime, opt => opt.MapFrom(src => src.TimeSlot!.EndTime))
                 .ReverseMap();
             CreateMap<ReservationDtoForCreation, Reservation>()
                 .ForMember(dest => dest.ReservationDate, opt => opt.MapFrom(src => DateOnly.Parse(src.ReservationDate)));
@@ -59,6 +61,7 @@ namespace KutuphaneAPI.Infrastructure.Mapper
             CreateMap<BookImage, BookImageDto>();
             CreateMap<Loan, LoanDto>()
                 .ForMember(dest => dest.LoanLines, opt => opt.MapFrom(src => src.LoanLines))
+                .ForMember(dest => dest.AccountId, opt => opt.MapFrom(src => src.Account!.Id))
                 .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName))
                 .ForMember(dest => dest.AccountFirstName, opt => opt.MapFrom(src => src.Account!.FirstName))
                 .ForMember(dest => dest.AccountLastName, opt => opt.MapFrom(src => src.Account!.LastName))
@@ -73,7 +76,8 @@ namespace KutuphaneAPI.Infrastructure.Mapper
             CreateMap<Penalty, PenaltyDto>().ReverseMap();
             CreateMap<UserReview, UserReviewDto>()
                 .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName))
-                .ForMember(dest => dest.AccountAvatarUrl, opt => opt.MapFrom(src => src.Account!.AvatarUrl));
+                .ForMember(dest => dest.AccountAvatarUrl, opt => opt.MapFrom(src => src.Account!.AvatarUrl))
+                .ForMember(dest => dest.BookTitle, opt => opt.MapFrom(src => src.Book!.Title));
             CreateMap<UserReviewDtoForCreation, UserReview>();
             CreateMap<UserReviewDtoForUpdate, UserReview>();
             CreateMap<Notification, NotificationDto>();

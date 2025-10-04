@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import type { RootState } from '../../store/store';
+import Profile from './Profile';
 
 export function Account() {
     const location = useLocation();
@@ -12,7 +13,7 @@ export function Account() {
     return (
         <>
             {user ? (
-                <div>KULLANICI BİLGİLERİ</div>
+                <Profile />
             ) : (
                 <div className={`${activePanel === "register" ? "mt-20 lg:mt-0" : ""} flex justify-center h-screen lg:h-fit`}>
                     <div className="content-center w-4/5 lg:w-[27%] p-0 border-none">

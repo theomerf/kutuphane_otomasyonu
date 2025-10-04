@@ -10,6 +10,7 @@ namespace Services.Contracts
         Task<int> GetUserReviewsCountByBookIdAsync(int bookId);
         Task<IEnumerable<UserReviewDto>> GetUserReviewsByBookIdAsync(int bookId, bool trackChanges);
         Task<IEnumerable<UserReviewDto>> GetUserReviewsByAccountIdAsync(string accountId, bool trackChanges);
+        Task<int> GetUserReviewCountByAccountIdAsync(string accountId);
         Task CreateUserReview(UserReviewDtoForCreation userReviewDto);
         Task UpdateUserReview(UserReviewDtoForUpdate userReviewDto);
         Task DeleteUserReview(int id);

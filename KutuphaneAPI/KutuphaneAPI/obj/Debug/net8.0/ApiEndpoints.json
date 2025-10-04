@@ -1420,6 +1420,16 @@
   },
   {
     "ContainingType": "Presentation.Controllers.LoanController",
+    "Method": "GetLoansCountOfAccount",
+    "RelativePath": "api/loan/account/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.LoanController",
     "Method": "CreateLoan",
     "RelativePath": "api/loan/create",
     "HttpMethod": "POST",
@@ -1656,6 +1666,16 @@
   },
   {
     "ContainingType": "Presentation.Controllers.ReservationController",
+    "Method": "GetReservationsCountOfAccount",
+    "RelativePath": "api/reservation/account/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.ReservationController",
     "Method": "CreateReservation",
     "RelativePath": "api/reservation/reserve-seat",
     "HttpMethod": "POST",
@@ -1797,6 +1817,16 @@
     "ContainingType": "Presentation.Controllers.UserReviewController",
     "Method": "GetUserReviewsOfAccount",
     "RelativePath": "api/userreview/account",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.UserReviewController",
+    "Method": "GetUserReviewsCountOfAccount",
+    "RelativePath": "api/userreview/account/count",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

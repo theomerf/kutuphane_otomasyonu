@@ -11,6 +11,7 @@ namespace Services.Contracts
         Task<IEnumerable<ReservationDtoForStatus>> GetAllReservationsForStatusesAsync(ReservationRequestParameters p, bool trackChanges);
         Task<ReservationDto> GetReservationByIdAsync(int reservationId, bool trackChanges);
         Task<IEnumerable<ReservationDto>> GetReservationsOfOneUserAsync(string accountId, bool trackChanges);
+        Task<int> GetReservationsCountOfOneUserAsync(string accountId);
         Task<Reservation> ChangeStatusOfReservation(int reservationId, ReservationStatus status);
         Task<Reservation> ChangeStatusOfReservationForUser(int reservationId, ReservationStatus status, string accountId);
         Task CreateReservationAsync(ReservationDtoForCreation reservationDto);

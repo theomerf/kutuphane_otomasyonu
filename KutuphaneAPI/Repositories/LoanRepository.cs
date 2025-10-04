@@ -38,10 +38,21 @@ namespace Repositories
         public async Task<IEnumerable<Loan>> GetLoansByAccountIdAsync(string accountId, bool trackChanges)
         {
             var loans = await FindByCondition(l => l.AccountId == accountId, trackChanges)
-                .Include(l => l.LoanLines)
+                .Include(l => l.LoanLines!)
+                .ThenInclude(ll => ll.Book)
+                .ThenInclude(b => b!.Images)
+                .AsSplitQuery()
                 .ToListAsync();
 
             return loans;
+        }
+
+        public async Task<int> GetLoansCountByAccountIdAsync(string accountId)
+        {
+            var count = await FindByCondition(l => l.AccountId == accountId, false)
+                .CountAsync();
+
+            return count;
         }
 
         public async Task<Loan?> GetOneLoanByIdAsync(int id, bool trackChanges)

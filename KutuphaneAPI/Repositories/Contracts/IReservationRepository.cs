@@ -11,6 +11,7 @@ namespace Repositories.Contracts
         Task<IEnumerable<ReservationDtoForStatus>> GetAllReservationsForStatusesAsync(ReservationRequestParameters p, bool trackChanges);
         Task<Reservation?> GetReservationByIdAsync(int reservationId, bool trackChanges);
         Task<IEnumerable<Reservation>> GetReservationsOfOneUserAsync(string accountId, bool trackChanges);
+        Task<int> GetReservationsCountOfOneUserAsync(string accountId);
         void CreateReservation(Reservation reservation);
         void DeleteReservation(Reservation reservation);
         void UpdateReservation(Reservation reservation);

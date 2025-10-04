@@ -62,11 +62,15 @@ namespace Repositories
         {
             var reservations = await FindByCondition(r => r.AccountId!.Equals(accountId), trackChanges)
                 .Include(r => r.Seat)
+                .Include(r => r.TimeSlot)
+                .AsSplitQuery()
                 .OrderByDescending(r => r.CreatedAt)
                 .ToListAsync();
 
             return reservations;
-        }
+        }   
+
+        public async Task<int> GetReservationsCountOfOneUserAsync(string accountId) => await FindByCondition(r => r.AccountId!.Equals(accountId), false).CountAsync();
 
         public void CreateReservation(Reservation reservation)
         {

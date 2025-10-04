@@ -101,7 +101,7 @@ export default function LoansAdmin() {
                 dueDate: new Date(loan.dueDate!).toLocaleDateString("tr-TR"),
                 returnDate: loan.returnDate ? new Date(loan.returnDate).toLocaleDateString("tr-TR") : null,
                 displayStatus: loan.status == "OnLoan" ? "Kirada" : loan.status == "Returned" ? "İade Edildi" : loan.status == "Canceled" ? "İptal Edildi" : loan.status == "Overdue" ? "Gecikmiş" : loan.status
-            }))
+            }));
 
             const paginationHeaderStr = response.headers?.["x-pagination"];
             if (paginationHeaderStr) {

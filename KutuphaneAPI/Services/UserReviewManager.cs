@@ -67,6 +67,14 @@ namespace Services
            
             return reviewDto;
         }
+
+        public async Task<int> GetUserReviewCountByAccountIdAsync(string accountId)
+        {
+            var reviewCount = await _manager.UserReview.GetUserReviewsCountByAccountIdAsync(accountId);
+
+            return reviewCount;
+        }
+
         public async Task CreateUserReview(UserReviewDtoForCreation userReviewDto)
         {
             var review = _mapper.Map<UserReview>(userReviewDto);

@@ -46,6 +46,8 @@ namespace Services
             return loansDto;
         }
 
+        public async Task<int> GetLoansCountByAccountIdAsync(string accountId) => await _manager.Loan.GetLoansCountByAccountIdAsync(accountId);
+
         public async Task<LoanDto> GetOneLoanByIdAsync(int id, bool trackChanges)
         {
             var loan = await GetOneLoanByIdForServiceAsync(id, trackChanges);
@@ -149,6 +151,7 @@ namespace Services
                 line.Book!.AvailableCopies = book.AvailableCopies;
             }
 
+            _manager.Account.Attach(loan.Account!);
             _manager.Loan.CreateLoan(loan);
             await _manager.SaveAsync();
 

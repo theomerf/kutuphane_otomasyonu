@@ -9,6 +9,7 @@ namespace Repositories.Contracts
         Task<int> GetAllLoansCountAsync();
         Task<Loan?> GetOneLoanByIdAsync(int id, bool trackChanges);
         Task<IEnumerable<Loan>> GetLoansByAccountIdAsync(string accountId, bool trackChanges);
+        Task<int> GetLoansCountByAccountIdAsync(string accountId);
         void CreateLoan(Loan loan);
         void UpdateLoan(Loan loan);
         void DeleteLoan(Loan loan);

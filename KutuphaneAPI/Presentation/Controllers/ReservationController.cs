@@ -46,6 +46,15 @@ namespace Presentation.Controllers
             return Ok(reservations);
         }
 
+        [HttpGet("account/count")]
+        public async Task<IActionResult> GetReservationsCountOfAccount()
+        {
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var count = await _manager.ReservationService.GetReservationsCountOfOneUserAsync(accountId!);
+
+            return Ok(count);
+        }
+
         [HttpPost("reserve-seat")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateReservation([FromBody] ReservationDtoForCreation reservationDto)

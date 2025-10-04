@@ -11,5 +11,6 @@
         public String AccountUserName { get; init; } = null!;
         public String AccountAvatarUrl { get; init; } = null!;
         public int BookId { get; init; }
+        public String? BookTitle { get; init; }
     }
 }

@@ -6,7 +6,10 @@ export default interface ReservationResponse {
     accountUserName?: string;
     seatId: number;
     timeSlotId: number;
-    reservationDate: string;
+    timeSlotStartTime?: string;
+    timeSlotEndTime?: string;
+    reservationDate: Date;
+    displayReservationDate?: string;
     timeSlot?: TimeSlot;
     createdAt?: Date;
     updatedAt?: string

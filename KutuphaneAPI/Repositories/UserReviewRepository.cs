@@ -56,6 +56,14 @@ namespace Repositories
             return userReviews;
         }
 
+        public async Task<int> GetUserReviewsCountByAccountIdAsync(string accountId)
+        {
+            var count = await FindByCondition(ur => ur.AccountId == accountId, false)
+                .CountAsync();
+
+            return count;
+        }
+
         public void CreateUserReview(UserReview userReview)
         {
             Create(userReview);

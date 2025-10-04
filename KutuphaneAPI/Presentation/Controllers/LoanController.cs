@@ -28,6 +28,15 @@ namespace Presentation.Controllers
             return Ok(loans);
         }
 
+        [HttpGet("account/count")]
+        public async Task<IActionResult> GetLoansCountOfAccount()
+        {
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var count = await _manager.LoanService.GetLoansCountByAccountIdAsync(accountId!);
+
+            return Ok(count);
+        }
+
         [HttpPost("create")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateLoan([FromBody] LoanDto loanDto)

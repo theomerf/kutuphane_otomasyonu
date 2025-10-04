@@ -86,6 +86,8 @@ namespace Services
             return reservation;
         }
 
+        public async Task<int> GetReservationsCountOfOneUserAsync(string accountId) => await _manager.Reservation.GetReservationsCountOfOneUserAsync(accountId);
+
         public async Task<IEnumerable<ReservationDto>> GetReservationsOfOneUserAsync(string accountId, bool trackChanges)
         {
             var reservations = await _manager.Reservation.GetReservationsOfOneUserAsync(accountId, trackChanges);

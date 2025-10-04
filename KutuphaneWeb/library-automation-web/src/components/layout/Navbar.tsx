@@ -29,7 +29,7 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { down, up } = useBreakpoint();
-  const [ searchTerm, setSearchTerm ] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -129,9 +129,13 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
                             <p className="self-center text-lg font-semibold text-black">{user.userName}</p>
                           </div>
                           <div className="flex flex-col gap-y-4 px-8 pt-4">
-                            <Link to={isAdmin ? "/admin" : "/account"} className="navButton">
-                              <FontAwesomeIcon icon={isAdmin ? faBarsProgress : faUser} className="lg:mr-2" />
-                              {up.lg && (isAdmin ? "Admin Paneli" : "Hesabım")}
+                            <Link to="/admin" className="navButton text-center !bg-blue-500 hover:!bg-blue-600">
+                              <FontAwesomeIcon icon={faBarsProgress} className="lg:mr-2" />
+                              {up.lg && "Admin Paneli"}
+                            </Link>
+                            <Link to="/account" className="navButton text-center">
+                              <FontAwesomeIcon icon={faUser} className="lg:mr-2" />
+                              {up.lg && "Hesabım"}
                             </Link>
                             <button onClick={handleLogout} className="navButton !bg-red-500 hover:!bg-red-600">
                               <FontAwesomeIcon icon={faRightFromBracket} className="lg:mr-2" />
