@@ -87,13 +87,15 @@ namespace Presentation.Controllers
         [HttpPut("update")]
         public async Task<IActionResult> UpdateUserReview([FromBody] UserReviewDtoForUpdate userReviewDto)
         {
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            userReviewDto.AccountId = accountId;
             await _manager.UserReviewService.UpdateUserReview(userReviewDto);
 
             return Ok();
         }
 
         [Authorize]
-        [HttpPut("delete/{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteUserReview([FromRoute] int id)
         {
             await _manager.UserReviewService.DeleteUserReview(id);

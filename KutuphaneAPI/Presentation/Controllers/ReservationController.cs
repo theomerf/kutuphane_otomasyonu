@@ -80,7 +80,7 @@ namespace Presentation.Controllers
             return Ok();
         }
 
-        [HttpPatch("account/cancel-reservation/{reservationId}")]
+        [HttpPatch("cancel-reservation/{reservationId}")]
         public async Task<IActionResult> CancelReservationForAccount([FromRoute] int reservationId)
         {
             var reservation = await _manager.ReservationService.ChangeStatusOfReservation(reservationId, ReservationStatus.Cancelled);

@@ -1,0 +1,359 @@
+2025-10-05 12:18:06.6260 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-05T12:18:06.2018558+03:00"}
+2025-10-05 12:18:11.0852 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T12:18:11.0851269+03:00"}
+2025-10-05 12:26:13.5692 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T12:26:13.2737549+03:00"}
+2025-10-05 12:28:43.8208 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T12:28:43.8206178+03:00"}
+2025-10-05 13:00:46.8135 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:00:46.8133749+03:00"}
+2025-10-05 13:06:10.7727 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:06:10.7726369+03:00"}
+2025-10-05 13:06:14.3847 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:06:14.3846416+03:00"}
+2025-10-05 13:09:55.6049 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:09:55.6048698+03:00"}
+2025-10-05 13:11:10.1780 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:11:09.9081988+03:00"}
+2025-10-05 13:11:56.6722 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:11:56.6691508+03:00"}
+2025-10-05 13:12:03.6334 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T13:12:03.6333034+03:00"}
+2025-10-05 13:16:12.5647 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:16:12.3567914+03:00"}
+2025-10-05 13:16:22.2609 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:16:22.2608133+03:00"}
+2025-10-05 13:17:33.9290 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T13:17:33.6115845+03:00"}
+2025-10-05 13:17:42.3240 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:17:42.3239309+03:00"}
+2025-10-05 13:19:16.6739 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-05T13:19:16.6737975+03:00"}
+2025-10-05 13:19:21.2618 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:19:21.2617511+03:00"}
+2025-10-05 13:21:18.0980 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T13:21:17.8977849+03:00"}
+2025-10-05 13:21:26.8761 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T13:21:26.8760048+03:00"}
+2025-10-05 13:21:34.1165 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T13:21:34.1164344+03:00"}
+2025-10-05 13:21:41.9728 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T13:21:41.972764+03:00"}
+2025-10-05 13:21:43.6967 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:21:43.6966282+03:00"}
+2025-10-05 13:21:50.3212 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T13:21:50.3211621+03:00"}
+2025-10-05 13:22:16.7510 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:22:16.7504235+03:00"}
+2025-10-05 13:22:36.3982 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:22:36.3981862+03:00"}
+2025-10-05 13:22:40.5360 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T13:22:40.53595+03:00"}
+2025-10-05 13:22:40.5712 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:22:40.5711433+03:00"}
+2025-10-05 13:22:54.7326 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T13:22:54.732559+03:00"}
+2025-10-05 13:22:54.7945 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:22:54.7945152+03:00"}
+2025-10-05 13:24:10.0814 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:24:10.0813219+03:00"}
+2025-10-05 13:27:12.7709 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:27:12.7709015+03:00"}
+2025-10-05 13:35:14.3176 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:35:14.12488+03:00"}
+2025-10-05 13:35:50.7609 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T13:35:50.7606995+03:00"}
+2025-10-05 14:10:35.6030 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:10:34.7566011+03:00"}
+2025-10-05 14:17:42.0999 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:17:42.0995682+03:00"}
+2025-10-05 14:31:10.2423 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-05T14:31:10.2422661+03:00"}
+2025-10-05 14:31:14.8958 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:31:14.8957028+03:00"}
+2025-10-05 14:31:39.0692 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:31:39.0691218+03:00"}
+2025-10-05 14:38:36.3347 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:38:36.3345769+03:00"}
+2025-10-05 14:42:03.8074 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:42:03.2251369+03:00"}
+2025-10-05 14:44:45.8619 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:44:45.8589724+03:00"}
+2025-10-05 14:45:12.7725 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:45:12.772471+03:00"}
+2025-10-05 14:49:52.9498 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:49:52.949707+03:00"}
+2025-10-05 14:51:17.4232 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:51:17.4231183+03:00"}
+2025-10-05 14:52:49.6022 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:52:49.6021693+03:00"}
+2025-10-05 14:52:55.6797 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:52:55.6796403+03:00"}
+2025-10-05 14:53:51.7106 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-05T14:53:51.7106088+03:00"}
+2025-10-05 14:56:45.6112 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-05T14:56:45.6112499+03:00"}
+2025-10-05 14:57:02.4016 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:57:02.4015021+03:00"}
+2025-10-05 14:57:06.6453 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T14:57:06.6453409+03:00"}
+2025-10-05 14:57:06.8146 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T14:57:06.8145607+03:00"}
+2025-10-05 14:57:23.7384 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-05T14:57:23.7383258+03:00"}
+2025-10-05 15:01:10.4232 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-05T15:01:10.2625467+03:00"}
+2025-10-05 15:01:29.4938 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:01:29.4936063+03:00"}
+2025-10-05 15:01:32.5482 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAccount","Id":null,"CreatedAt":"2025-10-05T15:01:32.5481807+03:00"}
+2025-10-05 15:01:32.5816 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:01:32.5816288+03:00"}
+2025-10-05 15:01:41.3236 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:01:41.323595+03:00"}
+2025-10-05 15:03:21.8799 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:03:21.5974509+03:00"}
+2025-10-05 15:15:14.2260 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:15:14.0296137+03:00"}
+2025-10-05 15:15:16.3803 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:15:16.3799334+03:00"}
+2025-10-05 15:15:19.1534 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:15:19.1534003+03:00"}
+2025-10-05 15:17:27.8010 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:17:27.8009505+03:00"}
+2025-10-05 15:17:54.8596 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:17:54.8595913+03:00"}
+2025-10-05 15:28:42.8211 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:28:42.8210847+03:00"}
+2025-10-05 15:28:58.4388 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:28:58.4387548+03:00"}
+2025-10-05 15:29:04.3566 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:29:04.3564546+03:00"}
+2025-10-05 15:29:08.1901 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:29:08.1900774+03:00"}
+2025-10-05 15:31:56.7343 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:31:56.7342158+03:00"}
+2025-10-05 15:33:54.8352 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:33:54.8351807+03:00"}
+2025-10-05 15:33:59.8063 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:33:59.806304+03:00"}
+2025-10-05 15:35:27.7602 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:35:27.7601507+03:00"}
+2025-10-05 15:35:38.9100 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:35:38.9100046+03:00"}
+2025-10-05 15:35:44.6842 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:35:44.684162+03:00"}
+2025-10-05 15:35:48.0982 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:35:48.0981742+03:00"}
+2025-10-05 15:36:04.1263 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:36:04.1262542+03:00"}
+2025-10-05 15:37:28.3836 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:37:28.160117+03:00"}
+2025-10-05 15:37:31.7076 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:37:31.7074984+03:00"}
+2025-10-05 15:37:43.5585 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:37:43.5584682+03:00"}
+2025-10-05 15:37:46.4340 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:37:46.4339927+03:00"}
+2025-10-05 15:37:46.6489 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:37:46.6489128+03:00"}
+2025-10-05 15:40:09.4493 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:40:09.2834474+03:00"}
+2025-10-05 15:40:09.8636 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:40:09.8635138+03:00"}
+2025-10-05 15:41:06.6621 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:41:06.6620209+03:00"}
+2025-10-05 15:41:06.7518 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:41:06.7517513+03:00"}
+2025-10-05 15:41:33.8530 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:41:33.8529636+03:00"}
+2025-10-05 15:41:33.9290 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:41:33.9266396+03:00"}
+2025-10-05 15:41:37.5338 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:41:37.5337137+03:00"}
+2025-10-05 15:41:37.6089 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:41:37.6088374+03:00"}
+2025-10-05 15:41:44.9516 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:41:44.9515883+03:00"}
+2025-10-05 15:41:47.5836 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:41:47.583595+03:00"}
+2025-10-05 15:41:55.1073 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:41:55.1073143+03:00"}
+2025-10-05 15:42:00.2619 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:42:00.2619198+03:00"}
+2025-10-05 15:42:14.0883 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:42:14.0882629+03:00"}
+2025-10-05 15:42:21.2282 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:42:21.2281338+03:00"}
+2025-10-05 15:42:34.0688 ERROR Bir şeyler yanlış gitti: Microsoft.Data.SqlClient.SqlException (0x80131904): Bağlantı Zaman Aşımı Süresi Doldu.  Oturum açma sonrası aşamada zaman aşımı süresi doldu.  Bağlantı sunucunun oturum açma işlemini tamamlaması ve yanıt vermesi için beklerken veya birden fazla etkin bağlantı oluşturmaya çalışırken zaman aşımına uğramış olabilir.  Bu sunucuya bağlanmaya çalışırken harcanan süre - [Oturum Açma Öncesi] başlatma=0; el sıkışma=0; [Oturum Açma] başlatma=0; kimlik doğrulaması=0; [Oturum Açma Sonrası] tamamlandı=14011; 
+ ---> System.ComponentModel.Win32Exception (258): Bekleme işlem zamanı aşıldı.
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Repositories.LoanRepository.GetLoansCountByAccountIdAsync(String accountId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Repositories\LoanRepository.cs:line 52
+   at Services.LoanManager.GetLoansCountByAccountIdAsync(String accountId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\LoanManager.cs:line 49
+   at Presentation.Controllers.LoanController.GetLoansCountOfAccount() in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\LoanController.cs:line 35
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+ClientConnectionId:bc26d092-beb1-4f1b-bec1-40a850f38938
+Hata Numarası: -2,Durum: 0,Sınıf:11
+2025-10-05 15:42:34.0688 ERROR Bir şeyler yanlış gitti: Microsoft.Data.SqlClient.SqlException (0x80131904): Bağlantı Zaman Aşımı Süresi Doldu.  Oturum açma sonrası aşamada zaman aşımı süresi doldu.  Bağlantı sunucunun oturum açma işlemini tamamlaması ve yanıt vermesi için beklerken veya birden fazla etkin bağlantı oluşturmaya çalışırken zaman aşımına uğramış olabilir.  Bu sunucuya bağlanmaya çalışırken harcanan süre - [Oturum Açma Öncesi] başlatma=0; el sıkışma=0; [Oturum Açma] başlatma=0; kimlik doğrulaması=0; [Oturum Açma Sonrası] tamamlandı=14011; 
+ ---> System.ComponentModel.Win32Exception (258): Bekleme işlem zamanı aşıldı.
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Repositories.UserReviewRepository.GetUserReviewsCountByAccountIdAsync(String accountId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Repositories\UserReviewRepository.cs:line 61
+   at Services.UserReviewManager.GetUserReviewCountByAccountIdAsync(String accountId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\UserReviewManager.cs:line 73
+   at Presentation.Controllers.UserReviewController.GetUserReviewsCountOfAccount() in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\UserReviewController.cs:line 69
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+ClientConnectionId:bc26d092-beb1-4f1b-bec1-40a850f38938
+Hata Numarası: -2,Durum: 0,Sınıf:11
+2025-10-05 15:42:34.0688 ERROR Bir şeyler yanlış gitti: Microsoft.Data.SqlClient.SqlException (0x80131904): Bağlantı Zaman Aşımı Süresi Doldu.  Oturum açma sonrası aşamada zaman aşımı süresi doldu.  Bağlantı sunucunun oturum açma işlemini tamamlaması ve yanıt vermesi için beklerken veya birden fazla etkin bağlantı oluşturmaya çalışırken zaman aşımına uğramış olabilir.  Bu sunucuya bağlanmaya çalışırken harcanan süre - [Oturum Açma Öncesi] başlatma=0; el sıkışma=0; [Oturum Açma] başlatma=0; kimlik doğrulaması=0; [Oturum Açma Sonrası] tamamlandı=14011; 
+ ---> System.ComponentModel.Win32Exception (258): Bekleme işlem zamanı aşıldı.
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Services.AccountManager.GetUserByIdForServiceAsync(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 81
+   at Services.AccountManager.GetAccountByIdAsync(String userId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 93
+   at Presentation.Controllers.AccountController.GetAccount() in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\AccountController.cs:line 95
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+ClientConnectionId:bc26d092-beb1-4f1b-bec1-40a850f38938
+Hata Numarası: -2,Durum: 0,Sınıf:11
+2025-10-05 15:42:34.0688 ERROR Bir şeyler yanlış gitti: Microsoft.Data.SqlClient.SqlException (0x80131904): Bağlantı Zaman Aşımı Süresi Doldu.  Oturum açma sonrası aşamada zaman aşımı süresi doldu.  Bağlantı sunucunun oturum açma işlemini tamamlaması ve yanıt vermesi için beklerken veya birden fazla etkin bağlantı oluşturmaya çalışırken zaman aşımına uğramış olabilir.  Bu sunucuya bağlanmaya çalışırken harcanan süre - [Oturum Açma Öncesi] başlatma=0; el sıkışma=0; [Oturum Açma] başlatma=0; kimlik doğrulaması=0; [Oturum Açma Sonrası] tamamlandı=14011; 
+ ---> System.ComponentModel.Win32Exception (258): Bekleme işlem zamanı aşıldı.
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Repositories.ReservationRepository.GetReservationsCountOfOneUserAsync(String accountId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Repositories\ReservationRepository.cs:line 73
+   at Services.ReservationManager.GetReservationsCountOfOneUserAsync(String accountId) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\ReservationManager.cs:line 89
+   at Presentation.Controllers.ReservationController.GetReservationsCountOfAccount() in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\ReservationController.cs:line 53
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+ClientConnectionId:bc26d092-beb1-4f1b-bec1-40a850f38938
+Hata Numarası: -2,Durum: 0,Sınıf:11
+2025-10-05 15:42:34.0688 ERROR Bir şeyler yanlış gitti: Microsoft.Data.SqlClient.SqlException (0x80131904): Bağlantı Zaman Aşımı Süresi Doldu.  Oturum açma sonrası aşamada zaman aşımı süresi doldu.  Bağlantı sunucunun oturum açma işlemini tamamlaması ve yanıt vermesi için beklerken veya birden fazla etkin bağlantı oluşturmaya çalışırken zaman aşımına uğramış olabilir.  Bu sunucuya bağlanmaya çalışırken harcanan süre - [Oturum Açma Öncesi] başlatma=0; el sıkışma=0; [Oturum Açma] başlatma=0; kimlik doğrulaması=0; [Oturum Açma Sonrası] tamamlandı=14011; 
+ ---> System.ComponentModel.Win32Exception (258): Bekleme işlem zamanı aşıldı.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, IDbConnectionPool pool, Func`3 accessTokenCallback)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionPoolGroupProviderInfo poolGroupProviderInfo, IDbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(IDbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.SqlClient.ConnectionPool.WaitHandleDbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Repositories.BookRepository.GetAllBooksAsync(BookRequestParameters p, Boolean trackChanges, CancellationToken ct) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Repositories\BookRepository.cs:line 27
+   at Services.BookManager.GetAllBooksAsync(BookRequestParameters p, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\BookManager.cs:line 26
+   at Presentation.Controllers.BooksController.GetAllBooks(BookRequestParameters p) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\BooksController.cs:line 23
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+ClientConnectionId:bc26d092-beb1-4f1b-bec1-40a850f38938
+Hata Numarası: -2,Durum: 0,Sınıf:11
+2025-10-05 15:42:34.0822 ERROR Bir şeyler yanlış gitti: Microsoft.Data.SqlClient.SqlException (0x80131904): Yürütme Zaman Aşımı Süresi Doldu.  İşlem tamamlanmadan zaman aşımı süresi doldu veya sunucu yanıt vermiyor.
+ ---> System.ComponentModel.Win32Exception (258): Bekleme işlem zamanı aşıldı.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Services.AccountManager.GetUserByIdForServiceAsync(String id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 81
+   at Services.AccountManager.UpdateAvatarAsync(String id, String path) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\AccountManager.cs:line 302
+   at Presentation.Controllers.AccountController.UpdateAvatar(AccountDtoForAvatarUpdate accountDto) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\AccountController.cs:line 136
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+ClientConnectionId:4a6bb025-62a6-40c1-8358-601b5370c0cc
+Hata Numarası: -2,Durum: 0,Sınıf:11
+2025-10-05 15:42:51.4270 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:42:51.1568825+03:00"}
+2025-10-05 15:43:12.0722 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:43:12.0720909+03:00"}
+2025-10-05 15:43:12.3185 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:43:12.3184387+03:00"}
+2025-10-05 15:43:22.4497 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:43:22.4496696+03:00"}
+2025-10-05 15:43:39.6228 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:43:39.6227288+03:00"}
+2025-10-05 15:43:39.6678 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:43:39.6677685+03:00"}
+2025-10-05 15:44:05.4743 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:44:05.4743121+03:00"}
+2025-10-05 15:46:33.9130 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:46:33.6493136+03:00"}
+2025-10-05 15:46:36.9929 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:46:36.992822+03:00"}
+2025-10-05 15:46:37.2268 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:46:37.2267806+03:00"}
+2025-10-05 15:47:15.3969 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-05T15:47:15.3968922+03:00"}
+2025-10-05 15:47:23.0027 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:47:23.0027188+03:00"}
+2025-10-05 15:58:55.8142 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:58:55.5969502+03:00"}
+2025-10-05 15:59:00.2964 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:59:00.2962511+03:00"}
+2025-10-05 15:59:00.5830 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:59:00.5829169+03:00"}
+2025-10-05 15:59:07.3640 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T15:59:07.3639288+03:00"}
+2025-10-05 15:59:07.4496 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:59:07.4495415+03:00"}
+2025-10-05 15:59:13.2984 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T15:59:13.2983426+03:00"}
+2025-10-05 16:00:46.3978 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:00:46.1918638+03:00"}
+2025-10-05 16:00:50.1273 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T16:00:50.1272297+03:00"}
+2025-10-05 16:00:50.3921 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:00:50.3921127+03:00"}
+2025-10-05 16:00:56.4043 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T16:00:56.4042797+03:00"}
+2025-10-05 16:00:56.4560 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:00:56.4548922+03:00"}
+2025-10-05 16:00:58.5397 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:00:58.5396189+03:00"}
+2025-10-05 16:01:01.3414 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T16:01:01.3412331+03:00"}
+2025-10-05 16:01:01.3849 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:01:01.384944+03:00"}
+2025-10-05 16:01:06.9361 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:01:06.9360497+03:00"}
+2025-10-05 16:01:10.5270 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T16:01:10.5266715+03:00"}
+2025-10-05 16:01:10.5747 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:01:10.5745698+03:00"}
+2025-10-05 16:01:14.2336 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:01:14.2335613+03:00"}
+2025-10-05 16:01:19.2949 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T16:01:19.2948646+03:00"}
+2025-10-05 16:01:19.3470 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:01:19.3469606+03:00"}
+2025-10-05 16:01:41.3719 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T16:01:41.3718797+03:00"}
+2025-10-05 16:01:41.4379 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:01:41.4378532+03:00"}
+2025-10-05 16:02:50.2745 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:02:50.0727036+03:00"}
+2025-10-05 16:02:53.5569 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T16:02:53.5567369+03:00"}
+2025-10-05 16:02:53.8315 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:02:53.8314626+03:00"}
+2025-10-05 16:05:08.2672 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:05:08.0537953+03:00"}
+2025-10-05 16:05:11.1271 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T16:05:11.1269905+03:00"}
+2025-10-05 16:05:11.3748 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:05:11.3748153+03:00"}
+2025-10-05 16:05:15.2665 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateAvatar","Id":null,"CreatedAt":"2025-10-05T16:05:15.2664914+03:00"}
+2025-10-05 16:05:15.3408 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-05T16:05:15.34077+03:00"}

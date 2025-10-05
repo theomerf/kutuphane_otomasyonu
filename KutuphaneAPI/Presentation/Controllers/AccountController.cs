@@ -23,7 +23,7 @@ namespace Presentation.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Login([FromBody] AccountDtoForLogin accountDto)
         {
-            if(!await _manager.AccountService.LoginUserAsync(accountDto))
+            if (!await _manager.AccountService.LoginUserAsync(accountDto))
             {
                 return Unauthorized();
             }
@@ -95,6 +95,31 @@ namespace Presentation.Controllers
             var user = await _manager.AccountService.GetAccountByIdAsync(userId!);
 
             return Ok(user);
+        }
+
+        [Authorize]
+        [HttpPatch("update")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> UpdateAccount([FromBody] AccountDtoForUpdate accountDto)
+        {
+            if (accountDto.Id != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                return Forbid();
+            }
+            await _manager.AccountService.UpdateAccountAsync(accountDto);
+            return NoContent();
+        }
+
+        [Authorize]
+        [HttpPatch("update-avatar")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> UpdateAvatar([FromForm] AccountDtoForAvatarUpdate accountDto)
+        {
+            var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            accountDto.Id = accountId!;
+
+            await _manager.AccountService.UpdateAvatarAsync(accountDto);
+            return NoContent();
         }
     }
 }

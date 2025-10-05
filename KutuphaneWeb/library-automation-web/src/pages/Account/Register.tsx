@@ -30,8 +30,8 @@ export default function Register() {
                     <input type="text" {...register("UserName", {
                         required: "Kullanıcı adı gereklidir.",
                         minLength: {
-                            value: 6,
-                            message: "Kullanıcı adı minimum 6 karakter olmalıdır."
+                            value: 3,
+                            message: "Kullanıcı adı minimum 3 karakter olmalıdır."
                         },
                         maxLength: {
                             value: 20,

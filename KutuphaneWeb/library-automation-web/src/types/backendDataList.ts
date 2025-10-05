@@ -1,4 +1,4 @@
-interface BackendDataList<T> {
+export interface BackendDataList<T> {
     data: T[] | null;
     isLoading: boolean;
     error: any | null;

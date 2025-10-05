@@ -65,6 +65,12 @@ namespace Services
                 _account = await _userManager.FindByNameAsync(accountDto.UserName);
                 var result = (_account != null && await _userManager.CheckPasswordAsync(_account, accountDto.Password));
 
+                if (_account != null && result)
+                {
+                    _account.LastLoginDate = DateTime.UtcNow;
+                    await _userManager.UpdateAsync(_account);
+                }
+
                 return result;
             }
             return false;
@@ -272,15 +278,56 @@ namespace Services
             var result = await _userManager.UpdateAsync(accountExists);
             var accountRoles = await _userManager.GetRolesAsync(accountExists);
 
-            var toAdd = accountDto.Roles.Except(accountRoles);
-            var toRemove = accountRoles.Except(accountDto.Roles);
+            if (accountDto.Roles != null)
+            {
+                var toAdd = accountDto.Roles.Except(accountRoles);
+                var toRemove = accountRoles.Except(accountDto.Roles);
 
-            if (toAdd.Any())
-                await _userManager.AddToRolesAsync(accountExists, toAdd);
+                if (toAdd.Any())
+                    await _userManager.AddToRolesAsync(accountExists, toAdd);
 
-            if (toRemove.Any())
-                await _userManager.RemoveFromRolesAsync(accountExists, toRemove);
+                if (toRemove.Any())
+                    await _userManager.RemoveFromRolesAsync(accountExists, toRemove);
+            }
+            else
+            {
+                accountDto.Roles = accountRoles;
+            }
 
+            return result;
+        }
+
+        public async Task<IdentityResult> UpdateAvatarAsync(AccountDtoForAvatarUpdate accountDto)
+        {
+            var accountExists = await GetUserByIdForServiceAsync(accountDto.Id!);
+
+            if (accountExists.AvatarUrl != "avatars/default.png")
+            {
+                var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", accountExists.AvatarUrl!);
+                if (File.Exists(fullPath))
+                {
+                    File.Delete(fullPath);
+                }
+            }
+
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/avatars");
+
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+
+            var uniqueFileName = $"{Guid.NewGuid()}_{Path.GetExtension(accountDto.NewImage.FileName)}";
+            var filePath = Path.Combine(uploadPath, uniqueFileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await accountDto.NewImage.CopyToAsync(stream);
+            }
+
+            accountExists.AvatarUrl = $"avatars/{uniqueFileName}";
+
+            var result = await _userManager.UpdateAsync(accountExists);
             return result;
         }
 

@@ -58,6 +58,43 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Presentation.Controllers.AccountController",
+    "Method": "UpdateAccount",
+    "RelativePath": "api/account/update",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accountDto",
+        "Type": "Entities.Dtos.AccountDtoForUpdate",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.AccountController",
+    "Method": "UpdateAvatar",
+    "RelativePath": "api/account/update-avatar",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewImage",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Presentation.Controllers.Admin.AccountAdminController",
     "Method": "GetAllAccounts",
     "RelativePath": "api/admin/accounts",
@@ -1650,8 +1687,18 @@
   },
   {
     "ContainingType": "Presentation.Controllers.ReservationController",
+    "Method": "GetReservationsCountOfAccount",
+    "RelativePath": "api/reservation/account/count",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.ReservationController",
     "Method": "CancelReservationForAccount",
-    "RelativePath": "api/reservation/account/cancel-reservation/{reservationId}",
+    "RelativePath": "api/reservation/cancel-reservation/{reservationId}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -1662,16 +1709,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Presentation.Controllers.ReservationController",
-    "Method": "GetReservationsCountOfAccount",
-    "RelativePath": "api/reservation/account/count",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -1885,7 +1922,7 @@
     "ContainingType": "Presentation.Controllers.UserReviewController",
     "Method": "DeleteUserReview",
     "RelativePath": "api/userreview/delete/{id}",
-    "HttpMethod": "PUT",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [

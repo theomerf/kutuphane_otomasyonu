@@ -90,7 +90,7 @@ const methods = {
     getWithoutHeaders: (url: string, params?: any, signal?: AbortSignal) => axios.get(url, { ...params, signal }).then((response) => response.data),
     post: (url: string, body: any | null, config?: any | null) => axios.post(url, body, config).then((response) => response.data),
     put: (url: string, body: any, config?: any | null) => axios.put(url, body, config).then((response) => response.data),
-    patch: (url: string, body: any) => axios.patch(url, body).then((response) => response.data),
+    patch: (url: string, body: any, config?: any | null) => axios.patch(url, body, config).then((response) => response.data),
     delete: (url: string) => axios.delete(url).then((response) => response.data),
 }
 
@@ -192,7 +192,7 @@ const reservation = {
     createReservation: (reservation: ReservationResponse, config?: any) => methods.post(`reservation/reserve-seat`, reservation, config),
     getAllReservationsOfUser: (signal?: AbortSignal) => methods.get("reservation/account", {}, signal),
     getAllReservationsCountOfUser: (signal?: AbortSignal) => methods.get("reservation/account/count", {}, signal),
-    cancelReservationForUser: (reservationId: number) => methods.patch(`account/reservation/cancel-reservation/${reservationId}`, {} ),
+    cancelReservationForUser: (reservationId: number) => methods.patch(`reservation/cancel-reservation/${reservationId}`, {} ),
     cancelReservation: (reservationId: number) => methods.patch(`admin/reservation/cancel-reservation/${reservationId}`, {}),
 }
 
@@ -231,6 +231,10 @@ const account = {
     countAccounts: (signal?: AbortSignal) => methods.get("admin/accounts/count", {}, signal),
     createAccount: (accountDto: any) => methods.post("admin/accounts/create", accountDto),
     updateAccount: (accountDto: any) => methods.put("admin/accounts/update", accountDto),
+    updateAccountForUser: (accountDto: any) => methods.patch("account/update", accountDto),
+    updateAvatar: (formData: FormData) => methods.patch("account/update-avatar", formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+    }),
     deleteAccount: (id: string) => methods.delete(`admin/accounts/delete/${id}`),
     resetPassword: (resetPasswordDto: any) => methods.post("admin/accounts/reset-password", resetPasswordDto),
     getOneAccount: (id: string, signal?: AbortSignal) => methods.get(`admin/accounts/${id}`, {}, signal),

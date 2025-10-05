@@ -1,5 +1,6 @@
 wwwroot\images\announcements\1.svg
 wwwroot\images\announcements\2.svg
+wwwroot\images\avatars\0bf6c24c-1ac3-4d0f-ab40-dfd9943367fb_.png
 wwwroot\images\avatars\default.png
 wwwroot\images\books\1.jpg
 wwwroot\images\books\2.jpg

@@ -14,6 +14,7 @@ namespace Services.Contracts
         Task<IdentityResult> CreateAccountAsync(AccountDtoForCreation accountDto);
         Task<IdentityResult> ResetPasswordAsync(AccountDtoForPassword accountDto);
         Task<IdentityResult> UpdateAccountAsync(AccountDtoForUpdate accountDto);
+        Task<IdentityResult> UpdateAvatarAsync(AccountDtoForAvatarUpdate accountDto);
         Task<IdentityResult> DeleteAccountAsync(string userId);
         Task<(IEnumerable<AccountDto> accounts, MetaData metaData)> GetAllAccountsAsync(AdminRequestParameters p, bool trackChanges);
         Task<int> GetAllAccountsCountAsync();

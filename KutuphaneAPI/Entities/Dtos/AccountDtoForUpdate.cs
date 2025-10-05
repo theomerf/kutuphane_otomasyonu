@@ -14,7 +14,6 @@ namespace Entities.Dtos
         [MaxLength(20, ErrorMessage = "Kullanıcı adı en fazla 20 karakter olmalıdır.")]
         [Required(ErrorMessage = "Kullanıcı adı gereklidir.")]
         public String UserName { get; init; } = null!;
-        public String AvatarUrl { get; init; } = "avatars/default.png";
         [Required(ErrorMessage = "Ad gereklidir.")]
         [MinLength(2, ErrorMessage = "Ad minimum 2 karakter olmalıdır.")]
         [MaxLength(20, ErrorMessage = "Ad en fazla 20 karakter olmalıdır.")]
@@ -29,6 +28,6 @@ namespace Entities.Dtos
         public String Email { get; init; } = null!;
         [Required(ErrorMessage = "Doğum tarihi gereklidir.")]
         public DateOnly? BirthDate { get; init; }
-        public ICollection<String> Roles { get; init; } = new List<String>();
+        public ICollection<String>? Roles { get; set; }
     }
 }

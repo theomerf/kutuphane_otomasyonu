@@ -89,6 +89,11 @@ namespace Services
         public async Task UpdateUserReview(UserReviewDtoForUpdate userReviewDto)
         {
             var review = await GetOneUserReviewByIdForServiceAsync(userReviewDto.Id, trackChanges: true);
+
+            if (review.AccountId != userReviewDto.AccountId)
+            {
+                throw new AccessViolationException("Bu yorumu düzenlemek için yetkiniz yok.");
+            }
             if (userReviewDto.Rating != review.Rating)
             {
                 var book = await _manager.Book.GetOneBookAsync(userReviewDto.BookId, true);

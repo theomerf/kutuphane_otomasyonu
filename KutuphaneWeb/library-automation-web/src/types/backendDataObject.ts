@@ -1,4 +1,4 @@
-interface BackendDataObject<T> {
+export interface BackendDataObject<T> {
     data: T | null;
     isLoading: boolean;
     error: any | null;

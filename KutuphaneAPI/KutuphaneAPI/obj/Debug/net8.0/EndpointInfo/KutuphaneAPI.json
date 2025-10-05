@@ -110,6 +110,75 @@
         }
       }
     },
+    "/api/account/update": {
+      "patch": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountDtoForUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/account/update-avatar": {
+      "patch": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "string"
+                  },
+                  "NewImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "NewImage": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/admin/accounts": {
       "get": {
         "tags": [
@@ -2196,7 +2265,7 @@
         }
       }
     },
-    "/api/reservation/account/cancel-reservation/{reservationId}": {
+    "/api/reservation/cancel-reservation/{reservationId}": {
       "patch": {
         "tags": [
           "Reservation"
@@ -2969,7 +3038,7 @@
       }
     },
     "/api/userreview/delete/{id}": {
-      "put": {
+      "delete": {
         "tags": [
           "UserReview"
         ],
@@ -3164,10 +3233,6 @@
             "maxLength": 20,
             "minLength": 3,
             "type": "string"
-          },
-          "avatarUrl": {
-            "type": "string",
-            "nullable": true
           },
           "firstName": {
             "maxLength": 20,
