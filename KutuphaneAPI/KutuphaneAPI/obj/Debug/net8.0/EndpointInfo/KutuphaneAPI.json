@@ -3682,7 +3682,7 @@
           },
           "reservationDate": {
             "type": "string",
-            "nullable": true
+            "format": "date"
           }
         },
         "additionalProperties": false

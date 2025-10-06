@@ -8,7 +8,7 @@ export default interface ReservationResponse {
     timeSlotId: number;
     timeSlotStartTime?: string;
     timeSlotEndTime?: string;
-    reservationDate: Date;
+    reservationDate: string;
     displayReservationDate?: string;
     timeSlot?: TimeSlot;
     createdAt?: Date;

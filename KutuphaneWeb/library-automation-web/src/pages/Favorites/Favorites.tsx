@@ -34,7 +34,7 @@ export default function Favorites() {
         try {
             const queryString = new URLSearchParams();
 
-            favorites!.forEach(id => {
+            favorites?.forEach(id => {
                 queryString.append('ids', id.toString());
             });
 

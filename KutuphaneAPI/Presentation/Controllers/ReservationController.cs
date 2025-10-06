@@ -63,7 +63,7 @@ namespace Presentation.Controllers
             reservationDto.AccountId = accountId!;
 
             var groupName = $"date_{reservationDto.ReservationDate}_slot_{reservationDto.TimeSlotId}";
-            var seatKey = $"{reservationDto.SeatId}_{reservationDto.ReservationDate}_{reservationDto.TimeSlotId}";
+            var seatKey = $"{reservationDto.SeatId}_{reservationDto.ReservationDate.ToString("yyyy-MM-dd")}_{reservationDto.TimeSlotId}";
             var connectionId = HttpContext.Request.Headers["X-SignalR-ConnectionId"].FirstOrDefault();
 
             var currentHolder = _cache.Get<string>($"holder_{seatKey}");

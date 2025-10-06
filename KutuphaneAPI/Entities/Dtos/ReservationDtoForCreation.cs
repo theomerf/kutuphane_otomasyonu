@@ -11,6 +11,6 @@ namespace Entities.Dtos
         public String? AccountId { get; set; }
         public int SeatId { get; init; }
         public int TimeSlotId { get; init; }
-        public String ReservationDate { get; init; } = null!;
+        public DateOnly ReservationDate { get; init; }
     }
 }
