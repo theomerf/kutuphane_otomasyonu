@@ -16,8 +16,7 @@ namespace Repositories.Configs
                 .IsRequired()
                 .HasMaxLength(500);
             builder.Property(n => n.CreatedAt)
-                .IsRequired()
-                .HasDefaultValueSql("GETUTCDATE()");
+                .IsRequired();
             builder.Property(n => n.IsRead)
                 .IsRequired()
                 .HasDefaultValue(false);

@@ -81,7 +81,10 @@ app.UseStaticFiles();
 app.MapControllers();
 
 
+if (app.Environment.IsProduction())
+{
     app.ConfigureAndCheckMigration();
+}
 
 
 app.ConfigureLocalization();

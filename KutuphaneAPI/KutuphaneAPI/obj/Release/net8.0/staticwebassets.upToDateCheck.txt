@@ -1,0 +1,10 @@
+wwwroot\images\announcements\1.svg
+wwwroot\images\announcements\2.svg
+wwwroot\images\avatars\65bc8a7e-a78c-4b19-9dc3-bc4abe960a47_.png
+wwwroot\images\avatars\default.png
+wwwroot\images\books\1.jpg
+wwwroot\images\books\2.jpg
+wwwroot\images\books\3.jpg
+wwwroot\images\books\4.jpg
+wwwroot\images\books\5.jpg
+wwwroot\images\books\6.jpg
