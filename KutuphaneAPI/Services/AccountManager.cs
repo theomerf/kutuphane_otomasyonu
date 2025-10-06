@@ -356,5 +356,39 @@ namespace Services
             var roles = _roleManager.Roles.Select(r => r.Name!).ToList();
             return roles;
         }
+
+        public async Task UpdateFavouriteBooks(string userId, int bookId, string process)
+        {
+            switch (process)
+            {
+                case "add":
+                    var account = await GetUserByIdForServiceAsync(userId);
+                    if (account.FavoriteBookIds == null)
+                    {
+                        account.FavoriteBookIds = new List<int>();
+                    }
+                    if (account.FavoriteBookIds.Contains(bookId))
+                    {
+                        return;
+                    }
+                    account.FavoriteBookIds.Add(bookId);
+                    await _userManager.UpdateAsync(account);
+                    break;
+                case "remove":
+                    var accountToUpdate = await GetUserByIdForServiceAsync(userId);
+                    if (accountToUpdate.FavoriteBookIds != null && accountToUpdate.FavoriteBookIds.Contains(bookId))
+                    {
+                        accountToUpdate.FavoriteBookIds.Remove(bookId);
+                        await _userManager.UpdateAsync(accountToUpdate);
+                    }
+                    break;
+            }
+        }
+
+        public async Task<AccountDtoForFavorites?> GetAccountFavoritesAsync(string userId)
+        {
+            var favorites = await _manager.Account.GetAccountFavoritesAsync(userId);
+            return favorites;
+        }
     }
 }

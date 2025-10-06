@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Dtos;
+using Entities.Models;
 using Entities.RequestFeatures;
 
 namespace Repositories.Contracts
@@ -7,5 +8,6 @@ namespace Repositories.Contracts
     {
         Task<(IEnumerable<Account> accounts, int count)> GetAllAccountsAsync(AdminRequestParameters p, bool trackChanges);
         Task<int> GetAllAccountsCountAsync();
+        Task<AccountDtoForFavorites?> GetAccountFavoritesAsync(string userId);
     }
 }

@@ -1,0 +1,94 @@
+2025-10-06 11:53:42.0318 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-06T11:53:41.6679678+03:00"}
+2025-10-06 11:53:45.7017 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T11:53:45.7016788+03:00"}
+2025-10-06 11:58:18.1996 ERROR Bir şeyler yanlış gitti: Entities.Exceptions.BookNotFoundException: 0 id'sine sahip kitap bulunamadı.
+   at Services.BookManager.GetOneBookAsync(Int32 id, Boolean trackChanges) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Services\BookManager.cs:line 48
+   at Presentation.Controllers.BooksController.GetOneBook(Int32 id) in C:\Users\omerf\OneDrive\Masaüstü\Staj\KutuphaneOtom\KutuphaneAPI\Presentation\Controllers\BooksController.cs:line 48
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-10-06 12:04:08.6163 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-06T12:04:08.6161994+03:00"}
+2025-10-06 12:04:53.2225 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:04:53.2225215+03:00"}
+2025-10-06 12:05:02.5467 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:05:02.5467114+03:00"}
+2025-10-06 12:15:50.5811 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:15:50.5810485+03:00"}
+2025-10-06 12:15:51.1946 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:15:51.1946079+03:00"}
+2025-10-06 12:15:52.2113 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:15:52.2113038+03:00"}
+2025-10-06 12:15:53.3628 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:15:53.3627683+03:00"}
+2025-10-06 12:15:54.4927 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:15:54.4927521+03:00"}
+2025-10-06 12:40:24.9199 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:40:24.9196276+03:00"}
+2025-10-06 12:40:28.7736 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:40:28.7736443+03:00"}
+2025-10-06 12:40:46.4607 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:40:46.4607135+03:00"}
+2025-10-06 12:40:47.5785 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:40:47.5785033+03:00"}
+2025-10-06 12:40:49.6278 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T12:40:49.6278146+03:00"}
+2025-10-06 12:42:50.1221 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T12:42:50.1221156+03:00"}
+2025-10-06 12:42:50.2248 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T12:42:50.224817+03:00"}
+2025-10-06 12:42:59.1463 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:42:59.1462897+03:00"}
+2025-10-06 12:43:01.3733 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T12:43:01.3732961+03:00"}
+2025-10-06 12:44:16.7792 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:44:16.7791854+03:00"}
+2025-10-06 12:45:43.1663 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:45:43.1662949+03:00"}
+2025-10-06 12:45:49.2932 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T12:45:49.2929322+03:00"}
+2025-10-06 12:46:30.5777 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:46:30.5777097+03:00"}
+2025-10-06 12:46:36.8527 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:46:36.8527299+03:00"}
+2025-10-06 12:46:41.2387 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T12:46:41.2385024+03:00"}
+2025-10-06 12:46:45.4123 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T12:46:45.4123035+03:00"}
+2025-10-06 12:47:04.6778 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T12:47:04.6773337+03:00"}
+2025-10-06 12:56:46.0346 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-06T12:56:45.8944702+03:00"}
+2025-10-06 12:56:46.4301 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Refresh","Id":null,"CreatedAt":"2025-10-06T12:56:46.4298575+03:00"}
+2025-10-06 13:00:29.1120 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-06T13:00:29.1119269+03:00"}
+2025-10-06 13:00:29.3006 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:00:29.300441+03:00"}
+2025-10-06 13:01:38.9011 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:01:38.901115+03:00"}
+2025-10-06 13:04:20.2972 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":null,"CreatedAt":"2025-10-06T13:04:20.0806263+03:00"}
+2025-10-06 13:10:04.6235 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"RemoveFavouriteBooks","Id":"1","CreatedAt":"2025-10-06T13:10:04.4555433+03:00"}
+2025-10-06 13:10:31.9989 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:10:31.9954534+03:00"}
+2025-10-06 13:12:14.8136 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:12:14.6282832+03:00"}
+2025-10-06 13:12:31.6509 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"RemoveFavouriteBooks","Id":"1","CreatedAt":"2025-10-06T13:12:31.6505953+03:00"}
+2025-10-06 13:12:36.9735 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":"1","CreatedAt":"2025-10-06T13:12:36.9734907+03:00"}
+2025-10-06 13:13:42.1771 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"RemoveFavouriteBooks","Id":"1","CreatedAt":"2025-10-06T13:13:42.0253582+03:00"}
+2025-10-06 13:14:00.1323 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":"2","CreatedAt":"2025-10-06T13:14:00.132162+03:00"}
+2025-10-06 13:14:26.5984 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:14:26.5970261+03:00"}
+2025-10-06 13:14:49.4525 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:14:49.4523266+03:00"}
+2025-10-06 13:15:06.4349 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":"1","CreatedAt":"2025-10-06T13:15:06.434895+03:00"}
+2025-10-06 13:15:18.9252 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":"2","CreatedAt":"2025-10-06T13:15:18.9252461+03:00"}
+2025-10-06 13:18:53.0851 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:18:53.0850639+03:00"}
+2025-10-06 13:20:04.9638 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:20:04.963746+03:00"}
+2025-10-06 13:22:30.6700 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:22:30.6700281+03:00"}
+2025-10-06 13:22:46.7002 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:22:46.7002256+03:00"}
+2025-10-06 13:22:49.0433 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-06T13:22:49.0432536+03:00"}
+2025-10-06 13:22:49.3779 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:22:49.3779262+03:00"}
+2025-10-06 13:23:56.9387 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:23:56.9386433+03:00"}
+2025-10-06 13:24:07.3505 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"RemoveFavouriteBooks","Id":"1","CreatedAt":"2025-10-06T13:24:07.3504815+03:00"}
+2025-10-06 13:24:13.9998 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"RemoveFavouriteBooks","Id":"2","CreatedAt":"2025-10-06T13:24:13.999778+03:00"}
+2025-10-06 13:24:17.8344 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:24:17.8343603+03:00"}
+2025-10-06 13:24:57.2722 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:24:57.0938802+03:00"}
+2025-10-06 13:34:09.9365 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-06T13:34:09.9364693+03:00"}
+2025-10-06 13:34:10.2991 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:34:10.2990099+03:00"}
+2025-10-06 13:34:37.0946 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:34:37.0946017+03:00"}
+2025-10-06 13:37:04.9083 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-06T13:37:04.9081655+03:00"}
+2025-10-06 13:37:05.1389 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:37:05.13886+03:00"}
+2025-10-06 13:38:34.4407 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-06T13:38:34.4406465+03:00"}
+2025-10-06 13:38:34.7380 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:38:34.7380424+03:00"}
+2025-10-06 13:38:38.4194 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:38:38.4194212+03:00"}
+2025-10-06 13:39:05.0931 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:39:05.0930802+03:00"}
+2025-10-06 13:39:26.3557 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:39:26.355737+03:00"}
+2025-10-06 13:39:26.4597 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:39:26.4596928+03:00"}
+2025-10-06 13:47:51.7552 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"RemoveFavouriteBooks","Id":"2","CreatedAt":"2025-10-06T13:47:51.6024458+03:00"}
+2025-10-06 13:48:00.6452 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":"5","CreatedAt":"2025-10-06T13:48:00.6450304+03:00"}
+2025-10-06 13:48:02.5856 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":"6","CreatedAt":"2025-10-06T13:48:02.5856313+03:00"}
+2025-10-06 13:48:07.8379 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":"105","CreatedAt":"2025-10-06T13:48:07.8379111+03:00"}
+2025-10-06 13:48:37.1743 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":"98","CreatedAt":"2025-10-06T13:48:37.1743336+03:00"}
+2025-10-06 13:48:44.1170 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"UpdateFavouriteBooks","Id":"8","CreatedAt":"2025-10-06T13:48:44.1169941+03:00"}
+2025-10-06 13:49:12.1968 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-06T13:49:12.1960645+03:00"}
+2025-10-06 13:49:12.4680 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-06T13:49:12.4679567+03:00"}
+2025-10-06 13:49:50.0982 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-06T13:49:50.0981652+03:00"}
+2025-10-06 13:50:38.1540 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-06T13:50:38.1539905+03:00"}

@@ -1051,3 +1051,38 @@
 2025-10-05 16:05:08.2415 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
 2025-10-05 16:05:08.2415 Info AutoReload Config File Monitor starting
 2025-10-05 16:05:08.2672 Info Configuration initialized.
+2025-10-06 11:53:41.9989 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-10-06 11:53:41.9989 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-10-06 11:53:42.0137 Info AutoReload Config File Monitor starting
+2025-10-06 11:53:42.0318 Info Configuration initialized.
+2025-10-06 12:56:45.9897 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-10-06 12:56:45.9984 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-10-06 12:56:45.9984 Info AutoReload Config File Monitor starting
+2025-10-06 12:56:46.0235 Info Configuration initialized.
+2025-10-06 13:04:20.2392 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-10-06 13:04:20.2512 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-10-06 13:04:20.2512 Info AutoReload Config File Monitor starting
+2025-10-06 13:04:20.2972 Info Configuration initialized.
+2025-10-06 13:10:04.5805 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-10-06 13:10:04.5914 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-10-06 13:10:04.5914 Info AutoReload Config File Monitor starting
+2025-10-06 13:10:04.6235 Info Configuration initialized.
+2025-10-06 13:12:14.7494 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-10-06 13:12:14.7751 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-10-06 13:12:14.7826 Info AutoReload Config File Monitor starting
+2025-10-06 13:12:14.8073 Info Configuration initialized.
+2025-10-06 13:13:42.1419 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-10-06 13:13:42.1419 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-10-06 13:13:42.1584 Info AutoReload Config File Monitor starting
+2025-10-06 13:13:42.1771 Info Configuration initialized.
+2025-10-06 13:24:57.2201 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-10-06 13:24:57.2445 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-10-06 13:24:57.2506 Info AutoReload Config File Monitor starting
+2025-10-06 13:24:57.2722 Info Configuration initialized.
+2025-10-06 13:47:51.6999 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2025-10-06 13:47:51.7114 Info NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 6.0.4.4534. Product version: 6.0.4+0f63723442db07c29eb838b0bce8b5633031a04e. GlobalAssemblyCache: False
+2025-10-06 13:47:51.7162 Info AutoReload Config File Monitor starting
+2025-10-06 13:47:51.7441 Info Configuration initialized.
+2025-10-06 14:03:03.1972 Info AppDomain Shutting down. LogFactory closing...
+2025-10-06 14:03:03.2048 Info AutoReload Config File Monitor stopping, since no active configuration
+2025-10-06 14:03:03.2048 Info LogFactory has been disposed.

@@ -10,6 +10,7 @@ namespace Services.Contracts
         Task<int> GetAllBooksCountAsync();
         Task<IEnumerable<ExpandoObject>> GetRelatedBooksAsync(int id, BookRequestParameters p, bool trackChanges);
         Task<BookDto?> GetOneBookAsync(int id, bool trackChanges);
+        Task<IEnumerable<BookDto>> GetFavoriteBooksAsync(ICollection<int> ids, bool trackChanges);
         Task CreateBookAsync(BookDtoForCreation bookDto, List<string> newFilePaths);
         Task UpdateBookAsync(BookDtoForUpdate bookDto, List<string> newFilePaths);
         Task DeleteBookAsync(int id);

@@ -82,6 +82,17 @@ namespace Repositories
             }
         }
 
+        public async Task<IEnumerable<Book>> GetFavoriteBooksAsync(ICollection<int> ids, bool trackChanges)
+        {
+            var books = await FindByCondition(b => ids.Contains(b.Id), trackChanges)
+                .Include(b => b.Images)
+                .Include(b => b.Authors)
+                .AsSplitQuery()
+                .ToListAsync();
+
+            return books;
+        }
+
         public void CreateBook(Book book)
         {
             Create(book);

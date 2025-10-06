@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Dtos;
+using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
@@ -28,5 +29,17 @@ namespace Repositories
         }
 
         public async Task<int> GetAllAccountsCountAsync() => await CountAsync(false);
+
+        public async Task<AccountDtoForFavorites?> GetAccountFavoritesAsync(string userId)
+        {
+            var favorites = await FindByCondition(a => a.Id == userId, false)
+                .Select(a => new AccountDtoForFavorites
+                {
+                    FavoriteBookIds = a.FavoriteBookIds
+                })
+                .FirstOrDefaultAsync();
+
+            return favorites;
+        }
     }
 }

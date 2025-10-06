@@ -63,6 +63,14 @@ namespace Services
             return book;
         }
 
+        public async Task<IEnumerable<BookDto>> GetFavoriteBooksAsync(ICollection<int> ids, bool trackChanges)
+        {
+            var books = await _manager.Book.GetFavoriteBooksAsync(ids, trackChanges);
+            var booksDto = _mapper.Map<IEnumerable<BookDto>>(books);
+
+            return booksDto;
+        }
+
         public async Task CreateBookAsync(BookDtoForCreation bookDto, List<string> newFilePaths)
         {
             var book = new Book

@@ -50,6 +50,8 @@ import { UpdateTimeSlot } from './pages/Admin/ReservationsManager/TimeSlots/Upda
 import LoansDashboard from './pages/Admin/LoansManagement/LoansDashboard.tsx'
 import LoansAdmin from './pages/Admin/LoansManagement/Loans/LoansAdmin.tsx'
 import LoanDetail from './pages/Admin/LoansManagement/Loans/LoanDetail.tsx'
+import Favorites from './pages/Favorites/Favorites.tsx'
+import { setFavorites } from './pages/Favorites/favoritesSlice.ts'
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -95,10 +97,13 @@ function App() {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedCart = localStorage.getItem("cart");
+    const storedFavorites = localStorage.getItem("favorites");  
 
     const cart: CartResponse | null = storedCart ? JSON.parse(storedCart) as CartResponse : null;
     const user: LoginResponse | null = storedUser ? JSON.parse(storedUser) as LoginResponse : null;
+    const favorites: number[] | null = storedFavorites ? JSON.parse(storedFavorites) as number[] : null;
 
+    dispatch(setFavorites(favorites || []));
     dispatch(setCart(cart));
     dispatch(setUser(user));
 
@@ -152,7 +157,7 @@ function App() {
             <Route path="/admin/*" element={<NotFound />}></Route>
           </Route>
         </Route>
-        
+
         <Route element={<MainLayout isAdmin={isAdmin} />}>
           <Route path="/" element={<Home />} ></Route>
           <Route path="/books" element={<Books />}></Route>
@@ -160,6 +165,9 @@ function App() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/notifications" element={<Notifications />}></Route>
+          </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/favorites" element={<Favorites />}></Route>
           </Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/checkout" element={<Checkout />}></Route>

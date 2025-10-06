@@ -6,6 +6,7 @@ import { history } from '../../utils/history';
 import type { FormError, ApiErrorResponse } from '../../types/apiError';
 import { clearLocalCart } from '../Cart/cartSlice';
 import { jwtDecode } from 'jwt-decode';
+import { clearFavorites } from '../Favorites/favoritesSlice';
 
 type userState = {
     user: LoginResponse | null;
@@ -67,6 +68,7 @@ export const logout = createAsyncThunk(
     async (_, thunkAPI) => {
         thunkAPI.dispatch(clearLocalCart());
         localStorage.removeItem("user");
+        thunkAPI.dispatch(clearFavorites());
         toast.success("Başarıyla çıkış yaptınız.");
         history.push("/");
     }

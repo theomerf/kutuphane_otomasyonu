@@ -12,8 +12,8 @@ using Repositories;
 namespace KutuphaneAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20250920110935_LoanLine")]
-    partial class LoanLine
+    [Migration("20251006110306_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,8 +81,8 @@ namespace KutuphaneAPI.Migrations
                     b.Property<string>("AvatarUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly?>("BirthDate")
+                        .HasColumnType("date");
 
                     b.Property<int>("CartId")
                         .HasColumnType("int");
@@ -97,6 +97,9 @@ namespace KutuphaneAPI.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.PrimitiveCollection<string>("FavoriteBookIds")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -337,7 +340,7 @@ namespace KutuphaneAPI.Migrations
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("FineAmount")
+                    b.Property<decimal?>("FineAmount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("LoanDate")
@@ -380,6 +383,50 @@ namespace KutuphaneAPI.Migrations
                     b.HasIndex("LoanId");
 
                     b.ToTable("LoanLine");
+                });
+
+            modelBuilder.Entity("Entities.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<bool>("IsRead")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Type")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Notification");
                 });
 
             modelBuilder.Entity("Entities.Models.Penalty", b =>
@@ -458,42 +505,6 @@ namespace KutuphaneAPI.Migrations
                     b.ToTable("Reservation");
                 });
 
-            modelBuilder.Entity("Entities.Models.Review", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AccountId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comment")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("Review");
-                });
-
             modelBuilder.Entity("Entities.Models.Seat", b =>
                 {
                     b.Property<int>("Id")
@@ -553,6 +564,43 @@ namespace KutuphaneAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TimeSlot");
+                });
+
+            modelBuilder.Entity("Entities.Models.UserReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("UserReview");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -824,6 +872,17 @@ namespace KutuphaneAPI.Migrations
                     b.Navigation("Loan");
                 });
 
+            modelBuilder.Entity("Entities.Models.Notification", b =>
+                {
+                    b.HasOne("Entities.Models.Account", "Account")
+                        .WithMany("Notifications")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
             modelBuilder.Entity("Entities.Models.Penalty", b =>
                 {
                     b.HasOne("Entities.Models.Account", "Account")
@@ -862,12 +921,13 @@ namespace KutuphaneAPI.Migrations
                     b.Navigation("TimeSlot");
                 });
 
-            modelBuilder.Entity("Entities.Models.Review", b =>
+            modelBuilder.Entity("Entities.Models.UserReview", b =>
                 {
                     b.HasOne("Entities.Models.Account", "Account")
                         .WithMany("Reviews")
                         .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Entities.Models.Book", "Book")
                         .WithMany("Reviews")
@@ -936,6 +996,8 @@ namespace KutuphaneAPI.Migrations
                     b.Navigation("Cart");
 
                     b.Navigation("Loans");
+
+                    b.Navigation("Notifications");
 
                     b.Navigation("Penalties");
 

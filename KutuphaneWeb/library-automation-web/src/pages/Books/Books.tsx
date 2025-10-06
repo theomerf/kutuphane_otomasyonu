@@ -178,12 +178,12 @@ export default function Books() {
 
         {books.error && (
           <div className="flex justify-center items-center h-64 text-red-500">
-            Kitaplar yüklenirken bir hata oluştu.
+            {books.error}
           </div>
         )}
 
         {books.data && !books.isLoading && (
-          <motion.div initial="hidden" animate="show"
+          <motion.div key={books.data.length > 0 ? "full" : "empty"} initial="hidden" animate="show"
             variants={{
               hidden: {},
               show: { transition: { staggerChildren: 0.15 } }
@@ -196,7 +196,7 @@ export default function Books() {
               </div>
             ) : (
               <div className="flex justify-center items-center h-64 text-gray-500">
-                {debouncedSearch ? `"${debouncedSearch}" araması için sonuç bulunamadı.` : "Kitap bulunamadı."}
+                {finalQuery.searchTerm && debouncedSearch ? `"${debouncedSearch}" araması için sonuç bulunamadı.` : "Kitap bulunamadı."}
               </div>
             )}
           </motion.div>

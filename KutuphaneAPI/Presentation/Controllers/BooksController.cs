@@ -1,4 +1,5 @@
 ﻿using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.ActionFilters;
 using Services.Contracts;
@@ -48,6 +49,15 @@ namespace Presentation.Controllers
             var book = await _manager.BookService.GetOneBookAsync(id, false);
 
             return Ok(book);
+        }
+
+        [Authorize]
+        [HttpGet("account/favorites")]
+        public async Task<IActionResult> GetFavoriteBooks([FromQuery] ICollection<int> ids)
+        {
+            var books = await _manager.BookService.GetFavoriteBooksAsync(ids, false);
+
+            return Ok(books);
         }
     }
 }

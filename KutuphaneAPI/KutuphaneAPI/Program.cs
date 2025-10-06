@@ -80,10 +80,9 @@ app.UseAuthorization();
 app.UseStaticFiles();
 app.MapControllers();
 
-if (app.Environment.IsDevelopment())
-{
+
     app.ConfigureAndCheckMigration();
-}
+
 
 app.ConfigureLocalization();
 await app.ConfigureDefaultAdminUser();

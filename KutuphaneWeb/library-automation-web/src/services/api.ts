@@ -98,6 +98,7 @@ const books = {
     getAllBooks: (query: URLSearchParams, signal?: AbortSignal) => methods.get("books", { params: query }, signal),
     getRelatedBooks: (bookId: number, query: URLSearchParams, signal?: AbortSignal) => methods.get(`books/related/${bookId}`, { params: query }, signal),
     getOneBook: (id: string, signal?: AbortSignal) => methods.get(`books/${id}`, {}, signal),
+    favoriteBooks: (ids: any, signal?: AbortSignal) => methods.get(`books/account/favorites?${ids}`, {}, signal),
     countBooks: (signal?: AbortSignal) => methods.get("books/count", {}, signal),
     createBook: (formData: FormData) => methods.post("admin/books/create", formData, {
         headers: {
@@ -232,6 +233,9 @@ const account = {
     createAccount: (accountDto: any) => methods.post("admin/accounts/create", accountDto),
     updateAccount: (accountDto: any) => methods.put("admin/accounts/update", accountDto),
     updateAccountForUser: (accountDto: any) => methods.patch("account/update", accountDto),
+    getFavorites: (signal?: AbortSignal) => methods.get("account/favorites", {}, signal),
+    addToFavorites: (bookId: number) => methods.patch(`account/add-favorites/${bookId}`, {}),
+    removeFromFavorites: (bookId: number) => methods.patch(`account/remove-favorites/${bookId}`, {}),
     updateAvatar: (formData: FormData) => methods.patch("account/update-avatar", formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
     }),

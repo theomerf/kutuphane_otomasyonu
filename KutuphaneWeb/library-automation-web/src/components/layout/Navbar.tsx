@@ -99,7 +99,7 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
                       <Link to="/notifications" className="navButton">
                         <FontAwesomeIcon icon={faBell} />
                       </Link>
-                      <Link to="/favourites" title="Favoriler" className="navButton">
+                      <Link to="/favorites" title="Favoriler" className="navButton">
                         <FontAwesomeIcon icon={faHeart} className="h-4 w-4" />
                       </Link>
 
@@ -195,7 +195,7 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
               <Link to="/notifications" title="Bildirimler" className="navButton">
                 <FontAwesomeIcon icon={faBell} className="h-4 w-4" />
               </Link>
-              <Link to="/favourites" title="Favoriler" className="navButton">
+              <Link to="/favorites" title="Favoriler" className="navButton">
                 <FontAwesomeIcon icon={faHeart} className="h-4 w-4" />
               </Link>
               {isAdmin ? (

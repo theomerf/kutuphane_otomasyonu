@@ -14,6 +14,7 @@ namespace Entities.Models
         public DateTime RefreshTokenExpiryTime { get; set; }
         public int CartId { get; set; }
         public Cart? Cart { get; set; }
+        public ICollection<int>? FavoriteBookIds { get; set; }
         public ICollection<UserReview>? Reviews { get; set; }
         public ICollection<Reservation>? Reservations { get; set; }
         public ICollection<Loan>? Loans { get; set; }

@@ -121,5 +121,35 @@ namespace Presentation.Controllers
             await _manager.AccountService.UpdateAvatarAsync(accountDto);
             return NoContent();
         }
+
+        [Authorize]
+        [HttpGet("favorites")]
+        public async Task<IActionResult> GetFavoriteBooks()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var favoriteBooks = await _manager.AccountService.GetAccountFavoritesAsync(userId!);
+            return Ok(favoriteBooks);
+        }
+
+        [Authorize]
+        [HttpPatch("add-favorites/{id}")]
+        public async Task<IActionResult> UpdateFavouriteBooks([FromRoute] int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await _manager.AccountService.UpdateFavouriteBooks(userId!, id, "add");
+            return NoContent();
+        }
+
+        [Authorize]
+        [HttpPatch("remove-favorites/{id}")]
+        public async Task<IActionResult> RemoveFavouriteBooks([FromRoute] int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await _manager.AccountService.UpdateFavouriteBooks(userId!, id, "remove");
+            return NoContent();
+        }
     }
 }
