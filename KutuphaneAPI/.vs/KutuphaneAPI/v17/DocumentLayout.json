@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\entities\\models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|solutionrelative:entities\\models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\entities\\dtos\\accountdtoforcreation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|solutionrelative:entities\\dtos\\accountdtoforcreation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\presentation\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFA98040-53D3-48B7-A2FB-E233FBD02F84}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,7 +62,33 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountDtoForCreation.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Dtos\\AccountDtoForCreation.cs",
+              "RelativeDocumentMoniker": "Entities\\Dtos\\AccountDtoForCreation.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Dtos\\AccountDtoForCreation.cs",
+              "RelativeToolTip": "Entities\\Dtos\\AccountDtoForCreation.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T13:02:11.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Account.cs",
+              "RelativeDocumentMoniker": "Entities\\Models\\Account.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Account.cs",
+              "RelativeToolTip": "Entities\\Models\\Account.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-06T13:02:02.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ReservationController.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\ReservationController.cs",
               "RelativeDocumentMoniker": "Presentation\\Controllers\\ReservationController.cs",
@@ -67,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "BooksController.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\BooksController.cs",
               "RelativeDocumentMoniker": "Presentation\\Controllers\\BooksController.cs",
@@ -75,12 +109,11 @@
               "RelativeToolTip": "Presentation\\Controllers\\BooksController.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAkwDcAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T10:42:42.396Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-06T10:42:42.396Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "BookRepository.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Repositories\\BookRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\BookRepository.cs",
@@ -92,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "AccountManager.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Services\\AccountManager.cs",
               "RelativeDocumentMoniker": "Services\\AccountManager.cs",
@@ -104,7 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CategoriesAdminController.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\CategoriesAdminController.cs",
               "RelativeDocumentMoniker": "Presentation\\Controllers\\Admin\\CategoriesAdminController.cs",
@@ -116,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Presentation\\Controllers\\AccountController.cs",
@@ -124,8 +157,7 @@
               "RelativeToolTip": "Presentation\\Controllers\\AccountController.cs",
               "ViewState": "AgIAAHUAAAAAAAAAAAAQwH8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-03T11:02:51.029Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-03T11:02:51.029Z"
             }
           ]
         }

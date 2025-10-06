@@ -24,7 +24,7 @@ namespace Entities.Dtos
         [Required(ErrorMessage = "Telefon numarası gereklidir.")]
         public String PhoneNumber { get; init; } = null!;
         [Required(ErrorMessage = "Doğum tarihi gereklidir.")]
-        public DateTime? BirthDate { get; init; }
+        public DateOnly? BirthDate { get; init; }
         public ICollection<String> Roles { get; init; } = ["User"];
     }
 }
