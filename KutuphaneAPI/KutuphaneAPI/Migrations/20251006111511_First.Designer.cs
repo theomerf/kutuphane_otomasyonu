@@ -12,7 +12,7 @@ using Repositories;
 namespace KutuphaneAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20251006110718_First")]
+    [Migration("20251006111511_First")]
     partial class First
     {
         /// <inheritdoc />
