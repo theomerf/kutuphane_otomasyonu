@@ -27,6 +27,11 @@
     <Folder Include="ContextFactory\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
+  
+  <ItemGroup>
+  <Content Include="Migrations\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj" />

@@ -266,7 +266,7 @@ export default function Reservation() {
             };
             const newReservation: ReservationResponse = {
                 seatId: selectedSeat?.seatId!,
-                reservationDate: selectedDate!,
+                reservationDate: new Date(selectedDate!),
                 timeSlotId: selectedTimeSlot?.id!,
             }
 
