@@ -32,6 +32,33 @@ namespace Repositories
 
         public async Task<int> GetActiveReservationsCountAsync() => await FindByCondition(r => r.Status == ReservationStatus.Active, false).CountAsync();
 
+        public async Task<IDictionary<string, int>> GetReservationsCountOfMonthDailyAsync()
+        {
+            var now = DateTime.UtcNow;
+            var startOfMonth = new DateTime(now.Year, now.Month, 1);
+            var endOfMonth = startOfMonth.AddMonths(1);
+
+            var startDate = DateOnly.FromDateTime(startOfMonth);
+            var endDate = DateOnly.FromDateTime(endOfMonth);
+
+            var reservations = await FindByCondition(
+                r => r.ReservationDate >= startDate && r.ReservationDate < endDate,
+                trackChanges: false)
+                .Select(r => r.ReservationDate)
+                .ToListAsync();
+
+            var stats = reservations
+                .GroupBy(date => date.ToString("yyyy-MM-dd"))
+                .OrderBy(g => g.Key)
+                .ToDictionary(g => g.Key, g => g.Count());
+
+            var allDaysInMonth = Enumerable.Range(1, DateTime.DaysInMonth(now.Year, now.Month))
+                .Select(day => new DateTime(now.Year, now.Month, day).ToString("yyyy-MM-dd"))
+                .ToDictionary(date => date, date => stats.ContainsKey(date) ? stats[date] : 0);
+
+            return allDaysInMonth;
+        }
+
         public async Task<IEnumerable<ReservationDtoForStatus>> GetAllReservationsForStatusesAsync(ReservationRequestParameters p, bool trackChanges)
         {
             var reservationsStatus = await FindAll(trackChanges)

@@ -72,7 +72,12 @@ namespace KutuphaneAPI.Infrastructure.Mapper
                 .ForMember(dest => dest.AvailableCopies, opt => opt.MapFrom(src => src.Book!.AvailableCopies))
                 .ForMember(dest => dest.BookImageUrl, opt => opt.MapFrom(src => src.Book!.Images != null && src.Book.Images.Any() ? src.Book.Images.First().ImageUrl : string.Empty))
                 .ReverseMap();
-            CreateMap<Penalty, PenaltyDto>().ReverseMap();
+            CreateMap<Penalty, PenaltyDto>()
+                .ForMember(dest => dest.AccountId, opt => opt.MapFrom(src => src.Account!.Id))
+                .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName))
+                .ForMember(dest => dest.AccountFirstName, opt => opt.MapFrom(src => src.Account!.FirstName))
+                .ForMember(dest => dest.AccountLastName, opt => opt.MapFrom(src => src.Account!.LastName))
+                .ReverseMap();
             CreateMap<UserReview, UserReviewDto>()
                 .ForMember(dest => dest.AccountUserName, opt => opt.MapFrom(src => src.Account!.UserName))
                 .ForMember(dest => dest.AccountAvatarUrl, opt => opt.MapFrom(src => src.Account!.AvatarUrl))

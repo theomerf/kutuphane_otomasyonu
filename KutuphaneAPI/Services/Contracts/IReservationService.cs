@@ -8,6 +8,7 @@ namespace Services.Contracts
     {
         Task<(IEnumerable<ReservationDto> reservations, MetaData metaData)> GetAllReservationsAsync(ReservationRequestParameters p, bool trackChanges);
         Task<int> GetActiveReservationsCountAsync();
+        Task<IDictionary<string, int>> GetReservationsCountOfMonthDailyAsync();
         Task<IEnumerable<ReservationDtoForStatus>> GetAllReservationsForStatusesAsync(ReservationRequestParameters p, bool trackChanges);
         Task<ReservationDto> GetReservationByIdAsync(int reservationId, bool trackChanges);
         Task<IEnumerable<ReservationDto>> GetReservationsOfOneUserAsync(string accountId, bool trackChanges);

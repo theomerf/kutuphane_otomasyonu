@@ -10,6 +10,7 @@
         public DateTime DueDate { get; set; }
         public DateTime? ReturnDate { get; set; }
         public LoanStatus Status { get; set; } = LoanStatus.OnLoan;
+        public int? PenaltyId { get; set; }
         public decimal? FineAmount { get; set; }
     }
 

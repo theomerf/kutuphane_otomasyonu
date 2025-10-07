@@ -1,6 +1,8 @@
 ﻿using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
+using Repositories.Extensions;
 
 namespace Repositories
 {
@@ -10,14 +12,23 @@ namespace Repositories
         {
         }
 
-        public async Task<IEnumerable<Penalty>> GetAllPenaltiesAsync(bool trackChanges)
+        public async Task<(IEnumerable<Penalty> penalties, int count)> GetAllPenaltiesAsync(AdminRequestParameters p, bool trackChanges)
         {
-            var penalties = await FindAll(trackChanges)
+            var penaltiesQuery = FindAll(trackChanges)
                 .Include(p => p.Account)
+                .FilterBy(p.SearchTerm, p => p.Account!.UserName, FilterOperator.Contains)
+                .OrderByDescending(p => p.IssuedDate);
+
+            var penalties = await penaltiesQuery
+                .ToPaginate(p.PageSize, p.PageNumber)
                 .ToListAsync();
 
-            return penalties;
+            var count = await penaltiesQuery.CountAsync();
+
+            return (penalties, count);
         }
+
+        public async Task<int> GetAllPenaltiesCountAsync() => await FindAll(false).CountAsync();
 
         public async Task<IEnumerable<Penalty>> GetPenaltiesByAccountIdAsync(string accountId, bool trackChanges)
         {

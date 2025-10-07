@@ -52,6 +52,7 @@ import LoansAdmin from './pages/Admin/LoansManagement/Loans/LoansAdmin.tsx'
 import LoanDetail from './pages/Admin/LoansManagement/Loans/LoanDetail.tsx'
 import Favorites from './pages/Favorites/Favorites.tsx'
 import { setFavorites } from './pages/Favorites/favoritesSlice.ts'
+import PenaltiesAdmin from './pages/Admin/LoansManagement/Penalties/PenaltiesAdmin.tsx'
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -154,6 +155,7 @@ function App() {
             <Route path="/admin/dashboard/loans" element={<LoansDashboard />}></Route>
             <Route path="/admin/loans" element={<LoansAdmin />}></Route>
             <Route path="/admin/loans/:id" element={<LoanDetail />}></Route>
+            <Route path="/admin/penalties" element={<PenaltiesAdmin />}></Route>
             <Route path="/admin/*" element={<NotFound />}></Route>
           </Route>
         </Route>

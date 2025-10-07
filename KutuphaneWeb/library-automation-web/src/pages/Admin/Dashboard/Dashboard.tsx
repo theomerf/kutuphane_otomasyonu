@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import requests from "../../../services/api";
 import { useEffect, useState } from "react";
+import DashboardGraphs from "../../../components/dashboard/DashboardGraphs";
 
 interface DashboardStats {
     booksCount: number;
@@ -58,7 +59,8 @@ export default function Dashboard() {
     return (
         <div className="flex flex-col">
             <p className="font-semibold text-4xl ml-8 lg:ml-20 text-violet-500 h-fit border-none pb-2 mb-8 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Admin Paneli Dashboard</p>
-            <div className="grid grid-cols-4 gap-x-10 px-20 mt-5">
+            <DashboardGraphs />
+            <div className="grid grid-cols-4 gap-x-10 px-20 mt-16">
                 <div className="flex flex-col gap-y-4 rounded-lg shadow-xl bg-white py-8 border-2 border-gray-200 hover:scale-105 duration-500">
                     <p className="text-gray-500 font-bold text-center text-2xl">
                         <FontAwesomeIcon icon={faBook} className="text-green-400 text-5xl" />

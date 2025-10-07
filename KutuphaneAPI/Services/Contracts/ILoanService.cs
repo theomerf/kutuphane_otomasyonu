@@ -10,6 +10,7 @@ namespace Services.Contracts
         Task<int> GetAllLoansCountAsync();
         Task<LoanDto> GetOneLoanByIdAsync(int id, bool trackChanges);
         Task<IEnumerable<LoanDto>> GetLoansByAccountIdAsync(string accountId, bool trackChanges);
+        Task<IDictionary<string, int>> GetLoanStatsByCategoryAsync();
         Task<int> GetLoansCountByAccountIdAsync(string accountId);
         Task ChangeStatusOfLoanAsync(int loanId, LoanStatus status);
         Task CreateLoanAsync(LoanDto loanDto);

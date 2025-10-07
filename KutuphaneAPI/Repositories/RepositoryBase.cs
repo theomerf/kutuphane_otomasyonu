@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Repositories.Contracts;
 using System.Linq.Expressions;
 
@@ -68,5 +69,12 @@ namespace Repositories
         {
             _context.Set<T>().AttachRange(entities);
         }
+
+        public void Detach(T entity)
+        {
+            _context.Entry(entity).State = EntityState.Detached;
+        }
+
+        public EntityEntry<T> Entry(T entity) => _context.Entry(entity);
     }
 }

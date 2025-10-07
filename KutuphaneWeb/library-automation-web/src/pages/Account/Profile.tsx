@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import ProfileReviews from "../../components/profile/ProfileReviews";
 import ProfileAvatar from "../../components/profile/ProfileAvatar";
+import type Penalty from "../../types/penalty";
 
 type userStats = {
     totalLoans: number;
@@ -26,7 +27,8 @@ export default function Profile() {
     const sectionsInitialState = new Map<string, boolean>([
         ["loans", false],
         ["userReviews", false],
-        ["reservations", false]
+        ["reservations", false],
+        ["penalties", false]
     ]);
     const [userStats, setUserStats] = useState<userStats>({ totalLoans: 0, totalReservations: 0, totalReviews: 0 });
     const [sections, setSections] = useState<Map<string, boolean>>(sectionsInitialState);
@@ -48,6 +50,11 @@ export default function Profile() {
         error: null
     });
     const [reservations, reservationsDispatch] = useReducer(BackendDataListReducer<ReservationResponse>, {
+        data: null,
+        isLoading: false,
+        error: null
+    });
+    const [penalties, penaltiesDispatch] = useReducer(BackendDataListReducer<Penalty>, {
         data: null,
         isLoading: false,
         error: null
@@ -142,6 +149,25 @@ export default function Profile() {
         }
     };
 
+    const fetchPenalties = async (signal: AbortSignal) => {
+        try {
+            var response = await requests.penalty.getAllPenaltiesOfUser(signal);
+            var parsedResponse = response.data.map((pen: Penalty) => ({
+                ...pen,
+                issuedDate: new Date(pen.issuedDate).toLocaleDateString("tr-TR"),
+            }));
+            penaltiesDispatch({ type: "FETCH_SUCCESS", payload: parsedResponse as Penalty[] } );
+        }
+        catch (error: any) {
+            if (error.name === "CanceledError" || error.name === "AbortError") {
+                return;
+            }
+            else {
+                penaltiesDispatch({ type: "FETCH_ERROR", payload: error.message || "Kullanıcı cezaları yüklenirken bir hata oluştu." });
+            }
+        }
+    };
+
     const fetchUserStats = async (signal: AbortSignal) => {
         try {
             const [loansResponse, reservationsResponse, reviewsResponse] = await Promise.all([
@@ -199,6 +225,14 @@ export default function Profile() {
             fetchUserReviews(controller.signal);
         }
     }, [sections, refreshComments]);
+
+    useEffect(() => {
+        const controller = new AbortController();
+
+        if (sections.get("penalties")) {
+            fetchPenalties(controller.signal);
+        }
+    }, [sections]);
 
     const handleReservationCancel = async (id: number) => {
         if (!window.confirm("Bu rezervasyonu iptal etmek istediğinize emin misiniz?")) {
@@ -516,7 +550,6 @@ export default function Profile() {
                                                         <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Kitap Sayısı: </span>{loan.loanLines.length}</p>
                                                         {loan.returnDate && <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">İade Tarihi: </span>{loan.returnDate}</p>}
                                                     </div>
-                                                    {loan.fineAmount && <p className="text-red-500"><span className="font-bold text-violet-500">Ceza: </span>{loan.fineAmount}₺</p>}
                                                 </div>
 
                                                 <div className="flex flex-row gap-x-4 ml-auto">
@@ -599,8 +632,8 @@ export default function Profile() {
                                 {reservations.data.length === 0 ? (
                                     <div className="flex flex-col justify-center text-center">
                                         <FontAwesomeIcon icon={faQuestion} className="text-violet-400 animate-pulse text-6xl text-center mt-10 mb-4 self-center" />
-                                        <p className="text-gray-400 font-medium text-lg text-center">Henüz kitap kiralamadınız.</p>
-                                        <Link to="/books" className="self-center mt-4 button hover:scale-105 duration-500 transition-all">Kitaplara Göz At</Link>
+                                        <p className="text-gray-400 font-medium text-lg text-center">Henüz rezervasyon yapmadınız.</p>
+                                        <Link to="/books" className="self-center mt-4 button hover:scale-105 duration-500 transition-all">Rezervasyon Yap</Link>
                                     </div>
                                 ) : (
                                     reservations.data.map((res) => (
@@ -614,6 +647,59 @@ export default function Profile() {
                                                 {res.status == "Active" && <button onClick={() => handleReservationCancel(res.id!)} title="İptal Et" className="self-center bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-8 h-8 hover:scale-105 hover:bg-red-600 duration-500 text-base">
                                                     <FontAwesomeIcon icon={faBan} className="self-center" />
                                                 </button>}
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        )}</>
+                )}
+            </div>
+
+            <div className="flex flex-col cardBefore mx-5 lg:mx-20">
+                <div className="flex flex-row py-2 relative justify-center">
+                    <p className="text-violet-400 font-semibold text-2xl my-2">Cezalar</p>
+                    <button className="absolute right-0">
+                        <FontAwesomeIcon icon={faChevronDown} className={`text-white w-6 h-6 rounded-full p-1 mx-1 my-2 bg-violet-400 text-2xl hover:scale-110 duration-500 ${sections.get("penalties") ? "rotate-180" : ""}`} onClick={() => {
+                            const newSections = new Map(sections);
+                            newSections.set("penalties", !sections.get("penalties"));
+                            setSections(newSections);
+                        }} />
+                    </button>
+                </div>
+
+                {sections.get("penalties") && (
+                    <>
+                        {(penalties.isLoading) && (
+                            <div className="flex justify-center items-center h-64">
+                                <ClipLoader size={40} color="#8B5CF6" />
+                            </div>
+                        )}
+
+                        {penalties.error && (
+                            <div className="flex justify-center items-center h-64 text-red-500">
+                                {penalties.error}
+                            </div>
+                        )}
+
+                        {penalties.data && !penalties.isLoading && (
+                            <div className="gap-y-3 px-4 pb-10 max-h-[400px] overflow-y-auto">
+                                {penalties.data.length === 0 ? (
+                                    <div className="flex flex-col justify-center text-center">
+                                        <FontAwesomeIcon icon={faQuestion} className="text-violet-400 animate-pulse text-6xl text-center mt-10 mb-4 self-center" />
+                                        <p className="text-gray-400 font-medium text-lg text-center">Henüz rezervasyon yapmadınız.</p>
+                                        <Link to="/books" className="self-center mt-4 button hover:scale-105 duration-500 transition-all">Rezervasyon Yap</Link>
+                                    </div>
+                                ) : (
+                                    penalties.data.map((pen) => (
+                                        <div key={pen.id} className={`${up.lg ? "hover:bg-gray-100 hover:translate-x-2 hover:before:content-[''] hover:before:top-0 hover:before:absolute hover:before:left-0 hover:before:bottom-0 hover:before:w-1 hover:before:bg-hero-gradient hover:duration-500 duration-500 group" : ""} flex flex-row gap-x-6 rounded-lg shadow-md border bg-violet-50 border-gray-200 px-8 py-6 mb-6`}>
+                                            <div>
+                                                <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Ceza Oluşturulma Tarihi:</span> {pen.issuedDate}</p>
+                                                <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Ceza Miktarı:</span> {pen.amount}₺</p>
+                                            </div>
+                                            <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Ceza Nedeni</span> {pen.reason}</p>
+                                            <div className="flex flex-row gap-x-4 ml-auto">
+                                                <p className={`rounded-full self-center px-4 text-white shadow-md hover:scale-105 duration-500 py-2 ${pen.isPaid ? "bg-green-400" :"bg-red-400"}`}>{pen.isPaid ? "Ödendi" : "Ödenmedi"}</p>
                                             </div>
                                         </div>
                                     ))

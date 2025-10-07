@@ -1620,6 +1620,30 @@
         }
       }
     },
+    "/api/admin/dashboard/loan-stats": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/dashboard/reservation-stats": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/loan/account": {
       "get": {
         "tags": [
@@ -2091,7 +2115,7 @@
         }
       }
     },
-    "/api/penalty": {
+    "/api/penalty/account": {
       "get": {
         "tags": [
           "Penalty"
@@ -2103,75 +2127,43 @@
         }
       }
     },
-    "/api/penalty/{id}": {
+    "/api/admin/penalty": {
       "get": {
         "tags": [
-          "Penalty"
+          "PenaltyAdmin"
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/penalty/account/{accountId}": {
-      "get": {
-        "tags": [
-          "Penalty"
-        ],
-        "parameters": [
-          {
-            "name": "accountId",
-            "in": "path",
-            "required": true,
+            "name": "SearchTerm",
+            "in": "query",
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/penalty/create": {
-      "post": {
-        "tags": [
-          "Penalty"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PenaltyDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PenaltyDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PenaltyDto"
-              }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2179,10 +2171,22 @@
         }
       }
     },
-    "/api/penalty/delete/{id}": {
-      "delete": {
+    "/api/admin/penalty/count": {
+      "get": {
         "tags": [
-          "Penalty"
+          "PenaltyAdmin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/penalty/{id}": {
+      "get": {
+        "tags": [
+          "PenaltyAdmin"
         ],
         "parameters": [
           {
@@ -2202,10 +2206,10 @@
         }
       }
     },
-    "/api/penalty/update": {
-      "put": {
+    "/api/admin/penalty/create": {
+      "post": {
         "tags": [
-          "Penalty"
+          "PenaltyAdmin"
         ],
         "requestBody": {
           "content": {
@@ -2226,6 +2230,83 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/penalty/delete/{id}": {
+      "delete": {
+        "tags": [
+          "PenaltyAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/penalty/update": {
+      "put": {
+        "tags": [
+          "PenaltyAdmin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PenaltyDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PenaltyDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PenaltyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/penalty/pay/{id}": {
+      "patch": {
+        "tags": [
+          "PenaltyAdmin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -3285,7 +3366,7 @@
           },
           "birthDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date"
           },
           "roles": {
             "type": "array",
@@ -3636,6 +3717,22 @@
           "accountId": {
             "type": "string",
             "nullable": true
+          },
+          "accountFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "loanId": {
+            "type": "integer",
+            "format": "int32"
           },
           "amount": {
             "type": "number",

@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public String AccountId { get; set; } = null!;
         public Account? Account { get; set; }
+        public int LoanId { get; set; } 
         public decimal Amount { get; set; }
         public String Reason { get; set; } = null!;
         public DateTime IssuedDate { get; set; } = DateTime.UtcNow;

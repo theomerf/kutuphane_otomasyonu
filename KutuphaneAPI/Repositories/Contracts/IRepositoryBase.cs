@@ -1,8 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Linq.Expressions;
 
 namespace Repositories.Contracts
 {
-    public interface IRepositoryBase<T>
+    public interface IRepositoryBase<T> where T : class
     {
         IQueryable<T> FindAll(bool trackChanges);
         IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges);
@@ -14,5 +15,7 @@ namespace Repositories.Contracts
         Task<int> CountAsync(bool trackChanges);
         void Attach(T entity);
         void AttachRange(IEnumerable<T> entities);
+        void Detach(T entity);
+        EntityEntry<T> Entry(T entity);
     }
 }

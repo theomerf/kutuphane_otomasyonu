@@ -3,6 +3,7 @@ using Entities.Dtos;
 using Entities.Exceptions;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Microsoft.Extensions.Caching.Memory;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -13,12 +14,14 @@ namespace Services
         private readonly IRepositoryManager _manager;
         private readonly IMapper _mapper;
         private readonly INotificationService _notificationService;
+        private readonly IMemoryCache _cache;
 
-        public LoanManager(IRepositoryManager manager, IMapper mapper, INotificationService notificationService)
+        public LoanManager(IRepositoryManager manager, IMapper mapper, INotificationService notificationService, IMemoryCache cache)
         {
             _manager = manager;
             _mapper = mapper;
             _notificationService = notificationService;
+            _cache = cache;
         }
 
         public async Task<(IEnumerable<LoanDto> loans, MetaData metaData)> GetAllLoansAsync(AdminRequestParameters p, bool trackChanges)
@@ -36,6 +39,26 @@ namespace Services
             var count = await _manager.Loan.GetAllLoansCountAsync();
 
             return count;
+        }
+
+        public async Task<IDictionary<string, int>> GetLoanStatsByCategoryAsync() 
+        {
+            string cacheKey = "LoanStats";
+
+            if (_cache.TryGetValue(cacheKey, out IDictionary<string, int>? cachedStats))
+            {
+                return cachedStats!;
+            }
+
+            var stats = await _manager.Loan.GetLoanStatsByCategoryAsync(); 
+
+            var cacheOptions = new MemoryCacheEntryOptions
+            {
+                SlidingExpiration = TimeSpan.FromMinutes(30)
+            };
+            _cache.Set(cacheKey, stats, cacheOptions);
+
+            return stats;
         }
 
         public async Task<IEnumerable<LoanDto>> GetLoansByAccountIdAsync(string accountId, bool trackChanges)
@@ -163,6 +186,8 @@ namespace Services
                 Type = NotificationType.Info
             };
 
+            _cache.Remove("LoansStats");
+
             await _notificationService.CreateNotificationAsync(notificationDto);
         }
 
@@ -171,6 +196,7 @@ namespace Services
             var loan = await GetOneLoanByIdForServiceAsync(loanId, true);
 
             _manager.Loan.DeleteLoan(loan);
+            _cache.Remove("LoansStats");
             await _manager.SaveAsync();
         }
 
@@ -195,6 +221,7 @@ namespace Services
             }
 
             _manager.Loan.DeleteLoan(loan);
+            _cache.Remove("LoansStats");
             await _manager.SaveAsync();
         }
 
@@ -204,6 +231,7 @@ namespace Services
 
             _mapper.Map(loanDto, loan);
             _manager.Loan.UpdateLoan(loan);
+            _cache.Remove("LoansStats");
             await _manager.SaveAsync();
         }
     }

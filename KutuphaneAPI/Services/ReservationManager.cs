@@ -3,6 +3,7 @@ using Entities.Dtos;
 using Entities.Exceptions;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Microsoft.Extensions.Caching.Memory;
 using Repositories.Contracts;
 using Services.Contracts;
 using System.Globalization;
@@ -15,13 +16,15 @@ namespace Services
         private readonly IMapper _mapper;
         private readonly ISeatCacheService _cacheService;
         private readonly INotificationService _notificationService;
+        private readonly IMemoryCache _cache;
 
-        public ReservationManager(IRepositoryManager manager, IMapper mapper, ISeatCacheService cacheService, INotificationService notificationService)
+        public ReservationManager(IRepositoryManager manager, IMapper mapper, ISeatCacheService cacheService, INotificationService notificationService, IMemoryCache cache)
         {
             _manager = manager;
             _mapper = mapper;
             _cacheService = cacheService;
             _notificationService = notificationService;
+            _cache = cache;
         }
 
         public async Task<(IEnumerable<ReservationDto> reservations, MetaData metaData)> GetAllReservationsAsync(ReservationRequestParameters p, bool trackChanges)
@@ -35,6 +38,26 @@ namespace Services
         }
 
         public async Task<int> GetActiveReservationsCountAsync() => await _manager.Reservation.GetActiveReservationsCountAsync();
+
+        public async Task<IDictionary<string, int>> GetReservationsCountOfMonthDailyAsync()
+        {
+            string cacheKey = "ReservationsStats";
+
+            if (_cache.TryGetValue(cacheKey, out IDictionary<string, int>? cachedStats))
+            {
+                return cachedStats!;
+            }
+
+            var stats = await _manager.Reservation.GetReservationsCountOfMonthDailyAsync();
+            var cacheOptions = new MemoryCacheEntryOptions
+            {
+                SlidingExpiration = TimeSpan.FromMinutes(30)
+            };
+
+            _cache.Set(cacheKey, stats, cacheOptions);
+
+            return stats;
+        }
 
         public async Task<IEnumerable<ReservationDtoForStatus>> GetAllReservationsForStatusesAsync(ReservationRequestParameters p, bool trackChanges)
         {
@@ -104,6 +127,8 @@ namespace Services
             reservation.UpdatedAt = DateTime.Now;
 
             _manager.Reservation.UpdateReservation(reservation);
+
+            _cache.Remove("ReservationsStats");
             await _manager.SaveAsync();
 
             return reservation;
@@ -121,6 +146,8 @@ namespace Services
             reservation.UpdatedAt = DateTime.Now;
 
             _manager.Reservation.UpdateReservation(reservation);
+
+            _cache.Remove("ReservationsStats");
             await _manager.SaveAsync();
 
             return reservation;
@@ -141,6 +168,8 @@ namespace Services
                 Type = NotificationType.Info
             };
 
+            _cache.Remove("ReservationsStats");
+
             await _notificationService.CreateNotificationAsync(notificationDto);
         }
 
@@ -149,6 +178,8 @@ namespace Services
             var reservation = await GetReservationByIdForServiceAsync(reservationId, false);
 
             _manager.Reservation.DeleteReservation(reservation);
+
+            _cache.Remove("ReservationsStats");
             await _manager.SaveAsync();
         }
 
@@ -158,6 +189,8 @@ namespace Services
             _mapper.Map(reservationDto, reservation);
 
             _manager.Reservation.UpdateReservation(reservation);
+
+            _cache.Remove("ReservationsStats");
             await _manager.SaveAsync();
         }
     }

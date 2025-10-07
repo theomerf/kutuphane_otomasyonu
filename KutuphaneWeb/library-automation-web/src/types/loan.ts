@@ -1,6 +1,7 @@
 export default interface Loan {
     id?: number;
     accountId?: number;
+    penaltyId?: number;
     accountUserName?: string;
     accountFirstName?: string;
     accountLastName?: string;

@@ -343,6 +343,9 @@ namespace KutuphaneAPI.Migrations
                     b.Property<DateTime>("LoanDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("PenaltyId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
 
@@ -395,9 +398,7 @@ namespace KutuphaneAPI.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsRead")
                         .ValueGeneratedOnAdd()
@@ -448,6 +449,9 @@ namespace KutuphaneAPI.Migrations
 
                     b.Property<DateTime>("IssuedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("LoanId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Reason")
                         .IsRequired()

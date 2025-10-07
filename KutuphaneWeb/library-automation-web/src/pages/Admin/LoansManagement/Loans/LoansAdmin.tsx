@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useReducer, useState } from "react";
 import requests from "../../../../services/api";
 import { Link, useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faBan, faCheck, faMagnifyingGlass, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faBan, faCheck, faMagnifyingGlass, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import type Loan from "../../../../types/loan";
 import { ClipLoader } from "react-spinners";
@@ -12,6 +12,7 @@ import { useDebounce } from "../../../../hooks/useDebounce";
 import AdminPagination from "../../../../components/ui/AdminPagination";
 import { useBreakpoint } from "../../../../hooks/useBreakpoint";
 import BackendDataListReducer from "../../../../types/backendDataList";
+import type Penalty from "../../../../types/penalty";
 
 
 export default function LoansAdmin() {
@@ -100,7 +101,7 @@ export default function LoansAdmin() {
                 loanDate: new Date(loan.loanDate!).toLocaleDateString("tr-TR"),
                 dueDate: new Date(loan.dueDate!).toLocaleDateString("tr-TR"),
                 returnDate: loan.returnDate ? new Date(loan.returnDate).toLocaleDateString("tr-TR") : null,
-                displayStatus: loan.status == "OnLoan" ? "Kirada" : loan.status == "Returned" ? "İade Edildi" : loan.status == "Canceled" ? "İptal Edildi" : loan.status == "Overdue" ? "Gecikmiş" : loan.status
+                displayStatus: loan.status == "OnLoan" ? "Kirada" : loan.status == "Returned" ? "İade Edildi" : loan.status == "Canceled" ? "İptal Edildi" : (loan.status == "Overdue" && loan.fineAmount == undefined )? "Gecikmiş (Cezasız)" : (loan.fineAmount == 0) ? "Gecikmiş (Ödendi)": "Gecikmiş (Cezalı)", 
             }));
 
             const paginationHeaderStr = response.headers?.["x-pagination"];
@@ -118,15 +119,15 @@ export default function LoansAdmin() {
                 return;
             }
             else {
-                dispatch({ type: "FETCH_ERROR", payload: error.message || "Zaman aralıkları çekilirken bir hata oluştu" });
+                dispatch({ type: "FETCH_ERROR", payload: error.message || "Kiralamalar çekilirken bir hata oluştu" });
             }
         }
     };
 
-    const handleLoanDelete = async (seatId: number) => {
+    const handleLoanDelete = async (id: number) => {
         if (!window.confirm("Bu kiralamayı silmek istediğinize emin misiniz?")) return;
         try {
-            await requests.loan.deleteLoan(seatId);
+            await requests.loan.deleteLoan(id);
             toast.success("Kiralama başarıyla silindi.");
             setRefreshLoans(prev => prev + 1);
         }
@@ -136,10 +137,10 @@ export default function LoansAdmin() {
         }
     };
 
-    const handleLoanCancel = async (seatId: number) => {
+    const handleLoanCancel = async (id: number) => {
         if (!window.confirm("Bu kiralamayı iptal etmek istediğinize emin misiniz?")) return;
         try {
-            await requests.loan.cancelLoan(seatId);
+            await requests.loan.cancelLoan(id);
             toast.success("Kiralama başarıyla iptal edildi.");
             setRefreshLoans(prev => prev + 1);
         }
@@ -149,16 +150,35 @@ export default function LoansAdmin() {
         }
     };
 
-    const handleLoanReturn = async (seatId: number) => {
+    const handleLoanReturn = async (id: number) => {
         if (!window.confirm("Bu kiralamanın geri teslim edildiğini onaylamak istediğinize emin misiniz?")) return;
         try {
-            await requests.loan.returnLoan(seatId);
+            await requests.loan.returnLoan(id);
             toast.success("Kiralama başarıyla iade olarak işaretlendi.");
             setRefreshLoans(prev => prev + 1);
         }
         catch (error) {
             console.error(error);
             toast.error("Kiralama iade edilirken hata oluştu.");
+        }
+    };
+
+    const handlePenaltyCreate = async (id: number) => {
+        if (!window.confirm("Bu kullanıcıya ceza oluşturmak istediğinize emin misiniz?")) return;
+        try {
+            const penalty: Penalty = {
+                amount: 50,
+                reason: "Gecikmiş iade",
+                issuedDate: new Date().toISOString(),
+                loanId: id,
+            }
+            await requests.penalty.createPenalty(penalty);
+            toast.success("Ceza başarıyla oluşturuldu.");
+            setRefreshLoans(prev => prev + 1);
+        }
+        catch (error: any) {
+            console.error(error);
+            toast.error("Ceza oluşturulurken hata oluştu.");
         }
     };
 
@@ -190,7 +210,7 @@ export default function LoansAdmin() {
                             value={searchInput}
                             onChange={handleSearchInputChange}
                             className="border-2 border-[#e5e7eb] rounded-2xl px-4 py-3 w-full text-base transform transition-all placeholder:text-gray-600 duration-300 bg-white/90 focus:outline-none focus:border-[#0ea5e9] focus:shadow-[0_0_0_3px_rgba(14, 165, 233, 0.1)] focus:scale-[102%] focus:bg-white/100"
-                            placeholder="Kullanıcı adıyla sipariş ara.."
+                            placeholder="Kullanıcı adıyla kiralama ara.."
                         />
                         {searchInput && <button onClick={() => setSearchInput("")} className="bg-red-600 right-2 rounded-full w-6 h-6 absolute text-white hover:scale-105 duration-300">X</button>}
                     </div>
@@ -242,11 +262,14 @@ export default function LoansAdmin() {
                                                     <Link to={`/admin/loans/${loan.id}`} title="Detaylar" className="bg-blue-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-blue-600 duration-500 text-lg">
                                                         <FontAwesomeIcon icon={faMagnifyingGlass} className="self-center" />
                                                     </Link>
-                                                    {(loan.status != "Returned" && loan.status != "Canceled") && <button onClick={() => handleLoanReturn(loan.id!)} title="İadeyi Onayla" className="bg-green-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-green-600 duration-500 text-lg">
+                                                    {(loan.status == "OnLoan" || (loan.status == "Overdue" && loan.fineAmount == 0)) && <button onClick={() => handleLoanReturn(loan.id!)} title="İadeyi Onayla" className="bg-green-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-green-600 duration-500 text-lg">
                                                         <FontAwesomeIcon icon={faCheck} className="self-center" />
                                                     </button>}
-                                                    {(loan.status == "OnLoan") && <button onClick={() => handleLoanCancel(loan.id!)} title="İptal Et" className="bg-yellow-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-yellow-600 duration-500 text-lg">
+                                                    {(loan.status == "Overdue" && loan.fineAmount == undefined) && <button onClick={() => handlePenaltyCreate(loan.id!)} title="Ceza Oluştur" className="bg-red-800 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-yellow-900 duration-500 text-lg">
                                                         <FontAwesomeIcon icon={faBan} className="self-center" />
+                                                    </button>}
+                                                    {(loan.status == "OnLoan" ) && <button onClick={() => handleLoanCancel(loan.id!)} title="İptal Et" className="bg-yellow-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-yellow-600 duration-500 text-lg">
+                                                        <FontAwesomeIcon icon={faXmark} className="self-center" />
                                                     </button>}
                                                     {loan.status == "Canceled" && <button onClick={() => handleLoanDelete(loan.id!)} title="Sil" className="bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-red-600 duration-500 text-lg">
                                                         <FontAwesomeIcon icon={faTrash} className="self-center" />

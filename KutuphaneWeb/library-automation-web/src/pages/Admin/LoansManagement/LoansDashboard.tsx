@@ -18,13 +18,14 @@ export default function LoansDashboard() {
 
     const fetchStats = async (signal: AbortSignal) => {
         try {
-            const [loansRes] = await Promise.all([
+            const [loansRes, penaltiesRes] = await Promise.all([
                 requests.loan.getAllLoansCount(signal),
+                requests.penalty.countPenalties(signal)
             ]);
 
             setLoansDashboardStats({
                 loansCount: loansRes.data,
-                penaltiesCount: 0,
+                penaltiesCount: penaltiesRes.data,
             });
         }
         catch (error: any) {
@@ -81,7 +82,7 @@ export default function LoansDashboard() {
                         <p className="ml-2 text-gray-500 font-bold text-xl">Ceza</p>
                     </div>
                     <div className="flex flex-row mt-5 justify-center">
-                        <Link to="/admin/categories" className="button !bg-blue-400 hover:scale-105 text-lg font-semibold duration-500">Cezaları Yönet</Link>
+                        <Link to="/admin/penalties" className="button !bg-blue-400 hover:scale-105 text-lg font-semibold duration-500">Cezaları Yönet</Link>
                     </div>
                 </div>
             </div>

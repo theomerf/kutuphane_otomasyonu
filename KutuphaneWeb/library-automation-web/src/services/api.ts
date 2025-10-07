@@ -223,6 +223,17 @@ const notifications = {
     updateNotification: (notificationDto: any) => methods.put("admin/notification/update", notificationDto),
 }
 
+const penalty = {
+    getAllPenalties: (query?: URLSearchParams, signal?: AbortSignal) => methods.get("admin/penalty", { params: query }, signal),
+    countPenalties: (signal?: AbortSignal) => methods.get("admin/penalty/count", {}, signal),
+    getOnePenalty: (id: number, signal?: AbortSignal) => methods.get(`admin/penalty/${id}`, {}, signal),
+    createPenalty: (penaltyDto: any) => methods.post("admin/penalty/create", penaltyDto),
+    updatePenalty: (penaltyDto: any) => methods.put("admin/penalty/update", penaltyDto),
+    deletePenalty: (id: number) => methods.delete(`admin/penalty/delete/${id}`),
+    getAllPenaltiesOfUser: (signal?: AbortSignal) => methods.get("penalty/account", {}, signal),
+    payPenalty: (penaltyId: number) => methods.patch(`admin/penalty/pay/${penaltyId}`, {}),
+}
+
 const account = {
     login: (formData: any) => methods.post("account/login", formData),
     register: (formData: any) => methods.post("account/register", formData),
@@ -248,6 +259,8 @@ const account = {
 
 const admin = {
     getAdminDashboard: (signal?: AbortSignal) => methods.get("admin/dashboard", {}, signal),
+    getReservationStats: (signal?: AbortSignal) => methods.get("admin/dashboard/reservation-stats", {}, signal),
+    getLoanStats: (signal?: AbortSignal) => methods.get("admin/dashboard/loan-stats", {}, signal),
 }
 
 const errors = {
@@ -265,6 +278,7 @@ const requests = {
     account,
     categories,
     authors,
+    penalty,
     tags,
     loan,
     timeSlots,

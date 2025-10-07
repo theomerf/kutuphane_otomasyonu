@@ -35,6 +35,24 @@ namespace Repositories
             return count;
         }
 
+        public async Task<IDictionary<string, int>> GetLoanStatsByCategoryAsync()
+        {
+            var stats = await _context.Set<LoanLine>()
+                .Where(ll => ll.Loan != null)
+                .Include(ll => ll.Book!)
+                    .ThenInclude(b => b.Categories)
+                .SelectMany(ll => ll.Book!.Categories!)
+                .GroupBy(c => c.Name)
+                .Select(g => new
+                {
+                    CategoryName = g.Key!,
+                    LoanCount = g.Count()
+                })
+                .ToDictionaryAsync(x => x.CategoryName, x => x.LoanCount);
+
+            return stats;
+        }
+
         public async Task<IEnumerable<Loan>> GetLoansByAccountIdAsync(string accountId, bool trackChanges)
         {
             var loans = await FindByCondition(l => l.AccountId == accountId, trackChanges)
