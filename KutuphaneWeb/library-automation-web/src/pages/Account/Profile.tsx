@@ -156,7 +156,7 @@ export default function Profile() {
                 ...pen,
                 issuedDate: new Date(pen.issuedDate).toLocaleDateString("tr-TR"),
             }));
-            penaltiesDispatch({ type: "FETCH_SUCCESS", payload: parsedResponse as Penalty[] } );
+            penaltiesDispatch({ type: "FETCH_SUCCESS", payload: parsedResponse as Penalty[] });
         }
         catch (error: any) {
             if (error.name === "CanceledError" || error.name === "AbortError") {
@@ -280,10 +280,13 @@ export default function Profile() {
 
 
     return (
-        <div className="flex flex-col gap-y-8">
-            <p className="font-semibold text-4xl ml-8 lg:ml-20 text-violet-500 h-fit border-none pb-2 mb-8 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Profilim</p>
-            <div className="grid grid-cols-3 lg:gap-x-20 px-5 lg:px-20">
-                <div className="col-span-1 px-4 py-10 cardBefore">
+        <div className="flex flex-col gap-y-6 lg:gap-y-8 px-4 lg:px-0">
+            <p className="font-semibold text-2xl lg:text-4xl ml-4 lg:ml-20 text-violet-500 h-fit border-none pb-2 mb-4 lg:mb-8 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-16 lg:after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Profilim</p>
+            
+            {/* Responsive Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-20 px-1 lg:px-20">
+                {/* Avatar ve Temel Bilgiler */}
+                <div className="col-span-1 px-4 py-6 lg:py-10 cardBefore">
                     {(userDetails.isLoading) && (
                         <div className="flex justify-center items-center h-64">
                             <ClipLoader size={40} color="#8B5CF6" />
@@ -291,30 +294,31 @@ export default function Profile() {
                     )}
 
                     {userDetails.error && (
-                        <div className="flex justify-center items-center h-64 text-red-500">
+                        <div className="flex justify-center items-center h-64 text-red-500 text-sm lg:text-base px-2 text-center">
                             Kullanıcı bilgileri yüklenirken bir hata oluştu.
                         </div>
                     )}
 
                     {userDetails.data && !userDetails.isLoading && (
                         <div className="flex flex-col gap-y-4">
-                            <p className="text-violet-400 font-semibold text-2xl text-center">Profil Fotoğrafı</p>
+                            <p className="text-violet-400 font-semibold text-xl lg:text-2xl text-center">Profil Fotoğrafı</p>
                             <ProfileAvatar userDetails={userDetails} setRefreshUserDetails={setRefreshUserDetails} />
-                            <div className="flex flex-col gap-y-2 border border-gray-200 rounded-lg p-4 m-4 shadow-md bg-violet-50">
-                                <div className="flex flex-row gap-x-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">Ad Soyad:</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userDetails.data.firstName} {userDetails.data.lastName}</p>
+                            <div className="flex flex-col gap-y-2 border border-gray-200 rounded-lg p-3 lg:p-4 mx-2 lg:mx-4 shadow-md bg-violet-50">
+                                <div className="flex flex-col lg:flex-row gap-x-1 lg:justify-between">
+                                    <p className="text-violet-400 font-semibold text-base lg:text-xl">Ad Soyad:</p>
+                                    <p className="text-gray-400 font-medium text-sm lg:text-lg">{userDetails.data.firstName} {userDetails.data.lastName}</p>
                                 </div>
-                                <div className="flex flex-row gap-y-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">Kullanıcı Adı</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userDetails.data.userName}</p>
+                                <div className="flex flex-col lg:flex-row gap-y-1 lg:justify-between">
+                                    <p className="text-violet-400 font-semibold text-base lg:text-xl">Kullanıcı Adı</p>
+                                    <p className="text-gray-400 font-medium text-sm lg:text-lg">{userDetails.data.userName}</p>
                                 </div>
                             </div>
-
                         </div>
                     )}
                 </div>
-                <div className="col-span-2 flex flex-col gap-y-4 px-4 py-10 cardBefore">
+
+                {/* Profil Detayları */}
+                <div className="col-span-1 lg:col-span-2 flex flex-col gap-y-4 px-4 py-6 lg:py-10 cardBefore">
                     {(userDetails.isLoading) && (
                         <div className="flex justify-center items-center h-64">
                             <ClipLoader size={40} color="#8B5CF6" />
@@ -322,72 +326,59 @@ export default function Profile() {
                     )}
 
                     {userDetails.error && (
-                        <div className="flex justify-center items-center h-64 text-red-500">
+                        <div className="flex justify-center items-center h-64 text-red-500 text-sm lg:text-base px-2 text-center">
                             {userDetails.error}
                         </div>
                     )}
+                    
                     {userDetails.data && !userDetails.isLoading && (
                         <div className="flex flex-col gap-y-4">
-                            <div className="flex flex-row mx-4">
-                                <p className="ml-auto text-violet-400 font-semibold text-2xl text-center">Profil Detayları</p>
+                            <div className="flex flex-row mx-2 lg:mx-4">
+                                <p className="ml-auto text-violet-400 font-semibold text-xl lg:text-2xl text-center">Profil Detayları</p>
                                 <button onClick={() => setEditProfileOpen(true)} title="Düzenle" className="ml-auto bg-yellow-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-8 h-8 hover:scale-105 hover:bg-yellow-600 duration-500 text-base">
                                     <FontAwesomeIcon icon={faEdit} className="self-center" />
                                 </button>
                             </div>
-                            <div className="flex flex-col gap-y-3 border border-gray-200 rounded-lg p-4 m-4 shadow-md bg-violet-50">
-                                <div className="flex flex-row gap-x-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">E-Posta Adresi:</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userDetails.data.email}</p>
-                                </div>
-                                <div className="flex flex-row gap-y-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">Telefon Numarası:</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userDetails.data.phoneNumber}</p>
-                                </div>
-                                <div className="flex flex-row gap-y-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">Üyelik Tarihi:</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userDetails.data.displayMembershipDate}</p>
-                                </div>
-                                <div className="flex flex-row gap-y-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">Doğum Tarihi:</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userDetails.data.displayBirthDate ?? "Belirtilmedi"}</p>
-                                </div>
-                                <div className="flex flex-row gap-y-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">Son Giriş Tarihi:</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userDetails.data.displayLastLoginDate ?? "Belirtilmedi"}</p>
-                                </div>
-                                <div className="flex flex-row gap-y-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">Toplam Değerlendirme Sayısı:</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userStats.totalReviews}</p>
-                                </div>
-                                <div className="flex flex-row gap-y-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">Toplam Kiralama Sayısı:</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userStats.totalLoans}</p>
-                                </div>
-                                <div className="flex flex-row gap-y-1 justify-between">
-                                    <p className="text-violet-400 font-semibold text-xl">Toplam Rezervasyon Sayısı:</p>
-                                    <p className="text-gray-400 font-medium text-lg">{userStats.totalReservations}</p>
-                                </div>
+                            <div className="flex flex-col gap-y-3 border border-gray-200 rounded-lg p-3 lg:p-4 mx-2 lg:mx-4 shadow-md bg-violet-50">
+                                {[
+                                    { label: "E-Posta Adresi:", value: userDetails.data.email },
+                                    { label: "Telefon Numarası:", value: userDetails.data.phoneNumber },
+                                    { label: "Üyelik Tarihi:", value: userDetails.data.displayMembershipDate },
+                                    { label: "Doğum Tarihi:", value: userDetails.data.displayBirthDate ?? "Belirtilmedi" },
+                                    { label: "Son Giriş Tarihi:", value: userDetails.data.displayLastLoginDate ?? "Belirtilmedi" },
+                                    { label: "Toplam Değerlendirme:", value: userStats.totalReviews },
+                                    { label: "Toplam Kiralama:", value: userStats.totalLoans },
+                                    { label: "Toplam Rezervasyon:", value: userStats.totalReservations },
+                                ].map((item, index) => (
+                                    <div key={index} className="flex flex-col lg:flex-row gap-x-1 lg:justify-between">
+                                        <p className="text-violet-400 font-semibold text-base lg:text-xl">{item.label}</p>
+                                        <p className="text-gray-400 font-medium text-sm lg:text-lg break-all">{item.value}</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     )}
                 </div>
             </div>
 
+            {/* Edit Profile Modal - Responsive */}
             {editProfileOpen && (
-                <div className="fixed px-5 lg:px-0 inset-0 lg:inset-0 mt-20 overflow-auto lg:mt-20 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="flex flex-col bg-white rounded-3xl shadow-lg">
-                        <div className="bg-violet-400 py-2 lg:py-6 flex flex-col text-center gap-y-1 px-10 lg:px-14 rounded-tr-3xl rounded-tl-3xl">
+                <div className="fixed inset-0 px-4 lg:px-0 mt-20 overflow-auto z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="flex flex-col bg-white rounded-3xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+                        <div className="bg-violet-400 py-4 lg:py-6 flex flex-col text-center gap-y-1 px-6 lg:px-14 rounded-tr-3xl rounded-tl-3xl sticky top-0 z-10">
                             <p className="font-bold text-lg lg:text-xl text-white">
                                 <FontAwesomeIcon icon={faEdit} className="mr-2" />
                                 Profili Düzenle
                             </p>
                         </div>
-                        <div className="px-6">
+                        <div className="px-4 lg:px-6">
                             <form method="POST" onSubmit={handleSubmit(handleProfileUpdate)} noValidate>
                                 <input type="hidden" {...register("Id")} />
-                                <div className="flex flex-row gap-x-4">
-                                    <div className="my-5 flex flex-col w-1/2">
-                                        <label className="label" htmlFor="userName">
+                                
+                                {/* Form Fields - Responsive */}
+                                <div className="flex flex-col lg:flex-row gap-4">
+                                    <div className="my-3 lg:my-5 flex flex-col w-full lg:w-1/2">
+                                        <label className="label text-sm lg:text-base" htmlFor="userName">
                                             <FontAwesomeIcon className="mr-1" icon={faUser} />
                                             Kullanıcı Adı:
                                         </label>
@@ -401,12 +392,12 @@ export default function Profile() {
                                                 value: 20,
                                                 message: "Kullanıcı adı en fazla 20 karakter olmalıdır.",
                                             }
-                                        })} id="userName" name="UserName" className="input" placeholder="Kullanıcı adınızı giriniz."></input>
-                                        {errors.UserName && <span className="text-red-700 text-left mt-1">{errors.UserName?.message?.toString()}</span>}
+                                        })} id="userName" name="UserName" className="input text-sm lg:text-base" placeholder="Kullanıcı adınızı giriniz."></input>
+                                        {errors.UserName && <span className="text-red-700 text-left mt-1 text-xs lg:text-sm">{errors.UserName?.message?.toString()}</span>}
                                     </div>
 
-                                    <div className="my-5 flex flex-col w-1/2">
-                                        <label className="label" htmlFor="firstName">
+                                    <div className="my-3 lg:my-5 flex flex-col w-full lg:w-1/2">
+                                        <label className="label text-sm lg:text-base" htmlFor="firstName">
                                             <FontAwesomeIcon className="mr-1" icon={faInfo} />
                                             Ad:
                                         </label>
@@ -421,13 +412,14 @@ export default function Profile() {
                                                 message: "Ad en fazla 20 karakter olmalıdır.",
                                             }
                                         })}
-                                            id="firstName" name="FirstName" className="input" placeholder="Adınızı giriniz."></input>
-                                        {errors.FirstName && <span className="text-red-700 text-left mt-1">{errors.FirstName?.message?.toString()}</span>}
+                                            id="firstName" name="FirstName" className="input text-sm lg:text-base" placeholder="Adınızı giriniz."></input>
+                                        {errors.FirstName && <span className="text-red-700 text-left mt-1 text-xs lg:text-sm">{errors.FirstName?.message?.toString()}</span>}
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-x-4">
-                                    <div className="my-5 flex flex-col w-1/2">
-                                        <label className="label" htmlFor="lastName">
+
+                                <div className="flex flex-col lg:flex-row gap-4">
+                                    <div className="my-3 lg:my-5 flex flex-col w-full lg:w-1/2">
+                                        <label className="label text-sm lg:text-base" htmlFor="lastName">
                                             <FontAwesomeIcon className="mr-1" icon={faInfo} />
                                             Soyad:
                                         </label>
@@ -442,57 +434,57 @@ export default function Profile() {
                                                 message: "Soyad en fazla 20 karakter olmalıdır.",
                                             }
                                         })}
-                                            id="lastName" name="LastName" className="input" placeholder="Soyadınızı giriniz."></input>
-                                        {errors.LastName && <span className="text-red-700 text-left mt-1">{errors.LastName?.message?.toString()}</span>}
+                                            id="lastName" name="LastName" className="input text-sm lg:text-base" placeholder="Soyadınızı giriniz."></input>
+                                        {errors.LastName && <span className="text-red-700 text-left mt-1 text-xs lg:text-sm">{errors.LastName?.message?.toString()}</span>}
                                     </div>
-                                    <div className="my-5 flex flex-col w-1/2">
-                                        <label className="label" htmlFor="phoneNumber">
+                                    <div className="my-3 lg:my-5 flex flex-col w-full lg:w-1/2">
+                                        <label className="label text-sm lg:text-base" htmlFor="phoneNumber">
                                             <FontAwesomeIcon className="mr-1" icon={faPhone} />
                                             Telefon Numarası
                                         </label>
                                         <input type="text" {...register("PhoneNumber", {
                                             required: "Telefon numarası gereklidir.",
                                         })}
-                                            id="phoneNumber" name="PhoneNumber" className="input" placeholder="Telefon numaranızı giriniz."></input>
-                                        {errors.PhoneNumber && <span className="text-red-700 text-left mt-1">{errors.PhoneNumber?.message?.toString()}</span>}
+                                            id="phoneNumber" name="PhoneNumber" className="input text-sm lg:text-base" placeholder="Telefon numaranızı giriniz."></input>
+                                        {errors.PhoneNumber && <span className="text-red-700 text-left mt-1 text-xs lg:text-sm">{errors.PhoneNumber?.message?.toString()}</span>}
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-x-4">
-                                    <div className="my-5 flex flex-col w-full">
-                                        <label className="label" htmlFor="birthDate">
+
+                                <div className="flex flex-col lg:flex-row gap-4">
+                                    <div className="my-3 lg:my-5 flex flex-col w-full lg:w-1/2">
+                                        <label className="label text-sm lg:text-base" htmlFor="birthDate">
                                             <FontAwesomeIcon className="mr-1" icon={faCakeCandles} />
                                             Doğum Tarihi
                                         </label>
                                         <input type="date" {...register("BirthDate", {
                                             required: "Doğum tarihi gereklidir.",
                                         })}
-                                            id="birthDate" name="BirthDate" className="input" placeholder="Doğum tarihinizi giriniz."></input>
-                                        {errors.BirthDate && <span className="text-red-700 text-left mt-1">{errors.BirthDate?.message?.toString()}</span>}
+                                            id="birthDate" name="BirthDate" className="input text-sm lg:text-base" placeholder="Doğum tarihinizi giriniz."></input>
+                                        {errors.BirthDate && <span className="text-red-700 text-left mt-1 text-xs lg:text-sm">{errors.BirthDate?.message?.toString()}</span>}
                                     </div>
-                                    <div className="my-5 flex flex-col w-1/2">
-                                        <label className="label" htmlFor="email">
+                                    <div className="my-3 lg:my-5 flex flex-col w-full lg:w-1/2">
+                                        <label className="label text-sm lg:text-base" htmlFor="email">
                                             <FontAwesomeIcon className="mr-1" icon={faEnvelope} />
                                             E-Posta
                                         </label>
                                         <input type="email" {...register("Email", {
                                             required: "Email gereklidir.",
                                         })}
-                                            id="email" name="Email" className="input" placeholder="E-postanızı giriniz."></input>
-                                        {errors.Email && <span className="text-red-700 text-left mt-1">{errors.Email?.message?.toString()}</span>}
+                                            id="email" name="Email" className="input text-sm lg:text-base" placeholder="E-postanızı giriniz."></input>
+                                        {errors.Email && <span className="text-red-700 text-left mt-1 text-xs lg:text-sm">{errors.Email?.message?.toString()}</span>}
                                     </div>
                                 </div>
-                                <div className="flex content-center justify-center gap-x-4 mt-6 mb-6">
-                                    <button type="submit" className="smallButton text-sm lg:button font-semibold lg:hover:scale-105">
+
+                                <div className="flex flex-col lg:flex-row content-center justify-center gap-3 lg:gap-x-4 mt-4 lg:mt-6 mb-4 lg:mb-6">
+                                    <button type="submit" className="button font-semibold hover:scale-105 w-full lg:w-auto">
                                         <FontAwesomeIcon icon={faCheck} className="mr-2" />
                                         Onayla
                                     </button>
                                     <button type="button" onClick={() => {
-                                        {
-                                            setEditProfileOpen(false);
-                                            reset();
-                                            clearErrors();
-                                        }
-                                    }} className="smallButton text-sm lg:button font-semibold !bg-red-500 lg:hover:scale-105">
+                                        setEditProfileOpen(false);
+                                        reset();
+                                        clearErrors();
+                                    }} className="button font-semibold !bg-red-500 hover:scale-105 w-full lg:w-auto">
                                         <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                                         Geri Dön
                                     </button>
@@ -503,11 +495,12 @@ export default function Profile() {
                 </div>
             )}
 
-            <div className="flex flex-col cardBefore mx-5 lg:mx-20">
+            {/* Kiralamalar Bölümü - Responsive */}
+            <div className="flex flex-col cardBefore mx-2 lg:mx-20">
                 <div className="flex flex-row py-2 relative justify-center">
-                    <p className="text-violet-400 font-semibold text-2xl my-2">Kiralamalar</p>
-                    <button className="absolute right-0">
-                        <FontAwesomeIcon icon={faChevronDown} className={`text-white w-6 h-6 rounded-full p-1 mx-1 my-2 bg-violet-400 text-2xl hover:scale-110 duration-500 ${sections.get("loans") ? "rotate-180" : ""}`} onClick={() => {
+                    <p className="text-violet-400 font-semibold text-xl lg:text-2xl my-2">Kiralamalar</p>
+                    <button className="absolute right-2 lg:right-0">
+                        <FontAwesomeIcon icon={faChevronDown} className={`text-white w-5 h-5 lg:w-6 lg:h-6 rounded-full p-1 mx-1 my-2 bg-violet-400 hover:scale-110 duration-500 ${sections.get("loans") ? "rotate-180" : ""}`} onClick={() => {
                             const newSections = new Map(sections);
                             newSections.set("loans", !sections.get("loans"));
                             setSections(newSections);
@@ -524,36 +517,36 @@ export default function Profile() {
                         )}
 
                         {loans.error && (
-                            <div className="flex justify-center items-center h-64 text-red-500">
+                            <div className="flex justify-center items-center h-64 text-red-500 text-sm lg:text-base px-2 text-center">
                                 {loans.error}
                             </div>
                         )}
 
                         {loans.data && !loans.isLoading && (
-                            <div className="gap-y-3 px-4 pb-10 max-h-[400px] overflow-y-auto">
+                            <div className="gap-y-3 px-2 lg:px-4 pb-6 lg:pb-10 max-h-[400px] overflow-y-auto">
                                 {loans.data.length === 0 ? (
-                                    <div className="flex flex-col justify-center text-center">
-                                        <FontAwesomeIcon icon={faQuestion} className="text-violet-400 animate-pulse text-6xl text-center mt-10 mb-4 self-center" />
-                                        <p className="text-gray-400 font-medium text-lg text-center">Henüz kitap kiralamadınız.</p>
-                                        <Link to="/books" className="self-center mt-4 button hover:scale-105 duration-500 transition-all">Kitaplara Göz At</Link>
+                                    <div className="flex flex-col justify-center text-center px-4">
+                                        <FontAwesomeIcon icon={faQuestion} className="text-violet-400 animate-pulse text-4xl lg:text-6xl text-center mt-6 lg:mt-10 mb-3 lg:mb-4 self-center" />
+                                        <p className="text-gray-400 font-medium text-base lg:text-lg text-center">Henüz kitap kiralamadınız.</p>
+                                        <Link to="/books" className="self-center mt-3 lg:mt-4 button hover:scale-105 duration-500 transition-all text-sm lg:text-base">Kitaplara Göz At</Link>
                                     </div>
                                 ) : (
                                     loans.data.map((loan) => (
-                                        <div key={loan.id} className="rounded-lg shadow-md border bg-violet-50 border-gray-200 px-8 py-6 mb-6">
-                                            <div className="flex flex-row items-center">
-                                                <div>
-                                                    <div className="flex flex-row gap-x-2">
-                                                        <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Kiralama Tarihi: </span>{loan.loanDate}</p>
-                                                        <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Teslim Beklenen Tarih: </span>{loan.dueDate}</p>
+                                        <div key={loan.id} className="rounded-lg shadow-md border bg-violet-50 border-gray-200 px-4 lg:px-8 py-4 lg:py-6 mb-4 lg:mb-6">
+                                            <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-0">
+                                                <div className="flex-1">
+                                                    <div className="flex flex-col lg:flex-row gap-x-2 gap-y-1">
+                                                        <p className="text-sm lg:text-lg text-gray-400 font-semibold"><span className="font-bold text-violet-500">Kiralama Tarihi: </span>{loan.loanDate}</p>
+                                                        <p className="text-sm lg:text-lg text-gray-400 font-semibold"><span className="font-bold text-violet-500">Teslim Tarihi: </span>{loan.dueDate}</p>
                                                     </div>
-                                                    <div className="flex flex-row gap-x-2">
-                                                        <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Kitap Sayısı: </span>{loan.loanLines.length}</p>
-                                                        {loan.returnDate && <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">İade Tarihi: </span>{loan.returnDate}</p>}
+                                                    <div className="flex flex-col lg:flex-row gap-x-2 gap-y-1">
+                                                        <p className="text-sm lg:text-lg text-gray-400 font-semibold"><span className="font-bold text-violet-500">Kitap Sayısı: </span>{loan.loanLines.length}</p>
+                                                        {loan.returnDate && <p className="text-sm lg:text-lg text-gray-400 font-semibold"><span className="font-bold text-violet-500">İade Tarihi: </span>{loan.returnDate}</p>}
                                                     </div>
                                                 </div>
 
-                                                <div className="flex flex-row gap-x-4 ml-auto">
-                                                    <p className={`rounded-full px-4 self-center text-white shadow-md hover:scale-105 duration-500 py-2 ${loan.displayStatus == "Kirada" ? "bg-green-400" : loan.displayStatus == "İptal Edildi" ? "bg-red-400" : loan.displayStatus == "İade Edildi" ? "bg-violet-400" : "bg-yellow-400"}`}>{loan.displayStatus}</p>
+                                                <div className="flex flex-row gap-x-2 lg:gap-x-4 lg:ml-auto items-center">
+                                                    <p className={`rounded-full px-3 lg:px-4 self-center text-white text-xs lg:text-base shadow-md hover:scale-105 duration-500 py-1 lg:py-2 ${loan.displayStatus == "Kirada" ? "bg-green-400" : loan.displayStatus == "İptal Edildi" ? "bg-red-400" : loan.displayStatus == "İade Edildi" ? "bg-violet-400" : "bg-yellow-400"}`}>{loan.displayStatus}</p>
                                                     <button
                                                         className="ml-auto"
                                                         onClick={() =>
@@ -565,7 +558,7 @@ export default function Profile() {
                                                     >
                                                         <FontAwesomeIcon
                                                             icon={faChevronDown}
-                                                            className={`text-violet-400 w-6 h-6 rounded-full p-1 mx-1 my-2 bg-violet-100 hover:scale-110 duration-500 ${loanDetailsOpen[loan.id!] ? "rotate-180" : ""}`}
+                                                            className={`text-violet-400 w-5 h-5 lg:w-6 lg:h-6 rounded-full p-1 bg-violet-100 hover:scale-110 duration-500 ${loanDetailsOpen[loan.id!] ? "rotate-180" : ""}`}
                                                         />
                                                     </button>
                                                 </div>
@@ -575,19 +568,19 @@ export default function Profile() {
                                                 <div className="mt-4 border-t pt-4">
                                                     {loan.loanLines.length > 0 ? (
                                                         loan.loanLines.map(line => (
-                                                            <div key={line.id} className="flex flex-row items-center gap-x-6 mb-4">
+                                                            <div key={line.id} className="flex flex-row items-center gap-x-3 lg:gap-x-6 mb-3 lg:mb-4">
                                                                 <img src={line.bookImageUrl?.includes("books") ? `https://localhost:7214/images/${line.bookImageUrl}` : `${line.bookImageUrl}`}
-                                                                    className="h-20 object-contain rounded-md border shadow-sm hover:scale-105 duration-500" />
-                                                                <div>
+                                                                    className="h-16 lg:h-20 object-contain rounded-md border shadow-sm hover:scale-105 duration-500" />
+                                                                <div className="text-xs lg:text-base">
                                                                     <p className="font-bold">{line.bookTitle}</p>
-                                                                    <p className="text-gray-400 text-sm">ISBN: {line.bookISBN}</p>
-                                                                    <p className="text-gray-400 text-sm">Adet: {line.quantity}</p>
-                                                                    <p className="text-gray-400 text-sm">Mevcut: {line.availableCopies}</p>
+                                                                    <p className="text-gray-400">ISBN: {line.bookISBN}</p>
+                                                                    <p className="text-gray-400">Adet: {line.quantity}</p>
+                                                                    <p className="text-gray-400">Mevcut: {line.availableCopies}</p>
                                                                 </div>
                                                             </div>
                                                         ))
                                                     ) : (
-                                                        <p className="text-gray-400">Satır yok.</p>
+                                                        <p className="text-gray-400 text-sm lg:text-base">Satır yok.</p>
                                                     )}
                                                 </div>
                                             )}
@@ -595,17 +588,20 @@ export default function Profile() {
                                     ))
                                 )}
                             </div>
-                        )}</>
+                        )}
+                    </>
                 )}
             </div>
 
+            {/* Değerlendirmeler Component */}
             <ProfileReviews userReviews={userReviews} sections={sections} setSections={setSections} up={up} setRefreshComments={setRefreshComments} />
 
-            <div className="flex flex-col cardBefore mx-5 lg:mx-20">
+            {/* Rezervasyonlar - Responsive */}
+            <div className="flex flex-col cardBefore mx-2 lg:mx-20">
                 <div className="flex flex-row py-2 relative justify-center">
-                    <p className="text-violet-400 font-semibold text-2xl my-2">Rezervasyonlar</p>
-                    <button className="absolute right-0">
-                        <FontAwesomeIcon icon={faChevronDown} className={`text-white w-6 h-6 rounded-full p-1 mx-1 my-2 bg-violet-400 text-2xl hover:scale-110 duration-500 ${sections.get("reservations") ? "rotate-180" : ""}`} onClick={() => {
+                    <p className="text-violet-400 font-semibold text-xl lg:text-2xl my-2">Rezervasyonlar</p>
+                    <button className="absolute right-2 lg:right-0">
+                        <FontAwesomeIcon icon={faChevronDown} className={`text-white w-5 h-5 lg:w-6 lg:h-6 rounded-full p-1 mx-1 my-2 bg-violet-400 hover:scale-110 duration-500 ${sections.get("reservations") ? "rotate-180" : ""}`} onClick={() => {
                             const newSections = new Map(sections);
                             newSections.set("reservations", !sections.get("reservations"));
                             setSections(newSections);
@@ -622,29 +618,29 @@ export default function Profile() {
                         )}
 
                         {reservations.error && (
-                            <div className="flex justify-center items-center h-64 text-red-500">
+                            <div className="flex justify-center items-center h-64 text-red-500 text-sm lg:text-base px-2 text-center">
                                 {reservations.error}
                             </div>
                         )}
 
                         {reservations.data && !reservations.isLoading && (
-                            <div className="gap-y-3 px-4 pb-10 max-h-[400px] overflow-y-auto">
+                            <div className="gap-y-3 px-2 lg:px-4 pb-6 lg:pb-10 max-h-[400px] overflow-y-auto">
                                 {reservations.data.length === 0 ? (
-                                    <div className="flex flex-col justify-center text-center">
-                                        <FontAwesomeIcon icon={faQuestion} className="text-violet-400 animate-pulse text-6xl text-center mt-10 mb-4 self-center" />
-                                        <p className="text-gray-400 font-medium text-lg text-center">Henüz rezervasyon yapmadınız.</p>
-                                        <Link to="/books" className="self-center mt-4 button hover:scale-105 duration-500 transition-all">Rezervasyon Yap</Link>
+                                    <div className="flex flex-col justify-center text-center px-4">
+                                        <FontAwesomeIcon icon={faQuestion} className="text-violet-400 animate-pulse text-4xl lg:text-6xl text-center mt-6 lg:mt-10 mb-3 lg:mb-4 self-center" />
+                                        <p className="text-gray-400 font-medium text-base lg:text-lg text-center">Henüz rezervasyon yapmadınız.</p>
+                                        <Link to="/reservation" className="self-center mt-3 lg:mt-4 button hover:scale-105 duration-500 transition-all text-sm lg:text-base">Rezervasyon Yap</Link>
                                     </div>
                                 ) : (
                                     reservations.data.map((res) => (
-                                        <div key={res.id} className={`${up.lg ? "hover:bg-gray-100 hover:translate-x-2 hover:before:content-[''] hover:before:top-0 hover:before:absolute hover:before:left-0 hover:before:bottom-0 hover:before:w-1 hover:before:bg-hero-gradient hover:duration-500 duration-500 group" : ""} flex flex-row gap-x-6 rounded-lg shadow-md border bg-violet-50 border-gray-200 px-8 py-6 mb-6`}>
-                                            <div>
-                                                <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Tarih:</span> {res.displayReservationDate}</p>
-                                                <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Saat Aralığı:</span> {res.timeSlotStartTime} - {res.timeSlotEndTime}</p>
+                                        <div key={res.id} className={`${up.lg ? "hover:bg-gray-100 hover:translate-x-2 hover:before:content-[''] hover:before:top-0 hover:before:absolute hover:before:left-0 hover:before:bottom-0 hover:before:w-1 hover:before:bg-hero-gradient hover:duration-500 duration-500" : ""} flex flex-col lg:flex-row gap-3 lg:gap-x-6 rounded-lg shadow-md border bg-violet-50 border-gray-200 px-4 lg:px-8 py-4 lg:py-6 mb-4 lg:mb-6`}>
+                                            <div className="flex-1">
+                                                <p className="text-sm lg:text-lg text-gray-400 font-semibold"><span className="font-bold text-violet-500">Tarih:</span> {res.displayReservationDate}</p>
+                                                <p className="text-sm lg:text-lg text-gray-400 font-semibold"><span className="font-bold text-violet-500">Saat:</span> {res.timeSlotStartTime} - {res.timeSlotEndTime}</p>
                                             </div>
-                                            <div className="flex flex-row gap-x-4 ml-auto">
-                                                <p className={`rounded-full self-center px-4 text-white shadow-md hover:scale-105 duration-500 py-2 ${res.displayStatus == "Aktif" ? "bg-green-400" : res.displayStatus == "İptal Edildi" ? "bg-red-400" : res.displayStatus == "Tamamlandı" ? "bg-violet-400" : "bg-gray-400"}`}>{res.displayStatus}</p>
-                                                {res.status == "Active" && <button onClick={() => handleReservationCancel(res.id!)} title="İptal Et" className="self-center bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-8 h-8 hover:scale-105 hover:bg-red-600 duration-500 text-base">
+                                            <div className="flex flex-row gap-x-2 lg:gap-x-4 lg:ml-auto items-center">
+                                                <p className={`rounded-full px-3 lg:px-4 self-center text-white text-xs lg:text-base shadow-md hover:scale-105 duration-500 py-1 lg:py-2 ${res.displayStatus == "Aktif" ? "bg-green-400" : res.displayStatus == "İptal Edildi" ? "bg-red-400" : res.displayStatus == "Tamamlandı" ? "bg-violet-400" : "bg-gray-400"}`}>{res.displayStatus}</p>
+                                                {res.status == "Active" && <button onClick={() => handleReservationCancel(res.id!)} title="İptal Et" className="self-center bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-7 h-7 lg:w-8 lg:h-8 hover:scale-105 hover:bg-red-600 duration-500 text-sm lg:text-base">
                                                     <FontAwesomeIcon icon={faBan} className="self-center" />
                                                 </button>}
                                             </div>
@@ -652,15 +648,17 @@ export default function Profile() {
                                     ))
                                 )}
                             </div>
-                        )}</>
+                        )}
+                    </>
                 )}
             </div>
 
-            <div className="flex flex-col cardBefore mx-5 lg:mx-20">
+            {/* Cezalar - Responsive */}
+            <div className="flex flex-col cardBefore mx-2 lg:mx-20">
                 <div className="flex flex-row py-2 relative justify-center">
-                    <p className="text-violet-400 font-semibold text-2xl my-2">Cezalar</p>
-                    <button className="absolute right-0">
-                        <FontAwesomeIcon icon={faChevronDown} className={`text-white w-6 h-6 rounded-full p-1 mx-1 my-2 bg-violet-400 text-2xl hover:scale-110 duration-500 ${sections.get("penalties") ? "rotate-180" : ""}`} onClick={() => {
+                    <p className="text-violet-400 font-semibold text-xl lg:text-2xl my-2">Cezalar</p>
+                    <button className="absolute right-2 lg:right-0">
+                        <FontAwesomeIcon icon={faChevronDown} className={`text-white w-5 h-5 lg:w-6 lg:h-6 rounded-full p-1 mx-1 my-2 bg-violet-400 hover:scale-110 duration-500 ${sections.get("penalties") ? "rotate-180" : ""}`} onClick={() => {
                             const newSections = new Map(sections);
                             newSections.set("penalties", !sections.get("penalties"));
                             setSections(newSections);
@@ -677,35 +675,35 @@ export default function Profile() {
                         )}
 
                         {penalties.error && (
-                            <div className="flex justify-center items-center h-64 text-red-500">
+                            <div className="flex justify-center items-center h-64 text-red-500 text-sm lg:text-base px-2 text-center">
                                 {penalties.error}
                             </div>
                         )}
 
                         {penalties.data && !penalties.isLoading && (
-                            <div className="gap-y-3 px-4 pb-10 max-h-[400px] overflow-y-auto">
+                            <div className="gap-y-3 px-2 lg:px-4 pb-6 lg:pb-10 max-h-[400px] overflow-y-auto">
                                 {penalties.data.length === 0 ? (
-                                    <div className="flex flex-col justify-center text-center">
-                                        <FontAwesomeIcon icon={faQuestion} className="text-violet-400 animate-pulse text-6xl text-center mt-10 mb-4 self-center" />
-                                        <p className="text-gray-400 font-medium text-lg text-center">Henüz rezervasyon yapmadınız.</p>
-                                        <Link to="/books" className="self-center mt-4 button hover:scale-105 duration-500 transition-all">Rezervasyon Yap</Link>
+                                    <div className="flex flex-col justify-center text-center px-4">
+                                        <FontAwesomeIcon icon={faQuestion} className="text-violet-400 animate-pulse text-4xl lg:text-6xl text-center mt-6 lg:mt-10 mb-3 lg:mb-4 self-center" />
+                                        <p className="text-gray-400 font-medium text-base lg:text-lg text-center">Cezanız bulunmamaktadır.</p>
                                     </div>
                                 ) : (
                                     penalties.data.map((pen) => (
-                                        <div key={pen.id} className={`${up.lg ? "hover:bg-gray-100 hover:translate-x-2 hover:before:content-[''] hover:before:top-0 hover:before:absolute hover:before:left-0 hover:before:bottom-0 hover:before:w-1 hover:before:bg-hero-gradient hover:duration-500 duration-500 group" : ""} flex flex-row gap-x-6 rounded-lg shadow-md border bg-violet-50 border-gray-200 px-8 py-6 mb-6`}>
-                                            <div>
-                                                <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Ceza Oluşturulma Tarihi:</span> {pen.issuedDate}</p>
-                                                <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Ceza Miktarı:</span> {pen.amount}₺</p>
+                                        <div key={pen.id} className={`${up.lg ? "hover:bg-gray-100 hover:translate-x-2 hover:before:content-[''] hover:before:top-0 hover:before:absolute hover:before:left-0 hover:before:bottom-0 hover:before:w-1 hover:before:bg-hero-gradient hover:duration-500 duration-500" : ""} flex flex-col lg:flex-row gap-3 lg:gap-x-6 rounded-lg shadow-md border bg-violet-50 border-gray-200 px-4 lg:px-8 py-4 lg:py-6 mb-4 lg:mb-6`}>
+                                            <div className="flex-1">
+                                                <p className="text-sm lg:text-lg text-gray-400 font-semibold"><span className="font-bold text-violet-500">Tarih:</span> {pen.issuedDate}</p>
+                                                <p className="text-sm lg:text-lg text-gray-400 font-semibold"><span className="font-bold text-violet-500">Miktar:</span> {pen.amount}₺</p>
+                                                <p className="text-sm lg:text-lg text-gray-400 font-semibold"><span className="font-bold text-violet-500">Neden:</span> {pen.reason}</p>
                                             </div>
-                                            <p className="text-lg text-gray-400 font-semibold self-center"><span className="font-bold text-violet-500">Ceza Nedeni</span> {pen.reason}</p>
-                                            <div className="flex flex-row gap-x-4 ml-auto">
-                                                <p className={`rounded-full self-center px-4 text-white shadow-md hover:scale-105 duration-500 py-2 ${pen.isPaid ? "bg-green-400" :"bg-red-400"}`}>{pen.isPaid ? "Ödendi" : "Ödenmedi"}</p>
+                                            <div className="flex flex-row gap-x-2 lg:gap-x-4 lg:ml-auto items-center">
+                                                <p className={`rounded-full px-3 lg:px-4 self-center text-white text-xs lg:text-base shadow-md hover:scale-105 duration-500 py-1 lg:py-2 ${pen.isPaid ? "bg-green-400" : "bg-red-400"}`}>{pen.isPaid ? "Ödendi" : "Ödenmedi"}</p>
                                             </div>
                                         </div>
                                     ))
                                 )}
                             </div>
-                        )}</>
+                        )}
+                    </>
                 )}
             </div>
         </div >
