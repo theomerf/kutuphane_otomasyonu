@@ -16,6 +16,7 @@ import BookCard from "../../components/books/BookCard";
 import UserReviews from "../../components/books/UserReviews";
 import BackendDataObjectReducer from "../../types/backendDataObject";
 import BackendDataListReducer from "../../types/backendDataList";
+import { useBreakpoint } from "../../hooks/useBreakpoint";
 
 export function BookDetail() {
     const [bookDetail, bookDetailDispatch] = useReducer(BackendDataObjectReducer<Book>, {
@@ -34,6 +35,7 @@ export function BookDetail() {
     const navigate = useNavigate();
     const { cart } = useSelector((state: RootState) => state.cart);
     const [relatedBookParams, setRelatedBookParams] = useState<BookRequestParameters | null>(null);
+    const { up } = useBreakpoint();
 
     const fetchBooks = async (id: string, signal?: AbortSignal) => {
         bookDetailDispatch({ type: 'FETCH_START' });
@@ -57,7 +59,7 @@ export function BookDetail() {
             const queryString = new URLSearchParams();
 
             Object.entries(relatedBookParams!).forEach(([key, value]) => {
-                if (key != "tagIds" && key!="categoryIds" && value !== undefined && value !== null && value !== '') {
+                if (key != "tagIds" && key != "categoryIds" && value !== undefined && value !== null && value !== '') {
                     queryString.append(key, value.toString());
                 }
             });
@@ -172,111 +174,169 @@ export function BookDetail() {
                 </div>
             )}
             {bookDetail.data && !bookDetail.isLoading &&
-                <div className="flex flex-col gap-y-20 px-5 lg:px-20">
-                    <div className="grid grid-cols-5 gap-x-40">
+                <div className="flex flex-col gap-y-6 lg:gap-y-20 lg:px-20">
+                    <div className="grid grid-cols-5 gap-x-4 px-4 lg:px-0 lg:gap-x-40">
                         <div className="col-span-2">
                             <ImageSwiper images={bookDetail.data?.images || []} />
                         </div>
                         <div className="col-span-3 flex flex-col gap-y-6">
-                            <p className="text-violet-500 font-bold text-5xl">{bookDetail.data?.title}</p>
-                            <div className="flex flex-row gap-x-10">
+                            <p className="text-violet-500 font-bold text-base lg:text-5xl">{bookDetail.data?.title}</p>
+                            <div className="flex flex-col lg:flex-row gap-x-10">
                                 <div className="flex flex-row gap-x-2">
-                                    <FontAwesomeIcon icon={faPen} className="text-gray-500 font-semibold text-xl self-center" />
+                                    <FontAwesomeIcon icon={faPen} className="text-gray-500 font-semibold text-xs lg:text-xl self-center" />
                                     {bookDetail.data?.authors?.map((author) => (
-                                        <p key={author.id} className="text-gray-500 font-semibold text-base">{author.name}</p>
+                                        <p key={author.id} className="text-gray-500 font-semibold text-xs lg:text-base">{author.name}</p>
                                     ))}
                                 </div>
                                 <div className="flex flex-row gap-x-2">
-                                    <FontAwesomeIcon icon={faBarcode} className="text-gray-500 font-semibold text-xl self-center" />
-                                    <p className="text-gray-500 font-semibold text-base self-center">{bookDetail.data.isbn}</p>
+                                    <FontAwesomeIcon icon={faBarcode} className="text-gray-500 font-semibold text-xs lg:text-xl self-center" />
+                                    <p className="text-gray-500 font-semibold text-xs lg:text-base self-center">{bookDetail.data.isbn}</p>
                                 </div>
                                 <div className="flex flex-row gap-x-2">
-                                    <FontAwesomeIcon icon={faLocationDot} className="text-gray-500 font-semibold text-xl self-center" />
-                                    <p className="text-gray-500 font-semibold text-base self-center">{bookDetail.data.location}</p>
+                                    <FontAwesomeIcon icon={faLocationDot} className="text-gray-500 font-semibold text-xs lg:text-xl self-center" />
+                                    <p className="text-gray-500 font-semibold text-xs lg:text-base self-center">{bookDetail.data.location}</p>
                                 </div>
                             </div>
-                            <div className="mt-3 gap-x-3 flex flex-row">
-                                <div className="self-center flex"><Rating rating={bookDetail.data?.averageRating || 0} /></div>
-                                <p className="self-center text-gray-500 font-bold">({reviewsCount} değerlendirme)</p>
+                            <div className="mt-1 gap-y-1 lg:mt-3 lg:gap-x-3 flex flex-col lg:flex-row">
+                                <div className="lg:self-center flex"><Rating rating={bookDetail.data?.averageRating || 0} /></div>
+                                <p className="lg:self-center text-gray-500 font-semibold text-xs lg:text-base lg:font-bold">({reviewsCount} değerlendirme)</p>
                             </div>
-                            <div className="rounded-3xl px-4 py-8 shadow-xl border border-gray-200 bg-gray-50 grid grid-cols-2 gap-x-2 w-4/5">
+                            {up.lg &&
+                                <>
+                                    <div className="rounded-3xl px-4 py-8 shadow-xl border border-gray-200 bg-gray-50 grid grid-cols-2 gap-x-2 w-4/5">
+                                        <div className="flex flex-col gap-y-2">
+                                            <p className="text-gray-500 font-bold text-xl mb-4">
+                                                <FontAwesomeIcon icon={faLayerGroup} className="mr-2 text-violet-500" />
+                                                Kategoriler
+                                            </p>
+                                            {bookDetail.data?.categories?.map((category) => (
+                                                <span key={category.id} className="text-md font-medium text-gray-500 px-2 bg-violet-50 shadow-sm w-4/5 rounded-lg py-1 hover:scale-105 duration-500">
+                                                    <FontAwesomeIcon icon={faCircleDot} className="text-violet-500 mr-2" />
+                                                    {category.name}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <div>
+                                            <div className="flex flex-col gap-y-2">
+                                                <p className="text-gray-500 font-bold text-xl mb-4">
+                                                    <FontAwesomeIcon icon={faTags} className="mr-2 text-violet-500" />
+                                                    Etiketler
+                                                </p>
+                                                {bookDetail.data?.tags?.map((tag) => (
+                                                    <span key={tag.id} className="text-md font-medium px-2 text-gray-500 bg-violet-50 shadow-sm w-4/5 rounded-lg py-1 hover:scale-105 duration-500">
+                                                        <FontAwesomeIcon icon={faTag} className="text-violet-500 mr-2" />
+                                                        {tag.name}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col gap-y-4 mt-16">
+                                        {(bookDetail.data.availableCopies ?? 0) < 1 ? (
+                                            <button type="button" disabled className="button w-1/2 text-2xl font-semibold !bg-gray-400 cursor-not-allowed">
+                                                <FontAwesomeIcon icon={faBan} className="mr-2" />
+                                                <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Stokta Yok</span>
+                                            </button>
+                                        ) : ((cart?.cartLines && cart?.cartLines?.findIndex(l => l.bookId === bookDetail.data?.id) !== -1) ? (
+                                            <button type="button" onClick={(e) => handleRemoveFromCart(e, bookDetail.data?.id!)} className="button w-1/2 hover:scale-105 text-2xl font-semibold !bg-red-600">
+                                                <FontAwesomeIcon icon={faTrash} className="mr-2" />
+                                                <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepetten Kaldır</span>
+                                            </button>
+                                        ) : (
+                                            <button type="button" onClick={(e) => handleAddToCart(e, bookDetail.data!)} className="button w-1/2 hover:scale-105 text-2xl font-semibold">
+                                                <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
+                                                <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepete Ekle</span>
+                                            </button>
+                                        ))}
+                                        <button type="button" onClick={() => navigate(-1)} className="button w-1/2 !bg-yellow-400 hover:scale-105 text-center text-2xl font-semibold">
+                                            <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+                                            Kitaplara Dön
+                                        </button>
+                                    </div></>
+                            }
+
+                        </div>
+                    </div>
+                    {!up.lg &&
+                        <div className="flex flex-col">
+                            <div className="rounded-3xl self-center px-4 py-8 shadow-xl border border-gray-200 bg-gray-50 grid grid-cols-2 gap-x-2 w-4/5">
                                 <div className="flex flex-col gap-y-2">
-                                    <p className="text-gray-500 font-bold text-xl mb-4">
+                                    <p className="text-gray-500 font-semibold text-[14px] mb-4">
                                         <FontAwesomeIcon icon={faLayerGroup} className="mr-2 text-violet-500" />
                                         Kategoriler
                                     </p>
                                     {bookDetail.data?.categories?.map((category) => (
-                                        <span key={category.id} className="text-md font-medium text-gray-500 px-2 bg-violet-50 shadow-sm w-4/5 rounded-lg py-1 hover:scale-105 duration-500">
-                                            <FontAwesomeIcon icon={faCircleDot} className="text-violet-500 mr-2" />
+                                        <span key={category.id} className="text-xs font-medium text-gray-500 px-2 bg-violet-50 shadow-sm w-4/5 rounded-lg py-1 hover:scale-105 duration-500">
+                                            <FontAwesomeIcon icon={faCircleDot} className="text-violet-500 text-[8px] mr-2" />
                                             {category.name}
                                         </span>
                                     ))}
                                 </div>
                                 <div>
                                     <div className="flex flex-col gap-y-2">
-                                        <p className="text-gray-500 font-bold text-xl mb-4">
+                                        <p className="text-gray-500 font-semibold text-[14px] mb-4">
                                             <FontAwesomeIcon icon={faTags} className="mr-2 text-violet-500" />
                                             Etiketler
                                         </p>
                                         {bookDetail.data?.tags?.map((tag) => (
-                                            <span key={tag.id} className="text-md font-medium px-2 text-gray-500 bg-violet-50 shadow-sm w-4/5 rounded-lg py-1 hover:scale-105 duration-500">
-                                                <FontAwesomeIcon icon={faTag} className="text-violet-500 mr-2" />
+                                            <span key={tag.id} className="text-xs font-medium p-1 text-gray-500 bg-violet-50 shadow-sm w-4/5 rounded-lg  hover:scale-105 duration-500">
+                                                <FontAwesomeIcon icon={faTag} className="text-violet-500 text-[8px] mr-2" />
                                                 {tag.name}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-y-4 mt-16">
+                            <div className="flex flex-col gap-y-4 mt-8 lg:mt-16">
                                 {(bookDetail.data.availableCopies ?? 0) < 1 ? (
-                                    <button type="button" disabled className="button w-1/2 text-2xl font-semibold !bg-gray-400 cursor-not-allowed">
+                                    <button type="button" disabled className="self-center button w-1/2 text-xs font-semibold !bg-gray-400 cursor-not-allowed">
                                         <FontAwesomeIcon icon={faBan} className="mr-2" />
                                         <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Stokta Yok</span>
                                     </button>
                                 ) : ((cart?.cartLines && cart?.cartLines?.findIndex(l => l.bookId === bookDetail.data?.id) !== -1) ? (
-                                    <button type="button" onClick={(e) => handleRemoveFromCart(e, bookDetail.data?.id!)} className="button w-1/2 hover:scale-105 text-2xl font-semibold !bg-red-600">
+                                    <button type="button" onClick={(e) => handleRemoveFromCart(e, bookDetail.data?.id!)} className="self-center button w-1/2 hover:scale-105 text-xs font-semibold !bg-red-600">
                                         <FontAwesomeIcon icon={faTrash} className="mr-2" />
                                         <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepetten Kaldır</span>
                                     </button>
                                 ) : (
-                                    <button type="button" onClick={(e) => handleAddToCart(e, bookDetail.data!)} className="button w-1/2 hover:scale-105 text-2xl font-semibold">
+                                    <button type="button" onClick={(e) => handleAddToCart(e, bookDetail.data!)} className="self-center button w-1/2 hover:scale-105 text-xs font-semibold">
                                         <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
                                         <span className="mr-2 [text-shadow:0_1px_2px_rgba(0,_0,_0,_0.1)]">Sepete Ekle</span>
                                     </button>
                                 ))}
-                                <button type="button" onClick={() => navigate(-1)} className="button w-1/2 !bg-yellow-400 hover:scale-105 text-center text-2xl font-semibold">
+                                <button type="button" onClick={() => navigate(-1)} className="button w-1/2 self-center !bg-yellow-400 hover:scale-105 text-center text-xs font-semibold">
                                     <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                                     Kitaplara Dön
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    }
                     <div className="flex flex-col">
-                        <p className="font-bold text-4xl text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Kitap Özellikleri Ve Değerlendirmeler</p>
-                        <div className="shadow-xl border self-center w-4/5 border-gray-200 bg-gray-50">
+                        <p className="font-bold text-base lg:text-4xl mx-4 lg:mx-0 text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Kitap Özellikleri Ve {!up.lg && <br />}  Değerlendirmeler</p>
+                        <div className="shadow-xl self-center border w-4/5 border-gray-200 bg-gray-50">
                             <div className="bg-violet-400 rounded-lg grid grid-cols-2 ">
-                                <button onClick={() => setActivePanel('details')} className={`${activePanel == "details" ? "bg-violet-500" : "bg-violet-400"} p-4 text-white font-semibold duration-300 rounded-tl-lg rounded-bl-lg rounded-r-none hover:text-xl hover:bg-violet-500 text-lg`} >
+                                <button onClick={() => setActivePanel('details')} className={`${activePanel == "details" ? "bg-violet-500" : "bg-violet-400"} p-3 lg:p-4 text-white font-semibold duration-300 rounded-tl-lg rounded-bl-lg rounded-r-none hover:text-xl hover:bg-violet-500 text-xs lg:text-lg`} >
                                     Detaylar
                                 </button>
-                                <button onClick={() => setActivePanel('reviews')} className={`${activePanel == "reviews" ? "bg-violet-500" : "bg-violet-400"} p-4 text-white border-l-2 duration-300 rounded-tr-lg rounded-br-lg rounded-l-none hover:bg-violet-500 font-semibold text-lg`}>
+                                <button onClick={() => setActivePanel('reviews')} className={`${activePanel == "reviews" ? "bg-violet-500" : "bg-violet-400"} p-3 lg:p-4 text-white border-l-2 duration-300 rounded-tr-lg rounded-br-lg rounded-l-none hover:bg-violet-500 font-semibold text-xs lg:text-lg`}>
                                     Değerlendirmeler
                                 </button>
                             </div>
                             {activePanel === 'details' &&
-                                <div className="text-gray-500 font-medium text-base px-8 py-10 whitespace-pre-line">
+                                <div className="text-gray-500 font-medium text-xs lg:text-base px-4 py-6 lg:px-8 lg:py-10 whitespace-pre-line">
                                     {bookDetail.data?.summary}
                                 </div>
                             }
                             {activePanel === 'reviews' &&
-                                <div className="text-gray-500 font-medium text-base px-8 py-10 whitespace-pre-line">
+                                <div className="text-gray-500 font-medium text-xs lg:text-base px-8 py-10 whitespace-pre-line">
                                     <UserReviews bookId={bookDetail.data.id!} />
                                 </div>
                             }
 
                         </div>
                     </div>
-                    <div>
-                        <p className="font-bold text-4xl text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Benzer Kitaplar</p>
+                    <div className="flex flex-col">
+                        <p className="font-bold text-base lg:text-4xl mx-4 lg:mx-0 text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Benzer Kitaplar</p>
                         {(relatedBooks.isLoading) && (
                             <div className="flex justify-center items-center h-64">
                                 <ClipLoader size={40} color="#8B5CF6" />
@@ -290,13 +350,14 @@ export function BookDetail() {
                         )}
 
                         {relatedBooks.data && !relatedBooks.isLoading &&
-                            <div className="grid grid-cols-4 px-10 gap-x-12">
+                            <div className="grid grid-cols-1 gap-y-4 px-24 lg:grid-cols-4 lg:px-10 lg:gap-x-12">
                                 {relatedBooks.data.map((book) => (
                                     <BookCard key={book.id} book={book} />
                                 ))}
                             </div>
                         }
                     </div>
+
                 </div>}
         </>
     )

@@ -25,8 +25,9 @@ export const loginUser = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const result = await requests.account.login(data);
-            toast.success("Başarıyla giriş yaptınız.");
             history.push("/");
+            await new Promise(resolve => setTimeout(resolve, 100));
+            toast.success("Başarıyla giriş yaptınız.");
             return result;
         }
         catch (error: any) {

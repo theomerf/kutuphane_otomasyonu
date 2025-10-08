@@ -189,25 +189,25 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
 
       {/* Mobil görünüm */}
       {open && down.lg &&
-        <div className={`${user ? "mb-[-18%]" : "mb-[-18%]"} mt-[65px] bg-violet-400 py-3`}>
+        <div className={`${user ? "mb-[-18%]" : "mb-[-18%]"} fixed z-50 w-full mt-[65px] bg-violet-400 py-3`}>
           {user ? (
             <div className="flex justify-center gap-2 mb-3">
-              <Link to="/notifications" title="Bildirimler" className="navButton">
+              <Link onClick={() => setOpen(false)} to="/notifications" title="Bildirimler" className="navButton">
                 <FontAwesomeIcon icon={faBell} className="h-4 w-4" />
               </Link>
-              <Link to="/favorites" title="Favoriler" className="navButton">
+              <Link onClick={() => setOpen(false)} to="/favorites" title="Favoriler" className="navButton">
                 <FontAwesomeIcon icon={faHeart} className="h-4 w-4" />
               </Link>
               {isAdmin ? (
-                <Link to="/admin" title="Admin Paneli" className="navButton">
+                <Link onClick={() => setOpen(false)} to="/admin" title="Admin Paneli" className="navButton">
                   <FontAwesomeIcon icon={faBarsProgress} className="h-4 w-4" />
                 </Link>
               ) : (
-                <Link to="/account" className="navButton">
+                <Link onClick={() => setOpen(false)} to="/account" className="navButton">
                   <p>{user?.userName}</p>
                 </Link>
               )}
-              <Link to="/cart" className="navButton relative">
+              <Link onClick={() => setOpen(false)} to="/cart" className="navButton relative">
                 <FontAwesomeIcon icon={faCartShopping} />
                 <span className="absolute flex right-[-5px] bottom-[-5px] rounded-full w-5 h-5 text-sm bg-red-500 text-white justify-center font-semibold">
                   {cart?.cartLines?.length ?? 0}
@@ -217,7 +217,7 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
           ) :
             (
               <div className="flex justify-center gap-2 mb-3">
-                <Link to="/cart" className="navButton relative">
+                <Link onClick={() => setOpen(false)} to="/cart" className="navButton relative">
                   <FontAwesomeIcon icon={faCartShopping} />
                   <span className="absolute flex right-[-5px] bottom-[-5px] rounded-full w-5 h-5 text-sm bg-red-500 text-white justify-center font-semibold">
                     {cart?.cartLines?.length ?? 0}
@@ -230,7 +230,7 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
           <ul className="flex flex-col gap-3 font-medium text-sm">
             {links.map((l) => (
               <li key={l.name} className="hover:scale-110 px-8 transition-all duration-500">
-                <NavLink to={l?.to} className={({ isActive }) => `block text-center  ${isActive ? 'navButtonActive' : 'navButton'}`}>
+                <NavLink onClick={() => setOpen(false)} to={l?.to} className={({ isActive }) => `block text-center  ${isActive ? 'navButtonActive' : 'navButton'}`}>
                   {l.name}
                 </NavLink>
               </li>

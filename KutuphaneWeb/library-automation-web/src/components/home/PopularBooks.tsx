@@ -57,10 +57,10 @@ export default function PopularBooks() {
         };
     }, []);
     return (
-        <div className="rounded-lg border-gray-200 border shadow-lg">
+        <div className="rounded-lg border-gray-200 bg-violet-50 border shadow-lg">
             <div className="flex flex-col gap-y-14">
-                <div className="bg-violet-400 rounded-tl rounded-tr-lg py-8 sm:px-1 px-5 lg:px-20">
-                    <p className="text-white text-4xl font-bold text-center">Popüler Kitaplar</p>
+                <div className="bg-violet-400 rounded-tl rounded-tr-lg py-5 lg:py-8 sm:px-1 px-5 lg:px-20">
+                    <p className="text-white text-xl lg:text-4xl font-bold text-center">Popüler Kitaplar</p>
                 </div>
                 <div className="pt-6 px-6 pb-10">
                     {(books.isLoading) && (
@@ -81,7 +81,7 @@ export default function PopularBooks() {
                                 hidden: {},
                                 show: { transition: { staggerChildren: 0.15 } }
                             }}>
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-20 lg:gap-x-10 lg:gap-y-20">
+                            <div className="grid grid-cols-1 px-8 lg:p-0 lg:grid-cols-4 gap-x-4 gap-y-10 lg:gap-x-10 lg:gap-y-20">
                                 {books.data.map(book => (
                                     <BookCard key={book.id} book={book} />
                                 ))}

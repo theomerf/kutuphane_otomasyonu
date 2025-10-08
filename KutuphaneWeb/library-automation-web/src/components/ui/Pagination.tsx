@@ -164,7 +164,7 @@ export const Pagination = ({
         </button>
       )}
 
-      <div className="ml-4 text-sm text-gray-600 whitespace-nowrap">
+      <div className="ml-[3px] lg:ml-4 text-sm text-gray-600 whitespace-nowrap">
         Sayfa {currentPage} / {totalPages}
       </div>
     </div>

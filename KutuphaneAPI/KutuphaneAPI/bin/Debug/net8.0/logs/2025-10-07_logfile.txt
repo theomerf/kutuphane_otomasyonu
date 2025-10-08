@@ -380,3 +380,7 @@ Hata Numarası: 2627,Durum: 1,Sınıf:14
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
 2025-10-07 16:22:49.9407 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-07T16:22:49.6663143+03:00"}
+2025-10-07 20:28:36.7203 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-07T20:28:36.2003458+03:00"}
+2025-10-07 20:28:37.6667 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-07T20:28:37.6665954+03:00"}
+2025-10-07 20:50:33.3061 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-07T20:50:33.305902+03:00"}
+2025-10-07 20:52:34.1387 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-07T20:52:34.1385872+03:00"}

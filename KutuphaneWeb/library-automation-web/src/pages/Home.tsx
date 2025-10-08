@@ -48,7 +48,7 @@ export default function Home() {
                                     <img
                                         src={img.imageUrl}
                                         alt={`Duyuru resmi ${index + 1}`}
-                                        className="w-full h-full object-cover hover:scale-[101%] duration-300"
+                                        className="w-full lh-full object-cover lg:hover:scale-[101%] duration-300"
                                         loading={index === 0 ? "eager" : "lazy"}
                                     />
 

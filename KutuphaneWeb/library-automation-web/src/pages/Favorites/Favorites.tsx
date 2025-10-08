@@ -57,7 +57,7 @@ export default function Favorites() {
                 <p className="font-semibold text-4xl  text-violet-500 h-fit border-none pb-2 mb-8 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Favoriler</p>
             </div>
 
-            <div className="flex flex-col gap-y-4 border-gray-200 border shadow-lg mx-20 px-4 py-6 rounded-lg bg-white">
+            <div className="flex flex-col gap-y-4 border-gray-200 border shadow-lg mx-8 lg:mx-20 px-4 py-6 rounded-lg bg-white">
                 {(favoriteBooks.isLoading || status === "pending") && (
                     <div className="flex justify-center items-center h-64">
                         <ClipLoader size={40} color="#8B5CF6" />
@@ -85,7 +85,7 @@ export default function Favorites() {
                             hidden: {},
                             show: { transition: { staggerChildren: 0.15 } }
                         }}>
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-20 px-3 lg:gap-x-10 lg:gap-y-20 lg:px-20">
+                        <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-4 gap-y-20 px-8 lg:gap-x-10 lg:gap-y-20 lg:px-20">
                             {favoriteBooks.data.map(book => (
                                 <BookCard key={book.id} book={book} />
                             ))}

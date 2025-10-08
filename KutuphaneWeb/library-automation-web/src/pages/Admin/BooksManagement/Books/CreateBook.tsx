@@ -9,9 +9,14 @@ import type Author from "../../../../types/author";
 import type Category from "../../../../types/category";
 import type Tag from "../../../../types/tag";
 import { toast } from "react-toastify";
+import { useBreakpoint } from "../../../../hooks/useBreakpoint";
 
 export function CreateBook() {
     const navigate = useNavigate();
+    const { up } = useBreakpoint();
+    const isMobile = !up.md;
+    const isTablet = up.md && !up.lg;
+    
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const [allAuthors, setAllAuthors] = useState<Author[]>([]);
@@ -184,101 +189,161 @@ export function CreateBook() {
     }
 
     return (
-        <div className="flex flex-col px-8 lg:px-80">
+        <div className={`flex flex-col ${isMobile ? 'px-4' : isTablet ? 'px-10' : 'px-8 lg:px-80'}`}>
             <form method="POST" onSubmit={handleSubmit(handleBookCreation)} noValidate>
-                <div className="py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg">
-                    <p className="text-white font-bold text-3xl">
+                <div className={`py-6 md:py-10 text-center bg-violet-500 rounded-tl-lg rounded-tr-lg`}>
+                    <p className={`text-white font-bold ${isMobile ? 'text-xl' : 'text-2xl md:text-3xl'}`}>
                         <FontAwesomeIcon icon={faPlus} className="mr-2" />
-                        Yeni Kitap Ekle
+                        {isMobile ? 'Yeni Kitap' : 'Yeni Kitap Ekle'}
                     </p>
                 </div>
-                <div className="flex flex-col gap-y-6 rounded-lg shadow-xl bg-white border border-gray-200 px-8 py-10">
+                <div className={`flex flex-col ${isMobile ? 'gap-y-4' : 'gap-y-6'} rounded-lg shadow-xl bg-white border border-gray-200 ${isMobile ? 'px-4 py-6' : 'px-6 md:px-8 py-8 md:py-10'}`}>
 
-                    <div className="flex flex-row gap-x-10">
-                        <div className="flex flex-col w-1/2">
-                            <label htmlFor="title" className="font-bold text-gray-500 text-base">Kitap Başlığı</label>
-                            <input type="text" {...register("title", {
-                                required: "Başlık bilgisi gereklidir.",
-                                minLength: {
-                                    value: 3,
-                                    message: "Başlık min. 3 karakter olmalıdır."
-                                }
-                            })} id="title" name="title" className="input w-full mt-4" />
-                            {errors.title && <span className="text-red-700 text-left mt-1">{errors.title?.message?.toString()}</span>}
+                    <div className={`flex ${isMobile ? 'flex-col gap-y-4' : 'flex-row gap-x-6 md:gap-x-10'}`}>
+                        <div className={`flex flex-col ${isMobile ? 'w-full' : 'w-1/2'}`}>
+                            <label htmlFor="title" className={`font-bold text-gray-500 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                                Kitap Başlığı
+                            </label>
+                            <input 
+                                type="text" 
+                                {...register("title", {
+                                    required: "Başlık bilgisi gereklidir.",
+                                    minLength: {
+                                        value: 3,
+                                        message: "Başlık min. 3 karakter olmalıdır."
+                                    }
+                                })} 
+                                id="title" 
+                                name="title" 
+                                className={`input w-full ${isMobile ? 'mt-2' : 'mt-4'}`}
+                            />
+                            {errors.title && <span className="text-red-700 text-xs md:text-sm text-left mt-1">{errors.title?.message?.toString()}</span>}
                         </div>
-                        <div className="flex flex-col w-1/2">
-                            <label htmlFor="isbn" className="font-bold text-gray-500 text-base">ISBN</label>
-                            <input type="text" {...register("isbn", {
-                                required: "ISBN bilgisi gereklidir.",
-                                minLength: {
-                                    value: 13,
-                                    message: "ISBN 13 karakter olmalıdır."
-                                },
-                                maxLength: {
-                                    value: 13,
-                                    message: "ISBN 13 karakter olmalıdır."
-                                }
-                            })} id="isbn" name="isbn" className="input w-full mt-4" />
-                            {errors.isbn && <span className="text-red-700 text-left mt-1">{errors.isbn?.message?.toString()}</span>}
+                        <div className={`flex flex-col ${isMobile ? 'w-full' : 'w-1/2'}`}>
+                            <label htmlFor="isbn" className={`font-bold text-gray-500 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                                ISBN
+                            </label>
+                            <input 
+                                type="text" 
+                                {...register("isbn", {
+                                    required: "ISBN bilgisi gereklidir.",
+                                    minLength: {
+                                        value: 13,
+                                        message: "ISBN 13 karakter olmalıdır."
+                                    },
+                                    maxLength: {
+                                        value: 13,
+                                        message: "ISBN 13 karakter olmalıdır."
+                                    }
+                                })} 
+                                id="isbn" 
+                                name="isbn" 
+                                className={`input w-full ${isMobile ? 'mt-2' : 'mt-4'}`}
+                            />
+                            {errors.isbn && <span className="text-red-700 text-xs md:text-sm text-left mt-1">{errors.isbn?.message?.toString()}</span>}
                         </div>
-                    </div>
-                    <div className="flex flex-row gap-x-10">
-                        <div className="flex flex-col w-1/2">
-                            <label htmlFor="availableCopies" className="font-bold text-gray-500 text-base">Mevcut Kopya</label>
-                            <input type="number" {...register("availableCopies", {
-                                required: "Mevcut kopya bilgisi gereklidir.",
-                                min: {
-                                    value: 0,
-                                    message: "Mevcut kopya 0 veya daha büyük olmalıdır."
-                                },
-                                valueAsNumber: true
-                            })} id="availableCopies" name="availableCopies" className="input w-full mt-4" />
-                            {errors.availableCopies && <span className="text-red-700 text-left mt-1">{errors.availableCopies?.message?.toString()}</span>}
-                        </div>
-                        <div className="flex flex-col w-1/2">
-                            <label htmlFor="totalCopies" className="font-bold text-gray-500 text-base">Toplam Kopya</label>
-                            <input type="number" {...register("totalCopies", {
-                                required: "Toplam kopya bilgisi gereklidir.",
-                                min: {
-                                    value: 1,
-                                    message: "Toplam kopya en az 1 olmalıdır."
-                                },
-                                valueAsNumber: true
-                            })} id="totalCopies" name="totalCopies" className="input w-full mt-4" />
-                            {errors.totalCopies && <span className="text-red-700 text-left mt-1">{errors.totalCopies?.message?.toString()}</span>}
-                        </div>
-                    </div>
-                    <div className="flex flex-row gap-x-10">
-                        <div className="flex flex-col w-1/2">
-                            <label htmlFor="location" className="font-bold text-gray-500 text-base">Yer</label>
-                            <input type="text" {...register("location", {
-                                required: "Yer bilgisi gereklidir.",
-                            })} id="location" name="location" className="input w-full mt-4" />
-                            {errors.location && <span className="text-red-700 text-left mt-1">{errors.location?.message?.toString()}</span>}
-                        </div>
-                        <div className="flex flex-col w-1/2">
-                            <label htmlFor="publishedDate" className="font-bold text-gray-500 text-base">Yayınlanma Tarihi</label>
-                            <input type="date" {...register("publishedDate", {
-                                required: "Yayın tarihi gereklidir.",
-                            })} id="publishedDate" name="publishedDate" className="input w-full mt-4" />
-                            {errors.publishedDate && <span className="text-red-700 text-left mt-1">{errors.publishedDate?.message?.toString()}</span>}
-                        </div>
-                    </div>
-                    <div className="flex flex-col w-full">
-                        <label htmlFor="summary" className="font-bold text-gray-500 text-base">Özet</label>
-                        <textarea {...register("summary", {
-                            required: "Özet bilgisi gereklidir.",
-                        })} id="summary" name="summary" className="input w-full mt-4 resize-none h-24" />
-                        {errors.summary && <span className="text-red-700 text-left mt-1">{errors.summary?.message?.toString()}</span>}
                     </div>
 
+                    <div className={`flex ${isMobile ? 'flex-col gap-y-4' : 'flex-row gap-x-6 md:gap-x-10'}`}>
+                        <div className={`flex flex-col ${isMobile ? 'w-full' : 'w-1/2'}`}>
+                            <label htmlFor="availableCopies" className={`font-bold text-gray-500 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                                Mevcut Kopya
+                            </label>
+                            <input 
+                                type="number" 
+                                {...register("availableCopies", {
+                                    required: "Mevcut kopya bilgisi gereklidir.",
+                                    min: {
+                                        value: 0,
+                                        message: "Mevcut kopya 0 veya daha büyük olmalıdır."
+                                    },
+                                    valueAsNumber: true
+                                })} 
+                                id="availableCopies" 
+                                name="availableCopies" 
+                                className={`input w-full ${isMobile ? 'mt-2' : 'mt-4'}`}
+                            />
+                            {errors.availableCopies && <span className="text-red-700 text-xs md:text-sm text-left mt-1">{errors.availableCopies?.message?.toString()}</span>}
+                        </div>
+                        <div className={`flex flex-col ${isMobile ? 'w-full' : 'w-1/2'}`}>
+                            <label htmlFor="totalCopies" className={`font-bold text-gray-500 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                                Toplam Kopya
+                            </label>
+                            <input 
+                                type="number" 
+                                {...register("totalCopies", {
+                                    required: "Toplam kopya bilgisi gereklidir.",
+                                    min: {
+                                        value: 1,
+                                        message: "Toplam kopya en az 1 olmalıdır."
+                                    },
+                                    valueAsNumber: true
+                                })} 
+                                id="totalCopies" 
+                                name="totalCopies" 
+                                className={`input w-full ${isMobile ? 'mt-2' : 'mt-4'}`}
+                            />
+                            {errors.totalCopies && <span className="text-red-700 text-xs md:text-sm text-left mt-1">{errors.totalCopies?.message?.toString()}</span>}
+                        </div>
+                    </div>
+
+                    <div className={`flex ${isMobile ? 'flex-col gap-y-4' : 'flex-row gap-x-6 md:gap-x-10'}`}>
+                        <div className={`flex flex-col ${isMobile ? 'w-full' : 'w-1/2'}`}>
+                            <label htmlFor="location" className={`font-bold text-gray-500 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                                Yer
+                            </label>
+                            <input 
+                                type="text" 
+                                {...register("location", {
+                                    required: "Yer bilgisi gereklidir.",
+                                })} 
+                                id="location" 
+                                name="location" 
+                                className={`input w-full ${isMobile ? 'mt-2' : 'mt-4'}`}
+                            />
+                            {errors.location && <span className="text-red-700 text-xs md:text-sm text-left mt-1">{errors.location?.message?.toString()}</span>}
+                        </div>
+                        <div className={`flex flex-col ${isMobile ? 'w-full' : 'w-1/2'}`}>
+                            <label htmlFor="publishedDate" className={`font-bold text-gray-500 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                                Yayınlanma Tarihi
+                            </label>
+                            <input 
+                                type="date" 
+                                {...register("publishedDate", {
+                                    required: "Yayın tarihi gereklidir.",
+                                })} 
+                                id="publishedDate" 
+                                name="publishedDate" 
+                                className={`input w-full ${isMobile ? 'mt-2' : 'mt-4'}`}
+                            />
+                            {errors.publishedDate && <span className="text-red-700 text-xs md:text-sm text-left mt-1">{errors.publishedDate?.message?.toString()}</span>}
+                        </div>
+                    </div>
+
                     <div className="flex flex-col w-full">
-                        <label className="font-bold text-gray-500 text-base mb-4">Yazarlar</label>
-                        <div className="flex gap-x-4 mb-4">
+                        <label htmlFor="summary" className={`font-bold text-gray-500 ${isMobile ? 'text-sm' : 'text-base'}`}>
+                            Özet
+                        </label>
+                        <textarea 
+                            {...register("summary", {
+                                required: "Özet bilgisi gereklidir.",
+                            })} 
+                            id="summary" 
+                            name="summary" 
+                            className={`input w-full ${isMobile ? 'mt-2 h-20' : 'mt-4 h-24'} resize-none`}
+                        />
+                        {errors.summary && <span className="text-red-700 text-xs md:text-sm text-left mt-1">{errors.summary?.message?.toString()}</span>}
+                    </div>
+
+                    <div className="flex flex-col w-full">
+                        <label className={`font-bold text-gray-500 ${isMobile ? 'text-sm mb-2' : 'text-base mb-4'}`}>
+                            Yazarlar
+                        </label>
+                        <div className={`flex ${isMobile ? 'flex-col gap-y-2' : 'flex-row gap-x-4'} mb-4`}>
                             <select
                                 value={selectedAuthorId || ""}
                                 onChange={(e) => setSelectedAuthorId(Number(e.target.value) || null)}
-                                className="input flex-1"
+                                className={`input ${isMobile ? 'w-full text-sm' : 'flex-1'}`}
                             >
                                 <option value="">Yazar Seçin</option>
                                 {allAuthors.filter(author => !selectedAuthors.find(sa => sa.id === author.id)).map(author => (
@@ -288,22 +353,23 @@ export function CreateBook() {
                             <button
                                 type="button"
                                 onClick={addAuthor}
-                                className="button px-6 hover:scale-105"
+                                className={`button ${isMobile ? 'w-full text-sm py-2' : 'px-6'} hover:scale-105`}
                                 disabled={!selectedAuthorId}
                             >
-                                <FontAwesomeIcon icon={faPlus} />
+                                <FontAwesomeIcon icon={faPlus} className={isMobile ? 'mr-2' : ''} />
+                                {isMobile && 'Ekle'}
                             </button>
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {selectedAuthors.map(author => (
-                                <div key={author.id} className="flex items-center bg-violet-100 text-violet-800 px-3 py-2 rounded-lg border border-violet-200">
+                                <div key={author.id} className={`flex items-center bg-violet-100 text-violet-800 ${isMobile ? 'px-2 py-1 text-xs' : 'px-3 py-2 text-sm'} rounded-lg border border-violet-200`}>
                                     <span className="mr-2 font-medium">{author.name}</span>
                                     <button
                                         type="button"
                                         onClick={() => removeAuthor(author.id)}
                                         className="text-red-500 hover:text-red-700 hover:scale-110 transition-all duration-200"
                                     >
-                                        <FontAwesomeIcon icon={faTimes} />
+                                        <FontAwesomeIcon icon={faTimes} className={isMobile ? 'text-xs' : ''} />
                                     </button>
                                 </div>
                             ))}
@@ -311,12 +377,14 @@ export function CreateBook() {
                     </div>
 
                     <div className="flex flex-col w-full">
-                        <label className="font-bold text-gray-500 text-base mb-4">Kategoriler</label>
-                        <div className="flex gap-x-4 mb-4">
+                        <label className={`font-bold text-gray-500 ${isMobile ? 'text-sm mb-2' : 'text-base mb-4'}`}>
+                            Kategoriler
+                        </label>
+                        <div className={`flex ${isMobile ? 'flex-col gap-y-2' : 'flex-row gap-x-4'} mb-4`}>
                             <select
                                 value={selectedCategoryId || ""}
                                 onChange={(e) => setSelectedCategoryId(Number(e.target.value) || null)}
-                                className="input flex-1"
+                                className={`input ${isMobile ? 'w-full text-sm' : 'flex-1'}`}
                             >
                                 <option value="">Kategori Seçin</option>
                                 {allCategories.filter(category => !selectedCategories.find(sc => sc.id === category.id)).map(category => (
@@ -326,22 +394,23 @@ export function CreateBook() {
                             <button
                                 type="button"
                                 onClick={addCategory}
-                                className="button px-6 hover:scale-105"
+                                className={`button ${isMobile ? 'w-full text-sm py-2' : 'px-6'} hover:scale-105`}
                                 disabled={!selectedCategoryId}
                             >
-                                <FontAwesomeIcon icon={faPlus} />
+                                <FontAwesomeIcon icon={faPlus} className={isMobile ? 'mr-2' : ''} />
+                                {isMobile && 'Ekle'}
                             </button>
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {selectedCategories.map(category => (
-                                <div key={category.id} className="flex items-center bg-blue-100 text-blue-800 px-3 py-2 rounded-lg border border-blue-200">
+                                <div key={category.id} className={`flex items-center bg-blue-100 text-blue-800 ${isMobile ? 'px-2 py-1 text-xs' : 'px-3 py-2 text-sm'} rounded-lg border border-blue-200`}>
                                     <span className="mr-2 font-medium">{category.name}</span>
                                     <button
                                         type="button"
                                         onClick={() => removeCategory(category.id)}
                                         className="text-red-500 hover:text-red-700 hover:scale-110 transition-all duration-200"
                                     >
-                                        <FontAwesomeIcon icon={faTimes} />
+                                        <FontAwesomeIcon icon={faTimes} className={isMobile ? 'text-xs' : ''} />
                                     </button>
                                 </div>
                             ))}
@@ -349,12 +418,14 @@ export function CreateBook() {
                     </div>
 
                     <div className="flex flex-col w-full">
-                        <label className="font-bold text-gray-500 text-base mb-4">Etiketler</label>
-                        <div className="flex gap-x-4 mb-4">
+                        <label className={`font-bold text-gray-500 ${isMobile ? 'text-sm mb-2' : 'text-base mb-4'}`}>
+                            Etiketler
+                        </label>
+                        <div className={`flex ${isMobile ? 'flex-col gap-y-2' : 'flex-row gap-x-4'} mb-4`}>
                             <select
                                 value={selectedTagId || ""}
                                 onChange={(e) => setSelectedTagId(Number(e.target.value) || null)}
-                                className="input flex-1"
+                                className={`input ${isMobile ? 'w-full text-sm' : 'flex-1'}`}
                             >
                                 <option value="">Etiket Seçin</option>
                                 {allTags.filter(tag => !selectedTags.find(st => st.id === tag.id)).map(tag => (
@@ -364,22 +435,23 @@ export function CreateBook() {
                             <button
                                 type="button"
                                 onClick={addTag}
-                                className="button px-6 hover:scale-105"
+                                className={`button ${isMobile ? 'w-full text-sm py-2' : 'px-6'} hover:scale-105`}
                                 disabled={!selectedTagId}
                             >
-                                <FontAwesomeIcon icon={faPlus} />
+                                <FontAwesomeIcon icon={faPlus} className={isMobile ? 'mr-2' : ''} />
+                                {isMobile && 'Ekle'}
                             </button>
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {selectedTags.map(tag => (
-                                <div key={tag.id} className="flex items-center bg-green-100 text-green-800 px-3 py-2 rounded-lg border border-green-200">
+                                <div key={tag.id} className={`flex items-center bg-green-100 text-green-800 ${isMobile ? 'px-2 py-1 text-xs' : 'px-3 py-2 text-sm'} rounded-lg border border-green-200`}>
                                     <span className="mr-2 font-medium">{tag.name}</span>
                                     <button
                                         type="button"
                                         onClick={() => removeTag(tag.id)}
                                         className="text-red-500 hover:text-red-700 hover:scale-110 transition-all duration-200"
                                     >
-                                        <FontAwesomeIcon icon={faTimes} />
+                                        <FontAwesomeIcon icon={faTimes} className={isMobile ? 'text-xs' : ''} />
                                     </button>
                                 </div>
                             ))}
@@ -387,9 +459,11 @@ export function CreateBook() {
                     </div>
 
                     <div className="flex flex-col w-full">
-                        <label className="font-bold text-gray-500 text-base mb-4">Fotoğraflar</label>
+                        <label className={`font-bold text-gray-500 ${isMobile ? 'text-sm mb-2' : 'text-base mb-4'}`}>
+                            Fotoğraflar
+                        </label>
 
-                        <div className="flex flex-row gap-x-4 mb-6">
+                        <div className={`flex ${isMobile ? 'flex-col gap-y-2' : 'flex-row gap-x-4'} mb-4 md:mb-6`}>
                             <div className="flex flex-row gap-x-1">
                                 <input
                                     type="file"
@@ -401,14 +475,14 @@ export function CreateBook() {
                                 />
                                 <label
                                     htmlFor="imageUpload"
-                                    className="button inline-flex items-center cursor-pointer hover:scale-105"
+                                    className={`button inline-flex items-center cursor-pointer hover:scale-105 ${isMobile ? 'w-full justify-center text-sm py-2' : ''}`}
                                 >
                                     <FontAwesomeIcon icon={faUpload} className="mr-2" />
                                     Fotoğraf Ekle
                                 </label>
                             </div>
 
-                            <div className="flex flex-row gap-x-1">
+                            <div className="flex flex-row gap-x-2 items-center">
                                 <input
                                     type="checkbox"
                                     id="isImagesUrl"
@@ -417,44 +491,61 @@ export function CreateBook() {
                                 />
                                 <label
                                     htmlFor="isImagesUrl"
-                                    className="self-center font-semibold"
+                                    className={`font-semibold ${isMobile ? 'text-sm' : ''}`}
                                 >
                                     <FontAwesomeIcon icon={faUpload} className="mr-1" />
                                     URL'den Yükle
                                 </label>
                             </div>
-
                         </div>
 
-                        {isImagesUrl &&
-                            <div className="flex flex-row gap-x-4 mb-6">
-                                <label htmlFor="newImagesUrl" className="font-bold self-center text-gray-500 w-1/5 text-base">Fotoğraf URL</label>
-                                <input type="text" onChange={(e) => setImageUrl(e.target.value)} id="newImagesUrl" value={imageUrl} className="input w-full" />
+                        {isImagesUrl && (
+                            <div className={`flex ${isMobile ? 'flex-col gap-y-2' : 'flex-row gap-x-4'} mb-4 md:mb-6`}>
+                                {!isMobile && (
+                                    <label htmlFor="newImagesUrl" className="font-bold self-center text-gray-500 w-1/5 text-base">
+                                        Fotoğraf URL
+                                    </label>
+                                )}
+                                <input 
+                                    type="text" 
+                                    onChange={(e) => setImageUrl(e.target.value)} 
+                                    id="newImagesUrl" 
+                                    value={imageUrl} 
+                                    placeholder={isMobile ? "Fotoğraf URL" : ""}
+                                    className={`input w-full ${isMobile ? 'text-sm' : ''}`}
+                                />
                                 <button
                                     type="button"
-                                    onClick={() => { setnewImagesUrl([...newImagesUrl, imageUrl]); setImagePreviews([...imagePreviews, imageUrl]); setImageUrl(""); }}
-                                    className="button px-6 hover:scale-105"
+                                    onClick={() => { 
+                                        setnewImagesUrl([...newImagesUrl, imageUrl]); 
+                                        setImagePreviews([...imagePreviews, imageUrl]); 
+                                        setImageUrl(""); 
+                                    }}
+                                    className={`button ${isMobile ? 'w-full text-sm py-2' : 'px-6'} hover:scale-105`}
                                 >
-                                    <FontAwesomeIcon icon={faPlus} />
+                                    <FontAwesomeIcon icon={faPlus} className={isMobile ? 'mr-2' : ''} />
+                                    {isMobile && 'Ekle'}
                                 </button>
                             </div>
-                        }
+                        )}
 
                         {imagePreviews.length > 0 && (
                             <div>
-                                <h4 className="font-semibold text-gray-600 mb-3">Seçilen Fotoğraflar</h4>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <h4 className={`font-semibold text-gray-600 ${isMobile ? 'text-sm mb-2' : 'mb-3'}`}>
+                                    Seçilen Fotoğraflar
+                                </h4>
+                                <div className={`grid ${isMobile ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-4'} gap-2 md:gap-4`}>
                                     {imagePreviews.map((preview, index) => (
                                         <div key={index} className="relative group">
                                             <img
                                                 src={preview}
                                                 alt={`Yeni fotoğraf ${index + 1}`}
-                                                className="w-full h-32 object-cover rounded-lg border border-gray-200"
+                                                className={`w-full ${isMobile ? 'h-24' : 'h-32'} object-cover rounded-lg border border-gray-200`}
                                             />
                                             <button
                                                 type="button"
                                                 onClick={() => removeNewImage(index)}
-                                                className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                                                className={`absolute top-1 right-1 md:top-2 md:right-2 bg-red-500 text-white rounded-full ${isMobile ? 'w-5 h-5' : 'w-6 h-6'} flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600`}
                                             >
                                                 <FontAwesomeIcon icon={faTrash} className="text-xs" />
                                             </button>
@@ -465,10 +556,10 @@ export function CreateBook() {
                         )}
                     </div>
 
-                    <div className="flex flex-row mt-10 gap-x-4 px-20">
+                    <div className={`flex ${isMobile ? 'flex-col gap-y-3' : 'flex-row gap-x-4'} ${isMobile ? 'mt-6' : 'mt-10'} ${isMobile ? 'px-0' : 'md:px-10 lg:px-20'}`}>
                         <button
                             type="submit"
-                            className="button w-1/2 font-bold text-lg !py-4 hover:scale-105 duration-300"
+                            className={`button ${isMobile ? 'w-full' : 'w-1/2'} font-bold ${isMobile ? 'text-base py-3' : 'text-lg py-4'} hover:scale-105 duration-300`}
                             disabled={isLoading}
                         >
                             {isLoading ? (
@@ -476,11 +567,15 @@ export function CreateBook() {
                             ) : (
                                 <>
                                     <FontAwesomeIcon icon={faCheck} className="mr-2" />
-                                    Kitap Oluştur
+                                    {isMobile ? 'Oluştur' : 'Kitap Oluştur'}
                                 </>
                             )}
                         </button>
-                        <button type="button" onClick={() => navigate(-1)} className="button w-1/2 !bg-red-500 font-bold !py-4 text-center text-lg hover:scale-105 duration-300">
+                        <button 
+                            type="button" 
+                            onClick={() => navigate(-1)} 
+                            className={`button ${isMobile ? 'w-full' : 'w-1/2'} !bg-red-500 font-bold ${isMobile ? 'text-base py-3' : 'text-lg py-4'} text-center hover:scale-105 duration-300`}
+                        >
                             <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                             Geri Dön
                         </button>

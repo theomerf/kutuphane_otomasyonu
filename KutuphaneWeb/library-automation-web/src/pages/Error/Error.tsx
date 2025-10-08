@@ -15,7 +15,7 @@ export default function Error() {
         <div>
             {state?.error ? (
                 <>
-                    <div className="flex flex-col gap-y-8 text-center m-20 shadow-lg rounded-lg border-gray-200 p-10 border">
+                    <div className="flex flex-col gap-y-8 text-center m-4 lg:m-20 shadow-lg rounded-lg border-gray-200 p-10 border">
                         <FontAwesomeIcon icon={faCircleExclamation} className="text-violet-400 text-5xl animate-pulse self-center" />
                         <div>
                             <p className="text-gray-500 text-3xl font-bold">{state.error}</p>
@@ -26,7 +26,7 @@ export default function Error() {
                 </>
             ) : (
                 <>
-                    <div className="flex flex-col gap-y-8 text-center m-20 shadow-lg rounded-lg border-gray-200 p-10 border">
+                    <div className="flex flex-col gap-y-8 text-center m-4 lg:m-20 shadow-lg rounded-lg border-gray-200 p-10 border">
                         <FontAwesomeIcon icon={faCircleExclamation} className="text-violet-400 text-5xl animate-pulse self-center" />
                         <div>
                             <p className="text-gray-500 text-3xl font-bold">Server Error</p>

@@ -62,7 +62,7 @@ export const fetchFavorites = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             var response = await requests.account.getFavorites();
-            return response;
+            return response.data;
         }
         catch (error: any) {
             if (error.response?.data) {
@@ -132,7 +132,7 @@ export const favoritesSlice = createSlice(
                 state.error = null;
             });
             builder.addCase(fetchFavorites.fulfilled, (state, action) => {
-                state.favorites = action.payload.data.favoriteBookIds;
+                state.favorites = action.payload.favoriteBookIds;
                 localStorage.setItem("favorites", JSON.stringify(state.favorites));
                 state.status = "idle";
             });

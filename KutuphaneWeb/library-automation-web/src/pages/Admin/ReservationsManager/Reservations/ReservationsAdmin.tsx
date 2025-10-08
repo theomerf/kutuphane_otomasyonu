@@ -26,6 +26,8 @@ export default function ReservationsAdmin() {
     const [timeSlots, setTimeSlots] = useState<Map<string, TimeSlot[]>>(new Map());
     const [selectedTimeSlot, setSelectedTimeSlot] = useState<TimeSlot | null>(null);
     const { up } = useBreakpoint();
+    const isMobile = !up.md;
+    const isTablet = up.md && !up.lg;
     const [searchParams, setSearchParams] = useSearchParams();
     const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
     const [pagination, setPagination] = useState<PaginationHeader>({
@@ -249,80 +251,96 @@ export default function ReservationsAdmin() {
 
     return (
         <div className="flex flex-col">
-            <div className="flex flex-row mx-8 lg:mx-20">
-                <p className="font-semibold text-4xl  text-violet-500 h-fit border-none pb-2 mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Rezervasyon Yönetimi</p>
-                <div className="flex flex-row gap-x-4 ml-auto">
-                    <Link to="/admin/dashboard/reservations" className="button font-bold text-lg self-center hover:scale-105 duration-500">
+            <div className="flex flex-col md:flex-row mx-4 md:mx-8 lg:mx-20 gap-4">
+                <p className="font-semibold text-2xl md:text-4xl text-violet-500 h-fit border-none pb-2 mb-4 md:mb-12 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-16 md:after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">
+                    {isMobile ? 'Rezervasyonlar' : 'Rezervasyon Yönetimi'}
+                </p>
+                <div className="flex ml-auto">
+                    <Link to="/admin/dashboard/reservations" className="lg:self-center button font-bold text-sm md:text-lg hover:scale-105 duration-500 py-2">
                         <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
                         Geri
                     </Link>
                 </div>
             </div>
             <div className="flex justify-center mt-2 mb-6">
-                {(up.lg || isMobileFiltersOpen) ?
-                    (
-                        <div className="fixed left-0 z-10 lg:z-0 lg:static flex flex-col lg:flex-row w-fit xl:w-3/5 justify-center items-center gap-4 lg:gap-6 self-center shadow-xl lg:p-5 pb-6 rounded-br-lg lg:rounded-xl bg-white/95 backdrop-blur-sm border border-white/20">
-                            <div className="bg-violet-400 lg:bg-white flex items-center py-6 px-6 lg:p-6 rounded-tr-lg lg:rounded-tr-none gap-3">
-                                <FontAwesomeIcon icon={faCalendarAlt} className="text-white lg:text-violet-500 text-lg" />
-                                <p className="font-bold lg:text-lg text-white lg:text-gray-600">Rezervasyon Filtreleri</p>
-                                {!up.lg && isMobileFiltersOpen && <button onClick={() => setIsMobileFiltersOpen(false)} className="bg-red-600 rounded-full w-8 h-8 ml-2 text-white py-1 px-2">X</button>}
+                {(up.lg || isMobileFiltersOpen) ? (
+                    <div className="fixed left-0 z-10 lg:z-0 lg:static flex flex-col lg:flex-row w-full lg:w-fit xl:w-3/5 justify-center items-center gap-4 lg:gap-6 self-center shadow-xl lg:p-5 pb-6 rounded-br-lg lg:rounded-xl bg-white/95 backdrop-blur-sm border border-white/20">
+                        <div className="bg-violet-400 w-full lg:bg-white flex items-center py-4 px-4 lg:p-6 rounded-tr-lg lg:rounded-tr-none gap-3">
+                            <FontAwesomeIcon icon={faCalendarAlt} className="text-white lg:text-violet-500 text-base lg:text-lg" />
+                            <p className="font-bold text-sm lg:text-lg text-white lg:text-gray-600">Rezervasyon Filtreleri</p>
+                            {!up.lg && isMobileFiltersOpen && (
+                                <button onClick={() => setIsMobileFiltersOpen(false)} className="bg-red-600 rounded-full w-7 h-7 ml-auto text-white text-sm">
+                                    X
+                                </button>
+                            )}
+                        </div>
+
+                        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 w-full px-4 lg:w-auto">
+                            <div className="relative flex-1 lg:min-w-[200px]">
+                                <label htmlFor="dateSelect" className="block text-xs md:text-sm font-medium text-gray-600 mb-2">
+                                    <FontAwesomeIcon icon={faCalendarDays} className="mr-2 text-violet-500" />
+                                    Tarih
+                                </label>
+                                <select
+                                    id="dateSelect"
+                                    className="w-full py-2 md:py-3 px-3 md:px-4 pr-10 border-2 border-gray-200 rounded-xl shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-all duration-300 appearance-none text-gray-700 text-sm md:text-base font-semibold hover:border-violet-300"
+                                    value={selectedDate!}
+                                    onChange={(e) => {
+                                        setSelectedDate(e.target.value);
+                                        setSelectedTimeSlot(timeSlots.get(e.target.value)?.[0] || null);
+                                        setQuery(prev => ({ ...prev, date: e.target.value, timeSlotId: timeSlots.get(e.target.value)?.[0].id }))
+                                    }}
+                                >
+                                    <option value={getTodayFormatted()}>Bugün</option>
+                                    <option value={getTomorrowFormatted()}>Yarın</option>
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-3 top-6 md:top-8 flex items-center text-gray-400">
+                                    <FontAwesomeIcon icon={faChevronDown} className="h-3 w-3 md:h-4 md:w-4" />
+                                </div>
                             </div>
 
-                            <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 w-full px-2 lg:w-auto">
-                                <div className="relative flex-1 lg:min-w-[200px]">
-                                    <label htmlFor="dateSelect" className="block text-sm font-medium text-gray-600 mb-2">
-                                        <FontAwesomeIcon icon={faCalendarDays} className="mr-2 text-violet-500" />
-                                        Tarih
-                                    </label>
-                                    <select id="dateSelect" className="w-full py-3 px-4 pr-10 border-2 border-gray-200 rounded-xl shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-all duration-300 appearance-none text-gray-700 font-semibold hover:border-violet-300" value={selectedDate!} onChange={(e) => { setSelectedDate(e.target.value); setSelectedTimeSlot(timeSlots.get(e.target.value)?.[0] || null); setQuery(prev => ({ ...prev, date: e.target.value, timeSlotId: timeSlots.get(e.target.value)?.[0].id })) }}>
-                                        <option value={getTodayFormatted()}>Bugün</option>
-                                        <option value={getTomorrowFormatted()}>Yarın</option>
-                                    </select>
-                                    <div className="pointer-events-none absolute inset-y-0 right-3 top-8 flex items-center text-gray-400">
-                                        <FontAwesomeIcon icon={faChevronDown} className="h-4 w-4" />
-                                    </div>
-                                </div>
-
-                                <div className="relative flex-1 lg:min-w-[250px]">
-                                    <label htmlFor="timeSlotSelect" className="block text-sm font-medium text-gray-600 mb-2">
-                                        <FontAwesomeIcon icon={faClock} className="mr-2 text-violet-500" />
-                                        Zaman Aralığı
-                                    </label>
-                                    <select id="timeSlotSelect" className="w-full py-3 px-4 pr-10 border-2 border-gray-200 rounded-xl shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-all duration-300 appearance-none text-gray-700 font-semibold hover:border-violet-300" value={selectedTimeSlot?.id!} onChange={(e) => { setSelectedTimeSlot(timeSlots.get(getTomorrowFormatted())?.find(t => t.id === parseInt(e.target.value)) || null); setQuery(prev => ({ ...prev, timeSlotId: parseInt(e.target.value) })); }}>
-                                        {selectedDate === getTomorrowFormatted() ? (
-                                            timeSlots.get(getTomorrowFormatted())?.map(timeSlot => (
-                                                <option key={timeSlot.id} value={timeSlot.id}>
-                                                    {formatTime(timeSlot.startTime)} - {formatTime(timeSlot.endTime)}
-                                                </option>
-                                            )) || []
-                                        ) : (
-                                            timeSlots.get(getTodayFormatted())?.map(timeSlot => (
-                                                <option key={timeSlot.id} value={timeSlot.id}>
-                                                    {formatTime(timeSlot.startTime)} - {formatTime(timeSlot.endTime)}
-                                                </option>
-                                            )) || []
-                                        )}
-                                    </select>
-                                    <div className="pointer-events-none absolute inset-y-0 right-3 top-8 flex items-center text-gray-400">
-                                        <FontAwesomeIcon icon={faChevronDown} className="h-4 w-4" />
-                                    </div>
+                            <div className="relative flex-1 lg:min-w-[250px]">
+                                <label htmlFor="timeSlotSelect" className="block text-xs md:text-sm font-medium text-gray-600 mb-2">
+                                    <FontAwesomeIcon icon={faClock} className="mr-2 text-violet-500" />
+                                    Zaman Aralığı
+                                </label>
+                                <select
+                                    id="timeSlotSelect"
+                                    className="w-full py-2 md:py-3 px-3 md:px-4 pr-10 border-2 border-gray-200 rounded-xl shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-all duration-300 appearance-none text-gray-700 text-sm md:text-base font-semibold hover:border-violet-300"
+                                    value={selectedTimeSlot?.id!}
+                                    onChange={(e) => {
+                                        setSelectedTimeSlot(timeSlots.get(getTomorrowFormatted())?.find(t => t.id === parseInt(e.target.value)) || null);
+                                        setQuery(prev => ({ ...prev, timeSlotId: parseInt(e.target.value) }));
+                                    }}
+                                >
+                                    {selectedDate === getTomorrowFormatted() ? (
+                                        timeSlots.get(getTomorrowFormatted())?.map(timeSlot => (
+                                            <option key={timeSlot.id} value={timeSlot.id}>
+                                                {formatTime(timeSlot.startTime)} - {formatTime(timeSlot.endTime)}
+                                            </option>
+                                        )) || []
+                                    ) : (
+                                        timeSlots.get(getTodayFormatted())?.map(timeSlot => (
+                                            <option key={timeSlot.id} value={timeSlot.id}>
+                                                {formatTime(timeSlot.startTime)} - {formatTime(timeSlot.endTime)}
+                                            </option>
+                                        )) || []
+                                    )}
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-3 top-6 md:top-8 flex items-center text-gray-400">
+                                    <FontAwesomeIcon icon={faChevronDown} className="h-3 w-3 md:h-4 md:w-4" />
                                 </div>
                             </div>
                         </div>
-                    )
-                    : (
-                        (
-                            <button className="absolute left-0 p-1 bg-violet-500 text-xl font-semibold text-white rounded-tr-lg rounded-br-lg" onClick={() => setIsMobileFiltersOpen(true)}>
-                                <FontAwesomeIcon icon={faCalendarAlt} />
-                            </button>
-                        )
-                    )
-                }
+                    </div>
+                ) : (
+                    <button className="absolute left-0 p-2 bg-violet-500 text-base md:text-xl font-semibold text-white rounded-tr-lg rounded-br-lg" onClick={() => setIsMobileFiltersOpen(true)}>
+                        <FontAwesomeIcon icon={faCalendarAlt} />
+                    </button>
+                )}
             </div>
-            <div className="sm:px-1 px-5 lg:px-20">
-
-
-                <div className="lg:col-span-3 flex flex-col mt-8 lg:mt-0">
+            <div className="px-4 md:px-5 lg:px-20">
+                <div className="lg:col-span-3 flex flex-col mt-4 md:mt-8 lg:mt-0">
                     {(reservations.isLoading) && (
                         <div className="flex justify-center items-center h-64">
                             <ClipLoader size={40} color="#8B5CF6" />
@@ -330,45 +348,132 @@ export default function ReservationsAdmin() {
                     )}
 
                     {reservations.error && (
-                        <div className="flex justify-center items-center h-64 text-red-500">
+                        <div className="flex justify-center items-center h-64 text-red-500 text-center px-4">
                             {reservations.error}
                         </div>
                     )}
 
                     {reservations.data && !reservations.isLoading && (
-                        <div>
-                            <table className="table-auto w-full border-collapse border border-gray-200 bg-white shadow-lg">
-                                <thead>
-                                    <tr className="bg-violet-400">
-                                        <th className="text-white font-bold text-lg border border-gray-200 rounded-tl-lg px-4 py-6 text-center">Kullanıcı adı</th>
-                                        <th className="text-white font-bold text-lg border border-gray-200 px-4 py-6 text-center">Oluşturulma Tarihi</th>
-                                        <th className="text-white font-bold text-lg border border-gray-200 px-4 py-6 text-center">Koltuk Id</th>
-                                        <th className="text-white font-bold text-lg border border-gray-200 px-4 py-6 text-center">Durum</th>
-                                        <th className="text-white font-bold text-lg border border-gray-200 rounded-tr-lg px-4 py-6 text-center">İşlemler</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {reservations.data.map((res) => (
-                                        <tr key={res.id} className="hover:bg-gray-50">
-                                            <td className="text-gray-500 font-semibold text-lg border-t border-violet-200 px-4 py-6">{res.accountUserName}</td>
-                                            <td className="text-gray-500 font-semibold text-lg border border-violet-200 px-4 py-6">{res.createdAt?.toLocaleString("tr-TR", {
-                                                dateStyle: "full", timeStyle: "short"
-                                            })}</td>
-                                            <td className="text-gray-500 font-semibold text-lg border border-violet-200 px-4 py-6">{res.seatId}</td>
-                                            <td className="text-gray-500 font-semibold text-lg border border-violet-200 px-4 py-6 text-center"><p className={`rounded-full text-white shadow-md hover:scale-105 duration-500 py-1 ${res.displayStatus == "Aktif" ? "bg-green-400" : res.displayStatus == "İptal Edildi" ? "bg-red-400" : res.displayStatus == "Tamamlandı" ? "bg-violet-400" : "bg-gray-400"}`}>{res.displayStatus}</p></td>
-                                            <td className="border-l border-t border-b border-violet-200 px-4 py-6">
-                                                {res.status !== "Cancelled" && <div className="flex flex-row justify-center gap-x-2">
-                                                    <button onClick={() => handleReservationCancel(res.id!)} title="Rezervasyonu İptal Et" className="bg-red-500 rounded-lg text-center flex justify-center content-center align-middle text-white w-10 h-10 hover:scale-105 hover:bg-red-600 duration-500 text-lg">
-                                                        <FontAwesomeIcon icon={faCancel} className="self-center" />
-                                                    </button>
+                        <>
+                            {isMobile ? (
+                                <>
+                                    {reservations.data.length != 0 ? (
+                                        <div className="space-y-4">
+                                            {reservations.data.map((res) => (
+                                                <div key={res.id} className="bg-white rounded-lg shadow-md p-4 border border-gray-200">
+                                                    <div className="flex justify-between items-start mb-3">
+                                                        <div className="flex-1">
+                                                            <h3 className="font-semibold text-base text-gray-800 mb-1">
+                                                                {res.accountUserName}
+                                                            </h3>
+                                                            <p className="text-xs text-gray-500 mb-2">
+                                                                {res.createdAt?.toLocaleString("tr-TR", { dateStyle: "short", timeStyle: "short" })}
+                                                            </p>
+                                                            <p className="text-sm text-gray-600 mb-2">
+                                                                Koltuk: {res.seatId}
+                                                            </p>
+                                                            <span className={`inline-block px-3 py-1 rounded-full text-white text-xs font-medium ${res.displayStatus === "Aktif" ? "bg-green-400" : res.displayStatus === "İptal Edildi" ? "bg-red-400" : res.displayStatus === "Tamamlandı" ? "bg-violet-400" : "bg-gray-400"}`}>
+                                                                {res.displayStatus}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    {res.status !== "Cancelled" && (
+                                                        <button
+                                                            onClick={() => handleReservationCancel(res.id!)}
+                                                            className="w-full py-2 px-3 bg-red-500 text-white rounded text-sm font-medium hover:bg-red-600 transition"
+                                                        >
+                                                            <FontAwesomeIcon icon={faCancel} className="mr-2" />
+                                                            İptal Et
+                                                        </button>
+                                                    )}
                                                 </div>
-                                                }
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p className="text-center font-bold text-gray-400">Aktif Rezervasyon Yok.</p>
+                                    )}
+                                </>
+                            ) : (
+                                <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <div className="overflow-x-auto">
+                                        <table className="min-w-full divide-y divide-gray-200">
+                                            <thead className="bg-violet-400">
+                                                <tr>
+                                                    <th className="px-4 py-5 text-left text-xs md:text-sm font-medium text-white uppercase tracking-wider">
+                                                        Kullanıcı
+                                                    </th>
+                                                    {!isTablet && (
+                                                        <th className="px-4 py-5 text-left text-xs md:text-sm font-medium text-white uppercase tracking-wider">
+                                                            Oluşturulma
+                                                        </th>
+                                                    )}
+                                                    <th className="px-4 py-5 text-left text-xs md:text-sm font-medium text-white uppercase tracking-wider">
+                                                        Koltuk
+                                                    </th>
+                                                    <th className="px-4 py-5 text-center text-xs md:text-sm font-medium text-white uppercase tracking-wider">
+                                                        Durum
+                                                    </th>
+                                                    <th className="px-4 py-5 text-center text-xs md:text-sm font-medium text-white uppercase tracking-wider">
+                                                        İşlemler
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="bg-white divide-y divide-gray-200">
+                                                {reservations.data.map((res) => (
+                                                    <tr key={res.id} className="hover:bg-gray-50">
+                                                        <td className="px-4 py-4">
+                                                            <div className="text-sm md:text-base font-medium text-gray-900">
+                                                                {res.accountUserName}
+                                                            </div>
+                                                            {isTablet && (
+                                                                <div className="text-xs text-gray-500 mt-1">
+                                                                    {res.createdAt?.toLocaleString("tr-TR", { dateStyle: "short", timeStyle: "short" })}
+                                                                </div>
+                                                            )}
+                                                        </td>
+                                                        {!isTablet && (
+                                                            <td className="px-4 py-4 text-sm md:text-base text-gray-500">
+                                                                {res.createdAt?.toLocaleString("tr-TR", { dateStyle: "short", timeStyle: "short" })}
+                                                            </td>
+                                                        )}
+                                                        <td className="px-4 py-4 text-sm md:text-base text-gray-500">
+                                                            #{res.seatId}
+                                                        </td>
+                                                        <td className="px-4 py-4 text-center">
+                                                            <span className={`inline-flex px-4 py-2 text-xs md:text-sm font-semibold rounded-full ${res.displayStatus === "Aktif" ? "bg-green-100 text-green-800" :
+                                                                res.displayStatus === "İptal Edildi" ? "bg-red-100 text-red-800" :
+                                                                    res.displayStatus === "Tamamlandı" ? "bg-violet-100 text-violet-800" :
+                                                                        "bg-gray-100 text-gray-800"
+                                                                }`}>
+                                                                {res.displayStatus}
+                                                            </span>
+                                                        </td>
+                                                        <td className="px-4 py-4">
+                                                            {res.status !== "Cancelled" && (
+                                                                <div className="flex justify-center">
+                                                                    <button
+                                                                        onClick={() => handleReservationCancel(res.id!)}
+                                                                        title="İptal Et"
+                                                                        className="group relative inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 overflow-hidden rounded-lg bg-gradient-to-br from-red-500 via-red-600 to-red-700 shadow-md transition-all duration-300 hover:shadow-lg hover:shadow-red-600/50 hover:scale-110 active:scale-95"
+                                                                    >
+                                                                        <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                                                        <FontAwesomeIcon
+                                                                            icon={faCancel}
+                                                                            className="relative z-10 text-sm md:text-base text-white drop-shadow-sm group-hover:rotate-180 transition-transform duration-300"
+                                                                        />
+                                                                        <span className="absolute inset-0 rounded-lg bg-gradient-to-br from-red-400 to-red-600 opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500" />
+                                                                    </button>
+                                                                </div>
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            )}
+                        </>
                     )}
 
                     <AdminPagination data={reservations.data} pagination={pagination} isLoading={reservations.isLoading} error={reservations.error} up={up} query={query} setQuery={setQuery} />

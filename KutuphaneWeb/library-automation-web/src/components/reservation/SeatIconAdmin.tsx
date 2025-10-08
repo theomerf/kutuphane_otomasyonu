@@ -2,6 +2,7 @@ import EventSeatIcon from '@mui/icons-material/EventSeat';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
     hovered?: boolean;
@@ -13,11 +14,35 @@ type Props = {
 
 export default function SeatIconAdmin({ hovered, onHover, seatNumber, onMouseLeave, handleSeatDelete }: Props) {
     const { up } = useBreakpoint();
+    const isMobile = !up.md;
+    const [showDeleteButton, setShowDeleteButton] = useState(false);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+                setShowDeleteButton(false);
+            }
+        }
+
+        if (isMobile && showDeleteButton) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, [isMobile, showDeleteButton]);
 
     return (
         <button
             type="button"
+            ref={buttonRef}
+            aria-pressed={hovered}
+            aria-label={seatNumber ? `Seat number ${seatNumber}` : 'Seat icon'}
             onMouseEnter={onHover}
+            onClick={isMobile ? () => { onHover; setShowDeleteButton(true); } : undefined}
             onMouseLeave={onMouseLeave}
             className="group relative transition-all duration-200 ease-in-out
              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-opacity-50
@@ -39,16 +64,26 @@ export default function SeatIconAdmin({ hovered, onHover, seatNumber, onMouseLea
                 </span>
             </div>
 
-            {/* Hover efekt */}
             <div className="absolute -inset-1 rounded-lg border-2 border-purple-400 opacity-0 group-hover:opacity-60 group-hover:animate-pulse" />
 
-            {/* Sil butonu */}
-            <div className="absolute z-10 top-[-90%] right-[-20%] opacity-0 group-hover:opacity-100">
-                <div onClick={handleSeatDelete} title="Sil" className="button !bg-red-500">
-                    <FontAwesomeIcon icon={faTrash} />
-                </div>
-            </div>
-        </button>
+            {isMobile ? (
+                <>{showDeleteButton &&
+                    <div className="absolute z-10 top-[-90%] right-[-10%]">
+                        <div onClick={handleSeatDelete} title="Sil" className="button !p-2 !bg-red-500"> 
+                            <FontAwesomeIcon icon={faTrash} />
+                        </div>
+                    </div>}
+                </>
+            ) : (
+                <div className="absolute z-10 top-[-90%] right-[-20%] opacity-0 group-hover:opacity-100">
+                    <div onClick={handleSeatDelete} title="Sil" className="button !bg-red-500">
+                        <FontAwesomeIcon icon={faTrash} />
+                    </div>
+                </div >
+            )
+            }
+
+        </button >
 
     );
 }

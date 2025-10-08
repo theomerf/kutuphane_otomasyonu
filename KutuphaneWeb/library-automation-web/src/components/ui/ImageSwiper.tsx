@@ -7,6 +7,7 @@ import { faChevronLeft, faChevronRight, faExpand } from '@fortawesome/free-solid
 import type BookImage from '../../types/bookImage';
 
 import "swiper/swiper.css";
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 
 type ImageSwiperProps = {
     images: BookImage[];
@@ -16,6 +17,7 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const { up } = useBreakpoint();
 
   const handleFullscreen = (index: number) => {
     setActiveSlide(index);
@@ -25,7 +27,7 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
   return (
     <>
       <div className="relative group">
-        <div className="relative bg-gradient-to-br from-violet-50 to-indigo-100 rounded-3xl p-6 shadow-2xl border border-violet-200/30 overflow-hidden">
+        <div className="relative bg-gradient-to-br from-violet-50 to-indigo-100 rounded-3xl p-2 lg:p-6 shadow-2xl border border-violet-200/30 lg:overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-violet-400 via-purple-500 to-indigo-500"></div>
           <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-violet-200/30 to-purple-200/30 rounded-full blur-xl"></div>
           <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-indigo-200/30 to-blue-200/30 rounded-full blur-lg"></div>
@@ -56,7 +58,7 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
               onSwiper={(swiper) => {
                 setActiveSlide(swiper.realIndex);
               }}
-              className="main-swiper rounded-2xl shadow-xl h-96 lg:h-[500px]"
+              className="main-swiper rounded-2xl shadow-xl h-fit lg:h-[500px]"
             >
               {images.map((img, index) => (
                 <SwiperSlide key={`${img.id}-${index}`} className="relative group">
@@ -67,14 +69,14 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
                         : img.imageUrl!
                       } 
                       alt={img.caption || `Kitap resmi ${index + 1}`} 
-                      className="w-full h-full object- transition-transform duration-700 group-hover:scale-105"
+                      className="lg:w-full lg:h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading={index === 0 ? "eager" : "lazy"}
                     />
                     
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
                       <button
                         onClick={() => handleFullscreen(index)}
-                        className="opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300 bg-white/90 hover:bg-white text-violet-600 rounded-full p-3 shadow-lg backdrop-blur-sm"
+                        className="opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300 bg-white/90 hover:bg-white text-violet-600 rounded-full p-1 lg:p-3 shadow-lg backdrop-blur-sm"
                         aria-label="Tam ekran görüntüle"
                       >
                         <FontAwesomeIcon icon={faExpand} className="w-4 h-4" />
@@ -93,14 +95,14 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
 
             {images.length > 1 && (
               <>
-                <button 
-                  className="swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white text-violet-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
+                <button onClick={() => setActiveSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+                  className="swiper-button-prev-custom absolute left-[-10%] lg:left-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 lg:w-12 lg:h-12 bg-white/90 hover:bg-white text-violet-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-label="Önceki resim"
                 >
                   <FontAwesomeIcon icon={faChevronLeft} className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
                 </button>
-                <button 
-                  className="swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white text-violet-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
+                <button onClick={() => setActiveSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+                  className="swiper-button-next-custom absolute right-[-10%] lg:right-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 lg:w-12 lg:h-12 bg-white/90 hover:bg-white text-violet-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-label="Sonraki resim"
                 >
                   <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
@@ -109,7 +111,7 @@ export default function ImageSwiper({ images }: ImageSwiperProps) {
             )}
           </div>
 
-          {images.length > 1 && (
+          {images.length > 1 && up.lg && (
             <div className="relative px-2">
               <Swiper
                 onSwiper={setThumbsSwiper}

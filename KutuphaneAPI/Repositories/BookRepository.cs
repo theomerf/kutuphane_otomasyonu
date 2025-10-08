@@ -17,12 +17,25 @@ namespace Repositories
 
         public async Task<(IEnumerable<ExpandoObject> data, int count)> GetAllBooksAsync(BookRequestParameters p, bool trackChanges, CancellationToken ct = default)
         {
-            var query = FindAll(trackChanges)
-                .FilterBy(p.SearchTerm, b => b.Title!, FilterOperator.Contains)
+            var query = FindAll(trackChanges);
+
+            if (!string.IsNullOrWhiteSpace(p.SearchTerm))
+            {
+                var searchPattern = $"%{p.SearchTerm}%";
+
+                query = query.Where(b =>
+                    EF.Functions.Like(b.Title!, searchPattern) ||
+                    b.Categories!.Any(c => EF.Functions.Like(c.Name!, searchPattern)) ||
+                    b.Authors!.Any(a => EF.Functions.Like(a.Name!, searchPattern))
+                );
+            }
+
+            query = query
                 .FilterBy(p.IsAvailable, b => b.AvailableCopies > 0 ? true : false)
                 .FilterBy(p.IsPopular, b => b.AvailableCopies < 5 ? true : false)
                 .FilterByCategory(p.CategoryId)
                 .FilterByAuthor(p.AuthorId);
+
 
             var count = await query.CountAsync(ct);
 

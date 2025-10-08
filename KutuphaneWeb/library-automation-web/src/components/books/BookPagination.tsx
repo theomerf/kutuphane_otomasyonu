@@ -44,8 +44,8 @@ export default function BookPagination({ data, pagination, isLoading, error, up,
                                 totalPages={pagination.TotalPage!}
                                 onPageChange={handlePageChange}
                                 maxVisible={up.lg ? 3 : 2}
-                                showFirstLast={true}
-                                showPrevNext={true}
+                                showFirstLast={up.lg ? true : false}
+                                showPrevNext={up.lg ? true : false}
                             />
                         </div>
                     )}
