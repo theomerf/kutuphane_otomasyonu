@@ -131,13 +131,11 @@ export default function ProfileReviews({ userReviews, sections, setSections, up,
                                             key={review.id} 
                                             className={`${up.lg ? "hover:bg-gray-100 hover:translate-x-2 hover:before:content-[''] hover:before:top-0 hover:before:absolute hover:before:left-0 hover:before:bottom-0 hover:before:w-1 hover:before:bg-hero-gradient hover:duration-500 duration-500" : ""} flex flex-col gap-y-4 lg:gap-y-6 rounded-lg shadow-md border bg-violet-50 border-gray-200 px-4 lg:px-8 py-4 lg:py-6 mb-4 lg:mb-6`}
                                         >
-                                            {/* Header - Responsive */}
                                             <div className="flex flex-col lg:flex-row gap-3 lg:gap-0">
                                                 <p className="text-sm lg:text-lg text-gray-400 font-semibold break-words">
                                                     <span className="font-bold text-violet-500">Kitap:</span> {review.bookTitle}
                                                 </p>
                                                 
-                                                {/* Action Buttons - Responsive */}
                                                 <div className="flex flex-row gap-x-2 lg:ml-4">
                                                     <button 
                                                         onClick={() => { setEditCommentOpen(true); setSelectedReviewId(review.id); }} 
@@ -155,7 +153,6 @@ export default function ProfileReviews({ userReviews, sections, setSections, up,
                                                     </button>
                                                 </div>
 
-                                                {/* Date and Rating - Responsive */}
                                                 <div className="lg:ml-auto flex flex-col lg:flex-row gap-2 lg:gap-0 items-start lg:items-center">
                                                     <span className="text-xs lg:text-base mr-0 lg:mr-6">
                                                         <FontAwesomeIcon icon={faCalendar} className="text-violet-400 mr-2" />
@@ -166,8 +163,6 @@ export default function ProfileReviews({ userReviews, sections, setSections, up,
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            {/* Comment Body - Responsive */}
                                             {review.comment && (
                                                 <div className="rounded-lg border-gray-200 border-2 bg-white px-3 lg:px-4 py-4 lg:py-8 text-sm lg:text-base break-words">
                                                     {review.comment}
@@ -182,7 +177,6 @@ export default function ProfileReviews({ userReviews, sections, setSections, up,
                 )}
             </div>
 
-            {/* Edit Modal - Fully Responsive */}
             {editCommentOpen && (
                 <div className="fixed inset-0 px-4 lg:px-0 mt-20 overflow-auto z-50 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="flex flex-col bg-white rounded-3xl shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -199,7 +193,6 @@ export default function ProfileReviews({ userReviews, sections, setSections, up,
                                 <input type="hidden" {...register("bookId")} />
                                 
                                 <div className="flex flex-col gap-y-4 lg:gap-y-6 p-4 lg:p-6">
-                                    {/* Rating Section - Responsive */}
                                     <div className="flex flex-col w-full">
                                         <p className="font-bold text-gray-500 text-sm lg:text-base">Puanlamanız:</p>
                                         <div
@@ -242,7 +235,6 @@ export default function ProfileReviews({ userReviews, sections, setSections, up,
                                         )}
                                     </div>
 
-                                    {/* Comment Section - Responsive */}
                                     <div className="flex flex-col w-full">
                                         <label htmlFor="comment" className="font-bold text-gray-500 text-sm lg:text-base">
                                             Yorumunuz
@@ -265,7 +257,6 @@ export default function ProfileReviews({ userReviews, sections, setSections, up,
                                     </div>
                                 </div>
 
-                                {/* Action Buttons - Responsive */}
                                 <div className="flex flex-col lg:flex-row content-center justify-center gap-3 lg:gap-x-4 mt-4 lg:mt-6 mb-4 lg:mb-6 px-4 lg:px-6">
                                     <button 
                                         type="submit" 

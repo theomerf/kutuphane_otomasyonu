@@ -65,13 +65,13 @@ export default function Home() {
                 {images.length > 1 && (
                     <>
                         <button
-                            className="swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white text-violet-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="swiper-button-prev-custom absolute left-[-5%] bottom-[10%] lg:left-4 lg:top-1/2 -translate-y-1/2 z-10 w-6 h-6 lg:w-12 lg:h-12 bg-white/90 hover:bg-white text-violet-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
                             aria-label="Önceki resim"
                         >
                             <FontAwesomeIcon icon={faChevronLeft} className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
                         </button>
                         <button
-                            className="swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white text-violet-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="swiper-button-next-custom absolute right-[-5%] bottom-[10%] lg:right-4 lg:top-1/2 -translate-y-1/2 z-10 w-6 h-6 lg:w-12 lg:h-12 bg-white/90 hover:bg-white text-violet-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 group/btn disabled:opacity-50 disabled:cursor-not-allowed"
                             aria-label="Sonraki resim"
                         >
                             <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />

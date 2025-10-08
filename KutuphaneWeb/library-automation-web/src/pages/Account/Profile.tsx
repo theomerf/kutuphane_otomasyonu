@@ -283,9 +283,7 @@ export default function Profile() {
         <div className="flex flex-col gap-y-6 lg:gap-y-8 px-4 lg:px-0">
             <p className="font-semibold text-2xl lg:text-4xl ml-4 lg:ml-20 text-violet-500 h-fit border-none pb-2 mb-4 lg:mb-8 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-16 lg:after:w-20 after:h-1 after:bg-hero-gradient after:rounded-sm">Profilim</p>
             
-            {/* Responsive Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-x-20 px-1 lg:px-20">
-                {/* Avatar ve Temel Bilgiler */}
                 <div className="col-span-1 px-4 py-6 lg:py-10 cardBefore">
                     {(userDetails.isLoading) && (
                         <div className="flex justify-center items-center h-64">
@@ -317,7 +315,6 @@ export default function Profile() {
                     )}
                 </div>
 
-                {/* Profil Detayları */}
                 <div className="col-span-1 lg:col-span-2 flex flex-col gap-y-4 px-4 py-6 lg:py-10 cardBefore">
                     {(userDetails.isLoading) && (
                         <div className="flex justify-center items-center h-64">
@@ -361,7 +358,6 @@ export default function Profile() {
                 </div>
             </div>
 
-            {/* Edit Profile Modal - Responsive */}
             {editProfileOpen && (
                 <div className="fixed inset-0 px-4 lg:px-0 mt-20 overflow-auto z-50 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="flex flex-col bg-white rounded-3xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -375,7 +371,6 @@ export default function Profile() {
                             <form method="POST" onSubmit={handleSubmit(handleProfileUpdate)} noValidate>
                                 <input type="hidden" {...register("Id")} />
                                 
-                                {/* Form Fields - Responsive */}
                                 <div className="flex flex-col lg:flex-row gap-4">
                                     <div className="my-3 lg:my-5 flex flex-col w-full lg:w-1/2">
                                         <label className="label text-sm lg:text-base" htmlFor="userName">
@@ -495,7 +490,6 @@ export default function Profile() {
                 </div>
             )}
 
-            {/* Kiralamalar Bölümü - Responsive */}
             <div className="flex flex-col cardBefore mx-2 lg:mx-20">
                 <div className="flex flex-row py-2 relative justify-center">
                     <p className="text-violet-400 font-semibold text-xl lg:text-2xl my-2">Kiralamalar</p>
@@ -593,10 +587,8 @@ export default function Profile() {
                 )}
             </div>
 
-            {/* Değerlendirmeler Component */}
             <ProfileReviews userReviews={userReviews} sections={sections} setSections={setSections} up={up} setRefreshComments={setRefreshComments} />
 
-            {/* Rezervasyonlar - Responsive */}
             <div className="flex flex-col cardBefore mx-2 lg:mx-20">
                 <div className="flex flex-row py-2 relative justify-center">
                     <p className="text-violet-400 font-semibold text-xl lg:text-2xl my-2">Rezervasyonlar</p>
@@ -653,7 +645,6 @@ export default function Profile() {
                 )}
             </div>
 
-            {/* Cezalar - Responsive */}
             <div className="flex flex-col cardBefore mx-2 lg:mx-20">
                 <div className="flex flex-row py-2 relative justify-center">
                     <p className="text-violet-400 font-semibold text-xl lg:text-2xl my-2">Cezalar</p>
