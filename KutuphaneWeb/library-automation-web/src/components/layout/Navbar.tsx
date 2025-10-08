@@ -111,7 +111,7 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
                       </Link>
                       <div ref={dropdownRef}>
                         <button onClick={toggleDropdown} className="flex flex-row gap-x-4" id="dropdownButton">
-                          <img src={"https://localhost:7214/images/" + user.avatarUrl} className="w-12 h-12 rounded-lg self-center avatarButton" />
+                          <img src={user.avatarUrl?.includes("avatars") ? "https://localhost:7214/images/" + user.avatarUrl : user.avatarUrl} className="w-12 h-12 rounded-lg self-center avatarButton" />
                           <div className="flex flex-row gap-x-3">
                             <p className="self-center text-lg font-semibold text-white">{user.userName}</p>
                             <FontAwesomeIcon icon={faChevronDown} className={`self-center text-white transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} />
@@ -125,7 +125,7 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
                           id="dropdownMenu"
                           className="z-10 absolute top-24 right-10 rounded-br-lg rounded-bl-lg shadow-lg border border-gray-200 bg-white px-4 py-4 flex flex-col gap-y-2">
                           <div className="flex flex-col gap-y-1 border-b-2 border-violet-200 pb-4">
-                            <img src={"https://localhost:7214/images/" + user.avatarUrl} className="w-14 h-14 rounded-lg self-center avatarButton" />
+                            <img src={user.avatarUrl?.includes("avatars") ? "https://localhost:7214/images/" + user.avatarUrl : user.avatarUrl} className="w-14 h-14 rounded-lg self-center avatarButton" />
                             <p className="self-center text-lg font-semibold text-black">{user.userName}</p>
                           </div>
                           <div className="flex flex-col gap-y-4 px-8 pt-4">
@@ -137,7 +137,7 @@ export default function Navbar({ isAdmin = false }: { isAdmin?: boolean }) {
                               <FontAwesomeIcon icon={faUser} className="lg:mr-2" />
                               {up.lg && "Hesabım"}
                             </Link>
-                            <button onClick={handleLogout}  className="navButton !bg-red-500 hover:!bg-red-600">
+                            <button onClick={handleLogout} className="navButton !bg-red-500 hover:!bg-red-600">
                               <FontAwesomeIcon icon={faRightFromBracket} className="lg:mr-2" />
                               {up.lg && "Çıkış Yap"}
                             </button>

@@ -9,8 +9,8 @@ import PopularBooks from "../components/home/PopularBooks";
 
 export default function Home() {
     const images = [
-        { id: 1, imageUrl: 'https://localhost:7214/images/announcements/1.svg', targetUrl: '/reservation' },
-        { id: 2, imageUrl: 'https://localhost:7214/images/announcements/2.svg', targetUrl: '/books' },
+        { id: 1, imageUrl: 'https://i.hizliresim.com/hl9fwyr.png', targetUrl: '/reservation' },
+        { id: 2, imageUrl: 'https://i.hizliresim.com/e1f9vnt.png', targetUrl: '/books' },
     ]
     return (
         <div className="flex flex-col gap-y-5 lg:gap-y-20 h-full mx-8 lg:mx-20">

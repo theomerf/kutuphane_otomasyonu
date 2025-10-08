@@ -8,7 +8,7 @@ namespace Entities.Dtos
         [MaxLength(20, ErrorMessage = "Kullanıcı adı en fazla 20 karakter olmalıdır.")]
         [Required(ErrorMessage = "Kullanıcı adı gereklidir.")]
         public String UserName { get; init; } = null!;
-        public String AvatarUrl { get; init; } = "avatars/default.png";
+        public String AvatarUrl { get; init; } = "https://i.hizliresim.com/ntfecdo.png";
         [Required(ErrorMessage = "Ad gereklidir.")]
         [MinLength(2, ErrorMessage = "Ad minimum 2 karakter olmalıdır.")]
         [MaxLength(20, ErrorMessage = "Ad en fazla 20 karakter olmalıdır.")]

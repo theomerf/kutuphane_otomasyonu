@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\entities\\dtos\\accountdtoforcreation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|solutionrelative:entities\\dtos\\accountdtoforcreation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\entities\\models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01890246-6D21-4EA5-9B0B-69A10AE0DA4C}|Entities\\Entities.csproj|solutionrelative:entities\\models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5F9E6D0D-3276-48D1-ABC0-0EFFB55EF3FF}|Repositories\\Repositories.csproj|c:\\users\\omerf\\onedrive\\masa\u00FCst\u00FC\\staj\\kutuphaneotom\\kutuphaneapi\\repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5F9E6D0D-3276-48D1-ABC0-0EFFB55EF3FF}|Repositories\\Repositories.csproj|solutionrelative:repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,12 +49,34 @@
               "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountDtoForCreation.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Dtos\\AccountDtoForCreation.cs",
+              "RelativeDocumentMoniker": "Entities\\Dtos\\AccountDtoForCreation.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Dtos\\AccountDtoForCreation.cs",
+              "RelativeToolTip": "Entities\\Dtos\\AccountDtoForCreation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T13:02:03.864Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Account.cs",
+              "RelativeDocumentMoniker": "Entities\\Models\\Account.cs",
+              "ToolTip": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Entities\\Models\\Account.cs",
+              "RelativeToolTip": "Entities\\Models\\Account.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T13:01:53.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "BookRepository.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Repositories\\BookRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\BookRepository.cs",
@@ -59,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ReservationManager.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Services\\ReservationManager.cs",
               "RelativeDocumentMoniker": "Services\\ReservationManager.cs",
@@ -71,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "LoanManager.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Services\\LoanManager.cs",
               "RelativeDocumentMoniker": "Services\\LoanManager.cs",
@@ -79,12 +109,11 @@
               "RelativeToolTip": "Services\\LoanManager.cs",
               "ViewState": "AgIAALEAAAAAAAAAAAAmwMYAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T11:50:27.897Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-07T11:50:27.897Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "DashboardController.cs",
               "DocumentMoniker": "C:\\Users\\omerf\\OneDrive\\Masa\u00FCst\u00FC\\Staj\\KutuphaneOtom\\KutuphaneAPI\\Presentation\\Controllers\\Admin\\DashboardController.cs",
               "RelativeDocumentMoniker": "Presentation\\Controllers\\Admin\\DashboardController.cs",
@@ -93,6 +122,10 @@
               "ViewState": "AgIAABQAAAAAAAAAAAAgwCIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-07T11:50:46.776Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }
