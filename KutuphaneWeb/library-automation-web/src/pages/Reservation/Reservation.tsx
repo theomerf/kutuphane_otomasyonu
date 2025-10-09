@@ -436,5 +436,5 @@ export default function Reservation() {
             </div>
         </>
 
-    )
+    );
 }

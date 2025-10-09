@@ -1,0 +1,5 @@
+2025-10-09 15:25:29.5488 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"Login","Id":null,"CreatedAt":"2025-10-09T15:25:29.0565437+03:00"}
+2025-10-09 15:25:30.3318 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetFavoriteBooks","Id":null,"CreatedAt":"2025-10-09T15:25:30.3314638+03:00"}
+2025-10-09 15:46:34.9801 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"RemoveFavouriteBooks","Id":"98","CreatedAt":"2025-10-09T15:46:34.9799146+03:00"}
+2025-10-09 16:12:31.7954 INFO {"ModelName":"OnActionExecuting","Controller":"Account","Action":"GetAccount","Id":null,"CreatedAt":"2025-10-09T16:12:31.795374+03:00"}
+2025-10-09 16:12:43.8980 INFO {"ModelName":"OnActionExecuting","Controller":"Penalty","Action":"GetPenaltiesByAccountId","Id":null,"CreatedAt":"2025-10-09T16:12:43.8979147+03:00"}

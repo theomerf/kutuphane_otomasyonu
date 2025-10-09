@@ -303,7 +303,7 @@ export default function AccountsAdmin() {
                                                         <tr key={account.id} className="hover:bg-gray-50">
                                                             <td className="px-4 py-4 whitespace-nowrap">
                                                                 <img
-                                                                    src={`https://localhost:7214/images/${account.avatarUrl}`}
+                                                                    src={account.avatarUrl?.includes("avatars") ? "https://localhost:7214/images/" + account.avatarUrl : account.avatarUrl}
                                                                     alt={`${account.userName}`}
                                                                     className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover"
                                                                 />
